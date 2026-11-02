@@ -1,5 +1,9 @@
 # E2-B — 실제 정수 기준을 만들고 같은 값인지 확인하기
 
+## 이번 실습의 질문
+
+눈금과 반올림을 같은 약속으로 계산하면 중간 결과도 같은지 확인합니다. 작은 수치 예를 먼저 읽고, 61개 비교 지점의 결과를 읽습니다.
+
 ## 이 장을 읽기 전에
 
 같은 입력과 저장된 숫자를 쓰면, 회로와 기준 계산이 같은 중간값을 내야 합니다. 여기서는 그 비교 규칙과 실행 기록을 확인합니다.
@@ -17,23 +21,7 @@ E2-A에서는 정수 눈금으로 반올림한 값을 다시 실수로 풀어 �
 E2-B에서는 **정수 Weight·정수 Bias·정수 계수로 Conv부터 최종 점수까지 계산**한다.
 이 결과가 앞으로 RTL이 따라야 할 Golden이다. 소프트웨어끼리 맞는 것과 실제 RTL 검증은 구분한다.
 
-## 1. 처음이라면: 데이터 다운로드 없이 한 장 재실행
-
-저장소 최상위에서 다음을 실행한다. 이 단계는 NumPy만 필요하다.
-
-```sh
-python -m pip install numpy
-python -m quant.replay_e2b --backend numpy
-```
-
-정상 결과는 `PASS`, `tensor_count: 61`, `compared_elements: 552084`, `prediction: 3`, `class_name: cat`이다.
-배포한 실제 상수와 실제 Test sample 0의 정수 입력을 사용한다. 새로 학습하거나 상수를 선택하지 않는다.
-`reference/e2b_v1/`의 패키지·Golden hash와 Shape를 확인한 뒤 61개 경계를 모두 비교한다.
-
-실패 메시지의 파일·Tensor 이름부터 확인한다. 파일 hash가 다르면 숫자 계산을 시작하지 않는다.
-`--backend torch`는 별도 구현으로 같은 검사를 한다. 이때 PyTorch가 필요하다.
-
-## 2. 세 가지 기준은 무엇이 다른가?
+## 1. 세 가지 기준은 무엇이 다른가?
 
 | 기준 | 계산 | 확인하는 것 |
 |---|---|---|
@@ -44,7 +32,7 @@ python -m quant.replay_e2b --backend numpy
 E2-B가 E2-A와 모든 code까지 같아야 하는 것은 아니다. Bias 정수화·정수 계수 근사·입력 양자화·FC 점수 표현이 추가된다.
 반면 같은 E2-B 계약을 구현한 RTL은 유효 code마다 정확히 같아야 한다.
 
-## 3. 숫자 계약 v1
+## 2. 숫자 계약 v1
 
 프로파일 이름은 `RESNET20_SIGNED_MINMAX_RNE_V1`이다. 기준 모델은 ResNet-20 CIFAR Option A, 19 Conv·9 Add·GAP·FC의 30작업이다.
 기존 signed/minmax 채택과 Train 1,000장 보정 범위를 고정한다. Test로 범위나 계수를 다시 고르지 않는다.
@@ -72,7 +60,7 @@ E2-B가 E2-A와 모든 code까지 같아야 하는 것은 아니다. Bias 정수
 이 패키지의 최대 보수적 누산 상한은 2,930,781이다. N을 곱하는 중간값은 INT64 범위를 검사한다.
 이는 FPGA 자원·속도·전력 결과가 아니다.
 
-## 4. 작은 수치로 먼저 이해하기
+## 3. 작은 수치로 먼저 이해하기
 
 1. **Bias 단위:** sx=0.1, sw=0.2이면 누산 한 칸은 0.02다. Bias=0.3은 code 15로 더한다.
 2. **RNE 동점:** 2.5→2, 3.5→4, -2.5→-2, -3.5→-4. 단순 right shift는 이 규칙과 다르다.
@@ -93,6 +81,22 @@ ReLU·INT8 포화 뒤 출력 code = 20
 `reference/e2b_v1/stem_vectors/`의 `bias.hex`, `multiplier.hex`, `shift.hex`, `acc_expected.hex`, `output_expected.hex`에서 확인한다.
 주소 0의 값이다. 입력·Weight는 NCHW/OIHW 순서이며 한 줄이 한 원소의 two's-complement hex word다.
 8-bit 원소는 두 자리, 32-bit 원소는 여덟 자리다. Byte 순서를 임의로 뒤집지 않는다.
+
+## 4. 계산을 이해했으면 실행하기
+
+저장소 최상위에서 다음을 실행한다. 이 단계는 NumPy만 필요하다.
+
+```sh
+python -m pip install numpy
+python -m quant.replay_e2b --backend numpy
+```
+
+정상 결과는 `PASS`, `tensor_count: 61`, `compared_elements: 552084`, `prediction: 3`, `class_name: cat`이다.
+배포한 실제 상수와 실제 Test sample 0의 정수 입력을 사용한다. 새로 학습하거나 상수를 선택하지 않는다.
+`reference/e2b_v1/`의 패키지·Golden hash와 Shape를 확인한 뒤 61개 경계를 모두 비교한다.
+
+실패 메시지의 파일·Tensor 이름부터 확인한다. 파일 hash가 다르면 숫자 계산을 시작하지 않는다.
+`--backend torch`는 별도 구현으로 같은 검사를 한다. 이때 PyTorch가 필요하다.
 
 ## 5. 상수부터 다시 만들고 전체 평가하기
 
@@ -117,6 +121,18 @@ python -m quant.run_e2b --limit 10000 --audit 8 --batch-size 32
 빠른 점검은 `--limit 16 --audit 2`다. 이는 전체 정확도 검증이 아니다.
 같은 결과 경로를 갱신하므로 완료한 실행은 ZIP으로 먼저 보관한다.
 다른 범위를 시험하려면 새 프로파일·별도 결과로 관리한다. Test 결과를 보고 현재 v1의 Scale을 바꾸지 않는다.
+
+## 결과가 다르면 확인할 순서
+
+| 보이는 차이 | 먼저 확인할 곳 |
+| --- | --- |
+| hash·identity·shape 오류 | 입력·상수·Golden이 같은 버전의 묶음인지 봅니다. |
+| first mismatch 뒤의 이름 | 그 지점의 입력과 정수 규칙부터 봅니다. Golden을 바꾸지는 않습니다. |
+| 61·552084가 다른 경우 | 같은 sample 0와 같은 비교 범위를 실행했는지 봅니다. |
+
+tensor_count는 비교 지점 수, compared_elements는 비교한 숫자 수입니다. prediction=3, class_name=cat을 마지막에 읽습니다. rtl_compared=false는 이번 실행에 회로 비교가 없다는 뜻입니다.
+
+오류가 나면 첫 불일치의 단계·주소·기대값·실제값을 남깁니다. 도구 실행 전 오류와 숫자 비교 실패를 구분하고, 고의 오류가 아닌 실패는 다음 단계로 넘어가기 전에 확인합니다.
 
 ## 6. 직접 검증한 결과
 

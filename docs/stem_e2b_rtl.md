@@ -1,5 +1,9 @@
 # E13-B. 실제 정수 Stem을 RTL로 실행하고 Golden과 비교하기
 
+## 이번 실습의 질문
+
+첫 출력의 곱의 합 411과 Bias 11879를 더하면 12290입니다. 눈금을 바꾼 출력은 20입니다. 이 두 값부터 비교하고, 맞으면 나머지 위치와 대기·초기화 시험을 읽습니다.
+
 ## 이 장을 읽기 전에
 
 모델 맨 앞 Conv로 크기를 넓힙니다. 입력 채널과 출력 위치가 늘어나므로 주소와 반복 횟수를 다시 계산합니다.
@@ -20,31 +24,7 @@
 기존 E13의 진단용 `/4` 예제는 별도 버전이다. 여기서는 새 공개 구현 `rtl/stem_e2b_v1/`을 사용한다.
 이 실습의 계산은 Stem 한 층이다. Residual·전체 CNN RTL·합성·배치배선·보드 실행은 후속 과제다.
 
-## 1. 먼저 실행하기
-
-**설치 없이 확인:** GitHub 저장소의 Actions → Basic track checks → `stem-real-integer`를 연다.
-완료된 실행의 `stem-real-integer-evidence` artifact를 받으면 로그·CSV·부분 파형·요약을 확인할 수 있다.
-
-**직접 실행:** Ubuntu 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동한다. Python과 Icarus Verilog가 필요하다.
-
-```bash
-sudo apt-get update
-sudo apt-get install -y python3 python3-venv iverilog
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install numpy
-bash tb/stem_e2b_v1/run.sh
-```
-
-PyTorch·GPU·CIFAR-10 다운로드·재학습은 이 RTL 실습에 필요 없다. 이미 동결한 실제 입력과 상수를 쓴다.
-PowerShell에서 `bash`나 `iverilog`가 없으면 위 명령을 WSL 안에서 실행하거나 Actions를 이용한다.
-Colab의 T4는 이 HDL 시뮬레이션을 가속하지 않는다.
-
-정상 종료는 마지막 JSON의 `status: PASS`, `completed_jobs: 5`, 누산·출력 불일치 각각 0이다.
-중간의 `EXPECTED_OUTPUT_MISMATCH`와 `EXPECTED_ACC_MISMATCH`는 오답을 의도적으로 넣어 실패 검출을 확인하는 시험이다.
-그 두 실행의 실패를 스크립트가 확인한 뒤 전체 PASS를 판정한다. 개별 로그 한 줄만으로 성공을 판단하지 않는다.
-
-## 2. 세 종류의 파일을 구분하기
+## 1. 세 종류의 파일을 구분하기
 
 | 파일 | 역할 | DUT에 적재하는가? |
 |---|---|---|
@@ -62,7 +42,7 @@ Testbench가 hex를 읽고 실제 loader 포트로 적재한 뒤, DUT가 내놓�
 hex는 ASCII·LF 줄바꿈·마지막 LF로 고정한다. Windows/Linux에서 같은 파일 hash가 되도록 exporter도 같은 바이트를 쓴다.
 줄바꿈만 바꿔도 파일 hash 검사는 실패한다. 내용 변조 검사를 건너뛰지 않는다.
 
-## 3. Shape와 주소를 손으로 따라가기
+## 2. Shape와 주소를 손으로 따라가기
 
 입력은 NCHW `[1,3,32,32]`, Weight는 OIHW `[16,3,3,3]`, 출력은 `[1,16,32,32]`다.
 Stride=1, Padding=1이며 바깥 입력은 code 0이다. Zero-point가 0이므로 가능한 규칙이다.
@@ -94,7 +74,7 @@ RNE는 가장 가까운 정수로 반올림하되 정확한 중간값은 짝수�
 64-bit로 `acc*N`을 만들고 RNE를 한 번 적용한 뒤 ReLU·포화한다.
 후처리 RTL은 Python `Fraction` 기반 독립 기준 1,280개로 별도 비교한다. 음수·동점·r=0/31·포화를 포함한다.
 
-## 4. 적재 → 시작 → 출력 수락
+## 3. 적재 → 시작 → 출력 수락
 
 | cfg_kind | cfg_addr | cfg_data |
 |---|---|---|
@@ -115,6 +95,30 @@ RNE는 가장 가까운 정수로 반올림하되 정확한 중간값은 짝수�
 미준비 또는 Busy 중 시작 요청은 `start_rejected`로 알려 준다.
 Reset은 진행 중 작업을 취소하고 적재 상태도 무효화하므로 전체를 다시 적재해야 한다.
 누산 범위를 벗어나면 `compute_error=1`로 작업을 중단하며 성공 `done`을 내지 않는다. `load_begin`이나 새 정상 시작/Reset으로 해제한다.
+
+## 4. 계산을 이해했으면 실행하기
+
+**설치 없이 확인:** GitHub 저장소의 Actions → Basic track checks → `stem-real-integer`를 연다.
+완료된 실행의 `stem-real-integer-evidence` artifact를 받으면 로그·CSV·부분 파형·요약을 확인할 수 있다.
+
+**직접 실행:** Ubuntu 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동한다. Python과 Icarus Verilog가 필요하다.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3 python3-venv iverilog
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install numpy
+bash tb/stem_e2b_v1/run.sh
+```
+
+PyTorch·GPU·CIFAR-10 다운로드·재학습은 이 RTL 실습에 필요 없다. 이미 동결한 실제 입력과 상수를 쓴다.
+PowerShell에서 `bash`나 `iverilog`가 없으면 위 명령을 WSL 안에서 실행하거나 Actions를 이용한다.
+Colab의 T4는 이 HDL 시뮬레이션을 가속하지 않는다.
+
+정상 종료는 마지막 JSON의 `status: PASS`, `completed_jobs: 5`, 누산·출력 불일치 각각 0이다.
+중간의 `EXPECTED_OUTPUT_MISMATCH`와 `EXPECTED_ACC_MISMATCH`는 오답을 의도적으로 넣어 실패 검출을 확인하는 시험이다.
+그 두 실행의 실패를 스크립트가 확인한 뒤 전체 PASS를 판정한다. 개별 로그 한 줄만으로 성공을 판단하지 않는다.
 
 ## 5. 파형과 회로 흐름
 
@@ -149,6 +153,18 @@ GTKWave를 별도로 설치한 경우 `gtkwave results/stem_rtl/first_window.vcd
 총 81,920개 누산과 81,920개 출력 code를 RTL Scoreboard로 비교한다.
 Mode 0의 CSV 32,768행은 Python이 NPZ Golden과 다시 전부 비교한다.
 이 결과는 sample 0의 Stem과 해당 제어 시험을 확인한다. 다른 이미지·다른 층·전체 모델의 RTL 정확도는 후속 검증이다.
+
+## 결과가 다르면 확인할 순서
+
+| 처음 다른 곳 | 먼저 확인할 곳 |
+| --- | --- |
+| acc | 첫 위치의 입력·Weight 주소, 바깥 Padding 0, Bias를 한 번만 더했는지 봅니다. |
+| acc는 맞고 code만 다름 | 그 출력 채널의 N·r와 RNE → ReLU → 포화 순서를 봅니다. |
+| 대기 중 주소·값이 변함 | y_ready=0인 동안 valid와 출력이 유지되는지 봅니다. |
+
+재실행 요약 `results/stem_rtl/summary.json`에서 전체 PASS → 완료 5작업 → 누산·출력 불일치 0 순으로 읽습니다. 고의 오류와 overflow 중단은 앞의 시험 표에 적힌 상황에서만 기대합니다.
+
+오류가 나면 첫 불일치의 단계·주소·기대값·실제값을 남깁니다. 도구 실행 전 오류와 숫자 비교 실패를 구분하고, 고의 오류가 아닌 실패는 다음 단계로 넘어가기 전에 확인합니다.
 
 ## 7. 결과와 제출
 

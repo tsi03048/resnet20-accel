@@ -3,27 +3,11 @@
 이번 목표는 **실제 ResNet-20의 두 Transition Block L2.0·L3.0를 실행하고, Conv 중간값·shortcut 주소/값·최종 출력을 Golden과 일치시키는 것**입니다.
 [Residual 단위 실습](residual_e2b_rtl.md)과 [Stem→Residual 연결](stem_residual_e2b_rtl.md)을 이해한 뒤 진행합니다. 처음이라면 이론의 Channel·Shape·Residual·정수 눈금을 먼저 읽습니다.
 
-## 1. 먼저 결과를 확인하고 실행하기
+## 이번 실습의 질문
 
-GitHub **Actions → Actual integer Transition blocks → transition-real-integer**에서 로그를 봅니다.
-완료 실행의 `transition-real-integer-evidence`에는 두 Stage의 CSV·파형·로그·요약이 있습니다.
+가로·세로가 줄어들 때 Main과 Skip이 같은 위치를 가리키는지 확인합니다. 건너뛰는 좌표와 0으로 채우는 채널을 손으로 짚은 뒤 계산을 비교합니다.
 
-직접 실행하려면 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
-
-```bash
-sudo apt-get update
-sudo apt-get install -y python3 python3-venv build-essential verilator
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install numpy
-bash tb/transition_e2b_v1/run.sh
-```
-
-NumPy·Verilator·C++ 빌드 도구를 사용합니다. GPU·새 학습·데이터 다운로드는 필요하지 않습니다.
-스크립트가 `STAGE=2`와 `STAGE=3`을 각각 빌드합니다. STAGE는 빌드 시 정하는 대상이며 런타임에 바꾸는 명령이 아닙니다.
-전체 성공은 마지막 `status: PASS`로 확인합니다. 고의 mismatch 시험은 해당 실행이 실패해야 전체 통과입니다.
-
-## 2. 무엇이 달라지나
+## 1. 무엇이 달라지나
 
 | 대상 | 적재하는 실제 입력 | X | H·M·Skip·Y | Conv1 K | Conv2 K |
 |---|---|---|---|---|---|
@@ -45,7 +29,7 @@ X 보존 ──→ Conv1(stride2) → H(ReLU) → Conv2(stride1) → M(음수 �
 새 실제 계수용 구현은 `rtl/transition_e2b_v1/`입니다. 하나의 Conv 계산 경로를 두 단계에 순차 재사용하며 출력 채널별 Bias/N/Shift를 선택합니다.
 기존 E16의 `/4` 진단 예제·두 static Core·과거 로그는 `historical/e12-e21/`에 그대로 보존합니다. 실제 DSP·BRAM 사용량은 합성 후 확인합니다.
 
-## 3. stride2를 작은 Window로 생각하기
+## 2. stride2를 작은 Window로 생각하기
 
 입력 채널 하나에서3×3 필터의 중심은 출력 좌표에 따라 `(0,0) → (0,2) → (0,4)`처럼 두 칸씩 이동합니다.
 평균을 내거나2×2를 한꺼번에 더하는 연산이 아닙니다. Weight를 곱하는3×3 Conv의 이동 간격입니다.
@@ -59,7 +43,7 @@ Conv2: iy=oy+ky-1,   ix=ox+kx-1
 Testbench는 모든 항의 입력/Weight 주소·Padding 여부와 등록된 X/W 값을 따로 검사합니다.
 누산과 최종 code가 같다는 것뿐 아니라, 올바른 window와 채널에서 값을 읽었는지도 확인합니다.
 
-## 4. Option A는 어디서 읽나
+## 3. Option A는 어디서 읽나
 
 출력 공간은 절반, 출력 채널은 두 배입니다. 가운데 채널만 X의 짝수 좌표를 읽으며 앞뒤 채널은 Skip code0입니다.
 
@@ -90,7 +74,7 @@ co2: 101,103,109,111
 co3: 0,0,0,0
 ```
 
-## 5. Skip이0이어도 Y는0이 아닐 수 있다
+## 4. Skip이0이어도 Y는0이 아닐 수 있다
 
 Option A의0은 shortcut에 더할 값입니다. Main 결과를 버리는 mask가 아닙니다.
 실제 L2.0의 출력 주소0에서는 `H=7, M=4, Skip=0 → Y=3`입니다.
@@ -113,7 +97,7 @@ L3.0은 별도 계수 `Nmain=1507819355, Nskip=1437447445, r=31`을 사용합니
 Main·Skip의 Scale을 맞춘 넓은 합에 RNE를 한 번 적용하고 ReLU·포화합니다. 단순8-bit 덧셈이나 경로별 선행 반올림으로 바꾸지 않습니다.
 Conv2 뒤에는 ReLU를 넣지 않습니다. 음수 Main도 Skip과 합친 뒤 판단합니다.
 
-## 6. 실제 상수와 Golden의 출처
+## 5. 실제 상수와 Golden의 출처
 
 `tools/transition_vectors.py`는 고정 E2-B 패키지와 sample 0의61경계 재현·hash를 먼저 검사합니다.
 L2.0·L3.0의 입력·두 Weight/Bias/N/Shift·Add 계수와 acc1/H/acc2/M/Skip/Add wide/Y를 추출합니다.
@@ -126,7 +110,7 @@ DUT는 기대값이나 `$readmemh`를 갖지 않습니다. Testbench가 실제 �
 이번 입력은 저장한 L1.2/L2.2 경계입니다. 앞선 Stem→L1.0 연결에 바로 붙인 전체 모델 실행은 아닙니다.
 같은 원본 sample 0의 두 단위 시험이며 서로 다른 두 이미지로 세지 않습니다.
 
-## 7. 적재와 Buffer 수명
+## 6. 적재와 Buffer 수명
 
 | cfg_kind | 의미 | Stage2 개수 | Stage3 개수 |
 |---|---|---|---|
@@ -149,6 +133,26 @@ Bias는 signed INT32 비트열, N은 비음수 signed INT32, r은0..31입니다.
 X는 마지막 Option A까지 보존합니다. H와 Y는 같은 B 영역을 사용하지만 Conv2가 H를 전부 읽은 뒤에만 Y를 씁니다.
 X/H/M의 INT8 payload 합은 Stage2 32KiB·Stage3 16KiB입니다. Weight·계수·valid tracker·실제 FPGA 배치는 이 숫자에 포함하지 않습니다.
 
+## 7. 계산을 이해했으면 실행하기
+
+GitHub **Actions → Actual integer Transition blocks → transition-real-integer**에서 로그를 봅니다.
+완료 실행의 `transition-real-integer-evidence`에는 두 Stage의 CSV·파형·로그·요약이 있습니다.
+
+직접 실행하려면 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3 python3-venv build-essential verilator
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install numpy
+bash tb/transition_e2b_v1/run.sh
+```
+
+NumPy·Verilator·C++ 빌드 도구를 사용합니다. GPU·새 학습·데이터 다운로드는 필요하지 않습니다.
+스크립트가 `STAGE=2`와 `STAGE=3`을 각각 빌드합니다. STAGE는 빌드 시 정하는 대상이며 런타임에 바꾸는 명령이 아닙니다.
+전체 성공은 마지막 `status: PASS`로 확인합니다. 고의 mismatch 시험은 해당 실행이 실패해야 전체 통과입니다.
+
 ## 8. 시험 범위와 파형
 
 각 Stage에서 정상 연속2회·대기1회·Reset 복구1회·불법 적재 뒤 복구1회, 합계5개 Block을 완료합니다.
@@ -167,6 +171,19 @@ stage3/에도 같은 두 파일
 
 파형은 별도 실행의 짧은 창입니다. 전체 완료 증거는 mode별 Scoreboard와 CSV·summary입니다.
 Mode0 CSV는 각 Stage의 두 작업에서 acc/H/acc/M/Skip/wide/Y를 전부 다시 비교합니다.
+
+## 결과가 다르면 확인할 순서
+
+| 처음 다른 곳 | 먼저 확인할 곳 |
+| --- | --- |
+| Conv1 | 한 칸 걸러 시작하는 좌표와 Conv1의 입력 채널 수를 봅니다. |
+| Conv2 | Conv1과 다른 곱 항 수 K를 썼는지 봅니다. |
+| Skip | 가운데 채널은 짝수 좌표에서 읽고, 앞뒤 추가 채널은 0인지 봅니다. |
+| Skip=0인데 Y가 양수 | Main이 양수일 수 있으므로 이것만으로 오류는 아닙니다. 같은 위치의 Main을 봅니다. |
+
+`results/transition_rtl/summary.json`에서 두 Stage를 따로 읽습니다. 각각 완료 5회와 각 경계 불일치 0을 확인합니다. 두 크기의 주소와 기대값을 섞지 않습니다.
+
+오류가 나면 첫 불일치의 단계·주소·기대값·실제값을 남깁니다. 도구 실행 전 오류와 숫자 비교 실패를 구분하고, 고의 오류가 아닌 실패는 다음 단계로 넘어가기 전에 확인합니다.
 
 ## 9. 결과와 제출
 

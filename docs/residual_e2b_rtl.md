@@ -1,5 +1,9 @@
 # E14-B. 실제 정수 Residual Block을 RTL로 비교하기
 
+## 이번 실습의 질문
+
+원래 X를 남겨 둔 채 H → M → Y를 계산합니다. 실제 첫 위치의 H=23, M=3, X=20, Y=18을 따라간 뒤 전체 위치를 비교합니다.
+
 ## 이 장을 읽기 전에
 
 원래 입력을 보관하면서 Conv를 두 번 계산하고, 마지막에 두 결과를 더합니다. 더하기 전까지 원래 입력을 지우지 않는 것이 핵심입니다.
@@ -18,31 +22,7 @@
 [기본 S0~S4](basic_track.md) → [E2-B](e2b_integer_reference.md) → [실제 Stem](stem_e2b_rtl.md) 뒤의 선택 실습입니다.
 처음부터 전체 모델을 구현할 필요는 없습니다. 먼저 한 Block의 입력 보존과 정수 단위를 설명할 수 있으면 됩니다.
 
-## 1. 먼저 실행해 보기
-
-설치 없이 결과를 보려면 GitHub의 **Actions → Actual integer Residual block → residual-real-integer**를 엽니다.
-완료된 실행의 `residual-real-integer-evidence`에 로그·CSV·파형·요약이 있습니다.
-
-직접 실행할 때는 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
-
-```bash
-sudo apt-get update
-sudo apt-get install -y python3 python3-venv build-essential verilator
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install numpy
-bash tb/residual_e2b_v1/run.sh
-```
-
-이 RTL 실습은 NumPy·Verilator·C++ 빌드 도구를 사용합니다. GPU·PyTorch·데이터 다운로드·재학습은 필요하지 않습니다.
-기존 E14 진단 예제의 `/4` 계약 대신 E2-B의 실제 채널별 Bias·N·Shift와 Add 계수를 사용합니다.
-`rtl/residual_e2b_v1/`은 실제 계수용 새 공개 구현입니다. 이전 E14 원문·소스·시험 기록은 `historical/e12-e21/`에 유지합니다.
-
-정상 종료는 마지막 JSON의 `status: PASS`입니다. 완료 5작업과 불일치 0을 확인합니다.
-Mode 6~9의 mismatch는 고의로 잘못된 기대값을 넣은 시험이며, 스크립트가 그 실패를 확인해야 전체 PASS가 됩니다.
-`TRACE_WINDOW_ONLY`는 짧은 파형 실행입니다. 정상 완료 작업 수에 넣지 않습니다.
-
-## 2. Block에서 지켜야 할 세 가지
+## 1. Block에서 지켜야 할 세 가지
 
 ```text
 A: X(입력) ──→ Conv1 → B: H(ReLU 후) → Conv2 → C: M(음수 유지)
@@ -60,7 +40,7 @@ A: X(입력) ──→ Conv1 → B: H(ReLU 후) → Conv2 → C: M(음수 유지
 X/H/M/Y의 Shape는 모두 `[1,16,32,32]`, 각각 16,384개입니다. 두 Weight는 각각 `[16,16,3,3]`, 2,304개입니다.
 출력 하나에 144 MAC, Conv 하나에 2,359,296 MAC, Block 하나에 4,718,592 MAC입니다. Padding 0 항도 셉니다.
 
-## 3. INT8 두 개를 왜 바로 더하면 안 될까?
+## 2. INT8 두 개를 왜 바로 더하면 안 될까?
 
 INT8 code는 숫자 칸의 번호이며 Scale은 한 칸의 크기입니다. 같은 code라도 칸의 크기가 다르면 같은 실수가 아닙니다.
 이 실제 Block의 단위는 다음과 같습니다. 설명용 소수이며 RTL에는 저장한 정수 계수를 적재합니다.
@@ -103,7 +83,7 @@ Add:   3*1509140679 + 20*1692391050 = 38375243037
        RNE(38375243037/2^31)=18 → Y=18
 ```
 
-## 4. Golden의 출처 확인하기
+## 3. Golden의 출처 확인하기
 
 입력은 이미 검증한 같은 sample 0의 Stem 출력입니다. 이번 실행은 저장한 Stem 출력을 Block에 적재합니다.
 Stem RTL과 Block RTL의 연속 연결·시작은 다음 통합 시험입니다.
@@ -123,7 +103,7 @@ hex는 실행할 때 재생성합니다. 고정 manifest가 다르면 중단하�
 DUT에는 Golden이나 `$readmemh`가 없습니다. Testbench가 파일을 읽어 native loader 포트로 한 word씩 보냅니다.
 계층 참조는 상태·메모리 관찰에 사용하며 내부 메모리에 직접 preload하지 않습니다.
 
-## 5. 적재하고 시작하는 순서
+## 4. 적재하고 시작하는 순서
 
 | cfg_kind | 의미 | cfg_addr | cfg_data |
 |---|---|---|---|
@@ -142,7 +122,7 @@ DUT에는 Golden이나 `$readmemh`가 없습니다. Testbench가 파일을 읽�
 6. 최종 Y는 `y_valid && y_ready`에서 수락하고 B에 저장합니다.
 7. 마지막 Y 수락 뒤 `rsp_valid`가 나옵니다. `rsp_ready`로 완료 응답을 수락하면 `done`이 한 클록 나옵니다.
 
-## 6. 주소와 대기 확인하기
+## 5. 주소와 대기 확인하기
 
 ```text
 out = oc*1024 + oy*32 + ox
@@ -158,6 +138,30 @@ W1/W2 주소 = oc*144 + t            (종류별 원소 순번)
 Busy 중 적재는 수락하지 않으며 시작은 거부합니다. 수락한 word의 주소/값이 잘못되면 `load_error`가 한 클록 나옵니다.
 Reset은 작업과 prepared를 무효화하므로 시작 전에 전부 다시 적재합니다. 메모리 전체를 0으로 지운다는 뜻은 아닙니다.
 Conv의 33-bit 덧셈 검사로 INT32 overflow를 검출하면 `compute_error=1`로 중단하며 성공 응답을 내지 않습니다.
+
+## 6. 계산을 이해했으면 실행하기
+
+설치 없이 결과를 보려면 GitHub의 **Actions → Actual integer Residual block → residual-real-integer**를 엽니다.
+완료된 실행의 `residual-real-integer-evidence`에 로그·CSV·파형·요약이 있습니다.
+
+직접 실행할 때는 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3 python3-venv build-essential verilator
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install numpy
+bash tb/residual_e2b_v1/run.sh
+```
+
+이 RTL 실습은 NumPy·Verilator·C++ 빌드 도구를 사용합니다. GPU·PyTorch·데이터 다운로드·재학습은 필요하지 않습니다.
+기존 E14 진단 예제의 `/4` 계약 대신 E2-B의 실제 채널별 Bias·N·Shift와 Add 계수를 사용합니다.
+`rtl/residual_e2b_v1/`은 실제 계수용 새 공개 구현입니다. 이전 E14 원문·소스·시험 기록은 `historical/e12-e21/`에 유지합니다.
+
+정상 종료는 마지막 JSON의 `status: PASS`입니다. 완료 5작업과 불일치 0을 확인합니다.
+Mode 6~9의 mismatch는 고의로 잘못된 기대값을 넣은 시험이며, 스크립트가 그 실패를 확인해야 전체 PASS가 됩니다.
+`TRACE_WINDOW_ONLY`는 짧은 파형 실행입니다. 정상 완료 작업 수에 넣지 않습니다.
 
 ## 7. 시험 범위 읽기
 
@@ -181,6 +185,18 @@ Mode 0의 CSV 98,304행은 Python으로도 NPZ에서 얻은 기준과 전부 다
 이는 별도 실행의 짧은 구간입니다. 전체 Block 일치 증거는 Scoreboard 로그와 CSV입니다.
 Verilator는 `$dumpoff`를 무시하므로, 짧은 파형 실행 자체를 500클록에서 종료합니다.
 [Verilator 공식 언어 문서](https://verilator.org/guide/latest/languages.html)를 참고하세요.
+
+## 결과가 다르면 확인할 순서
+
+| 처음 다른 곳 | 먼저 확인할 곳 |
+| --- | --- |
+| Conv1 acc·H | 입력 주소·계수와 Conv1의 ReLU를 봅니다. |
+| Conv2 acc는 맞고 M만 다름 | Conv2 뒤에 ReLU를 추가하지 않았는지 봅니다. |
+| M은 맞고 Add wide·Y가 다름 | 원래 X 보존과 Main·Skip 계수, 넓게 더한 뒤 한 번 RNE인지 봅니다. |
+
+`results/residual_rtl/summary.json`에서 전체 판정과 완료 5작업, 중간값별 불일치를 읽습니다. 마지막 Y만 맞아도 앞의 acc가 다르면 통과가 아닙니다.
+
+오류가 나면 첫 불일치의 단계·주소·기대값·실제값을 남깁니다. 도구 실행 전 오류와 숫자 비교 실패를 구분하고, 고의 오류가 아닌 실패는 다음 단계로 넘어가기 전에 확인합니다.
 
 ## 8. 결과와 제출
 

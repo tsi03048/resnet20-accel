@@ -6,27 +6,11 @@
 이전에는 저장한 Stem 출력을 Block 입력으로 적재했습니다. 이번에는 Stem RTL이 계산한 출력이 연결부를 통해 Block의 X 메모리에 기록됩니다.
 Testbench는 그 전송을 관찰하며, Block의 X를 외부에서 미리 넣는 요청은 거부합니다.
 
-## 1. 먼저 실행하기
+## 이번 실습의 질문
 
-설치 없이 확인하려면 GitHub **Actions → Actual integer Stem to Residual → stem-residual-real-integer**를 엽니다.
-완료된 실행의 `stem-residual-real-integer-evidence`에 전체 로그·CSV·짧은 파형·요약이 있습니다.
+Stem의 첫 출력 code 20이 실제 연결을 통해 Block의 X[0]에 한 번 저장되는지 확인합니다. 값·주소·전달 횟수를 먼저 보고 최종 Y로 이어갑니다.
 
-직접 실행하려면 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
-
-```bash
-sudo apt-get update
-sudo apt-get install -y python3 python3-venv build-essential verilator
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install numpy
-bash tb/stem_residual_e2b_v1/run.sh
-```
-
-이 실습에는 GPU·데이터 다운로드·재학습이 필요하지 않습니다. NumPy·Verilator·C++ 빌드 도구를 사용합니다.
-성공하면 마지막 JSON에 `status: PASS`가 나옵니다. 고의 mismatch 시험은 해당 실행이 실패해야 전체 시험이 통과합니다.
-`TRACE_WINDOW_ONLY`는 짧은 파형 실행이며 정상 완료 수에 포함하지 않습니다.
-
-## 2. 무엇이 연결되었나
+## 1. 무엇이 연결되었나
 
 ```text
 Host: 이미지 정수 입력 + Stem 상수 + Block 상수 적재
@@ -47,7 +31,7 @@ Block RTL: Conv1 → H → Conv2 → M → X와 단위 정렬 Add → Y
 한 체인의 MAC은 Stem 442,368 + Block 4,718,592 = **5,160,960회**입니다. 이 값은 실제 FPGA 클록 수나 FPS가 아닙니다.
 Block 내부의 X 보존·Conv2 음수 유지·64-bit Add 후 한 번 RNE 규칙은 E14-B와 같습니다.
 
-## 3. 먼저 준비할 것과 실행 중 생기는 것
+## 2. 먼저 준비할 것과 실행 중 생기는 것
 
 | 종류 | 누가 준비하나 | 준비 완료 시점 |
 |---|---|---|
@@ -62,7 +46,7 @@ Block 내부의 X 보존·Conv2 음수 유지·64-bit Add 후 한 번 RNE 규칙
 연결부가16,384개를 전부 기록한 뒤 내부 Block prepared가1이 되어야 자동 시작합니다.
 같은 prepared라는 이름도 어느 모듈의 경계인지 확인해야 합니다.
 
-## 4. 한 값을 어떻게 넘기는가
+## 3. 한 값을 어떻게 넘기는가
 
 ```text
 bridge_valid = Stem이 보낼 값을 보유하고 있음
@@ -84,7 +68,7 @@ fire = bridge_valid && bridge_ready
 그 code20이 Block의 Skip 원본 X[0]가 됩니다. Block의 첫 출력은 H=23, M=3, Skip=20, Y=18입니다.
 단지 마지막 class나 checksum만 확인하는 것이 아니라 이 경계를 전 원소 비교합니다.
 
-## 5. 적재·시작·완료 순서
+## 4. 적재·시작·완료 순서
 
 `cfg_target=0`은 Stem, `cfg_target=1`은 Block 상수를 선택합니다. 각 종류의 값 범위는 앞선 단위 실습과 같습니다.
 
@@ -105,7 +89,7 @@ fire = bridge_valid && bridge_ready
 이전 프레임의 준비 상태로 곧바로 다시 시작하는 요청은 거부합니다. 상수 유지·이미지만 교체하는 최적화는 별도 계약이 필요합니다.
 Busy 동안 Host 적재와 재시작도 수락하지 않습니다.
 
-## 6. 같은 값만 반복해서 맞는 문제를 피하기
+## 5. 같은 값만 반복해서 맞는 문제를 피하기
 
 정상 반복 시험은 **실제 sample 0 → 정수 입력이 모두0인 합성 프레임 → 실제 sample 0** 순서입니다.
 합성 입력은 학습된 실제 상수를 그대로 쓰는 제어 시험입니다. 실제 CIFAR 이미지나 정확도 평가 이미지로 세지 않습니다.
@@ -117,6 +101,26 @@ Busy 동안 Host 적재와 재시작도 수락하지 않습니다.
 `tools/chain_vectors.py`는 원래 패키지 hash와 실제 sample 0의61경계 재현을 확인하고 연결 시험 hex를 만듭니다.
 고정 `reference/e2b_v1/chain_vectors/manifest.json`과 바이트 hash·Shape·값을 대조합니다.
 Stem Golden과 Block 입력 Golden이 같은지도 확인합니다. 이 파일들은 Testbench의 비교 기준이며 DUT의 연결 데이터는 RTL 계산 결과입니다.
+
+## 6. 계산을 이해했으면 실행하기
+
+설치 없이 확인하려면 GitHub **Actions → Actual integer Stem to Residual → stem-residual-real-integer**를 엽니다.
+완료된 실행의 `stem-residual-real-integer-evidence`에 전체 로그·CSV·짧은 파형·요약이 있습니다.
+
+직접 실행하려면 Ubuntu 24.04 또는 Windows의 WSL Ubuntu에서 저장소 최상위로 이동합니다.
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3 python3-venv build-essential verilator
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install numpy
+bash tb/stem_residual_e2b_v1/run.sh
+```
+
+이 실습에는 GPU·데이터 다운로드·재학습이 필요하지 않습니다. NumPy·Verilator·C++ 빌드 도구를 사용합니다.
+성공하면 마지막 JSON에 `status: PASS`가 나옵니다. 고의 mismatch 시험은 해당 실행이 실패해야 전체 시험이 통과합니다.
+`TRACE_WINDOW_ONLY`는 짧은 파형 실행이며 정상 완료 수에 포함하지 않습니다.
 
 ## 7. 대기·취소·오류를 읽는 법
 
@@ -138,6 +142,19 @@ overflow 시험은 오류 해제 뒤 prepared까지 재준비를 확인하며, �
 `results/stem_residual_rtl/first_bridge.vcd`는 초기 연결 전송 근처의500클록만 담습니다.
 GTKWave에서 bridge_valid/ready·bridge_count·block_input_count와 실제 code를 함께 봅니다.
 전체 일치 증거는 Scoreboard 로그와 CSV입니다. 짧은 파형 실행은 완료 체인으로 세지 않습니다.
+
+## 결과가 다르면 확인할 순서
+
+| 처음 다른 곳 | 먼저 확인할 곳 |
+| --- | --- |
+| Stem 출력 | 앞의 Stem 단위 계산부터 확인합니다. |
+| Stem은 맞고 Block X가 다름 | bridge_valid와 bridge_ready가 함께 1인 순간의 주소·code와 전송 개수를 봅니다. |
+| X는 맞고 Block 출력이 다름 | H → M → Add wide → Y 중 처음 다른 곳을 봅니다. |
+| 다음 입력에서만 실패 | 새 적재를 마치고 시작했는지, 이전 작업의 준비 상태를 재사용하지 않았는지 봅니다. |
+
+`results/stem_residual_rtl/summary.json`에서 전체 PASS와 완료 6체인을 읽습니다. 실제 sample 0 다섯 번과 합성 0 한 번이며, 서로 다른 실제 사진 여섯 장은 아닙니다.
+
+오류가 나면 첫 불일치의 단계·주소·기대값·실제값을 남깁니다. 도구 실행 전 오류와 숫자 비교 실패를 구분하고, 고의 오류가 아닌 실패는 다음 단계로 넘어가기 전에 확인합니다.
 
 ## 8. 결과와 제출
 
