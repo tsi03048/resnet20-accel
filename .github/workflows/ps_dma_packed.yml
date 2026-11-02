@@ -1,0 +1,62 @@
+name: Packed INT8 DMA full integer transfer RTL
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y verilator
+      - run: bash tb/ps_dma_v2/run.sh build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-packed-build
+          path: |
+            build/ps_dma_packed_model/Vtb_ps_packed
+            results/ps_dma_packed_rtl/
+  cases:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix: {mode: ['0', '1', '2', '3', '4', 'negative']}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with: {name: ps-dma-packed-build, path: '.'}
+      - run: chmod +x build/ps_dma_packed_model/Vtb_ps_packed
+      - run: bash tb/ps_dma_v2/run.sh case ${{ matrix.mode }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-packed-case-${{ matrix.mode }}
+          path: results/ps_dma_packed_rtl/
+  summary:
+    needs: cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ps-dma-packed-case-*
+          path: results/ps_dma_packed_rtl
+          merge-multiple: true
+      - run: bash tb/ps_dma_v2/run.sh summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-packed-evidence
+          path: |
+            results/ps_dma_packed_rtl/
+            results/ps_dma_packed_rtl_actual.json
