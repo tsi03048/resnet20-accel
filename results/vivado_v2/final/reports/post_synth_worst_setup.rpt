@@ -1,0 +1,707 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Nov  2 19:30:07 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 10 -path_type full_clock_expanded -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_synth_worst_setup.rpt
+| Design       : full_model_timed
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[0]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[0]
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[0]_rep/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[0]_rep/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[0]_rep/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[0]_rep
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[0]_rep__0/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[0]_rep__0/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[0]_rep__0/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[0]_rep__0
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[0]_rep__1/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[0]_rep__1/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[0]_rep__1/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[0]_rep__1
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[0]_rep__2/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[0]_rep__2/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[0]_rep__2/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[0]_rep__2
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[10]/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[10]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[10]/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[10]
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[10]_rep/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[10]_rep/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[10]_rep/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[10]_rep
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[10]_rep__0/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[10]_rep__0/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[10]_rep__0/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[10]_rep__0
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[10]_rep__1/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[10]_rep__1/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[10]_rep__1/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[10]_rep__1
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+Slack (VIOLATED) :        -1.453ns  (required time - arrival time)
+  Source:                 cfg_addr[3]
+                            (input port clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            core/load_address_reg[10]_rep__2/CE
+                            (rising edge-triggered cell FDRE clocked by core_clk  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             core_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (core_clk rise@10.000ns - core_clk rise@0.000ns)
+  Data Path Delay:        10.047ns  (logic 1.488ns (14.810%)  route 8.559ns (85.190%))
+  Logic Levels:           12  (LUT1=8 LUT5=2 LUT6=2)
+  Input Delay:            2.000ns
+  Clock Path Skew:        0.924ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 10.924 - 10.000 ) 
+    Source Clock Delay      (SCD):    0.000ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock core_clk rise edge)
+                                                      0.000     0.000 r  
+                         input delay                  2.000     2.000    
+                                                      0.000     2.000 f  cfg_addr[3] (IN)
+                         net (fo=0)                   0.973     2.973    input_delays/data[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.097 f  input_delays/stage[0].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     3.546    input_delays/stage[1].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     3.670 f  input_delays/stage[1].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.119    input_delays/stage[2].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.243 f  input_delays/stage[2].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     4.692    input_delays/stage[3].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     4.816 f  input_delays/stage[3].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.265    input_delays/stage[4].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.389 f  input_delays/stage[4].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     5.838    input_delays/stage[5].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     5.962 f  input_delays/stage[5].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.411    input_delays/stage[6].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     6.535 f  input_delays/stage[6].bit_delay[39].delay_cell/O
+                         net (fo=1, unplaced)         0.449     6.984    input_delays/stage[7].stage_in[39]
+                         LUT1 (Prop_lut1_I0_O)        0.124     7.108 f  input_delays/stage[7].bit_delay[39].delay_cell/O
+                         net (fo=11, unplaced)        1.157     8.265    input_delays/delayed[39]
+                         LUT5 (Prop_lut5_I0_O)        0.124     8.389 r  input_delays/bias_count[9]_i_7/O
+                         net (fo=1, unplaced)         1.111     9.500    input_delays/bias_count[9]_i_7_n_0
+                         LUT6 (Prop_lut6_I1_O)        0.124     9.624 r  input_delays/bias_count[9]_i_3/O
+                         net (fo=3, unplaced)         0.437    10.061    input_delays/bias_count[9]_i_3_n_0
+                         LUT6 (Prop_lut6_I0_O)        0.124    10.185 r  input_delays/bias_count[9]_i_1/O
+                         net (fo=13, unplaced)        1.161    11.346    input_delays/E[0]
+                         LUT5 (Prop_lut5_I0_O)        0.124    11.470 r  input_delays/load_address[18]_i_1/O
+                         net (fo=121, unplaced)       0.577    12.047    core/load_address0
+                         FDRE                                         r  core/load_address_reg[10]_rep__2/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock core_clk rise edge)
+                                                     10.000    10.000 r  
+                                                      0.000    10.000 r  clk (IN)
+                         net (fo=1920, unset)         0.924    10.924    core/clk
+                         FDRE                                         r  core/load_address_reg[10]_rep__2/C
+                         clock pessimism              0.000    10.924    
+                         clock uncertainty           -0.035    10.889    
+                         FDRE (Setup_fdre_C_CE)      -0.295    10.594    core/load_address_reg[10]_rep__2
+  -------------------------------------------------------------------
+                         required time                         10.594    
+                         arrival time                         -12.047    
+  -------------------------------------------------------------------
+                         slack                                 -1.453    
+
+
+
+

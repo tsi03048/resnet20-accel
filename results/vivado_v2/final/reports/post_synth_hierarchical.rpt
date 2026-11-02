@@ -1,0 +1,37 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Nov  2 19:30:07 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_synth_hierarchical.rpt
+| Design       : full_model_timed
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+|       Instance       |    Module   | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+| full_model_timed     |       (top) |       1913 |       1913 |       0 |    0 | 1751 |     84 |      1 |          0 |
+|   (full_model_timed) |       (top) |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|   core               |  full_model |       1372 |       1372 |       0 |    0 | 1751 |     84 |      1 |          0 |
+|     (core)           |  full_model |        595 |        595 |       0 |    0 | 1191 |      0 |      0 |          0 |
+|     feature_mem      | feature_ram |         79 |         79 |       0 |    0 |    0 |     16 |      0 |          0 |
+|     multiply         |  mul_serial |        343 |        343 |       0 |    0 |  335 |      0 |      0 |          0 |
+|     rounding         |  rne_serial |        182 |        182 |       0 |    0 |  172 |      0 |      0 |          0 |
+|     weights          | weight_bram |         62 |         62 |       0 |    0 |   15 |     66 |      0 |          0 |
+|       low_mem        |   sync_bram |         59 |         59 |       0 |    0 |   11 |     64 |      0 |          0 |
+|   input_delays       |  input_hold |        541 |        541 |       0 |    0 |    0 |      0 |      0 |          0 |
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+
+

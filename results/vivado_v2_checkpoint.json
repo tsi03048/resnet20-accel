@@ -1,0 +1,8 @@
+{
+  "file_in_practice_zip": "checkpoints/post_route.dcp",
+  "vivado_version": "2025.1",
+  "run_name": "run_20261102_192926_16003a",
+  "bytes": 1719962,
+  "sha256": "568911a58938296963ec9601a50d765dcdbfb2ce74adbfc494519ed198f832f2",
+  "scope": "Routed full_model_timed core OOC checkpoint; not a bitstream, board test or PS/DDR/AXI system"
+}

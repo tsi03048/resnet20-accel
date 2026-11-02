@@ -47,6 +47,8 @@ VIO 창을 열고 아래 신호를 추가한다. 표시 이름이 번호이면 �
 
 전체 ResNet-20 코어의 별도 OOC 합성은 [E8-C](../docs/full_vivado_zedboard.md)에서 수행했습니다. BRAM 포트 버전의 계산은 재검증했지만 실제 Vivado 2025.1 결과는 LUT 자원 초과·100 MHz 타이밍 실패이며 배치가 중단됐습니다. 이 결과는 위 작은 Conv+VIO 프로젝트의 합성·보드 실행을 완료했다는 뜻이 아닙니다.
 
+후속 [E8-D](../docs/full_fpga_v2.md)는 Weight·계수도 BRAM으로 옮기고 주소·곱셈 경로를 단계화한 `fpga2` 버전입니다. 실제 코어 배치·배선 후 LUT 1,957, BRAM 84.5/140, DSP 0이며 100 MHz에서 WNS +0.071 ns·WHS +0.052 ns를 확인했습니다. 이 코어 OOC 결과와 위 작은 Conv+VIO 프로젝트의 미실행 상태, PS/DDR/AXI·보드 통합을 구분합니다.
+
 기본 보드는 ROM fixture를 사용한다. 실제 모델 Block으로 확장할 때는 E2-B 상수·입력 적재·주소 범위·출력 회수 규약을 추가한다.
 [기존 E12~E21 자료](../docs/historical/e12-e21/README.md)는 원본 ZIP·소스·로그 이관을 완료했다. 전체 모델·실물 보드 실행은 별도 미완료 항목이다.
 

@@ -1,8 +1,13 @@
 """Parser safety tests use small invented strings, never hardware result fixtures."""
 import unittest
-from tools.summarize_vivado import utilization,timing
+from tools.summarize_vivado import utilization,timing,route_status
 
 class VivadoReportTests(unittest.TestCase):
+    def test_unrouted_or_error_nets_never_pass(self):
+        for full,errors,want in ((100,0,True),(99,0,False),(100,1,False)):
+            text=f'# of routable nets.......... : 100 :\n# of fully routed nets.......... : {full} :\n# of nets with routing errors.......... : {errors} :'
+            self.assertEqual(route_status(text)['complete'],want)
+        with self.assertRaises(ValueError):route_status('')
     def test_resource_overflow_is_preserved(self):
         text='\n'.join(['| Slice LUTs* | 60000 | 0 | 53200 | 112.78 |','| Slice Registers | 100 | 0 | 106400 | 0.09 |','| Block RAM Tile | 140.5 | 0 | 140 | 100.36 |','| DSPs | 20 | 0 | 220 | 9.09 |'])
         result=utilization(text)

@@ -29,6 +29,7 @@
 | 실제 정수 Transition | [E16-B: stride2·Option A·두 Stage 비교](docs/transition_e2b_rtl.md) |
 | 실제 전체 모델 RTL | [E8-B: 0→1→0·61경계·GAP/FC·Stall/Reset](docs/full_e2b_rtl.md) |
 | 전체 모델 ZedBoard 합성 | [E8-C: Vivado 실제 보고서·BRAM 포트·자원 초과·타이밍 분석](docs/full_vivado_zedboard.md) |
+| 전체 모델 BRAM·100 MHz 개선 | [E8-D: 전체 메모리 BRAM·주소 단계화·배선 후 Setup/Hold·정수 재검증](docs/full_fpga_v2.md) |
 | 보드 | [ZedBoard](board/README.md) |
 | 현재 기준·실행 증거 | [진행 현황](docs/project_status.md) |
 | 상세 설계·이전 자료 | [Notion 대응](docs/notion_map.md), [E12~E21 보관](docs/historical/e12-e21/README.md) |

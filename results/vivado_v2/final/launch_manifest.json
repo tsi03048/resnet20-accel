@@ -1,0 +1,29 @@
+{
+  "started_at": "2026-11-02T19:29:26.2414968+09:00",
+  "action": "route",
+  "variant": "fpga2",
+  "vivado": "C:/Xilinx/2025.1/Vivado/bin/vivado.bat",
+  "stage": "C:\\Users\\tsi03\\AppData\\Local\\Temp\\resnet20_zedboard_run_20261102_192926_16003a",
+  "destination": "C:\\Users\\tsi03\\OneDrive\\문서\\ChatGPT\\딥러닝 가속기 프로젝트\\resnet20-accel\\build\\zedboard_full_runs\\run_20261102_192926_16003a",
+  "top": "full_model_timed",
+  "part": "xc7z020clg484-1",
+  "mode": "out_of_context",
+  "source_sha256": {
+    "rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "board/zedboard/build_full.tcl": "7d7a407018da1515e38b4e1337ab248a5c35379ed8fdd2ccf3bfca2193cdeb1c",
+    "rtl/full_e2b_fpga_v2/control_rom.svh": "925fe75ece2e5bb70b9e21631cc9c0f05a18bfd15052dea22388db0427568f9c",
+    "rtl/full_e2b_fpga_v2/feature_ram.sv": "2841285a65ad14497a9d211466c1c9f0d17b2d42a9d0b12d265774bacc70e6c0",
+    "rtl/full_e2b_fpga_v2/full_model_ooc.sv": "c02a373a02c65725706e946765a6bd9d1b6db38c2d4d81f4b600de8eb53ebe80",
+    "rtl/full_e2b_fpga_v2/full_model_timed.sv": "c61369384e4378235a333460e62aaa9a2704a7b4bcaa7c328f0a9803b1f1806b",
+    "rtl/full_e2b_fpga_v2/full_model.sv": "ff720c4698a09c739371341773c7003bf5fef984fe5d82bee4df2948f6b4a3b8",
+    "rtl/full_e2b_fpga_v2/input_hold.sv": "70118a4ae14972231059931dc3dfc682ffd7f92c1c0b4ce873fb4a5d2bb8e78d",
+    "rtl/full_e2b_fpga_v2/mul_serial.sv": "f5081684ade0b70cf66c49a71a2ff66923424bad7b28df34760d1dd49e216d2f",
+    "rtl/full_e2b_fpga_v2/rne_serial.sv": "1dad2785b9458349e76d9201f3ae29f110dd6f3ba755a53645177bdeb6971101",
+    "rtl/full_e2b_fpga_v2/sync_bram.sv": "482eb134f55af21b8aeed046740661b85e1be6986212fd3a545aabfcb6e73139",
+    "rtl/full_e2b_fpga_v2/weight_bram.sv": "6f1d539a8817c9d3ec42283c706329fd6bce6c702f71fa6012e0577b72e9ceb1"
+  }
+}

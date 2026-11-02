@@ -1,0 +1,1883 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Nov  2 19:29:26 2026
+# Process ID         : 48416
+# Current directory  : C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a
+# Command line       : vivado.exe -mode batch -nojournal -log vivado.log -source board/zedboard/build_full.tcl -tclargs route fpga2
+# Log file           : C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/vivado.log
+# Journal file       : 
+# Running On         : JinHyeok
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency      : 3418 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 34114 MB
+# Swap memory        : 18317 MB
+# Total Virtual      : 52432 MB
+# Available Virtual  : 4783 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source board/zedboard/build_full.tcl
+# set root [file normalize [file join [file dirname [info script]] ../..]]
+# set action [expr {$argc > 0 ? [lindex $argv 0] : "synth"}]
+# if {$action ni {synth route}} {error "Expected synth or route"}
+# set variant [expr {$argc > 1 ? [lindex $argv 1] : "baseline"}]
+# if {$variant ni {baseline flat fpga fpga2}} {error "Expected baseline, flat, fpga or fpga2"}
+# set core_dir [expr {$variant eq "baseline" ? "full_e2b_v1" : ($variant eq "fpga2" ? "full_e2b_fpga_v2" : "full_e2b_${variant}_v1")}]
+# set top [expr {$variant eq "fpga2" ? "full_model_timed" : "full_model"}]
+# set out [file join $root build/zedboard_full]
+# set reports [file join $out reports]
+# file mkdir $reports
+# set phase preflight
+# proc state_file {status detail} {
+#     global reports phase
+#     set f [open [file join $reports status.txt] w]
+#     puts $f "status=$status"
+#     puts $f "phase=$phase"
+#     puts $f "detail=$detail"
+#     close $f
+# }
+# proc write_reports {prefix} {
+#     global reports
+#     report_utilization -file [file join $reports ${prefix}_utilization.rpt]
+#     report_utilization -hierarchical -file [file join $reports ${prefix}_hierarchical.rpt]
+#     report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose \
+#         -file [file join $reports ${prefix}_timing_summary.rpt]
+#     report_timing -delay_type max -max_paths 10 -path_type full_clock_expanded \
+#         -file [file join $reports ${prefix}_worst_setup.rpt]
+#     report_timing -delay_type min -max_paths 10 -path_type full_clock_expanded \
+#         -file [file join $reports ${prefix}_worst_hold.rpt]
+#     check_timing -verbose -file [file join $reports ${prefix}_check_timing.rpt]
+#     report_drc -file [file join $reports ${prefix}_drc.rpt]
+#     set f [open [file join $reports ${prefix}_cells.tsv] w]
+#     puts $f "reference\tcount"
+#     foreach pattern {LUT* FD* RAMB18* RAMB36* DSP48* RAM32* RAM64* MUXF* BUFG*} {
+#         set filter [format {REF_NAME =~ %s} $pattern]
+#         puts $f "$pattern\t[llength [get_cells -hier -filter $filter]]"
+#     }
+#     close $f
+# }
+# state_file RUNNING started
+# if {[catch {
+#     create_project -in_memory -part xc7z020clg484-1
+#     set_property target_language Verilog [current_project]
+#     set_property include_dirs [list [file join $root rtl/full_e2b_v1] [file join $root rtl/$core_dir]] [current_fileset]
+#     set_param general.maxThreads 4
+#     set f [open [file join $reports environment.txt] w]
+#     puts $f "tool=[version -short]"
+#     puts $f "part=xc7z020clg484-1"
+#     puts $f "top=$top"
+#     puts $f "mode=out_of_context"
+#     puts $f "clock_period_ns=10.000"
+#     puts $f "interface_max_delay_ns=2.000"
+#     puts $f "action=$action"
+#     puts $f "variant=$variant"
+#     close $f
+#     read_verilog -sv [list [file join $root rtl/full_e2b_v1/requant_full.sv] \
+#         [file join $root rtl/full_e2b_v1/argmax10.sv] [file join $root rtl/$core_dir/full_model.sv]]
+#     if {$variant eq "fpga"} {read_verilog -sv [file join $root rtl/full_e2b_fpga_v1/feature_ram.sv]}
+#     if {$variant eq "fpga2"} {
+#         foreach source {sync_bram weight_bram feature_ram mul_serial rne_serial input_hold full_model_timed} {
+#             read_verilog -sv [file join $root rtl/$core_dir/${source}.sv]
+#         }
+#     }
+#     read_xdc [file join $root board/zedboard/full_core.xdc]
+#     set phase synthesis
+#     state_file RUNNING synthesis
+#     synth_design -top $top -part xc7z020clg484-1 -mode out_of_context
+#     if {$variant eq "fpga2"} {set_property HD.CLK_SRC BUFGCTRL_X0Y0 [get_ports clk]}
+#     set phase post_synthesis_reports
+#     write_checkpoint -force [file join $out post_synth.dcp]
+#     write_reports post_synth
+#     if {$action eq "route"} {
+#         set phase optimization
+#         opt_design
+#         set phase placement
+#         place_design
+#         if {$variant eq "fpga2"} {phys_opt_design -directive ExploreWithAggressiveHoldFix}
+#         set phase routing
+#         route_design
+#         set phase post_route_reports
+#         write_checkpoint -force [file join $out post_route.dcp]
+#         write_reports post_route
+#         report_route_status -file [file join $reports post_route_status.rpt]
+#     }
+#     set phase complete
+#     state_file COMPLETE $action
+# } message options]} {
+#     state_file FAILED $message
+#     puts stderr "FULL_CORE_FAILED phase=$phase message=$message"
+#     puts stderr [dict get $options -errorinfo]
+#     exit 1
+# }
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+Command: synth_design -top full_model_timed -part xc7z020clg484-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 49416
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1233.828 ; gain = 493.016
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'full_model_timed' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/full_model_timed.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'input_hold' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/input_hold.sv:4]
+	Parameter WIDTH bound to: 61 - type: integer 
+	Parameter STAGES bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'LUT1' [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:88920]
+	Parameter INIT bound to: 2'b10 
+INFO: [Synth 8-6155] done synthesizing module 'LUT1' (0#1) [C:/Xilinx/2025.1/Vivado/scripts/rt/data/unisim_comp.v:88920]
+INFO: [Synth 8-6155] done synthesizing module 'input_hold' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/input_hold.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'full_model' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/full_model.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'feature_ram' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/feature_ram.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'feature_ram' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/feature_ram.sv:4]
+INFO: [Synth 8-6157] synthesizing module 'weight_bram' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/weight_bram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'sync_bram' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+	Parameter WIDTH bound to: 8 - type: integer 
+	Parameter AW bound to: 18 - type: integer 
+	Parameter DEPTH bound to: 262144 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_bram' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'sync_bram__parameterized0' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+	Parameter WIDTH bound to: 8 - type: integer 
+	Parameter AW bound to: 13 - type: integer 
+	Parameter DEPTH bound to: 8192 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_bram__parameterized0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'weight_bram' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/weight_bram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'sync_bram__parameterized1' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter AW bound to: 10 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_bram__parameterized1' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'sync_bram__parameterized2' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+	Parameter WIDTH bound to: 5 - type: integer 
+	Parameter AW bound to: 10 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_bram__parameterized2' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/sync_bram.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'mul_serial' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/mul_serial.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'mul_serial' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/mul_serial.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'rne_serial' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/rne_serial.sv:3]
+INFO: [Synth 8-6155] done synthesizing module 'rne_serial' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/rne_serial.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'argmax10' [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_v1/argmax10.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'argmax10' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_v1/argmax10.sv:2]
+INFO: [Synth 8-6155] done synthesizing module 'full_model' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/full_model.sv:4]
+INFO: [Synth 8-6155] done synthesizing module 'full_model_timed' (0#1) [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/rtl/full_e2b_fpga_v2/full_model_timed.sv:4]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 1370.164 ; gain = 629.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1370.164 ; gain = 629.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1370.164 ; gain = 629.352
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 1370.164 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/board/zedboard/full_core.xdc]
+Finished Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/board/zedboard/full_core.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1440.641 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1440.641 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1440.641 ; gain = 699.828
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1440.641 ; gain = 699.828
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1440.641 ; gain = 699.828
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'mul_serial'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'rne_serial'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'full_model'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              000
+                MULTIPLY |                              001 |                              001
+                  SECOND |                              010 |                              010
+                     SUM |                              011 |                              011
+                     OUT |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'mul_serial'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |                              000 |                              000
+                   SHIFT |                              001 |                              001
+               INCREMENT |                              010 |                              010
+                    CLIP |                              011 |                              011
+                     OUT |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'rne_serial'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |            000000000000000000010 |                            00000
+                   FETCH |            000001000000000000000 |                            00001
+                    INIT |            000000010000000000000 |                            00010
+              PARAM_WAIT |            000000100000000000000 |                            10000
+             PARAM_LATCH |            000000000001000000000 |                            00011
+                 ADDRESS |            000000000000000100000 |                            10011
+               READ_PAIR |            000000000000001000000 |                            00100
+               READ_WAIT |            000000000100000000000 |                            10001
+              READ_LATCH |            000000001000000000000 |                            00101
+                 PRODUCT |            000000000000010000000 |                            10010
+                     MAC |            000000000000100000000 |                            00110
+                  FAILED |            000000000010000000000 |                            01111
+               MUL_START |            000000000000000001000 |                            00111
+                MUL_WAIT |            010000000000000000000 |                            01000
+             ROUND_START |            100000000000000000000 |                            01001
+              ROUND_WAIT |            001000000000000000000 |                            01010
+              TRACE_HOLD |            000100000000000000000 |                            01011
+                    RESP |            000000000000000000001 |                            01110
+             ADD_ADDRESS |            000010000000000000000 |                            10100
+                ADD_READ |            000000000000000010000 |                            01100
+               ADD_LATCH |            000000000000000000100 |                            01101
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'full_model'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1440.641 ; gain = 699.828
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   64 Bit       Adders := 3     
+	   2 Input   33 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   19 Bit       Adders := 2     
+	   2 Input   14 Bit       Adders := 1     
+	   2 Input   10 Bit       Adders := 5     
+	   3 Input    8 Bit       Adders := 1     
+	   3 Input    7 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 3     
+	   3 Input    5 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 2     
++---Registers : 
+	               64 Bit    Registers := 8     
+	               32 Bit    Registers := 22    
+	               31 Bit    Registers := 5     
+	               19 Bit    Registers := 3     
+	               16 Bit    Registers := 2     
+	               14 Bit    Registers := 3     
+	               10 Bit    Registers := 7     
+	                8 Bit    Registers := 10    
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 2     
+	                5 Bit    Registers := 7     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 7     
+	                1 Bit    Registers := 29    
++---RAMs : 
+	            2048K Bit	(262144 X 8 bit)          RAMs := 1     
+	             384K Bit	(49152 X 8 bit)          RAMs := 1     
+	              64K Bit	(8192 X 8 bit)          RAMs := 1     
+	              32K Bit	(1024 X 32 bit)          RAMs := 2     
+	               5K Bit	(1024 X 5 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input   64 Bit        Muxes := 1     
+	   5 Input   64 Bit        Muxes := 4     
+	   2 Input   33 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 10    
+	   3 Input   32 Bit        Muxes := 1     
+	  21 Input   32 Bit        Muxes := 1     
+	   5 Input   31 Bit        Muxes := 1     
+	   2 Input   31 Bit        Muxes := 3     
+	  21 Input   21 Bit        Muxes := 1     
+	   2 Input   21 Bit        Muxes := 9     
+	  21 Input   19 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 5     
+	  21 Input   16 Bit        Muxes := 1     
+	   4 Input   16 Bit        Muxes := 1     
+	   2 Input   14 Bit        Muxes := 7     
+	  31 Input   14 Bit        Muxes := 1     
+	  21 Input   14 Bit        Muxes := 2     
+	  31 Input   10 Bit        Muxes := 2     
+	  21 Input   10 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 8     
+	  21 Input    8 Bit        Muxes := 1     
+	  31 Input    7 Bit        Muxes := 1     
+	  31 Input    6 Bit        Muxes := 1     
+	  21 Input    6 Bit        Muxes := 1     
+	   5 Input    5 Bit        Muxes := 2     
+	   4 Input    5 Bit        Muxes := 4     
+	  21 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 2     
+	   5 Input    3 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 2     
+	  21 Input    3 Bit        Muxes := 1     
+	  31 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 3     
+	  21 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 31    
+	   5 Input    1 Bit        Muxes := 20    
+	   3 Input    1 Bit        Muxes := 10    
+	  31 Input    1 Bit        Muxes := 2     
+	  21 Input    1 Bit        Muxes := 33    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1456.609 ; gain = 715.797
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|full_model  | decoded    | 32x3          | LUT            | 
+|full_model  | decoded    | 32x3          | LUT            | 
+|full_model  | decoded    | 32x2          | LUT            | 
+|full_model  | decoded    | 32x5          | LUT            | 
+|full_model  | decoded    | 32x1          | LUT            | 
+|full_model  | decoded    | 32x2          | LUT            | 
+|full_model  | decoded    | 32x3          | LUT            | 
+|full_model  | decoded    | 32x3          | LUT            | 
+|full_model  | decoded    | 32x5          | LUT            | 
+|full_model  | decoded    | 32x1          | LUT            | 
+|full_model  | decoded    | 32x2          | LUT            | 
+|full_model  | decoded    | 32x2          | LUT            | 
++------------+------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping Report (see note below)
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name  | RTL Object          | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|core         | feature_mem/mem_reg | 48 K x 8(READ_FIRST)   | W | R | 48 K x 8(WRITE_FIRST)  |   | R | Port A and B     | 0      | 16     | 
+|core/weights | low_mem/mem_reg     | 256 K x 8(READ_FIRST)  | W |   | 256 K x 8(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
+|core/weights | high_mem/mem_reg    | 8 K x 8(READ_FIRST)    | W |   | 8 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 2      | 
+|core         | biases/mem_reg      | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|core         | multipliers/mem_reg | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|core         | shifts/mem_reg      | 1 K x 5(READ_FIRST)    | W |   | 1 K x 5(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1582.820 ; gain = 842.008
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1686.707 ; gain = 945.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name  | RTL Object          | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|core         | feature_mem/mem_reg | 48 K x 8(READ_FIRST)   | W | R | 48 K x 8(WRITE_FIRST)  |   | R | Port A and B     | 0      | 16     | 
+|core/weights | low_mem/mem_reg     | 256 K x 8(READ_FIRST)  | W |   | 256 K x 8(WRITE_FIRST) |   | R | Port A and B     | 0      | 64     | 
+|core/weights | high_mem/mem_reg    | 8 K x 8(READ_FIRST)    | W |   | 8 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 2      | 
+|core         | biases/mem_reg      | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|core         | multipliers/mem_reg | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
+|core         | shifts/mem_reg      | 1 K x 5(READ_FIRST)    | W |   | 1 K x 5(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
++-------------+---------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/feature_mem/mem_reg_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_3_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_5_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance core/weights/low_mem/mem_reg_7_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1686.707 ; gain = 945.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1859.062 ; gain = 1118.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1859.062 ; gain = 1118.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1859.062 ; gain = 1118.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1859.062 ; gain = 1118.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1862.035 ; gain = 1121.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1862.035 ; gain = 1121.223
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |   150|
+|2     |LUT1     |   508|
+|3     |LUT2     |   473|
+|4     |LUT3     |   301|
+|5     |LUT4     |   240|
+|6     |LUT5     |   374|
+|7     |LUT6     |   437|
+|8     |RAMB18E1 |     1|
+|9     |RAMB36E1 |    84|
+|13    |FDRE     |  1749|
+|14    |FDSE     |     2|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1862.035 ; gain = 1121.223
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:24 . Memory (MB): peak = 1862.035 ; gain = 1050.746
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1862.035 ; gain = 1121.223
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1862.035 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 235 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/board/zedboard/full_core.xdc]
+Finished Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/board/zedboard/full_core.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1874.895 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 69710449
+INFO: [Common 17-83] Releasing license: Synthesis
+94 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1874.895 ; gain = 1366.793
+INFO: [Vivado 12-4761] HD.CLK_SRC property is set on port clk. The net connecting to the port drives either clock PIN or hierarchical black box. Use the create_clock constraint to create a clock on this port prior to setting HD.CLK_SRC. 
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2045.348 ; gain = 0.098
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/post_synth.dcp' has been generated.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_synth_drc.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_synth_drc.rpt.
+report_drc completed successfully
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ DSP48*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAM32*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAM64*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ MUXF*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ BUFG*}'.
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.212 . Memory (MB): peak = 2156.320 ; gain = 1.832
+
+Starting Cache Timing Information Task
+Ending Cache Timing Information Task | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2156.320 ; gain = 0.000
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Phase 1 Initialization | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Timer Update
+Phase 2.1 Timer Update | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Phase 2.2 Timing Data Collection
+Phase 2.2 Timing Data Collection | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.042 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 128906454
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 17355c72f
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.068 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Retarget | Checksum: 17355c72f
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Retarget, 488 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 1a5211c1e
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.081 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Constant propagation | Checksum: 1a5211c1e
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 488 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Phase 5 Sweep | Checksum: 16ce40b65
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.108 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Sweep | Checksum: 16ce40b65
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Sweep, 488 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 6 BUFG optimization
+Phase 6 BUFG optimization | Checksum: 16ce40b65
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.118 . Memory (MB): peak = 2498.480 ; gain = 0.000
+BUFG optimization | Checksum: 16ce40b65
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 16ce40b65
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.120 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Shift Register Optimization | Checksum: 16ce40b65
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 16ce40b65
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.125 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Post Processing Netlist | Checksum: 16ce40b65
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 488 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: d44e1f43
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.162 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: d44e1f43
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.170 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Phase 9 Finalization | Checksum: d44e1f43
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.171 . Memory (MB): peak = 2498.480 ; gain = 0.000
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               0  |                                            488  |
+|  Constant propagation         |               0  |               0  |                                            488  |
+|  Sweep                        |               0  |               0  |                                            488  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                            488  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: d44e1f43
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.172 . Memory (MB): peak = 2498.480 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 85 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 32 WE to EN ports
+Number of BRAM Ports augmented: 48 newly gated: 32 Total Ports: 170
+Number of Flops added for Enable Generation: 8
+
+Ending PowerOpt Patch Enables Task | Checksum: 1548089ce
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.164 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1548089ce
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 117.125
+
+Starting Final Cleanup Task
+
+Starting Logic Optimization Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Logic Optimization Task | Checksum: 1b802ef30
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.140 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Ending Final Cleanup Task | Checksum: 1b802ef30
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 1b802ef30
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+140 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.605 ; gain = 461.117
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-83] Releasing license: Implementation
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: c747592e
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 9c2833d6
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.164 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: ba96e14a
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.525 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: ba96e14a
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.529 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: ba96e14a
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.534 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 13ea160c6
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.620 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: f9c72201
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.683 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: f9c72201
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.687 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.4 Global Place Phase1
+Phase 2.4 Global Place Phase1 | Checksum: 1cf765021
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:02 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.5 Global Place Phase2
+
+Phase 2.5.1 UpdateTiming Before Physical Synthesis
+Phase 2.5.1 UpdateTiming Before Physical Synthesis | Checksum: 19ad6ce68
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:02 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.5.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 10 LUTNM shape to break, 71 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 4, two critical 6, total 10, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 39 nets or LUTs. Breaked 10 LUTs, combined 29 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1123] No candidate cells found for Shift Register to Pipeline optimization
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1401] No candidate cells found for Shift Register optimization.
+INFO: [Physopt 32-677] No candidate cells for Shift Register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |           10  |             29  |                    39  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |           10  |             29  |                    39  |           0  |           9  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.5.2 Physical Synthesis In Placer | Checksum: 1d277e697
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 2.5 Global Place Phase2 | Checksum: 19664edc9
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 19664edc9
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 1ca809cb1
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1d80e86ce
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 172a006bc
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 2302f0407
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: 1dc73edb8
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 2a547ef61
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 203e612f9
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 14197163e
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3.9 Fast Optimization
+Phase 3.9 Fast Optimization | Checksum: 1bed46df6
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 1bed46df6
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 12f5ecf03
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 4 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-2.005 | TNS=-425.254 |
+Phase 1 Physical Synthesis Initialization | Checksum: 17811f258
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Place 46-33] Processed net input_delays/delayed[57], BUFG insertion was skipped due to placement/routing conflicts.
+INFO: [Place 46-56] BUFG insertion identified 1 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 1, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.
+Ending Physical Synthesis Task | Checksum: 1b9dd407c
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.060 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4.1.1.1 BUFG Insertion | Checksum: 12f5ecf03
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=-0.139. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 128541196
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 128541196
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 128541196
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                2x2|
+|___________|___________________|___________________|
+|      South|                1x1|                2x2|
+|___________|___________________|___________________|
+|       East|                1x1|                1x1|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 128541196
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4.3 Placer Reporting | Checksum: 128541196
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 18c41740c
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Ending Placer Task | Checksum: 1326e58d7
+
+Time (s): cpu = 00:00:26 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+178 Infos, 11 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Command: phys_opt_design -directive ExploreWithAggressiveHoldFix
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: ExploreWithAggressiveHoldFix
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.209 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 1.00s |  WALL: 0.22s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 4 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.473 | TNS=-44.134 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1abf237de
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.471 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2 SLR Crossing Optimization
+Phase 2 SLR Crossing Optimization | Checksum: 1abf237de
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.477 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.473 | TNS=-44.134 |
+
+Phase 3 Fanout Optimization
+INFO: [Physopt 32-76] Pass 1. Identified 2 candidate nets for fanout optimization.
+INFO: [Physopt 32-572] Net input_delays/load_address0 was not replicated.
+Resolution: phys_opt_design can be forced to replicate a net driver using the option -force_replication_on_nets <list of net objects>.
+INFO: [Physopt 32-572] Net core/feature_mem/ram_b_en11_out was not replicated.
+Resolution: phys_opt_design can be forced to replicate a net driver using the option -force_replication_on_nets <list of net objects>.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 3 Fanout Optimization | Checksum: 1abf237de
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.598 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4 Single Cell Placement Optimization
+INFO: [Physopt 32-660] Identified 250 candidate nets for placement-based optimization.
+INFO: [Physopt 32-662] Processed net input_delays/load_address0.  Did not re-place instance input_delays/load_address[18]_i_1
+INFO: [Physopt 32-663] Processed net input_delays/delayed[49].  Re-placed instance input_delays/stage[7].bit_delay[49].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].bit_delay[59].delay_cell_1[0].  Did not re-place instance input_delays/shift_count[9]_i_1
+INFO: [Physopt 32-662] Processed net input_delays/shift_count[9]_i_11_n_0.  Did not re-place instance input_delays/shift_count[9]_i_11
+INFO: [Physopt 32-662] Processed net input_delays/shift_count[9]_i_3_n_0.  Did not re-place instance input_delays/shift_count[9]_i_3
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[49].  Did not re-place instance input_delays/stage[0].bit_delay[49].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[2].stage_in[49].  Re-placed instance input_delays/stage[1].bit_delay[49].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[3].stage_in[49].  Re-placed instance input_delays/stage[2].bit_delay[49].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[49].  Did not re-place instance input_delays/stage[3].bit_delay[49].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[49].  Did not re-place instance input_delays/stage[4].bit_delay[49].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[6].stage_in[49].  Re-placed instance input_delays/stage[5].bit_delay[49].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].stage_in[49].  Did not re-place instance input_delays/stage[6].bit_delay[49].delay_cell
+INFO: [Physopt 32-663] Processed net core/load_address[10].  Re-placed instance core/load_address_reg[10]
+INFO: [Physopt 32-663] Processed net core/load_address_reg[0]_rep__2_n_0.  Re-placed instance core/load_address_reg[0]_rep__2
+INFO: [Physopt 32-663] Processed net core/load_address_reg[7]_rep__0_n_0.  Re-placed instance core/load_address_reg[7]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address[17].  Did not re-place instance core/load_address_reg[17]
+INFO: [Physopt 32-662] Processed net core/load_address[15].  Did not re-place instance core/load_address_reg[15]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[2]_rep__1_n_0.  Did not re-place instance core/load_address_reg[2]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[5]_rep_n_0.  Did not re-place instance core/load_address_reg[5]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[7]_rep__2_n_0.  Did not re-place instance core/load_address_reg[7]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[15]_rep__0_n_0.  Did not re-place instance core/load_address_reg[15]_rep__0
+INFO: [Physopt 32-662] Processed net core/p_3_in[1].  Did not re-place instance core/load_data_reg[1]
+INFO: [Physopt 32-662] Processed net core/p_3_in[6].  Did not re-place instance core/load_data_reg[6]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__4_n_0.  Did not re-place instance core/load_address_reg[10]_rep__4
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__0_n_0.  Did not re-place instance core/load_address_reg[11]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__4_n_0.  Did not re-place instance core/load_address_reg[12]_rep__4
+INFO: [Physopt 32-662] Processed net core/load_address[1].  Did not re-place instance core/load_address_reg[1]
+INFO: [Physopt 32-662] Processed net core/load_address[3].  Did not re-place instance core/load_address_reg[3]
+INFO: [Physopt 32-663] Processed net core/load_address[4].  Re-placed instance core/load_address_reg[4]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep_n_0.  Did not re-place instance core/load_address_reg[10]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep_n_0.  Did not re-place instance core/load_address_reg[12]_rep
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[11].  Did not re-place instance core/load_data_reg[11]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[13].  Did not re-place instance core/load_data_reg[13]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[20].  Did not re-place instance core/load_data_reg[20]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[24].  Did not re-place instance core/load_data_reg[24]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[25].  Did not re-place instance core/load_data_reg[25]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[26].  Did not re-place instance core/load_data_reg[26]
+INFO: [Physopt 32-663] Processed net core/load_data_reg_n_0_[27].  Re-placed instance core/load_data_reg[27]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[28].  Did not re-place instance core/load_data_reg[28]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[29].  Did not re-place instance core/load_data_reg[29]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[9].  Did not re-place instance core/load_data_reg[9]
+INFO: [Physopt 32-662] Processed net core/p_3_in[3].  Did not re-place instance core/load_data_reg[3]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__6_n_0.  Did not re-place instance core/load_address_reg[10]_rep__6
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__6_n_0.  Did not re-place instance core/load_address_reg[12]_rep__6
+INFO: [Physopt 32-662] Processed net core/load_address_reg[4]_rep__1_n_0.  Did not re-place instance core/load_address_reg[4]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[4]_rep__2_n_0.  Did not re-place instance core/load_address_reg[4]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[10].  Did not re-place instance core/load_data_reg[10]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[12].  Did not re-place instance core/load_data_reg[12]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[15].  Did not re-place instance core/load_data_reg[15]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[8].  Did not re-place instance core/load_data_reg[8]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[9]_rep__1_n_0.  Did not re-place instance core/load_address_reg[9]_rep__1
+INFO: [Physopt 32-662] Processed net core/p_3_in[0].  Did not re-place instance core/load_data_reg[0]
+INFO: [Physopt 32-662] Processed net core/p_3_in[2].  Did not re-place instance core/load_data_reg[2]
+INFO: [Physopt 32-662] Processed net core/p_3_in[4].  Did not re-place instance core/load_data_reg[4]
+INFO: [Physopt 32-662] Processed net core/p_3_in[5].  Did not re-place instance core/load_data_reg[5]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__5_n_0.  Did not re-place instance core/load_address_reg[11]_rep__5
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__5_n_0.  Did not re-place instance core/load_address_reg[12]_rep__5
+INFO: [Physopt 32-662] Processed net input_delays/E[0].  Did not re-place instance input_delays/bias_count[9]_i_1
+INFO: [Physopt 32-662] Processed net input_delays/bias_count[9]_i_15_n_0.  Did not re-place instance input_delays/bias_count[9]_i_15
+INFO: [Physopt 32-662] Processed net core/load_address[18].  Did not re-place instance core/load_address_reg[18]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[14]_rep_n_0.  Did not re-place instance core/load_address_reg[14]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[5]_rep__0_n_0.  Did not re-place instance core/load_address_reg[5]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[5]_rep__1_n_0.  Did not re-place instance core/load_address_reg[5]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__0_n_0.  Did not re-place instance core/load_address_reg[10]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__0_n_0.  Did not re-place instance core/load_address_reg[12]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address[6].  Did not re-place instance core/load_address_reg[6]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[22].  Did not re-place instance core/load_data_reg[22]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[30].  Did not re-place instance core/load_data_reg[30]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[31].  Did not re-place instance core/load_data_reg[31]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[1]_rep__0_n_0.  Did not re-place instance core/load_address_reg[1]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[4]_rep_n_0.  Did not re-place instance core/load_address_reg[4]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[7]_rep_n_0.  Did not re-place instance core/load_address_reg[7]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[14]_rep__0_n_0.  Did not re-place instance core/load_address_reg[14]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__1_n_0.  Did not re-place instance core/load_address_reg[10]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__5_n_0.  Did not re-place instance core/load_address_reg[10]_rep__5
+INFO: [Physopt 32-662] Processed net core/load_address[16].  Did not re-place instance core/load_address_reg[16]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[13]_rep_n_0.  Did not re-place instance core/load_address_reg[13]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[0]_rep__1_n_0.  Did not re-place instance core/load_address_reg[0]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[1]_rep__2_n_0.  Did not re-place instance core/load_address_reg[1]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[3]_rep__1_n_0.  Did not re-place instance core/load_address_reg[3]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[3]_rep_n_0.  Did not re-place instance core/load_address_reg[3]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[4]_rep__0_n_0.  Did not re-place instance core/load_address_reg[4]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[5]_rep__2_n_0.  Did not re-place instance core/load_address_reg[5]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[6]_rep_n_0.  Did not re-place instance core/load_address_reg[6]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[8]_rep__0_n_0.  Did not re-place instance core/load_address_reg[8]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[8]_rep__1_n_0.  Did not re-place instance core/load_address_reg[8]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[9]_rep_n_0.  Did not re-place instance core/load_address_reg[9]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__1_n_0.  Did not re-place instance core/load_address_reg[11]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address[12].  Did not re-place instance core/load_address_reg[12]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[1]_rep__1_n_0.  Did not re-place instance core/load_address_reg[1]_rep__1
+INFO: [Physopt 32-662] Processed net core/p_3_in[7].  Did not re-place instance core/load_data_reg[7]
+INFO: [Physopt 32-662] Processed net core/load_address[8].  Did not re-place instance core/load_address_reg[8]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[14].  Did not re-place instance core/load_data_reg[14]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[23].  Did not re-place instance core/load_data_reg[23]
+INFO: [Physopt 32-662] Processed net core/load_address[11].  Did not re-place instance core/load_address_reg[11]
+INFO: [Physopt 32-662] Processed net core/load_address[13].  Did not re-place instance core/load_address_reg[13]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[2]_rep__2_n_0.  Did not re-place instance core/load_address_reg[2]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[3]_rep__2_n_0.  Did not re-place instance core/load_address_reg[3]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[6]_rep__0_n_0.  Did not re-place instance core/load_address_reg[6]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[6]_rep__1_n_0.  Did not re-place instance core/load_address_reg[6]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[6]_rep__2_n_0.  Did not re-place instance core/load_address_reg[6]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[9]_rep__0_n_0.  Did not re-place instance core/load_address_reg[9]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[9]_rep__2_n_0.  Did not re-place instance core/load_address_reg[9]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[13]_rep__0_n_0.  Did not re-place instance core/load_address_reg[13]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__2_n_0.  Did not re-place instance core/load_address_reg[11]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__3_n_0.  Did not re-place instance core/load_address_reg[11]_rep__3
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__4_n_0.  Did not re-place instance core/load_address_reg[11]_rep__4
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__2_n_0.  Did not re-place instance core/load_address_reg[12]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__3_n_0.  Did not re-place instance core/load_address_reg[12]_rep__3
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep_n_0.  Did not re-place instance core/load_address_reg[11]_rep
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[16].  Did not re-place instance core/load_data_reg[16]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[0]_rep__0_n_0.  Did not re-place instance core/load_address_reg[0]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[1]_rep_n_0.  Did not re-place instance core/load_address_reg[1]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[2]_rep__0_n_0.  Did not re-place instance core/load_address_reg[2]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[2]_rep_n_0.  Did not re-place instance core/load_address_reg[2]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[3]_rep__0_n_0.  Did not re-place instance core/load_address_reg[3]_rep__0
+INFO: [Physopt 32-662] Processed net core/load_address_reg[7]_rep__1_n_0.  Did not re-place instance core/load_address_reg[7]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[12]_rep__1_n_0.  Did not re-place instance core/load_address_reg[12]_rep__1
+INFO: [Physopt 32-662] Processed net core/load_address_reg[11]_rep__6_n_0.  Did not re-place instance core/load_address_reg[11]_rep__6
+INFO: [Physopt 32-662] Processed net core/load_address[14].  Did not re-place instance core/load_address_reg[14]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[8]_rep__2_n_0.  Did not re-place instance core/load_address_reg[8]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__2_n_0.  Did not re-place instance core/load_address_reg[10]_rep__2
+INFO: [Physopt 32-662] Processed net core/load_address_reg[10]_rep__3_n_0.  Did not re-place instance core/load_address_reg[10]_rep__3
+INFO: [Physopt 32-662] Processed net core/load_address[9].  Did not re-place instance core/load_address_reg[9]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[17].  Did not re-place instance core/load_data_reg[17]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[18].  Did not re-place instance core/load_data_reg[18]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[19].  Did not re-place instance core/load_data_reg[19]
+INFO: [Physopt 32-662] Processed net core/load_address_reg[15]_rep_n_0.  Did not re-place instance core/load_address_reg[15]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[0]_rep_n_0.  Did not re-place instance core/load_address_reg[0]_rep
+INFO: [Physopt 32-662] Processed net core/load_address_reg[8]_rep_n_0.  Did not re-place instance core/load_address_reg[8]_rep
+INFO: [Physopt 32-662] Processed net core/load_address[0].  Did not re-place instance core/load_address_reg[0]
+INFO: [Physopt 32-662] Processed net core/load_address[2].  Did not re-place instance core/load_address_reg[2]
+INFO: [Physopt 32-662] Processed net core/load_address[5].  Did not re-place instance core/load_address_reg[5]
+INFO: [Physopt 32-662] Processed net core/load_address[7].  Did not re-place instance core/load_address_reg[7]
+INFO: [Physopt 32-662] Processed net core/load_data_reg_n_0_[21].  Did not re-place instance core/load_data_reg[21]
+INFO: [Physopt 32-662] Processed net input_delays/delayed[57].  Did not re-place instance input_delays/stage[7].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[60].  Did not re-place instance input_delays/stage[0].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[60].  Did not re-place instance input_delays/stage[1].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[60].  Did not re-place instance input_delays/stage[2].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[60].  Did not re-place instance input_delays/stage[3].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[60].  Did not re-place instance input_delays/stage[4].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[60].  Did not re-place instance input_delays/stage[5].bit_delay[60].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].stage_in[60].  Did not re-place instance input_delays/stage[6].bit_delay[60].delay_cell
+INFO: [Physopt 32-663] Processed net core/trace_valid.  Re-placed instance core/trace_valid_INST_0
+INFO: [Physopt 32-662] Processed net input_delays/sel.  Did not re-place instance input_delays/weight_count[18]_i_1
+INFO: [Physopt 32-662] Processed net input_delays/S[0].  Did not re-place instance input_delays/weight_count[18]_i_9
+INFO: [Physopt 32-663] Processed net input_delays/delayed[44].  Re-placed instance input_delays/stage[7].bit_delay[44].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/bias_count[9]_i_3_n_0.  Did not re-place instance input_delays/bias_count[9]_i_3
+INFO: [Physopt 32-662] Processed net input_delays/bias_count[9]_i_8_n_0.  Did not re-place instance input_delays/bias_count[9]_i_8
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[44].  Did not re-place instance input_delays/stage[0].bit_delay[44].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[44].  Did not re-place instance input_delays/stage[1].bit_delay[44].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[44].  Did not re-place instance input_delays/stage[2].bit_delay[44].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[4].stage_in[44].  Re-placed instance input_delays/stage[3].bit_delay[44].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[5].stage_in[44].  Re-placed instance input_delays/stage[4].bit_delay[44].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[6].stage_in[44].  Re-placed instance input_delays/stage[5].bit_delay[44].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].stage_in[44].  Did not re-place instance input_delays/stage[6].bit_delay[44].delay_cell
+INFO: [Physopt 32-663] Processed net core/rsp_valid.  Re-placed instance core/rsp_valid_INST_0
+INFO: [Physopt 32-663] Processed net input_delays/delayed[48].  Re-placed instance input_delays/stage[7].bit_delay[48].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/delayed[45].  Re-placed instance input_delays/stage[7].bit_delay[45].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[45].  Did not re-place instance input_delays/stage[0].bit_delay[45].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[48].  Did not re-place instance input_delays/stage[0].bit_delay[48].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[45].  Did not re-place instance input_delays/stage[1].bit_delay[45].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[48].  Did not re-place instance input_delays/stage[1].bit_delay[48].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[3].stage_in[45].  Re-placed instance input_delays/stage[2].bit_delay[45].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[3].stage_in[48].  Re-placed instance input_delays/stage[2].bit_delay[48].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[4].stage_in[45].  Re-placed instance input_delays/stage[3].bit_delay[45].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[4].stage_in[48].  Re-placed instance input_delays/stage[3].bit_delay[48].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[45].  Did not re-place instance input_delays/stage[4].bit_delay[45].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[48].  Did not re-place instance input_delays/stage[4].bit_delay[48].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[6].stage_in[45].  Re-placed instance input_delays/stage[5].bit_delay[45].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[48].  Did not re-place instance input_delays/stage[5].bit_delay[48].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].bit_delay[47].delay_cell_0[0].  Did not re-place instance input_delays/shift_count[9]_i_12
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].stage_in[45].  Did not re-place instance input_delays/stage[6].bit_delay[45].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[48].  Re-placed instance input_delays/stage[6].bit_delay[48].delay_cell
+INFO: [Physopt 32-662] Processed net core/feature_mem/ram_b_en11_out.  Did not re-place instance core/feature_mem/mem_reg_0_0_i_2
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_24_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_24
+INFO: [Physopt 32-662] Processed net core/feature_mem/mem_reg_0_0_i_39_n_0.  Did not re-place instance core/feature_mem/mem_reg_0_0_i_39
+INFO: [Physopt 32-663] Processed net input_delays/delayed[1].  Re-placed instance input_delays/stage[7].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[1].  Did not re-place instance input_delays/stage[0].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[1].  Did not re-place instance input_delays/stage[1].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[1].  Did not re-place instance input_delays/stage[2].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[1].  Did not re-place instance input_delays/stage[3].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[1].  Did not re-place instance input_delays/stage[4].bit_delay[1].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[1].  Did not re-place instance input_delays/stage[5].bit_delay[1].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[1].  Re-placed instance input_delays/stage[6].bit_delay[1].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/input_count[12]_i_8_n_0.  Re-placed instance input_delays/input_count[12]_i_8
+INFO: [Physopt 32-662] Processed net input_delays/delayed[19].  Did not re-place instance input_delays/stage[7].bit_delay[19].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/shift_count[9]_i_4_n_0.  Re-placed instance input_delays/shift_count[9]_i_4
+INFO: [Physopt 32-663] Processed net input_delays/stage[1].stage_in[19].  Re-placed instance input_delays/stage[0].bit_delay[19].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[19].  Did not re-place instance input_delays/stage[1].bit_delay[19].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[19].  Did not re-place instance input_delays/stage[2].bit_delay[19].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[19].  Did not re-place instance input_delays/stage[3].bit_delay[19].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[19].  Did not re-place instance input_delays/stage[4].bit_delay[19].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[6].stage_in[19].  Re-placed instance input_delays/stage[5].bit_delay[19].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[19].  Re-placed instance input_delays/stage[6].bit_delay[19].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].bit_delay[56].delay_cell_0[0].  Did not re-place instance input_delays/n_count[9]_i_1
+INFO: [Physopt 32-662] Processed net input_delays/n_count[9]_i_9_n_0.  Did not re-place instance input_delays/n_count[9]_i_9
+INFO: [Physopt 32-662] Processed net input_delays/input_count[12]_i_4_n_0.  Did not re-place instance input_delays/input_count[12]_i_4
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_27_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_27
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_38_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_38
+INFO: [Physopt 32-662] Processed net core/shift_count[9]_i_13_n_0.  Did not re-place instance core/shift_count[9]_i_13
+INFO: [Physopt 32-663] Processed net input_delays/load_error_i_2_n_0.  Re-placed instance input_delays/load_error_i_2
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].bit_delay[59].delay_cell_0.  Did not re-place instance input_delays/load_error_i_1
+INFO: [Physopt 32-662] Processed net core/load_error.  Did not re-place instance core/load_error_reg
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_30_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_30
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_23_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_23
+INFO: [Physopt 32-663] Processed net input_delays/delayed[2].  Re-placed instance input_delays/stage[7].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[2].  Did not re-place instance input_delays/stage[0].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[2].  Did not re-place instance input_delays/stage[1].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[2].  Did not re-place instance input_delays/stage[2].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[2].  Did not re-place instance input_delays/stage[3].bit_delay[2].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[5].stage_in[2].  Re-placed instance input_delays/stage[4].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[2].  Did not re-place instance input_delays/stage[5].bit_delay[2].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].stage_in[2].  Did not re-place instance input_delays/stage[6].bit_delay[2].delay_cell
+INFO: [Physopt 32-663] Processed net core/mac_fire.  Re-placed instance core/mac_fire_INST_0
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_22_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_22
+INFO: [Physopt 32-662] Processed net input_delays/input_count[12]_i_10_n_0.  Did not re-place instance input_delays/input_count[12]_i_10
+INFO: [Physopt 32-662] Processed net input_delays/delayed[26].  Did not re-place instance input_delays/stage[7].bit_delay[26].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[26].  Did not re-place instance input_delays/stage[0].bit_delay[26].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[26].  Did not re-place instance input_delays/stage[1].bit_delay[26].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[3].stage_in[26].  Re-placed instance input_delays/stage[2].bit_delay[26].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[26].  Did not re-place instance input_delays/stage[3].bit_delay[26].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[5].stage_in[26].  Re-placed instance input_delays/stage[4].bit_delay[26].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[6].stage_in[26].  Re-placed instance input_delays/stage[5].bit_delay[26].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[26].  Re-placed instance input_delays/stage[6].bit_delay[26].delay_cell
+INFO: [Physopt 32-662] Processed net core/gap_fire.  Did not re-place instance core/gap_fire_INST_0
+INFO: [Physopt 32-662] Processed net input_delays/bias_count[9]_i_17_n_0.  Did not re-place instance input_delays/bias_count[9]_i_17
+INFO: [Physopt 32-663] Processed net input_delays/weight_count[18]_i_13_n_0.  Re-placed instance input_delays/weight_count[18]_i_13
+INFO: [Physopt 32-663] Processed net input_delays/weight_count[18]_i_5_n_0.  Re-placed instance input_delays/weight_count[18]_i_5
+INFO: [Physopt 32-663] Processed net core/feature_mem/mem_reg_0_0_i_34_n_0.  Re-placed instance core/feature_mem/mem_reg_0_0_i_34
+INFO: [Physopt 32-662] Processed net input_delays/input_we.  Did not re-place instance input_delays/input_count[12]_i_2
+INFO: [Physopt 32-663] Processed net input_delays/delayed[50].  Re-placed instance input_delays/stage[7].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[1].stage_in[50].  Did not re-place instance input_delays/stage[0].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[50].  Did not re-place instance input_delays/stage[1].bit_delay[50].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[3].stage_in[50].  Re-placed instance input_delays/stage[2].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[4].stage_in[50].  Did not re-place instance input_delays/stage[3].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[5].stage_in[50].  Did not re-place instance input_delays/stage[4].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[50].  Did not re-place instance input_delays/stage[5].bit_delay[50].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[50].  Re-placed instance input_delays/stage[6].bit_delay[50].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[7].bit_delay[59].delay_cell_2.  Did not re-place instance input_delays/start_ready_INST_0_i_1
+INFO: [Physopt 32-662] Processed net core/start_ready.  Did not re-place instance core/start_ready_INST_0
+INFO: [Physopt 32-663] Processed net input_delays/delayed[9].  Re-placed instance input_delays/stage[7].bit_delay[9].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[1].stage_in[9].  Re-placed instance input_delays/stage[0].bit_delay[9].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[2].stage_in[9].  Did not re-place instance input_delays/stage[1].bit_delay[9].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[3].stage_in[9].  Did not re-place instance input_delays/stage[2].bit_delay[9].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[4].stage_in[9].  Re-placed instance input_delays/stage[3].bit_delay[9].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[5].stage_in[9].  Re-placed instance input_delays/stage[4].bit_delay[9].delay_cell
+INFO: [Physopt 32-662] Processed net input_delays/stage[6].stage_in[9].  Did not re-place instance input_delays/stage[5].bit_delay[9].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/stage[7].stage_in[9].  Re-placed instance input_delays/stage[6].bit_delay[9].delay_cell
+INFO: [Physopt 32-663] Processed net input_delays/weight_count[18]_i_10_n_0.  Re-placed instance input_delays/weight_count[18]_i_10
+INFO: [Physopt 32-661] Optimized 56 nets.  Re-placed 56 instances.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 56 nets or cells. Created 0 new cell, deleted 0 existing cell and moved 56 existing cells
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.085 | TNS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4 Single Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 5 Multi Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Multi Cell Placement Optimization was not performed.
+Phase 5 Multi Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 6 Rewire
+INFO: [Physopt 32-670] No setup violation found.  Rewire was not performed.
+Phase 6 Rewire | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 7 Critical Cell Optimization
+INFO: [Physopt 32-670] No setup violation found.  Critical Cell Optimization was not performed.
+Phase 7 Critical Cell Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 8 Fanout Optimization
+INFO: [Physopt 32-670] No setup violation found.  Fanout Optimization was not performed.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 8 Fanout Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 9 Single Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Single Cell Placement Optimization was not performed.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 9 Single Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 10 Multi Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Multi Cell Placement Optimization was not performed.
+Phase 10 Multi Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 11 Rewire
+INFO: [Physopt 32-670] No setup violation found.  Rewire was not performed.
+Phase 11 Rewire | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 12 Critical Cell Optimization
+INFO: [Physopt 32-670] No setup violation found.  Critical Cell Optimization was not performed.
+Phase 12 Critical Cell Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 13 SLR Crossing Optimization
+Phase 13 SLR Crossing Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 14 Fanout Optimization
+INFO: [Physopt 32-670] No setup violation found.  Fanout Optimization was not performed.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 14 Fanout Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 15 Single Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Single Cell Placement Optimization was not performed.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 15 Single Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 16 Multi Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Multi Cell Placement Optimization was not performed.
+Phase 16 Multi Cell Placement Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 17 Rewire
+INFO: [Physopt 32-670] No setup violation found.  Rewire was not performed.
+Phase 17 Rewire | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 18 Critical Cell Optimization
+INFO: [Physopt 32-670] No setup violation found.  Critical Cell Optimization was not performed.
+Phase 18 Critical Cell Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 19 DSP Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+Phase 19 DSP Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 20 BRAM Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+Phase 20 BRAM Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 21 URAM Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+Phase 21 URAM Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 22 Shift Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+Phase 22 Shift Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 23 DSP Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  DSP Register Optimization was not performed.
+Phase 23 DSP Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 24 BRAM Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  BRAM Register Optimization was not performed.
+Phase 24 BRAM Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 25 URAM Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  URAM Register Optimization was not performed.
+Phase 25 URAM Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 26 Shift Register Optimization
+INFO: [Physopt 32-670] No setup violation found.  Shift Register Optimization was not performed.
+Phase 26 Shift Register Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 27 Critical Pin Optimization
+INFO: [Physopt 32-670] No setup violation found.  Critical Pin Optimization was not performed.
+Phase 27 Critical Pin Optimization | Checksum: 1df7b33cb
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 28 Very High Fanout Optimization
+INFO: [Physopt 32-1408] Pass 1. Identified 2 candidate nets for high-fanout optimization.
+INFO: [Physopt 32-572] Net input_delays/delayed[57] was not replicated.
+Resolution: phys_opt_design can be forced to replicate a net driver using the option -force_replication_on_nets <list of net objects>.
+INFO: [Physopt 32-81] Processed net input_delays/p_5_in. Replicated 4 times.
+INFO: [Physopt 32-232] Optimized 1 net. Created 4 new instances.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 1 net or cell. Created 4 new cells, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.085 | TNS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 28 Very High Fanout Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 29 Single Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Single Cell Placement Optimization was not performed.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 29 Single Cell Placement Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 30 Multi Cell Placement Optimization
+INFO: [Physopt 32-670] No setup violation found.  Multi Cell Placement Optimization was not performed.
+Phase 30 Multi Cell Placement Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 31 SLR Crossing Optimization
+Phase 31 SLR Crossing Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 32 Critical Path Optimization
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.085 | TNS=0.000 |
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.085 | TNS=0.000 |
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 32 Critical Path Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 33 BRAM Enable Optimization
+Phase 33 BRAM Enable Optimization | Checksum: 1414f2f68
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 34 Hold Fix Optimization
+INFO: [Physopt 32-668] Estimated Timing Summary | WNS=0.085 | TNS=0.000 | WHS=-0.098 | THS=-0.994 |
+INFO: [Physopt 32-45] Identified 7 candidate nets for hold slack optimization.
+INFO: [Physopt 32-234] Optimized 7 nets. Inserted 0 new ZHOLD_DELAYs. Calibrated 0 existing ZHOLD_DELAYs. Inserted 7 buffers.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Physopt 32-668] Estimated Timing Summary | WNS=0.085 | TNS=0.000 | WHS=-0.037 | THS=-0.426 |
+Phase 34 Hold Fix Optimization | Checksum: a41c3561
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Physopt 32-669] Post Physical Optimization Timing Summary | WNS=0.085 | TNS=0.000 | WHS=-0.037 | THS=-0.426 |
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization            |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Fanout                  |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Single Cell Placement   |          0.558  |         44.134  |            0  |              0  |                    56  |           0  |           1  |  00:00:02  |
+|  Multi Cell Placement    |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Rewire                  |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Critical Cell           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  SLR Crossing            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           3  |  00:00:00  |
+|  DSP Register            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register          |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Critical Pin            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Very High Fanout        |          0.000  |          0.000  |            4  |              0  |                     1  |           0  |           1  |  00:00:01  |
+|  BRAM Enable             |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Critical Path           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                   |          0.558  |         44.134  |            4  |              0  |                    57  |           0  |           8  |  00:00:03  |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Summary of Hold Fix Optimizations
+=================================
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization               |  WHS Gain (ns)  |  THS Gain (ns)  |  Added LUTs  |  Added FFs  |  Optimized Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT1 and ZHOLD Insertion   |          0.061  |          0.568  |           7  |          0  |               7  |           0  |           1  |  00:00:00  |
+|  Total                      |          0.061  |          0.568  |           7  |          0  |               7  |           0  |           1  |  00:00:00  |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: a8a20174
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:04 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+481 Infos, 11 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: 4db2f1a4 ConstDB: 0 ShapeSum: 278d683a RouteDB: 15f972f0
+WARNING: [Route 35-198] Port "trace_ready" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "trace_ready". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "start" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "start". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "load_begin" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "load_begin". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "compute_ready" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "compute_ready". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_valid" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_valid". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "rst" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "rst". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "score_read_addr[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "score_read_addr[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "score_read_addr[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "score_read_addr[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "score_read_addr[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "score_read_addr[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "score_read_addr[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "score_read_addr[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_kind[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_kind[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_kind[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_kind[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[25]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[25]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[29]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[29]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[18]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[18]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[21]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[21]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[31]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[31]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[24]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[24]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[22]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[22]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[19]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[19]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[23]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[23]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[28]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[28]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[13]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[13]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[8]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[8]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[0]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[0]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[27]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[27]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[10]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[10]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_kind[2]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_kind[2]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[5]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[5]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[20]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[20]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[7]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[7]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[11]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[11]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[15]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[15]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[9]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[9]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[6]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[6]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[30]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[30]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[17]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[17]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[14]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[14]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[26]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[26]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[4]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[4]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[3]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[3]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_addr[1]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_addr[1]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[16]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[16]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[12]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[12]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "cfg_data[18]" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "cfg_data[18]". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Route 35-198] Port "rsp_ready" does not have an associated HD.PARTPIN_LOCS, which will prevent the partial routing of the signal "rsp_ready". Without this partial route, timing analysis to/from this port will not be accurate, and no routing information for this port can be exported.
+WARNING: [Constraints 18-8777] Unable to split tiles. All required files are not available.
+Post Restoration Checksum: NetGraph: 29e7c641 | NumContArr: 63c64d9d | Constraints: c2a8fa9d | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 213000918
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 213000918
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 213000918
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 2615.605 ; gain = 0.000
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 2512fe174
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.191  | TNS=0.000  | WHS=-0.182 | THS=-27.588|
+
+
+Phase 2.4 Soft Constraint Pins - Fast Budgeting
+Phase 2.4 Soft Constraint Pins - Fast Budgeting | Checksum: 2c8dc9f54
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:16 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 3323
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 3323
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 2c66f36ac
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:16 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 2c66f36ac
+
+Time (s): cpu = 00:00:19 ; elapsed = 00:00:16 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 30a03d213
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 4 Initial Routing | Checksum: 30a03d213
+
+Time (s): cpu = 00:00:25 ; elapsed = 00:00:18 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 348
+ Number of Nodes with overlaps = 72
+ Number of Nodes with overlaps = 34
+ Number of Nodes with overlaps = 16
+ Number of Nodes with overlaps = 13
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.066  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Global Iteration 0 | Checksum: 22b89b076
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 5 Rip-up And Reroute | Checksum: 22b89b076
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 20cf8b4c0
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.066  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 6.1 Delay CleanUp | Checksum: 20cf8b4c0
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 20cf8b4c0
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 6 Delay and Skew Optimization | Checksum: 20cf8b4c0
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.066  | TNS=0.000  | WHS=0.051  | THS=0.000  |
+
+Phase 7.1 Hold Fix Iter | Checksum: 23b115f0d
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Phase 7 Post Hold Fix | Checksum: 23b115f0d
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 1.68039 %
+  Global Horizontal Routing Utilization  = 2.19718 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 23b115f0d
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 9 Verifying routed nets
+
+ Verification completed successfully
+Phase 9 Verifying routed nets | Checksum: 23b115f0d
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 10 Depositing Routes
+Phase 10 Depositing Routes | Checksum: 2a26395d3
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 11 Post Process Routing
+Phase 11 Post Process Routing | Checksum: 2a26395d3
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Phase 12 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.066  | TNS=0.000  | WHS=0.051  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 12 Post Router Timing | Checksum: 2a26395d3
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Total Elapsed time in route_design: 21.474 secs
+
+Phase 13 Post-Route Event Processing
+Phase 13 Post-Route Event Processing | Checksum: d60b85fc
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:21 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Route 35-16] Router Completed Successfully
+Ending Routing Task | Checksum: d60b85fc
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:22 . Memory (MB): peak = 2615.605 ; gain = 0.000
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+494 Infos, 78 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:22 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.152 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.043 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2615.605 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.208 . Memory (MB): peak = 2615.605 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/post_route.dcp' has been generated.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_route_drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_route_drc.rpt.
+report_drc completed successfully
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ DSP48*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAM32*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAM64*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ MUXF*}'.
+WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ BUFG*}'.
+# puts "FULL_CORE_COMPLETE action=$action reports=$reports"
+FULL_CORE_COMPLETE action=route reports=C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Mon Nov  2 19:31:02 2026...

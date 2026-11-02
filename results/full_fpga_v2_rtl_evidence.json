@@ -1,0 +1,28 @@
+{
+  "tested_revision": "4d198f2d06b5ea43ab08b72d1eb442bfe39f9e3a",
+  "workflow_run_id": 41430880747,
+  "workflow_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41430880747",
+  "workflow_conclusion": "success",
+  "artifact_id": 13135121537,
+  "artifact_sha256": "8769d621b60c5e78a3a1bde14077e31537a70ac5675fa4993972dee64b839c35",
+  "artifact_expires_at": "2027-01-31T10:41:57Z",
+  "local_artifact_digest_verified": true,
+  "local_source_hashes_match": true,
+  "local_csv_recomparison": "PASS, all 274506 events",
+  "summary_sha256": "aea736667153b9ed71d0cfd203147d646c39d9fa050f9c6b0fc229385eb918f8",
+  "local_python_tests": 38,
+  "vivado_source_consistency": "Active final top, core, memories, control ROM, hold buffers, serial multiply/RNE and argmax hashes match functional regression",
+  "active_rtl_sources_verified": [
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_fpga_v2/full_model.sv",
+    "rtl/full_e2b_fpga_v2/full_model_timed.sv",
+    "rtl/full_e2b_fpga_v2/control_rom.svh",
+    "rtl/full_e2b_fpga_v2/feature_ram.sv",
+    "rtl/full_e2b_fpga_v2/sync_bram.sv",
+    "rtl/full_e2b_fpga_v2/weight_bram.sv",
+    "rtl/full_e2b_fpga_v2/mul_serial.sv",
+    "rtl/full_e2b_fpga_v2/rne_serial.sv",
+    "rtl/full_e2b_fpga_v2/input_hold.sv"
+  ],
+  "scope": "Actual Test 0/1 integer simulation plus separately measured 100 MHz core OOC routed result; system/physical board NOT_RUN"
+}

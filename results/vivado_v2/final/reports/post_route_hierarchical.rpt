@@ -1,0 +1,38 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Nov  2 19:31:00 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_192926_16003a/build/zedboard_full/reports/post_route_hierarchical.rpt
+| Design       : full_model_timed
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+|       Instance       |    Module   | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+| full_model_timed     |       (top) |       1957 |       1957 |       0 |    0 | 1759 |     84 |      1 |          0 |
+|   (full_model_timed) |       (top) |          0 |          0 |       0 |    0 |    0 |      0 |      0 |          0 |
+|   core               |  full_model |       1410 |       1410 |       0 |    0 | 1759 |     84 |      1 |          0 |
+|     (core)           |  full_model |        600 |        600 |       0 |    0 | 1191 |      0 |      0 |          0 |
+|     feature_mem      | feature_ram |         88 |         88 |       0 |    0 |    4 |     16 |      0 |          0 |
+|     multiply         |  mul_serial |        342 |        342 |       0 |    0 |  335 |      0 |      0 |          0 |
+|     rounding         |  rne_serial |        183 |        183 |       0 |    0 |  172 |      0 |      0 |          0 |
+|     weights          | weight_bram |         89 |         89 |       0 |    0 |   19 |     66 |      0 |          0 |
+|       low_mem        |   sync_bram |         87 |         87 |       0 |    0 |   15 |     64 |      0 |          0 |
+|   input_delays       |  input_hold |        547 |        547 |       0 |    0 |    0 |      0 |      0 |          0 |
++----------------------+-------------+------------+------------+---------+------+------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

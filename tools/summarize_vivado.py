@@ -49,10 +49,18 @@ def timing(text):
         wpws_ns=nums[8],tpws_ns=nums[9],pulse_failing_endpoints=int(nums[10]),pulse_endpoints=int(nums[11]),
         numeric_constraints_met=all(nums[i]>=0 for i in (0,1,4,5,8,9)) and all(nums[i]==0 for i in (2,6,10)))
 
+def route_status(text):
+    def count(label):
+        match=re.search(re.escape(label)+r'\.*\s*:\s*(\d+)',text)
+        if not match:raise ValueError('Incomplete route status: '+label)
+        return int(match.group(1))
+    routable=count('# of routable nets');fully=count('# of fully routed nets');errors=count('# of nets with routing errors')
+    return dict(routable=routable,fully_routed=fully,routing_errors=errors,complete=routable>0 and routable==fully and errors==0)
+
 def summarize(run,output='results/vivado_full'):
     run=Path(run);output=Path(output);reports=run/'output/reports'
     manifest=json.loads(read(run/'launch_manifest.json'))
-    if manifest['part']!='xc7z020clg484-1' or manifest['top']!='full_model' or manifest['mode']!='out_of_context':raise ValueError('Unexpected synthesis target')
+    if manifest['part']!='xc7z020clg484-1' or manifest['top'] not in ('full_model','full_model_timed','full_model_ooc') or manifest['mode']!='out_of_context':raise ValueError('Unexpected synthesis target')
     current_matches={}
     for name,digest in manifest['source_sha256'].items():
         archived=run/'source_snapshot'/name
@@ -89,11 +97,16 @@ def summarize(run,output='results/vivado_full'):
         # partial I/O-delay diagnostics must also be reviewed, never silently ignored.
         data[phase]['all_check_counts_zero']=bool(counts) and all(v==0 for v in counts.values())
     routed='post_route' in data and status.get('status')=='COMPLETE' and manifest['action']=='route'
+    routing=None;drc_errors=None
+    if routed:
+        routing=route_status(read(reports/'post_route_status.rpt'))
+        drc_errors=[line.strip() for line in read(reports/'post_route_drc.rpt').splitlines() if re.search(r'\|\s*Error\s*\|',line)]
     final='post_route' if routed else ('post_synth' if 'post_synth' in data else None)
     verdict='NOT_MEASURED'
     if final:
         x=data[final]
-        if not x['all_reported_resources_fit']:verdict='RESOURCE_OVERFLOW'
+        if routed and (not routing['complete'] or drc_errors):verdict='IMPLEMENTATION_CHECK_FAILED'
+        elif not x['all_reported_resources_fit']:verdict='RESOURCE_OVERFLOW'
         elif not x['timing']['numeric_constraints_met']:verdict='TIMING_FAILED'
         elif not x['all_check_counts_zero']:verdict='CONSTRAINT_REVIEW_REQUIRED'
         else:verdict='ROUTED_CORE_PASS' if routed else 'SYNTHESIS_ESTIMATE_ONLY'
@@ -104,6 +117,7 @@ def summarize(run,output='results/vivado_full'):
         synthesis_status='COMPLETE' if 'post_synth' in data else 'NOT_COMPLETED',
         placement_status='FAILED' if status.get('phase')=='placement' and status.get('status')=='FAILED' else ('COMPLETE' if routed else 'NOT_COMPLETED'),
         routing_status='COMPLETE' if routed else 'NOT_RUN',
+        route_checks=routing,drc_error_rules=drc_errors,
         measurements=data,errors=errors,critical_warnings=critical,warnings=warnings,source_sha256=manifest['source_sha256'],current_source_matches=current_matches,
         report_sha256={p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file() and p.name!='summary.json'},
         limitations='Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim.')

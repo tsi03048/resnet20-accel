@@ -1,5 +1,7 @@
 # E8-C. 전체 RTL을 ZedBoard 대상으로 합성하고 보고서 읽기
 
+이 페이지는 첫 합성의 자원·시간 조건 실패를 보존한 기록입니다. 후속 Weight·계수 BRAM 전환과 **배선 후 100 MHz 통과 결과**는 [E8-D](full_fpga_v2.md)를 보세요. 이전 실패 수치를 새 버전의 결과로 사용하지 않습니다.
+
 [E8-B](full_e2b_rtl.md)에서는 실제 정수 입력 0→1→0과 Stall·Reset을 실행해 계산이 맞는지 확인했습니다. 이번에는 **그 전체 RTL을 Vivado가 어떤 회로로 바꾸는지** 확인합니다. 계산 결과의 일치, FPGA에 들어가는 크기, 정해진 시간 안에 끝나는지는 각각 확인해야 합니다.
 
 S5의 선택 확장입니다. 처음에는 [계산 반복하기](fundamentals/D2.md) → [값 보관하기](fundamentals/D3.md) → [값 전달하기](fundamentals/D5.md)를 읽으세요. 작은 Conv의 보드 실습은 [S6](learning/S6.md)입니다.
@@ -73,20 +75,20 @@ WNS만 양수라고 통과시키지 않습니다. setup·hold·pulse-width, 제�
 PowerShell에서 저장소 루트로 이동합니다. Vivado 설치 위치가 다르면 `-VivadoPath`를 바꾸세요.
 
 ```powershell
-& ./board/zedboard/run_full.ps1 -Action synth -VivadoPath 'C:/Xilinx/2025.1/Vivado/bin/vivado.bat'
+& ./board/zedboard/run_full.ps1 -Action synth -Variant fpga -VivadoPath 'C:/Xilinx/2025.1/Vivado/bin/vivado.bat'
 ```
 
 배치·배선까지 요청하려면 다음 명령을 사용합니다. 자원이 넘치거나 도구 오류가 있으면 실패를 기록하고 멈춥니다. 보고서가 일부 생성됐다고 전체 통과로 적지 마세요.
 
 ```powershell
-& ./board/zedboard/run_full.ps1 -Action route -VivadoPath 'C:/Xilinx/2025.1/Vivado/bin/vivado.bat'
+& ./board/zedboard/run_full.ps1 -Action route -Variant fpga -VivadoPath 'C:/Xilinx/2025.1/Vivado/bin/vivado.bat'
 ```
 
 임시 폴더 경로에도 한글이 있다면 사용 가능한 영문 경로를 `-StageBase`로 지정하세요. 스크립트는 실행마다 새 폴더를 만들며 기존 결과를 삭제하지 않습니다. 임시 폴더에는 소스 사본과 체크포인트가 남으므로 저장 공간도 확인합니다.
 
 영문 경로에서 직접 실행하는 경우에는 운영체제와 관계없이 다음 Tcl을 사용할 수 있습니다.
 
-기본 `-Variant fpga`는 BRAM 포트 버전입니다. 원래 소스는 `-Variant baseline`, 배열만 편 버전은 `-Variant flat`으로 선택할 수 있습니다. 둘은 실패 원인을 재현하는 진단용입니다. Tcl 직접 실행은 마지막 인자로 `fpga`를 전달합니다.
+이 장의 `-Variant fpga`는 첫 BRAM 포트 버전입니다. 최신 개선은 [E8-D](full_fpga_v2.md)에서 `-Variant fpga2`로 실행합니다. 원래 소스는 `-Variant baseline`, 배열만 편 버전은 `-Variant flat`으로 선택할 수 있습니다. 둘은 실패 원인을 재현하는 진단용입니다. Tcl 직접 실행은 마지막 인자로 `fpga`를 전달합니다.
 
 ```bash
 vivado -mode batch -nojournal -log vivado.log -source board/zedboard/build_full.tcl -tclargs synth fpga
