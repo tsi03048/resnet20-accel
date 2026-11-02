@@ -42,9 +42,10 @@ module full_model_timed(
     wire held_trace_ready;
     wire held_rsp_ready;
     wire [3:0] held_score_read_addr;
-    input_hold #(.WIDTH(65),.STAGES(16)) input_delays(
-        .data({rst,load_begin,cfg_valid,cfg_kind,cfg_addr,cfg_data,start,compute_ready,trace_ready,rsp_ready,score_read_addr}),
-        .delayed({held_rst,held_load_begin,held_cfg_valid,held_cfg_kind,held_cfg_addr,held_cfg_data,held_start,held_compute_ready,held_trace_ready,held_rsp_ready,held_score_read_addr}));
+    assign held_score_read_addr=score_read_addr;
+    input_hold #(.WIDTH(61),.STAGES(8)) input_delays(
+        .data({rst,load_begin,cfg_valid,cfg_kind,cfg_addr,cfg_data,start,compute_ready,trace_ready,rsp_ready}),
+        .delayed({held_rst,held_load_begin,held_cfg_valid,held_cfg_kind,held_cfg_addr,held_cfg_data,held_start,held_compute_ready,held_trace_ready,held_rsp_ready}));
     full_model core(
         .clk(clk),
         .rst(held_rst),
