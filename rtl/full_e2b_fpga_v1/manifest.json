@@ -1,0 +1,8 @@
+{
+  "baseline_sha256": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+  "change": "Explicit synchronous true dual-port feature RAM. READ_LATCH and ADD_LATCH consume registered RAM outputs. Arithmetic/graph/Golden unchanged.",
+  "source_sha256": {
+    "rtl/full_e2b_fpga_v1/full_model.sv": "b1239fbcc05dfb97e2b1864e49d72253f8ef46e4598d504bbd2c16c4e785a699",
+    "tb/full_e2b_fpga_v1/tb_full.sv": "7d558eda35e4434e7d8b4cb8e7ef1387a22be47f17ef6772aee598ebdee7cd80"
+  }
+}

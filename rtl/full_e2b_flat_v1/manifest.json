@@ -1,0 +1,9 @@
+{
+  "baseline": "rtl/full_e2b_v1/full_model.sv",
+  "baseline_sha256": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+  "transformation": "flat address = bank*16384 + offset; all numeric/FSM logic unchanged",
+  "generated_sha256": {
+    "rtl/full_e2b_flat_v1/full_model.sv": "d49bbeebcc81230f9a704a71f5e0c64a6ae90e63700f015cecd8b325d121fb62",
+    "tb/full_e2b_flat_v1/tb_full.sv": "8974151959300eb8e3bfd7fad06f4e9023a1cf48928281743186aa814f26b877"
+  }
+}

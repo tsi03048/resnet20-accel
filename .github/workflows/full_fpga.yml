@@ -1,0 +1,62 @@
+name: FPGA BRAM full model integer RTL
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y verilator
+      - run: bash tb/full_e2b_fpga_v1/run.sh build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-fpga-build
+          path: |
+            build/full_fpga_model/Vtb_full
+            results/full_fpga_rtl/
+  cases:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix: {mode: ['0', '1', '2', 'negative']}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with: {name: full-fpga-build, path: '.'}
+      - run: chmod +x build/full_fpga_model/Vtb_full
+      - run: bash tb/full_e2b_fpga_v1/run.sh case ${{ matrix.mode }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-fpga-case-${{ matrix.mode }}
+          path: results/full_fpga_rtl/
+  summary:
+    needs: cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: full-fpga-case-*
+          path: results/full_fpga_rtl
+          merge-multiple: true
+      - run: bash tb/full_e2b_fpga_v1/run.sh summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-fpga-model-evidence
+          path: |
+            results/full_fpga_rtl/
+            results/full_fpga_rtl_actual.json
