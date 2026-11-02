@@ -105,7 +105,7 @@ def summarize(run,output='results/vivado_full'):
         placement_status='FAILED' if status.get('phase')=='placement' and status.get('status')=='FAILED' else ('COMPLETE' if routed else 'NOT_COMPLETED'),
         routing_status='COMPLETE' if routed else 'NOT_RUN',
         measurements=data,errors=errors,critical_warnings=critical,warnings=warnings,source_sha256=manifest['source_sha256'],current_source_matches=current_matches,
-        report_sha256={p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file()},
+        report_sha256={p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file() and p.name!='summary.json'},
         limitations='Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim.')
     (output/'summary.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
     return result

@@ -155,7 +155,6 @@
     "source_snapshot/rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
     "source_snapshot/rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
     "source_snapshot/rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
-    "summary.json": "26ac4e8ec9a0808b650e9033f172d8fa7e64ffa236dc789c9915a8d2721b6362",
     "vivado.log": "20c7ff9e70b77a38ac87fe65fdbd4dbda33b57fe76d9f36d1dc98ae93fcfbcad"
   },
   "limitations": "Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim."

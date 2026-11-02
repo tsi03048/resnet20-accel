@@ -20,6 +20,9 @@
   "verdict": "NOT_MEASURED",
   "synthesis_reports_present": false,
   "routed_reports_present": false,
+  "synthesis_status": "NOT_COMPLETED",
+  "placement_status": "NOT_COMPLETED",
+  "routing_status": "NOT_RUN",
   "measurements": {},
   "errors": [
     "ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'act_mem_flat_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (393216) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 393216}' to allow the memory to be dissolved into individual bits"
