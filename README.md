@@ -10,7 +10,8 @@
 | 처음 시작하는 계산·RTL 실습 | [기본 트랙](docs/basic_track.md), `exercises/` |
 | ResNet-20 FP32 평가·구조 계산 | `model/` |
 | PTQ·정수 계산·상수 내보내기·재검증 | `quant/`, [E2-B 설명](docs/e2b_integer_reference.md) |
-| 과거 E12~E21 심화 자료 | [단계별 원문·재실행 안내](docs/historical/e12-e21/README.md), `historical/e12-e21/` |\n| Colab 실습 | `notebooks/` |
+| 과거 E12~E21 심화 자료 | [단계별 원문·재실행 안내](docs/historical/e12-e21/README.md), `historical/e12-e21/` |
+| Colab 실습 | `notebooks/` |
 | RTL·Testbench·보드 준비 | `rtl/`, `tb/`, [보드 안내](board/README.md) |
 | 고정 정수 상수·Golden·Stem 벡터 | `reference/e2b_v1/` |
 | 평가 결과·실행 조건·자동 시험 | `results/`, `tests/`, `.github/workflows/` |
@@ -40,8 +41,9 @@ Python만으로 Y=[10,9,8,6]과 36 MAC을 먼저 확인한다.
 | 확장 과제 | Transition·GAP·FC·연속 실행을 포함한 ResNet-20 전체 분류·성능 개선 |
 | E1 직접 평가 | CPU 9,173/10,000 = 91.73% |
 | E2-A | Train 개발집합에서 먼저 선택한 signed/minmax를 Test 평가: 91.76%, 하락 -0.03%p |
-| E2-B | 실제 정수 상수·전체 graph·Golden 구현 및 Test 91.70% 검증 완료; RTL 비교는 별도 |
-| 기초 산술·구조표·PTQ·정수 기준 | Python 13개 시험 통과 |
+| E2-B | 실제 정수 상수·전체 graph·Golden·Test 91.70%와 실제 Stem RTL 비교 통과 |
+| 기초 산술·구조표·PTQ·정수 기준·Stem 벡터 | Python 16개 시험 통과 |
+| 실제 Stem RTL | [실습](docs/stem_e2b_rtl.md): 같은 sample 0 완료 5작업, 누산·code 각각 81,920개 불일치 0; Residual·전체 CNN·보드는 후속 |
 | 기본 RTL v1 | 새 공개 소스·Testbench·자동 시험 제공. 실행 증거는 Actions 확인 |
 | 보드 | 합성·배치배선·실행 검증 미완료 |
 | 기존 E12~E21 | [원문·원본 ZIP·소스·로그 이관 완료](docs/historical/e12-e21/README.md); 현재 기본 v1·실제 모델 검증과 별도 |
