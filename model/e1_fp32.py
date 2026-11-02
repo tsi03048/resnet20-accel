@@ -84,6 +84,9 @@ def run_e1(model, info, test_set, device, out_root="."):
         "per_class_top1": res["per_class_top1"],
         "stored_best_prec1_in_checkpoint": info["stored_best_prec1"],
         "note": "stored_best_prec1 는 checkpoint 에 저장된 값이며, fp32_top1 이 이번 직접 평가 결과다.",
+        "dataset": {"source": getattr(test_set, "source", "?"),
+                    "images_sha256": getattr(test_set, "data_sha256", "?"),
+                    "labels_sha256": getattr(test_set, "label_sha256", "?")},
         "model_info": info,
         "environment": environment(),
     }
