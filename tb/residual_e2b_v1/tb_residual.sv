@@ -202,7 +202,7 @@ module tb_residual;
             $display("OVERFLOW_PASS rejected=1 outputs=0 response=0");$finish;
         end
         launch();
-        // Verilator ignores $dumpoff: end this SEPARATE short trace run.
+        // The simulator ignores $dumpoff: end this SEPARATE short trace run.
         // The complete regression runs without tracing and uses the scoreboard.
         if(trace_enable!=0) begin
             $dumpfile("results/residual_rtl/first500.vcd");$dumpvars;
