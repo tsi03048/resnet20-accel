@@ -11,7 +11,7 @@
 | 모델 | ResNet-20 + CIFAR-10 (Option A shortcut). ResNet-56 은 확장 기준 |
 | Checkpoint | 공개 [`akamaster/pytorch_resnet_cifar10`](https://github.com/akamaster/pytorch_resnet_cifar10) `resnet20-12fca82f.th` @ `d5489e8`, 직접 학습하지 않음 |
 | 실행 환경 | Google Colab |
-| 정밀도 | FP32 기준 → INT8 PTQ 정확도 하락 폭을 보고 채택 여부 결정 |
+| 정밀도 | **INT8 채택 (2026-11-02)** · W8A8 signed·minmax: Weight 출력 채널별 대칭 [-127,127], Activation Tensor별 signed [-128,127]·zero-point 0, RNE |
 | 보드 | ZedBoard (XC7Z020). Arty Z7-20 은 같은 PL 이라 호환 |
 
 ## 바로 실행
@@ -38,8 +38,9 @@ docs/       Notion 페이지 대응표·결정 기록
 
 | 단계 | 상태 |
 | --- | --- |
-| E1 FP32 재현 | 노트북 준비 완료 · **첫 Colab 실행 대기** |
-| E2 INT8 하락 측정 | 노트북 준비 완료 · **첫 Colab 실행 대기** |
+| E1 FP32 재현 | **완료** (2026-11-02, Colab T4) · Test Top-1 **91.73%** (9173/10000) |
+| E2 INT8 하락 측정 | **완료** · W8A8 6개 설정 모두 하락 ±0.07%p 이내 → INT8 채택 |
+| E2b 정수 Reference | 다음 단계 · INT32 bias·Multiplier/Shift·RNE 로 bit-exact 기준 고정 |
 | 기존 RTL (연결 05, E12~E21) | 이전 예정 (`rtl/README.md`) |
 
 ## 기록 규칙
