@@ -37,3 +37,18 @@ jobs:
           path: integer-test-environment.txt
       - run: python -m quant.replay_e2b --backend numpy
       - run: python -m quant.replay_e2b --backend torch
+  stem-real-integer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y iverilog
+      - run: bash tb/stem_e2b_v1/run.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stem-real-integer-evidence
+          path: results/stem_rtl/

@@ -8,6 +8,7 @@ build/
 *.vcd
 results/basic_rtl/
 artifacts/
+results/stem_rtl/
 golden/e2b_sample*/tensors.npz
 
 # Local environments, credentials, and regenerable FP32 tensors
