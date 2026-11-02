@@ -83,10 +83,46 @@ def eval_transform():
     return T.Compose([T.ToTensor(), T.Normalize(MEAN, STD)])
 
 
-def cifar10(root="data", train=False):
-    """평가용(증강 없음) CIFAR-10. train=True 는 Calibration 용으로만 쓴다."""
-    return torchvision.datasets.CIFAR10(root, train=train, download=True,
-                                        transform=eval_transform())
+class ArrayCIFAR10(torch.utils.data.Dataset):
+    """uint8 HWC 이미지 배열 + label. torchvision CIFAR10 과 같은 방식(PIL→transform)으로 꺼낸다."""
+
+    def __init__(self, images, labels, transform, source):
+        self.data, self.targets, self.transform, self.source = images, list(labels), transform, source
+
+    def __len__(self):
+        return len(self.targets)
+
+    def __getitem__(self, i):
+        from PIL import Image
+        return self.transform(Image.fromarray(self.data[i])), int(self.targets[i])
+
+
+def cifar10(root="data", train=False, source="hf"):
+    """평가용(증강 없음) CIFAR-10. train=True 는 Calibration 용으로만 쓴다.
+
+    source="hf"      : Hugging Face uoft-cs/cifar10 (원본 변환본, 빠름). 실패하면 toronto 로 넘어간다.
+    source="toronto" : torchvision 원본 tar (cs.toronto.edu, 느릴 수 있음)
+    어느 경로든 이미지 배열의 sha256 을 `data_sha256` 으로 남겨 팀원 간 같은 데이터인지 확인한다.
+    """
+    import numpy as np
+    split = "train" if train else "test"
+    if source == "hf":
+        try:
+            from datasets import load_dataset
+            ds = load_dataset("uoft-cs/cifar10", split=split, cache_dir=os.path.join(root, "hf"))
+            images = np.stack([np.asarray(im.convert("RGB"), dtype=np.uint8) for im in ds["img"]])
+            labels = np.asarray(ds["label"], dtype=np.int64)
+            out = ArrayCIFAR10(images, labels, eval_transform(), "hf:uoft-cs/cifar10")
+        except Exception as e:  # 네트워크·라이브러리 문제 시 원본으로
+            print("HF 경로 실패, toronto 원본으로 받습니다:", repr(e)[:200])
+            source = "toronto"
+    if source == "toronto":
+        tv = torchvision.datasets.CIFAR10(root, train=train, download=True, transform=None)
+        out = ArrayCIFAR10(tv.data, tv.targets, eval_transform(), "torchvision:cs.toronto.edu")
+    out.data_sha256 = hashlib.sha256(out.data.tobytes()).hexdigest()
+    out.label_sha256 = hashlib.sha256(np.asarray(out.targets, dtype=np.int64).tobytes()).hexdigest()
+    print(f"CIFAR-10 {split}: {len(out)}장 · {out.source} · images sha256 {out.data_sha256[:16]}…")
+    return out
 
 
 def calibration_subset(train_set, n=1000, seed=0):
