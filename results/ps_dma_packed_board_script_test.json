@@ -1,0 +1,6 @@
+{
+  "status": "SCRIPT_MODEL_PASS",
+  "hardware_access": false,
+  "scope": "Actual run_board.tcl in XSDB with debugger commands mocked; decimal/signed mrd values, 6 packet downloads + ELF, 72-word capture validation",
+  "run_board_tcl_sha256": "46237a06df3789fd34780bc6078a13a000d8f927fff99c4664aac731a695fc2e"
+}

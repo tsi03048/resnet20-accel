@@ -18,7 +18,8 @@
 | 첫 전체 코어 ZedBoard OOC 합성(이전 v1) | Vivado 2025.1 실제 합성 완료. LUT 88,171/53,200, LUT RAM 51,372/17,400 초과; 100 MHz 합성 WNS −121.450 ns. 자원 DRC로 배치 중단; [실패 기록](full_vivado_zedboard.md) |
 | 전체 메모리 BRAM·100 MHz 개선(v2) | Vivado 2025.1 실제 코어 배치·배선 통과. LUT 1,957/53,200, FF 1,759/106,400, BRAM 84.5/140, DSP 0; WNS +0.071 ns·WHS +0.052 ns, TNS/THS 0. [E8-D](full_fpga_v2.md); [최종 top의 0→1→0·61경계·Stall·7곳 Reset 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41430880747) |
 | PS·DDR·AXI DMA 전체 시스템 | [E8-E](ps_ddr_dma.md): 실제 시스템 bitstream/XSA 생성·100 MHz 배선 통과. LUT 4,296·FF 5,625·BRAM 87.5·DSP 0, WNS +0.255 ns·WHS +0.017 ns. 최종 적재·점수 회수 RTL 61경계·Stall·8곳 Reset 및 실제 DMA IP·ARM 소프트웨어 모델 시험 통과. IP 경고는 보존 |
-| ZedBoard 실물 실행 | 사용자가 아직 보드를 연결하지 않음. 실제 PS 실행·DDR 초기화·DMA·점수 회수는 NOT_RUN; 실행 스크립트와 같은 빌드의 bit/ELF는 실습 ZIP에 포함 |
+| INT8 묶음 DMA R202 | [E8-F](packed_dma.md): MM2S 1,094,068→279,844bytes(74.42% 절감). 전체 RTL 완료5회·61경계·점수·예측 일치, Stall·8곳 Reset 및 추가 lane Reset·숫자 오류 drain 통과. LUT 4,432·FF 5,706·BRAM 87.5·DSP 0, 100 MHz WNS +0.571ns·WHS +0.033ns. 정상 계산 클록은 이전과 동일 |
+| ZedBoard 실물 실행 | 사용자가 보드 없이 후속 작업을 요청했고 JTAG 감지0개를 확인함. 실제 PS 실행·DDR 초기화·DMA·점수 회수는 NOT_RUN; 실행 스크립트와 같은 빌드의 bit/ELF는 실습 ZIP에 포함 |
 | 실제 전체 ResNet-20 RTL | [60f37028 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41409298942): 실제 0→1→0, 완료 5회(정상3·Stall1·Reset 회복1), 61경계/회·점수·예측 일치, 경계 원소 2,760,420개 불일치 0; [실습](full_e2b_rtl.md) |
 
 기존 T4 fake-quant 91.79%는 위 CPU 91.76%와 다른 실행입니다. checkpoint 저장값 91.78%도 직접 평가가 아닙니다. 수치 구조는 [R0 대응 문서](numbers.md), 실제 증거는 [Actions](https://github.com/tsi03048/resnet20-accel/actions)와 results/를 확인합니다.

@@ -1,0 +1,26 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "baseline_protocol": "R201",
+  "packed_protocol": "R202",
+  "old_mm2s_bytes_per_image": 1094068,
+  "new_mm2s_bytes_per_image": 279844,
+  "saved_bytes_per_image": 814224,
+  "reduction_percent": 74.4216995652921,
+  "logical_payload_scalars": 273502,
+  "packed_mm2s_bus_words": 69961,
+  "s2mm_bytes_unchanged": 64,
+  "old_dma_read_bursts": 8386,
+  "new_dma_read_bursts": 2097,
+  "old_normal_compute_cycles": [
+    266085373,
+    266085373,
+    266085373
+  ],
+  "new_normal_compute_cycles": [
+    266085373,
+    266085373,
+    266085373
+  ],
+  "normal_compute_cycles_identical": true,
+  "limitation": "Traffic size reduction; native one-scalar/clock loader and compute unchanged. No board throughput/FPS measurement."
+}

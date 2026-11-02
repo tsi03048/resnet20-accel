@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Real ARM ELF execution in Unicorn Cortex-A9; behavioral DMA/core MMIO models, not RTL or board execution",
+  "elf_sha256": "64235b16a10883a3b9d741c529292d2028f7367b1dd1f15e0cec31887454a8dc",
+  "cases": [
+    {
+      "scenario": "normal",
+      "status": "PASS",
+      "reported_state": 2,
+      "completed_jobs": 4,
+      "mm2s_transfers": 25,
+      "s2mm_transfers": 4,
+      "aborted_jobs": 1
+    },
+    {
+      "scenario": "dma_decode",
+      "status": "PASS",
+      "reported_state": 2147483680,
+      "completed_jobs": 0,
+      "mm2s_transfers": 1,
+      "s2mm_transfers": 0,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "timeout",
+      "status": "PASS",
+      "reported_state": 2147483696,
+      "completed_jobs": 0,
+      "mm2s_transfers": 1,
+      "s2mm_transfers": 0,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "bad_score",
+      "status": "PASS",
+      "reported_state": 2147483729,
+      "completed_jobs": 0,
+      "mm2s_transfers": 5,
+      "s2mm_transfers": 1,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "stale_tag",
+      "status": "PASS",
+      "reported_state": 2147483728,
+      "completed_jobs": 0,
+      "mm2s_transfers": 5,
+      "s2mm_transfers": 1,
+      "aborted_jobs": 0
+    }
+  ],
+  "source_sha256": {
+    "board/zedboard/ps_dma_packed/software/start.S": "522e712b76eeb3b45c71824cb561e1a5585288378541fc82449d792e8cf78bc1",
+    "board/zedboard/ps_dma_packed/software/link.ld": "52af393a8e94d20b4deb8da81d9699692963a4c7ed9bd6d58afe360ac9be1f2c",
+    "board/zedboard/ps_dma_packed/software/main.c": "b64771cbde56701e069eabaff5aa0f3dc3eb1c88de694435f4f263473afb9c38",
+    "board/zedboard/ps_dma_packed/software/vectors.h": "95744af46b5406b2e0680bd0f50319138a131ec0696ad46c3c4b66cb32f28622",
+    "tools/ps_dma_packed_vectors.py": "7b2f199b5da6adcad018aa7669da6a82906ee7b3203c76601b75ac6880bcd4e0",
+    "tools/ps_dma_packed_arm_emulate.py": "8033d26410f2975b155a3e4755d46d11cafcb3146617cb37f3d25948ea37f94a"
+  }
+}

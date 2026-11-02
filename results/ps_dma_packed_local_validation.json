@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "python_unittests": 49,
+  "rtl_csv_recompared_events": 274506,
+  "packed_packet_scalar_equivalence_to_v1": true
+}

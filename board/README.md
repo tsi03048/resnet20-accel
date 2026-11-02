@@ -52,5 +52,7 @@ VIO 창을 열고 아래 신호를 추가한다. 표시 이름이 번호이면 �
 기본 보드는 ROM fixture를 사용한다. 실제 모델 Block으로 확장할 때는 E2-B 상수·입력 적재·주소 범위·출력 회수 규약을 추가한다.
 
 전체 모델의 PS7·DDR·AXI DMA 시스템은 [E8-E](../docs/ps_ddr_dma.md)에 별도로 구현했습니다. 입력·Weight·계수 적재와 64byte 점수 회수 경로, ARM 실행 프로그램·실제 DMA IP 시험·100 MHz 시스템 배선 결과가 있습니다. 실물 보드가 연결되지 않아 PS·DDR·DMA의 보드 실행은 NOT_RUN입니다. 위 작은 Conv+VIO의 상태와 구분합니다.
+
+후속 [E8-F](../docs/packed_dma.md)는 INT8 네 개를 한 word에 담는 R202 버전입니다. MM2S bytes를 74.42% 줄였고, 전체 정수 회귀·실제 DMA IP·추가 lane Reset·100 MHz 시스템 배선을 재검증했습니다. 해당 버전의 bit·ARM ELF·패킷을 함께 사용합니다. 실물 실행은 아직 NOT_RUN입니다.
 [기존 E12~E21 자료](../docs/historical/e12-e21/README.md)는 원본 ZIP·소스·로그 이관을 완료했다. 전체 모델·실물 보드 실행은 별도 미완료 항목이다.
 

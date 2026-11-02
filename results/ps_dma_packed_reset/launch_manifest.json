@@ -1,0 +1,18 @@
+{
+  "stage": "C:\\Users\\tsi03\\AppData\\Local\\Temp\\r20reset_97c469",
+  "scope": "Unpacker lane Reset RTL test; synthetic input pattern; no physical board",
+  "source_sha256": {
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "rtl/ps_dma_v2/resnet20_axi_packed.sv": "743ecd50499452d0a2cf830fd06e11ce08aa8611a872ab7228bb692177e5740d",
+    "tb/ps_dma_v2/tb_packed_reset.sv": "a86f3919e827718d5e94ec2a888b44665b3be5c0915341f2d888b4aa56ec3311",
+    "board/zedboard/ps_dma_packed/sim_packed_reset.tcl": "787db90731bbc2f78c087642d7446885a63ac304026c86439849ca8cdeb5e7b3",
+    "board/zedboard/ps_dma_packed/run_packed_reset.ps1": "e545017c88d81dd13a33dc8d6bd1352d25f87a397deb85313a7aa2f313fdeff3",
+    "rtl/full_e2b_fpga_v2/full_model.sv": "ff720c4698a09c739371341773c7003bf5fef984fe5d82bee4df2948f6b4a3b8",
+    "rtl/full_e2b_fpga_v2/feature_ram.sv": "2841285a65ad14497a9d211466c1c9f0d17b2d42a9d0b12d265774bacc70e6c0",
+    "rtl/full_e2b_fpga_v2/sync_bram.sv": "482eb134f55af21b8aeed046740661b85e1be6986212fd3a545aabfcb6e73139",
+    "rtl/full_e2b_fpga_v2/weight_bram.sv": "6f1d539a8817c9d3ec42283c706329fd6bce6c702f71fa6012e0577b72e9ceb1",
+    "rtl/full_e2b_fpga_v2/mul_serial.sv": "f5081684ade0b70cf66c49a71a2ff66923424bad7b28df34760d1dd49e216d2f",
+    "rtl/full_e2b_fpga_v2/rne_serial.sv": "1dad2785b9458349e76d9201f3ae29f110dd6f3ba755a53645177bdeb6971101",
+    "rtl/full_e2b_fpga_v2/control_rom.svh": "925fe75ece2e5bb70b9e21631cc9c0f05a18bfd15052dea22388db0427568f9c"
+  }
+}

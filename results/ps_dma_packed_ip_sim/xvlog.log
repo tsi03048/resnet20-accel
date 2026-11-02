@@ -1,0 +1,4 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20dma_34a4f5/tb/ps_dma_v2/tb_dma_ip.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_dma_ip
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tsi03/AppData/Local/Temp/r20dma_34a4f5/build/dma_packed_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

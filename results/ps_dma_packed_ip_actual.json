@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "tool": "Vivado XSim 2025.1",
+  "ip": "axi_dma 7.1",
+  "max_packet_bytes": 268348,
+  "read_bursts_first_packet": 2097,
+  "write_bursts_first_packet": 2097,
+  "reset_during_transfer": true,
+  "recovered_bytes": 64,
+  "stream_stalls": true,
+  "source_sha256": {
+    "board/zedboard/ps_dma_packed/sim_dma_ip.tcl": "f587ffa7a34146622c725ba1846de91494fbe781a6e5ceecf610b5e62750b2a8",
+    "tb/ps_dma_v2/tb_dma_ip.sv": "b07bfe2cddb1f5d2be26421580c51fd94f59e5341bb409b121aad7b406f082b9"
+  },
+  "report_sha256": {
+    "elaborate.log": "467e8b13517685c22202d80e7f45ab3f4d407b845bd30218f01256295a29a247",
+    "launch_manifest.json": "48e1d977a803fea64efefc4010721b94c3a0c4679dec29a34849bda45ce9c6db",
+    "simulate.log": "67a81b680797fa30c30c78f90e0e3b19249291e2f71832eb2d12b2b1c6786875",
+    "vivado.log": "329ef6f2ef465bf6f849da1db12a4c128df70e4a0d836688f8c8993ed82b4ef7",
+    "xvlog.log": "731dd9e913a08a992c63ef0cc1004d981fdb01e595a72ef3bfbfbb11fa65774a"
+  },
+  "scope": "Real DMA IP loopback with AXI DDR/PS BFMs; no CPU boot or physical board."
+}

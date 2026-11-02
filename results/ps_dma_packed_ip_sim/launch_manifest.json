@@ -1,0 +1,9 @@
+{
+  "started_at": "2026-11-02T21:36:52.0797809+09:00",
+  "stage": "C:\\Users\\tsi03\\AppData\\Local\\Temp\\r20dma_34a4f5",
+  "scope": "Real DMA IP with AXI DDR/PS BFMs, loopback only",
+  "source_sha256": {
+    "board/zedboard/ps_dma_packed/sim_dma_ip.tcl": "f587ffa7a34146622c725ba1846de91494fbe781a6e5ceecf610b5e62750b2a8",
+    "tb/ps_dma_v2/tb_dma_ip.sv": "b07bfe2cddb1f5d2be26421580c51fd94f59e5341bb409b121aad7b406f082b9"
+  }
+}

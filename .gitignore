@@ -16,6 +16,8 @@ results/full_rtl/
 results/full_fpga_rtl/
 results/full_fpga_v2_rtl/
 results/ps_dma_rtl/
+results/ps_dma_packed_rtl/
+reference/ps_dma_packed/*.bin
 results/board_ps_dma_*/
 reference/ps_dma_v1/*.bin
 reference/e2b_v1/v2_mul/*.hex

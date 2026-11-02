@@ -1,0 +1,27 @@
+{
+  "tested_revision": "85c131552b1bc0fd733cb8a9edb5932ff118789d",
+  "workflow_run_id": 41445521393,
+  "workflow_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41445521393",
+  "workflow_conclusion": "success",
+  "artifact_id": 13144255261,
+  "artifact_sha256": "be39560f0504d4d862ffbbbbd0e1e7b042b2d2df2dfd35e3805a5694b23e67af",
+  "artifact_expires_at": "2027-01-31T12:32:21Z",
+  "local_artifact_digest_verified": true,
+  "local_source_hashes_match": true,
+  "local_csv_recomparison": "PASS, all 274506 events",
+  "summary_sha256": "5c5f8064c6f90f7ff854d7bd96320d294084fd070b1b889885776eef74dfa010",
+  "active_system_rtl_matches": true,
+  "active_rtl_sources": [
+    "rtl/ps_dma_v2/resnet20_axi_packed.sv",
+    "rtl/ps_dma_v2/resnet20_axi_packed_bd.v",
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_fpga_v2/full_model.sv",
+    "rtl/full_e2b_fpga_v2/feature_ram.sv",
+    "rtl/full_e2b_fpga_v2/sync_bram.sv",
+    "rtl/full_e2b_fpga_v2/weight_bram.sv",
+    "rtl/full_e2b_fpga_v2/mul_serial.sv",
+    "rtl/full_e2b_fpga_v2/rne_serial.sv",
+    "rtl/full_e2b_fpga_v2/control_rom.svh"
+  ],
+  "scope": "Full CNN RTL with packed DDR-backed DMA stream BFMs; separate Vivado system and actual DMA IP simulations; board NOT_RUN"
+}

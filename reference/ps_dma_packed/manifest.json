@@ -1,0 +1,124 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "format": "R202: little-endian header [magic,kind,logical_count]; kind0/1 raw INT8 bytes (4 per beat), kind2/3/4 INT32; one TLAST per packet",
+  "packets": [
+    {
+      "name": "input0",
+      "file": "input0.bin",
+      "kind": 0,
+      "payload_words": 3072,
+      "bus_words": 768,
+      "bytes": 3084,
+      "ddr_address": 33554432,
+      "sha256": "b8601693d96037e53746c5d1035c20c1c422c689a4aaaa317bbb16da11ea8820"
+    },
+    {
+      "name": "input1",
+      "file": "input1.bin",
+      "kind": 0,
+      "payload_words": 3072,
+      "bus_words": 768,
+      "bytes": 3084,
+      "ddr_address": 33570816,
+      "sha256": "7ff84866db8cdfa7b3739b647b800a268237b5ad23d0283c4a1a132e2d9ea941"
+    },
+    {
+      "name": "weight",
+      "file": "weight.bin",
+      "kind": 1,
+      "payload_words": 268336,
+      "bus_words": 67084,
+      "bytes": 268348,
+      "ddr_address": 33619968,
+      "sha256": "965c7ebd17150ac91bb7dc0d25df7d4d1403444754bf6a4478dfa45d48d79bf4"
+    },
+    {
+      "name": "bias",
+      "file": "bias.bin",
+      "kind": 2,
+      "payload_words": 698,
+      "bus_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34734080,
+      "sha256": "16e787ddba5714a005e8e54f68a4d4d2bc6e6161f18412761b5608eab1c5260e"
+    },
+    {
+      "name": "multiplier",
+      "file": "multiplier.bin",
+      "kind": 3,
+      "payload_words": 698,
+      "bus_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34750464,
+      "sha256": "067577bf5722d1854153769a92c6519026edc85c361e9809b3a34aff5c46f52c"
+    },
+    {
+      "name": "shift",
+      "file": "shift.bin",
+      "kind": 4,
+      "payload_words": 698,
+      "bus_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34766848,
+      "sha256": "5d80e76706f06adfbb5eda0e5295377c95978e45f81337760aacadf13db1f988"
+    }
+  ],
+  "accelerator_base": 1136656384,
+  "dma_base": 1077936128,
+  "rx_address": 35651584,
+  "rx_bytes": 64,
+  "report_address": 50331648,
+  "report_words": 72,
+  "samples": {
+    "0": {
+      "test_index": 0,
+      "prediction": 3,
+      "scores": [
+        -381997,
+        -36909,
+        46541,
+        1586887,
+        -259757,
+        306431,
+        35286,
+        -351394,
+        -276301,
+        -666530
+      ],
+      "tensor_count": 61,
+      "boundary_elements": 552084
+    },
+    "1": {
+      "test_index": 1,
+      "prediction": 8,
+      "scores": [
+        375818,
+        759555,
+        -571137,
+        -422553,
+        -786112,
+        -518376,
+        -400169,
+        -532279,
+        2082934,
+        15190
+      ],
+      "tensor_count": 61,
+      "boundary_elements": 552084
+    }
+  },
+  "normal_order": [
+    0,
+    1,
+    0
+  ],
+  "board_recovery_order": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "payload_words_per_job": 273502,
+  "mm2s_bus_words_per_job": 69961,
+  "mm2s_bytes_per_job": 279844
+}

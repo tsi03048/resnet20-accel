@@ -1,0 +1,7 @@
+{
+  "status": "NOT_RUN",
+  "reason": "User requested board-free next work; JTAG probe found zero targets",
+  "ps_execution": false,
+  "ddr_training": false,
+  "actual_dma_transfer": false
+}
