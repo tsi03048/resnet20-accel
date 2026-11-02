@@ -15,6 +15,14 @@
 | 기초 이론 | [개념 자료](docs/fundamentals/README.md) |
 | 이론 뒤 확인 실습 | [S0~S6](docs/learning/README.md) |
 | 노트북 | [Colab](https://colab.research.google.com/github/tsi03048/resnet20-accel/blob/main/notebooks/E1_E2_resnet20_reference.ipynb) |
+
+사용하는 모델은 ResNet-20, 사진 자료는 CIFAR-10, 보드는 ZedBoard입니다. 숫자를 정수로 저장하는 규칙은 A6와 실습 S3에서 설명합니다. 기본 과제는 작은 필터로 계산한 네 결과를 비교하는 것이며 전체 모델 분류와 성능 개선은 확장입니다. 라이선스는 팀 합의 전 보류(후보 MIT)이며 참고 구현은 원 라이선스를 따릅니다.
+
+<details>
+<summary>구현·검증 자료 바로 찾기 — 기본 개념을 읽은 뒤 사용합니다</summary>
+
+| 목적 | 자료 |
+| --- | --- |
 | 정수 기준 | [E2-B](docs/e2b_integer_reference.md) |
 | 실제 Stem 회로 | [E13-B](docs/stem_e2b_rtl.md) |
 | 실제 Stem→Residual 연속 회로 | [E14-C: 실제 전송·자동 시작·정수 비교](docs/stem_residual_e2b_rtl.md) |
@@ -25,4 +33,4 @@
 | 현재 기준·실행 증거 | [진행 현황](docs/project_status.md) |
 | 상세 설계·이전 자료 | [Notion 대응](docs/notion_map.md), [E12~E21 보관](docs/historical/e12-e21/README.md) |
 
-현재 기준은 ResNet-20·CIFAR-10·signed/minmax INT8·ZedBoard입니다. 기본 과제는 작은 Conv 출력 비교이며 전체 모델 분류와 성능 개선은 확장입니다. 라이선스는 팀 합의 전 보류(후보 MIT)이며 참고 구현은 원 라이선스를 따릅니다.
+</details>
