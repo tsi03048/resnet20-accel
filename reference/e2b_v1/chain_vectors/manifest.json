@@ -1,0 +1,236 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "path": [
+    "stem",
+    "L1.0.conv1",
+    "L1.0.conv2",
+    "L1.0.add_relu"
+  ],
+  "cases": {
+    "actual0": {
+      "input": {
+        "file": "actual0/input.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          3,
+          32,
+          32
+        ],
+        "count": 3072,
+        "sha256": "6bceefc0c2a2d18a9df5ba38dc3bd6f0d1f285f835b9ec9113177fb8782d277a"
+      },
+      "stem_acc": {
+        "file": "actual0/stem_acc.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "637f291e51c2d81351f80f39b36774fd5b753f899dc6b874a7f536dc2bbfa270"
+      },
+      "stem": {
+        "file": "actual0/stem.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "0011a6413225115c74b25708ccdc2abcb66c1cea9e738bd8cca54fcb7093b5bd"
+      },
+      "acc1": {
+        "file": "actual0/acc1.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "af68d61990e3fe8232592436e11f322749d6aa612b44364aa86ada9ec388d3ec"
+      },
+      "h": {
+        "file": "actual0/h.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "cd995a52adafe6cb9880b414e8e300ab7ecc350569ea3b2fa9c75b18dd2e74cd"
+      },
+      "acc2": {
+        "file": "actual0/acc2.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "53a6cb6a2f870a22a775589a431ec9ccd5c9d7e4220cb27c004fa8caaf4256cb"
+      },
+      "m": {
+        "file": "actual0/m.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "6d6e5c65eeceb8d6d6305492ea16a0c0d6b5331ace46e5e01dc761058c7f99e7"
+      },
+      "add_wide": {
+        "file": "actual0/add_wide.hex",
+        "bits": 64,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "ac646ad72ca38e7f18de470447c2d747b0d6b5c52f151242fdbaa18b65394cb7"
+      },
+      "y": {
+        "file": "actual0/y.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "361337b68c2dca56402835e7b317ae4897eb290848a513d0e1a921aa3e91e060"
+      }
+    },
+    "synthetic_zero": {
+      "input": {
+        "file": "synthetic_zero/input.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          3,
+          32,
+          32
+        ],
+        "count": 3072,
+        "sha256": "8e8ef406c1333d4eb428a8dffb5d8b75f12dc77b650d702aa37ea614243c2231"
+      },
+      "stem_acc": {
+        "file": "synthetic_zero/stem_acc.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "69f7ea75d9460b05f83a9f458b972b115686bca662d965329c2c915982dcc700"
+      },
+      "stem": {
+        "file": "synthetic_zero/stem.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "782ae2b27c02ec23fb6306a6aec3faa0ee5d86541f1d91db1f647e42ba9b9ef1"
+      },
+      "acc1": {
+        "file": "synthetic_zero/acc1.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "6bff18b94ede160678b7a7aebf0c5aa5e51a69cab5c53e8c1c421f0a02c1edfe"
+      },
+      "h": {
+        "file": "synthetic_zero/h.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "dc86eb6c9fd36a8be53d91d34b204396797787c93f64599f601f7cd0fd6428b7"
+      },
+      "acc2": {
+        "file": "synthetic_zero/acc2.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "f7b07b3f861f3040ee54573ef6df3ad03af4740e1aa690da91e4be73466c8654"
+      },
+      "m": {
+        "file": "synthetic_zero/m.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "af8ac04c9ca9413e55a6705fde4e1fc02e2cde09700219a8f69b5242b2ab6585"
+      },
+      "add_wide": {
+        "file": "synthetic_zero/add_wide.hex",
+        "bits": 64,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "308f1da1e5d0d73edfb062f8a479ee63079a5854cbccf6944d3a38bf9983c160"
+      },
+      "y": {
+        "file": "synthetic_zero/y.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "sha256": "4af283758955ab9e167306e94ea96ec16daf99d96ee5a7c0bc522be431ca8fda"
+      }
+    }
+  },
+  "source": {
+    "actual0": "actual CIFAR-10 Test sample 0; frozen NPZ Golden",
+    "synthetic_zero": "synthetic integer zero image; same actual constants; stale-frame control, not accuracy evidence"
+  },
+  "encoding": "ASCII LF NCHW/OIHW two's complement, one word per line"
+}

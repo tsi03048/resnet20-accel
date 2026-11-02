@@ -10,6 +10,8 @@ results/basic_rtl/
 artifacts/
 results/stem_rtl/
 results/residual_rtl/
+results/stem_residual_rtl/
+reference/e2b_v1/chain_vectors/*/*.hex
 reference/e2b_v1/residual_l10_vectors/*.hex
 golden/e2b_sample*/tensors.npz
 
