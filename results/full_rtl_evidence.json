@@ -1,0 +1,18 @@
+{
+  "workflow_run_id": 41409298942,
+  "workflow_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41409298942",
+  "tested_revision": "60f37028e7f91de89c7aa1add4ed582ba5f81611",
+  "artifact_id": 13124752213,
+  "artifact_sha256": "9993f7eecdead0420dc18c2884dcd2b7cd87115c60e7e5c436c7cd7e8aa78573",
+  "artifact_expires_at": "2027-01-31T07:54:25Z",
+  "local_artifact_digest_verified": true,
+  "local_sources_match_simulated_sources": true,
+  "local_csv_recomparison": "PASS, all 274506 events",
+  "summary_sha256": "dc88f38a8fe2016a08b9541446fe76e2dcc30195618cc61df345f3d4f563cead",
+  "local_unittests": {
+    "passed": 32,
+    "skipped": 0
+  },
+  "input_arrow_provenance_recheck": "PASS for actual Test 0 and 1",
+  "scope": "RTL simulation of two actual inputs; 5 completed jobs plus cancelled jobs; no board or full-Test RTL accuracy claim"
+}

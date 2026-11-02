@@ -54,6 +54,6 @@
 
 S5를 선택했다면 [Stem](stem_e2b_rtl.md) → [Residual 단위](residual_e2b_rtl.md) → [Stem→Residual 연속 RTL](stem_residual_e2b_rtl.md) 순서로 확인합니다. 연속 실행은 시작 한 번으로 실제 Stem 출력을 전달하며, 실제 입력5회·합성0 입력1회에서 모든 경계가 일치했습니다.
 
-S5 확장에서는 [실제 Transition L2.0·L3.0](transition_e2b_rtl.md)의 stride2·Option A를 확인합니다. 두 크기 각5회의 중간값·Shortcut·출력이 일치했습니다. 전체 모델 연속 실행과 보드는 별도입니다.
+S5 확장에서는 [실제 Transition L2.0·L3.0](transition_e2b_rtl.md)의 stride2·Option A를 확인한 뒤 [전체 모델 RTL](full_e2b_rtl.md)로 이어갑니다. 실제 sample 0→1→0, 61경계·최종 점수·예측과 Stall·Reset 재실행이 일치했습니다. 실제 보드 실행은 별도입니다.
 
 </details>

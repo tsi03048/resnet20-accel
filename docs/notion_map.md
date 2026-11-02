@@ -8,10 +8,11 @@
 | E1 | model/common.py, model/e1_fp32.py, model/run_reference.py | T4 기존 결과·CPU 91.73% 재검증 |
 | E2-A | quant/e2_ptq.py, results/e2_selection.json, results/e2_ptq.json | 개발용 선택 후 한 설정 Test; CPU 91.76% |
 | E2-B | quant/e2b_export.py, quant/e2b_reference.py, quant/run_e2b.py, quant/replay_e2b.py | 실제 정수 패키지·61경계 Golden·10,000장 91.70% 검증 완료; Stem·첫 Identity Block RTL 비교 완료 |
-| [E14-B 실제 정수 Residual](https://app.notion.com/p/40cf0c4baec981c1a510eb72e9c5ef0f) | docs/residual_e2b_rtl.md, rtl/residual_e2b_v1/, tb/residual_e2b_v1/, results/residual_rtl_actual.json | 실제 sample 0 L1.0 완료 5 Block·모든 중간값/출력 일치; 연속 RTL은 E14-C에서 검증; Transition은 E16-B에서 단위 검증; 전체 모델·보드는 후속 |
+| [E14-B 실제 정수 Residual](https://app.notion.com/p/40cf0c4baec981c1a510eb72e9c5ef0f) | docs/residual_e2b_rtl.md, rtl/residual_e2b_v1/, tb/residual_e2b_v1/, results/residual_rtl_actual.json | 실제 sample 0 L1.0 완료 5 Block·모든 중간값/출력 일치; 연속 RTL은 E14-C에서 검증; Transition은 E16-B에서 단위 검증; 전체 모델은 E8-B, 보드는 후속 |
 | [E14-C Stem→Residual](https://app.notion.com/p/40cf0c4baec9811ba056ff1d3c5dd197) | docs/stem_residual_e2b_rtl.md, rtl/stem_residual_e2b_v1/, tb/stem_residual_e2b_v1/, results/stem_residual_rtl_actual.json | 실제 입력5회·합성0 1회, 전송/전체 중간값/최종값 일치; Transition·보드는 후속 |
-| [E16-B 실제 Transition](https://app.notion.com/p/40cf0c4baec9812f806cf1a877aeec9f) | docs/transition_e2b_rtl.md, rtl/transition_e2b_v1/, tb/transition_e2b_v1/, results/transition_rtl_actual.json | L2.0·L3.0 각5회, stride2·Option A·전체 중간값/출력 일치; 전체 모델·보드는 후속 |
+| [E16-B 실제 Transition](https://app.notion.com/p/40cf0c4baec9812f806cf1a877aeec9f) | docs/transition_e2b_rtl.md, rtl/transition_e2b_v1/, tb/transition_e2b_v1/, results/transition_rtl_actual.json | L2.0·L3.0 각5회, stride2·Option A·전체 중간값/출력 일치; 전체 모델은 E8-B, 보드는 후속 |
 | B5·E8 | model/resnet20_plan.py | 9 Block·30 작업·Weight/MAC 구조 계산 |
+| [E8-B 실제 전체 모델 RTL](https://app.notion.com/p/40cf0c4baec981a6becadd2b57a09789) | docs/full_e2b_rtl.md, rtl/full_e2b_v1/, tb/full_e2b_v1/, tools/full_vectors.py, results/full_rtl_actual.json | 실제 0→1→0·61경계·점수10개·예측, Stall·Reset 후 재실행 일치; 완료5회·실제이미지2종; 보드는 후속 |
 | 연결05 기본 v1 | rtl/basic_v1/, tb/basic_v1/ | 새 공개 구현; 정상·stall·reset·mismatch 자동 시험 통과 |
 | 연결06 | board/zedboard/, board/README.md | VIO 준비 파일; 실제 Vivado·보드 실행 미완료 |
 | [E12~E21](historical/e12-e21/README.md) | historical/e12-e21/, docs/historical/e12-e21/ | 원문10개·원본 ZIP9개·E15 Python·소스·기존 로그 이관 완료; 기본 v1과 별도 버전 |

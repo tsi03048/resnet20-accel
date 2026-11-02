@@ -1,0 +1,370 @@
+=== toolchain.txt ===
+Verilator 5.020 2024-01-01 rev (Debian 5.020-1)
+
+=== post.log ===
+POST_PASS vectors=2000 oracle=Fraction
+- tb/full_e2b_v1/tb_post.sv:20: Verilog $finish
+
+=== argmax.log ===
+ARGMAX_PASS sequences=2 scores=20 signed_extremes=1 lowest_tie=1 hold=1 reset=1
+- tb/full_e2b_v1/tb_argmax.sv:23: Verilog $finish
+
+=== mode0.log ===
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=0 op=27 outputs=4096 boundaries=57
+OP_PASS job=0 sample=0 op=28 outputs=64 boundaries=59
+OP_PASS job=0 sample=0 op=29 outputs=10 boundaries=61
+SCORE job=0 sample=0 class=0 value=-381997
+SCORE job=0 sample=0 class=1 value=-36909
+SCORE job=0 sample=0 class=2 value=46541
+SCORE job=0 sample=0 class=3 value=1586887
+SCORE job=0 sample=0 class=4 value=-259757
+SCORE job=0 sample=0 class=5 value=306431
+SCORE job=0 sample=0 class=6 value=35286
+SCORE job=0 sample=0 class=7 value=-351394
+SCORE job=0 sample=0 class=8 value=-276301
+SCORE job=0 sample=0 class=9 value=-666530
+JOB_PASS job=0 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=0 trace_stalls=0 rsp_stalls=1
+OP_PASS job=1 sample=1 op=0 outputs=16384 boundaries=3
+OP_PASS job=1 sample=1 op=1 outputs=16384 boundaries=5
+OP_PASS job=1 sample=1 op=2 outputs=16384 boundaries=7
+OP_PASS job=1 sample=1 op=3 outputs=16384 boundaries=9
+OP_PASS job=1 sample=1 op=4 outputs=16384 boundaries=11
+OP_PASS job=1 sample=1 op=5 outputs=16384 boundaries=13
+OP_PASS job=1 sample=1 op=6 outputs=16384 boundaries=15
+OP_PASS job=1 sample=1 op=7 outputs=16384 boundaries=17
+OP_PASS job=1 sample=1 op=8 outputs=16384 boundaries=19
+OP_PASS job=1 sample=1 op=9 outputs=16384 boundaries=21
+OP_PASS job=1 sample=1 op=10 outputs=8192 boundaries=23
+OP_PASS job=1 sample=1 op=11 outputs=8192 boundaries=25
+OP_PASS job=1 sample=1 op=12 outputs=8192 boundaries=27
+OP_PASS job=1 sample=1 op=13 outputs=8192 boundaries=29
+OP_PASS job=1 sample=1 op=14 outputs=8192 boundaries=31
+OP_PASS job=1 sample=1 op=15 outputs=8192 boundaries=33
+OP_PASS job=1 sample=1 op=16 outputs=8192 boundaries=35
+OP_PASS job=1 sample=1 op=17 outputs=8192 boundaries=37
+OP_PASS job=1 sample=1 op=18 outputs=8192 boundaries=39
+OP_PASS job=1 sample=1 op=19 outputs=4096 boundaries=41
+OP_PASS job=1 sample=1 op=20 outputs=4096 boundaries=43
+OP_PASS job=1 sample=1 op=21 outputs=4096 boundaries=45
+OP_PASS job=1 sample=1 op=22 outputs=4096 boundaries=47
+OP_PASS job=1 sample=1 op=23 outputs=4096 boundaries=49
+OP_PASS job=1 sample=1 op=24 outputs=4096 boundaries=51
+OP_PASS job=1 sample=1 op=25 outputs=4096 boundaries=53
+OP_PASS job=1 sample=1 op=26 outputs=4096 boundaries=55
+OP_PASS job=1 sample=1 op=27 outputs=4096 boundaries=57
+OP_PASS job=1 sample=1 op=28 outputs=64 boundaries=59
+OP_PASS job=1 sample=1 op=29 outputs=10 boundaries=61
+SCORE job=1 sample=1 class=0 value=375818
+SCORE job=1 sample=1 class=1 value=759555
+SCORE job=1 sample=1 class=2 value=-571137
+SCORE job=1 sample=1 class=3 value=-422553
+SCORE job=1 sample=1 class=4 value=-786112
+SCORE job=1 sample=1 class=5 value=-518376
+SCORE job=1 sample=1 class=6 value=-400169
+SCORE job=1 sample=1 class=7 value=-532279
+SCORE job=1 sample=1 class=8 value=2082934
+SCORE job=1 sample=1 class=9 value=15190
+JOB_PASS job=1 sample=1 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=8 compute_stalls=0 trace_stalls=0 rsp_stalls=1
+OP_PASS job=2 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=2 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=2 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=2 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=2 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=2 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=2 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=2 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=2 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=2 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=2 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=2 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=2 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=2 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=2 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=2 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=2 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=2 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=2 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=2 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=2 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=2 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=2 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=2 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=2 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=2 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=2 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=2 sample=0 op=27 outputs=4096 boundaries=57
+OP_PASS job=2 sample=0 op=28 outputs=64 boundaries=59
+OP_PASS job=2 sample=0 op=29 outputs=10 boundaries=61
+SCORE job=2 sample=0 class=0 value=-381997
+SCORE job=2 sample=0 class=1 value=-36909
+SCORE job=2 sample=0 class=2 value=46541
+SCORE job=2 sample=0 class=3 value=1586887
+SCORE job=2 sample=0 class=4 value=-259757
+SCORE job=2 sample=0 class=5 value=306431
+SCORE job=2 sample=0 class=6 value=35286
+SCORE job=2 sample=0 class=7 value=-351394
+SCORE job=2 sample=0 class=8 value=-276301
+SCORE job=2 sample=0 class=9 value=-666530
+JOB_PASS job=2 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=0 trace_stalls=0 rsp_stalls=1
+CASE_PASS mode=0 jobs=3
+- tb/full_e2b_v1/tb_full.sv:211: Verilog $finish
+
+=== mode1.log ===
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=0 op=27 outputs=4096 boundaries=57
+OP_PASS job=0 sample=0 op=28 outputs=64 boundaries=59
+OP_PASS job=0 sample=0 op=29 outputs=10 boundaries=61
+SCORE job=0 sample=0 class=0 value=-381997
+SCORE job=0 sample=0 class=1 value=-36909
+SCORE job=0 sample=0 class=2 value=46541
+SCORE job=0 sample=0 class=3 value=1586887
+SCORE job=0 sample=0 class=4 value=-259757
+SCORE job=0 sample=0 class=5 value=306431
+SCORE job=0 sample=0 class=6 value=35286
+SCORE job=0 sample=0 class=7 value=-351394
+SCORE job=0 sample=0 class=8 value=-276301
+SCORE job=0 sample=0 class=9 value=-666530
+JOB_PASS job=0 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=13424208 trace_stalls=274506 rsp_stalls=6
+BUSY_STALE_GUARD_PASS
+CASE_PASS mode=1 jobs=1
+- tb/full_e2b_v1/tb_full.sv:211: Verilog $finish
+
+=== mode2.log ===
+RESET_CANCEL location=0 op=0 events=37
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+RESET_CANCEL location=1 op=11 events=172032
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=0 op=27 outputs=4096 boundaries=57
+OP_PASS job=0 sample=0 op=28 outputs=64 boundaries=59
+OP_PASS job=0 sample=0 op=29 outputs=10 boundaries=61
+RESET_CANCEL location=2 op=29 events=274506
+OP_PASS job=0 sample=1 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=1 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=1 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=1 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=1 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=1 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=1 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=1 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=1 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=1 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=1 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=1 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=1 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=1 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=1 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=1 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=1 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=1 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=1 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=1 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=1 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=1 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=1 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=1 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=1 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=1 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=1 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=1 op=27 outputs=4096 boundaries=57
+OP_PASS job=0 sample=1 op=28 outputs=64 boundaries=59
+OP_PASS job=0 sample=1 op=29 outputs=10 boundaries=61
+SCORE job=0 sample=1 class=0 value=375818
+SCORE job=0 sample=1 class=1 value=759555
+SCORE job=0 sample=1 class=2 value=-571137
+SCORE job=0 sample=1 class=3 value=-422553
+SCORE job=0 sample=1 class=4 value=-786112
+SCORE job=0 sample=1 class=5 value=-518376
+SCORE job=0 sample=1 class=6 value=-400169
+SCORE job=0 sample=1 class=7 value=-532279
+SCORE job=0 sample=1 class=8 value=2082934
+SCORE job=0 sample=1 class=9 value=15190
+JOB_PASS job=0 sample=1 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=8 compute_stalls=0 trace_stalls=0 rsp_stalls=1
+RESET_PASS cancelled=3 recovered_sample=1
+CASE_PASS mode=2 jobs=1
+- tb/full_e2b_v1/tb_full.sv:211: Verilog $finish
+
+=== mode6.log ===
+[2735695000] %Fatal: tb_full.sv:77: Assertion failed in TOP.tb_full.scoreboard: CODE_MISMATCH op=0 addr=0 got=20 expected=21
+%Error: tb/full_e2b_v1/tb_full.sv:77: Verilog $stop
+Aborting...
+
+=== mode7.log ===
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+[370945195000] %Fatal: tb_full.sv:79: Assertion failed in TOP.tb_full.scoreboard: SKIP_MISMATCH op=12 addr=2048
+%Error: tb/full_e2b_v1/tb_full.sv:79: Verilog $stop
+Aborting...
+
+=== mode8.log ===
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=0 op=27 outputs=4096 boundaries=57
+[821977675000] %Fatal: tb_full.sv:78: Assertion failed in TOP.tb_full.scoreboard: ACC_MISMATCH op=28 addr=0 got=433 expected=432
+%Error: tb/full_e2b_v1/tb_full.sv:78: Verilog $stop
+Aborting...
+
+=== mode9.log ===
+OP_PASS job=0 sample=0 op=0 outputs=16384 boundaries=3
+OP_PASS job=0 sample=0 op=1 outputs=16384 boundaries=5
+OP_PASS job=0 sample=0 op=2 outputs=16384 boundaries=7
+OP_PASS job=0 sample=0 op=3 outputs=16384 boundaries=9
+OP_PASS job=0 sample=0 op=4 outputs=16384 boundaries=11
+OP_PASS job=0 sample=0 op=5 outputs=16384 boundaries=13
+OP_PASS job=0 sample=0 op=6 outputs=16384 boundaries=15
+OP_PASS job=0 sample=0 op=7 outputs=16384 boundaries=17
+OP_PASS job=0 sample=0 op=8 outputs=16384 boundaries=19
+OP_PASS job=0 sample=0 op=9 outputs=16384 boundaries=21
+OP_PASS job=0 sample=0 op=10 outputs=8192 boundaries=23
+OP_PASS job=0 sample=0 op=11 outputs=8192 boundaries=25
+OP_PASS job=0 sample=0 op=12 outputs=8192 boundaries=27
+OP_PASS job=0 sample=0 op=13 outputs=8192 boundaries=29
+OP_PASS job=0 sample=0 op=14 outputs=8192 boundaries=31
+OP_PASS job=0 sample=0 op=15 outputs=8192 boundaries=33
+OP_PASS job=0 sample=0 op=16 outputs=8192 boundaries=35
+OP_PASS job=0 sample=0 op=17 outputs=8192 boundaries=37
+OP_PASS job=0 sample=0 op=18 outputs=8192 boundaries=39
+OP_PASS job=0 sample=0 op=19 outputs=4096 boundaries=41
+OP_PASS job=0 sample=0 op=20 outputs=4096 boundaries=43
+OP_PASS job=0 sample=0 op=21 outputs=4096 boundaries=45
+OP_PASS job=0 sample=0 op=22 outputs=4096 boundaries=47
+OP_PASS job=0 sample=0 op=23 outputs=4096 boundaries=49
+OP_PASS job=0 sample=0 op=24 outputs=4096 boundaries=51
+OP_PASS job=0 sample=0 op=25 outputs=4096 boundaries=53
+OP_PASS job=0 sample=0 op=26 outputs=4096 boundaries=55
+OP_PASS job=0 sample=0 op=27 outputs=4096 boundaries=57
+OP_PASS job=0 sample=0 op=28 outputs=64 boundaries=59
+[822061525000] %Fatal: tb_full.sv:77: Assertion failed in TOP.tb_full.scoreboard: CODE_MISMATCH op=29 addr=0 got=-381997 expected=-381998
+%Error: tb/full_e2b_v1/tb_full.sv:77: Verilog $stop
+Aborting...
+
+=== mode10.log ===
+LOADER_PASS rejected=10
+- tb/full_e2b_v1/tb_full.sv:181: Verilog $finish
+
+=== mode11.log ===
+OVERFLOW_PASS code=1 reset_clean=1
+- tb/full_e2b_v1/tb_full.sv:189: Verilog $finish
