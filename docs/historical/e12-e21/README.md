@@ -30,6 +30,7 @@ python tools/run_historical.py E12 --output build/e12-rtl
 ```
 
 Python 검산은 표준 라이브러리만 사용한다. RTL은 Linux의 Bash·Verilator·GCC C++20·make가 필요하다.
+E12는 원래 사용한 PyPI `verilator==5.48.0` 도구를 CI에서 고정한다. Ubuntu의 Verilator 5.020에서는 순차 과정의 임시 변수 대입에 BLKSEQ 경고가 발생했다. 나머지 RTL 7단계는 Ubuntu 도구로 재검증한다.
 Windows의 Python 실행에서는 원본의 Linux 파일 바이트 규약을 유지하도록 실행기가 LF 쓰기를 적용하며, 원본 소스는 바꾸지 않는다.
 E12~E21의 나머지 RTL 단계도 같은 실행기에서 단계 이름을 바꿔 실행한다. E15와 E19는 소프트웨어 검증 단계다.
 자동 재검증은 [Historical E12-E21 checks](https://github.com/tsi03048/resnet20-accel/actions/workflows/historical.yml)에서 확인한다.

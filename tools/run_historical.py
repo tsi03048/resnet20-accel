@@ -66,11 +66,17 @@ def main():
               'windows_lf_write_adapter': newline_adapter,
               'note': 'Original report scripts may contain historical tool labels. This report and actual tool output identify this new run.'}
     for name in ('verilator', 'c++'):
-        executable = shutil.which(name)
+        executable = os.environ.get('VERILATOR') if name == 'verilator' else None
+        executable = executable or shutil.which(name)
         if executable:
             report[name] = subprocess.check_output([executable, '--version'], text=True).splitlines()[0]
     (results / 'migration_environment.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(result.stdout)
+    if result.returncode:
+        for file in sorted(results.glob('*.log')):
+            if file.name != 'migration_run.log':
+                print(f'--- {file.name} (last 8000 characters) ---')
+                print(file.read_text(encoding='utf-8', errors='replace')[-8000:])
     raise SystemExit(result.returncode)
 
 if __name__ == '__main__':
