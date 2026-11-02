@@ -45,7 +45,8 @@ def stem_hex(manifest, arrays, trace, directory):
     records = {}
     for name, (a, bits) in vectors.items():
         path = directory / (name + ".hex")
-        path.write_text("".join(f"{int(v) & ((1 << bits) - 1):0{bits // 4}x}\n" for v in a.reshape(-1)), encoding="ascii")
+        # Hash the same canonical LF bytes on Windows and Linux.
+        path.write_bytes("".join(f"{int(v) & ((1 << bits) - 1):0{bits // 4}x}\n" for v in a.reshape(-1)).encode("ascii"))
         records[name] = dict(file=path.name, shape=list(a.shape), bits=bits, count=a.size,
                              order="C", sha256=hashlib.sha256(path.read_bytes()).hexdigest())
     (directory / "manifest.json").write_text(json.dumps(dict(package=manifest["semantic_sha256"],

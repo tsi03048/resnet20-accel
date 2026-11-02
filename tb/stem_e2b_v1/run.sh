@@ -2,6 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 mkdir -p results/stem_rtl
+trap 'for log in results/stem_rtl/*.log; do [ ! -f "$log" ] || tail -n 20 "$log"; done' ERR
 python -m tools.verify_stem_vectors > results/stem_rtl/vector_validation.json
 python -m tools.make_stem_rne_vectors
 iverilog -V > results/stem_rtl/toolchain.txt 2>&1

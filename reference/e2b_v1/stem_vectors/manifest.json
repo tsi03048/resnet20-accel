@@ -13,7 +13,7 @@
       "bits": 8,
       "count": 3072,
       "order": "C",
-      "sha256": "cc961f79f55f790ec5235cc66cd2be14bc8130b904dddce3e1cc64ed662486df"
+      "sha256": "6bceefc0c2a2d18a9df5ba38dc3bd6f0d1f285f835b9ec9113177fb8782d277a"
     },
     "weight": {
       "file": "weight.hex",
@@ -26,7 +26,7 @@
       "bits": 8,
       "count": 432,
       "order": "C",
-      "sha256": "0edb72b7772d71fd5f40beed4cb50cfe30c371c7107b71281d16a50f9ae48021"
+      "sha256": "377049c928efd1fa082e421acf2b3bf158082640ea1171fad4467c5d63c7d5c9"
     },
     "bias": {
       "file": "bias.hex",
@@ -36,7 +36,7 @@
       "bits": 32,
       "count": 16,
       "order": "C",
-      "sha256": "c3429c7d43239931a6b9b0c85ead049430d33d9f71a1890aef5c5929da5f7190"
+      "sha256": "91fe0d51b61dfa617dfdd591d803ebb2199df8bcf9a9af99be2846f04416140c"
     },
     "multiplier": {
       "file": "multiplier.hex",
@@ -46,7 +46,7 @@
       "bits": 32,
       "count": 16,
       "order": "C",
-      "sha256": "0a1bdeb4e1690aed69e49a48c15368daf9b8651c012b919f4e7176ef99bf5a76"
+      "sha256": "47350690fab341fc03dd7950ad4fb2e495f13b7ad1131b179e6c177275b982db"
     },
     "shift": {
       "file": "shift.hex",
@@ -56,7 +56,7 @@
       "bits": 32,
       "count": 16,
       "order": "C",
-      "sha256": "a1d04453a71893443287ee82521e599599a86874bb6e6468a23dd73c55f6738b"
+      "sha256": "08b8fdf797a2852912e342cf41f02b4b5a59decffc04c062e923ec2266c43201"
     },
     "acc_expected": {
       "file": "acc_expected.hex",
@@ -69,7 +69,7 @@
       "bits": 32,
       "count": 16384,
       "order": "C",
-      "sha256": "60818bf57f285fce1f0d83b912b39ce51514a7e60f1c71752d18ecb61a863401"
+      "sha256": "637f291e51c2d81351f80f39b36774fd5b753f899dc6b874a7f536dc2bbfa270"
     },
     "output_expected": {
       "file": "output_expected.hex",
@@ -82,7 +82,7 @@
       "bits": 8,
       "count": 16384,
       "order": "C",
-      "sha256": "3250373b415638249caa5d879fd1828617433d3f2629d6996b1dcdd15a9399fd"
+      "sha256": "0011a6413225115c74b25708ccdc2abcb66c1cea9e738bd8cca54fcb7093b5bd"
     }
   }
 }
