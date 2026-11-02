@@ -1,0 +1,85 @@
+{
+  "status": "PASS",
+  "package_semantic_sha256": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "source": "real ResNet-20 checkpoint + CIFAR-10 test sample 0",
+  "shape": {
+    "input": [
+      1,
+      3,
+      32,
+      32
+    ],
+    "output": [
+      1,
+      16,
+      32,
+      32
+    ]
+  },
+  "completed_jobs": 5,
+  "compared_accumulators": 81920,
+  "compared_output_codes": 81920,
+  "acc_mismatches": 0,
+  "output_mismatches": 0,
+  "cases": [
+    {
+      "mode": 0,
+      "jobs": 2,
+      "outputs_per_job": 16384,
+      "macs_per_job": 442368,
+      "mac_stall_edges": 0,
+      "output_stall_edges": 0
+    },
+    {
+      "mode": 1,
+      "jobs": 1,
+      "outputs_per_job": 16384,
+      "macs_per_job": 442368,
+      "mac_stall_edges": 196608,
+      "output_stall_edges": 16384
+    },
+    {
+      "mode": 2,
+      "jobs": 1,
+      "outputs_per_job": 16384,
+      "macs_per_job": 442368,
+      "mac_stall_edges": 0,
+      "output_stall_edges": 0
+    },
+    {
+      "mode": 5,
+      "jobs": 1,
+      "outputs_per_job": 16384,
+      "macs_per_job": 442368,
+      "mac_stall_edges": 0,
+      "output_stall_edges": 0
+    }
+  ],
+  "normal_csv_vs_npz_compared": 32768,
+  "postproc_oracle_vectors": 1280,
+  "expected_output_mismatch_rejected": true,
+  "expected_acc_mismatch_rejected": true,
+  "loader_invalid_words_rejected": 8,
+  "overflow_rejected": true,
+  "trace": "first 300 runtime cycles only; complete jobs verified by scoreboard and dump",
+  "source_sha256": {
+    "rtl/stem_e2b_v1/stem_conv.sv": "3a5bfe0946f5cf2a5f41c3af0cd1e3e7d76930201864b714c0cd37801e958e1f",
+    "rtl/stem_e2b_v1/requant_rne_relu.sv": "c5d44608dca59e2e5577f477a45636808e3e32f2e83862d86569b5425bca5f67",
+    "tb/stem_e2b_v1/tb_stem.sv": "7d069a3149b0f7cf19fc803099ac95aaf3b174387539d5e8582dc542ddb07c4e",
+    "tb/stem_e2b_v1/tb_requant.sv": "58e32266b8fe366e52a6127dac10ecf26589f8c0950353ec3fb1a14dd9b54713",
+    "tb/stem_e2b_v1/run.sh": "75750bf7d98c969af792a7499b554d92cc3bfa3f7cd54ae8c140ea1c9c9a720a"
+  },
+  "simulator": "Icarus Verilog version 12.0 (stable) ()",
+  "scope": "actual Stem only; not Residual/full model/FPGA synthesis or board",
+  "evidence": {
+    "date": "2026-11-02",
+    "revision": "5fef496f67eb192a8afd9e5f55a3020c001c90c4",
+    "run_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41396748645",
+    "job_id": 125119606790,
+    "artifact_id": 13119568125,
+    "artifact_sha256": "2425403d86721bf996aacfd1bb390164d014bf5cfbb6cfaaf4e853442871838f",
+    "artifact_expires_at": "2027-01-31T05:54:49Z",
+    "extraction": "summary emitted by successful CI job; full raw logs/CSV/VCD in artifact",
+    "different_real_images": 1
+  }
+}

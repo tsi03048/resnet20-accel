@@ -11,7 +11,7 @@
 | B5·E8 | model/resnet20_plan.py | 9 Block·30 작업·Weight/MAC 구조 계산 |
 | 연결05 기본 v1 | rtl/basic_v1/, tb/basic_v1/ | 새 공개 구현; 정상·stall·reset·mismatch 자동 시험 통과 |
 | 연결06 | board/zedboard/, board/README.md | VIO 준비 파일; 실제 Vivado·보드 실행 미완료 |
-| E12~E21 | 기존 Notion의 단계별 진단용 시험 기록 | 기존 ZIP 전체 이관 미완료; 기본 v1과 별도 버전 |
+| [E12~E21](historical/e12-e21/README.md) | historical/e12-e21/, docs/historical/e12-e21/ | 원문10개·원본 ZIP9개·E15 Python·소스·기존 로그 이관 완료; 기본 v1과 별도 버전 |
 | [00 종합](https://app.notion.com/p/407f0c4baec981f18da0e6c54eb890fb)·[02 핵심 논문](https://app.notion.com/p/408f0c4baec98109964bcee4beace2ec) | — | 논문 학습 지도. 수치는 R0 기준, 이전 논문 페이지의 ResNet-56 계산은 비교 기록 |
 | [보관함](https://app.notion.com/p/40cf0c4baec9810c84c9c4150ad5879a) | — | 이전 버전·기획 이력·이전 메인 보충 설명 |
 

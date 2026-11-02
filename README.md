@@ -40,8 +40,9 @@ Python만으로 Y=[10,9,8,6]과 36 MAC을 먼저 확인한다.
 | 확장 과제 | Transition·GAP·FC·연속 실행을 포함한 ResNet-20 전체 분류·성능 개선 |
 | E1 직접 평가 | CPU 9,173/10,000 = 91.73% |
 | E2-A | Train 개발집합에서 먼저 선택한 signed/minmax를 Test 평가: 91.76%, 하락 -0.03%p |
-| E2-B | 실제 정수 상수·전체 graph·Golden 구현 및 Test 91.70% 검증 완료; RTL 비교는 별도 |
-| 기초 산술·구조표·PTQ·정수 기준 | Python 13개 시험 통과 |
+| E2-B | 실제 정수 상수·전체 graph·Golden·Test 91.70%와 실제 Stem RTL 비교 통과 |
+| 기초 산술·구조표·PTQ·정수 기준·Stem 벡터 | Python 16개 시험 통과 |
+| 실제 Stem RTL | [실습](docs/stem_e2b_rtl.md): 같은 sample 0 완료 5작업, 누산·code 각각 81,920개 불일치 0; Residual·전체 CNN·보드는 후속 |
 | 기본 RTL v1 | 새 공개 소스·Testbench·자동 시험 제공. 실행 증거는 Actions 확인 |
 | 보드 | 합성·배치배선·실행 검증 미완료 |
 | 기존 E12~E21 | 이전 ZIP의 저장소 이관 미완료 |

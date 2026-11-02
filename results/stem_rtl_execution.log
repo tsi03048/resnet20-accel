@@ -1,0 +1,57 @@
+Run: https://github.com/tsi03048/resnet20-accel/actions/runs/41396748645
+Revision: 5fef496f67eb192a8afd9e5f55a3020c001c90c4
+
+=== rne.log ===
+RNE_PASS vectors=1280
+tb/stem_e2b_v1/tb_requant.sv:24: $finish called at 1280000 (1ps)
+
+=== mode0.log ===
+VCD info: dumpfile results/stem_rtl/first_window.vcd opened for output.
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FIRST_VALUE mode=0 acc=12290 code=20
+JOB_PASS mode=0 job=0 outputs=16384 macs=442368 acc_mismatches=0 output_mismatches=0
+FIRST_VALUE mode=0 acc=12290 code=20
+JOB_PASS mode=0 job=1 outputs=16384 macs=442368 acc_mismatches=0 output_mismatches=0
+CASE_PASS mode=0 jobs=2 mac_stalls=0 output_stalls=0
+tb/stem_e2b_v1/tb_stem.sv:193: $finish called at 18748970000 (1ps)
+
+=== mode1.log ===
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+BUSY_COMMAND_PASS cfg_blocked=1 start_rejected=1
+FIRST_VALUE mode=1 acc=12290 code=20
+JOB_PASS mode=1 job=0 outputs=16384 macs=442368 acc_mismatches=0 output_mismatches=0
+CASE_PASS mode=1 jobs=1 mac_stalls=196608 output_stalls=16384
+tb/stem_e2b_v1/tb_stem.sv:193: $finish called at 11539970000 (1ps)
+
+=== mode2.log ===
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FIRST_VALUE mode=2 acc=12290 code=20
+CANCELLED outputs=37 macs=999
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FIRST_VALUE mode=2 acc=12290 code=20
+JOB_PASS mode=2 job=0 outputs=16384 macs=442368 acc_mismatches=0 output_mismatches=0
+CASE_PASS mode=2 jobs=1 mac_stalls=0 output_stalls=0
+tb/stem_e2b_v1/tb_stem.sv:193: $finish called at 9502310000 (1ps)
+
+=== mode3.log ===
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FATAL: tb/stem_e2b_v1/tb_stem.sv:58: EXPECTED_OUTPUT_MISMATCH addr=0 actual=20 expected=21
+       Time: 71715000  Scope: tb_stem
+
+=== mode4.log ===
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FATAL: tb/stem_e2b_v1/tb_stem.sv:56: EXPECTED_ACC_MISMATCH addr=0 actual=12290 expected=12291
+       Time: 71715000  Scope: tb_stem
+
+=== mode5.log ===
+LOADER_NEGATIVE_PASS rejected=8 duplicate_count=1 partial_start_rejected=1
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+FIRST_VALUE mode=5 acc=12290 code=20
+JOB_PASS mode=5 job=0 outputs=16384 macs=442368 acc_mismatches=0 output_mismatches=0
+CASE_PASS mode=5 jobs=1 mac_stalls=0 output_stalls=0
+tb/stem_e2b_v1/tb_stem.sv:193: $finish called at 9410290000 (1ps)
+
+=== mode6.log ===
+LOAD_PASS input=3072 weight=432 bias=16 multiplier=16 shift=16
+OVERFLOW_PASS rejected=1 outputs=0 done=0
+tb/stem_e2b_v1/tb_stem.sv:166: $finish called at 134150000 (1ps)

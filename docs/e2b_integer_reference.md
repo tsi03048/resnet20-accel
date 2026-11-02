@@ -143,7 +143,8 @@ Torch/NumPy는 별도 Conv 계산 경로지만 같은 고정 상수를 사용한
 
 제출은 명령·실행자·날짜·패키지 identity·재실행 PASS·첫 Stem 계산 설명·전체/부분 평가 범위·결과·미실행 범위다.
 RTL 구현 단계에서는 먼저 이 Stem의 input/weight/bias/N/Shift를 적재하고 acc와 output을 모두 비교한다.
-S5의 **Golden 준비**는 완료했지만 **모델 RTL bit-exact 비교**는 아직 별도 과제다.
+S5의 Golden 준비와 [실제 Stem RTL 비교](stem_e2b_rtl.md)는 완료했다.
+같은 sample 0의 완료 5작업에서 누산·code 각각 81,920개 불일치 0이다. Residual·전체 CNN RTL·보드는 후속 과제다.
 
 ## 확인 질문
 
