@@ -1,0 +1,92 @@
+Run: https://github.com/tsi03048/resnet20-accel/actions/runs/41402525320
+Revision: b9bf7d5005c5461b688c2a474ab9fea24c00947b
+
+=== toolchain.txt ===
+Verilator 5.020 2024-01-01 rev (Debian 5.020-1)
+
+=== lint.log ===
+
+=== mode0.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FIRST_Y case=0 code=18 skip=20 main=3
+JOB_PASS mode=0 job=0 case=0 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+LOAD_PASS case=1 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FIRST_Y case=1 code=15 skip=19 main=0
+JOB_PASS mode=0 job=1 case=1 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FIRST_Y case=0 code=18 skip=20 main=3
+JOB_PASS mode=0 job=2 case=0 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+CASE_PASS mode=0 jobs=3 cancelled=0 bridge_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 stem_mac_stalls=0 block_mac_stalls=0 lifetime_checks=147456
+- tb/stem_residual_e2b_v1/tb_chain.sv:240: Verilog $finish
+
+=== mode1.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+BUSY_COMMAND_PASS cfg_blocked=1 start_rejected=1
+FIRST_Y case=0 code=18 skip=20 main=3
+JOB_PASS mode=1 job=0 case=0 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+CASE_PASS mode=1 jobs=1 cancelled=0 bridge_stalls=16384 conv_stalls=32768 y_stalls=16384 rsp_stalls=4 stem_mac_stalls=196610 block_mac_stalls=1556480 lifetime_checks=49152
+- tb/stem_residual_e2b_v1/tb_chain.sv:240: Verilog $finish
+
+=== mode2.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+CANCELLED point=0 bridges=37 h=0 m=0 y=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+CANCELLED point=1 bridges=16384 h=16384 m=19 y=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+CANCELLED point=2 bridges=16384 h=16384 m=16384 y=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FIRST_Y case=0 code=18 skip=20 main=3
+JOB_PASS mode=2 job=0 case=0 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+CASE_PASS mode=2 jobs=1 cancelled=3 bridge_stalls=3 conv_stalls=0 y_stalls=3 rsp_stalls=0 stem_mac_stalls=0 block_mac_stalls=0 lifetime_checks=49152
+- tb/stem_residual_e2b_v1/tb_chain.sv:240: Verilog $finish
+
+=== mode5.log ===
+LOADER_NEGATIVE_PASS rejected=8 host_block_x_rejected=1
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FIRST_Y case=0 code=18 skip=20 main=3
+JOB_PASS mode=5 job=0 case=0 bridges=16384 h=16384 m=16384 y=16384 stem_macs=442368 block_macs=4718592 mismatches=0
+CASE_PASS mode=5 jobs=1 cancelled=0 bridge_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 stem_mac_stalls=0 block_mac_stalls=0 lifetime_checks=49152
+- tb/stem_residual_e2b_v1/tb_chain.sv:240: Verilog $finish
+
+=== mode6.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+[165845000] %Fatal: tb_chain.sv:77: Assertion failed in TOP.tb_chain: BRIDGE_CODE_MISMATCH addr=0 actual=20 expected=21
+%Error: tb/stem_residual_e2b_v1/tb_chain.sv:77: Verilog $stop
+Aborting...
+
+=== mode7.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+[57184525000] %Fatal: tb_chain.sv:90: Assertion failed in TOP.tb_chain: M_CODE_MISMATCH addr=0
+%Error: tb/stem_residual_e2b_v1/tb_chain.sv:90: Verilog $stop
+Aborting...
+
+=== mode8.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+[104859085000] %Fatal: tb_chain.sv:99: Assertion failed in TOP.tb_chain: Y_CODE_MISMATCH addr=0
+%Error: tb/stem_residual_e2b_v1/tb_chain.sv:99: Verilog $stop
+Aborting...
+
+=== mode9.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+[104859085000] %Fatal: tb_chain.sv:98: Assertion failed in TOP.tb_chain: ADD_WIDE_MISMATCH addr=0
+%Error: tb/stem_residual_e2b_v1/tb_chain.sv:98: Verilog $stop
+Aborting...
+
+=== mode10.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FAULT_PASS source=1 outputs=0 response=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FAULT_CLEAR_PASS prepared=1 compute_rerun=0
+- tb/stem_residual_e2b_v1/tb_chain.sv:218: Verilog $finish
+
+=== mode11.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FAULT_PASS source=2 outputs=0 response=0
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+FAULT_CLEAR_PASS prepared=1 compute_rerun=0
+- tb/stem_residual_e2b_v1/tb_chain.sv:218: Verilog $finish
+
+=== trace.log ===
+LOAD_PASS case=0 host_block_x_writes=0 block_input_count=0 constants_ready=1
+TRACE_WINDOW_ONLY cycles=500 completed_jobs=0
+- tb/stem_residual_e2b_v1/tb_chain.sv:211: Verilog $finish

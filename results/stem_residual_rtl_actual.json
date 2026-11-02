@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "path": [
+    "Stem",
+    "L1.0 Conv1",
+    "L1.0 Conv2",
+    "L1.0 Add"
+  ],
+  "package_semantic_sha256": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "completed_jobs": 6,
+  "actual_sample0_jobs": 5,
+  "synthetic_zero_jobs": 1,
+  "different_real_images": 1,
+  "bridge_words_compared": 98304,
+  "conv_acc_compared": 294912,
+  "stem_h_m_y_codes_compared": 393216,
+  "add_wide_compared": 98304,
+  "mismatches": 0,
+  "actual_only_counts": {
+    "bridge": 81920,
+    "conv_acc": 245760,
+    "codes": 327680,
+    "add_wide": 81920
+  },
+  "macs_per_chain": 5160960,
+  "cases": [
+    {
+      "mode": 0,
+      "case_ids": [
+        0,
+        1,
+        0
+      ],
+      "cancelled": 0,
+      "bridge_stalls": 0,
+      "conv_stalls": 0,
+      "output_stalls": 0,
+      "response_stalls": 0,
+      "stem_mac_stalls": 0,
+      "block_mac_stalls": 0
+    },
+    {
+      "mode": 1,
+      "case_ids": [
+        0
+      ],
+      "cancelled": 0,
+      "bridge_stalls": 16384,
+      "conv_stalls": 32768,
+      "output_stalls": 16384,
+      "response_stalls": 4,
+      "stem_mac_stalls": 196610,
+      "block_mac_stalls": 1556480
+    },
+    {
+      "mode": 2,
+      "case_ids": [
+        0
+      ],
+      "cancelled": 3,
+      "bridge_stalls": 3,
+      "conv_stalls": 0,
+      "output_stalls": 3,
+      "response_stalls": 0,
+      "stem_mac_stalls": 0,
+      "block_mac_stalls": 0
+    },
+    {
+      "mode": 5,
+      "case_ids": [
+        0
+      ],
+      "cancelled": 0,
+      "bridge_stalls": 0,
+      "conv_stalls": 0,
+      "output_stalls": 0,
+      "response_stalls": 0,
+      "stem_mac_stalls": 0,
+      "block_mac_stalls": 0
+    }
+  ],
+  "normal_csv_rows_vs_reference": 196608,
+  "buffer_lifetime_checks": 294912,
+  "host_block_x_writes": 0,
+  "host_block_x_load_rejected": true,
+  "negative_goldens_rejected": [
+    "BRIDGE_CODE_MISMATCH",
+    "M_CODE_MISMATCH",
+    "Y_CODE_MISMATCH",
+    "ADD_WIDE_MISMATCH"
+  ],
+  "stem_and_block_faults_propagated": true,
+  "fault_clear_to_prepared": true,
+  "fault_compute_rerun_tested": false,
+  "changed_frame_elements": {
+    "input": 3029,
+    "stem": 10755,
+    "h": 9030,
+    "m": 14065,
+    "y": 11948
+  },
+  "source_sha256": {
+    "rtl/stem_e2b_v1/stem_conv.sv": "3a5bfe0946f5cf2a5f41c3af0cd1e3e7d76930201864b714c0cd37801e958e1f",
+    "rtl/stem_e2b_v1/requant_rne_relu.sv": "c5d44608dca59e2e5577f477a45636808e3e32f2e83862d86569b5425bca5f67",
+    "rtl/residual_e2b_v1/rne_clip.sv": "22b4d0fae29ae4c2b2207d498add7ba2213b68c962f344e7226d0713cd98355a",
+    "rtl/residual_e2b_v1/residual_block.sv": "b1fa5b8c45d79db1b964b3b03001b9ff8e12aa756611362982d5c0288a93a448",
+    "rtl/stem_residual_e2b_v1/stem_residual.sv": "374f4554e42d540684a58f5e31b5c629c139760263f97f30ccd7786a364406ee",
+    "tb/stem_residual_e2b_v1/tb_chain.sv": "3fa4e5b4fc3454417364c6c950b818a984be1a360a397cc4d848a4c44678aa49",
+    "tb/stem_residual_e2b_v1/run.sh": "2a6a027b327291daa65693583cf8c8d17274115020d943433734861fbfdd3eb7"
+  },
+  "simulator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "trace": "separate 500-cycle window near first interstage transfers; not a complete job",
+  "scope": "same-clock direct RTL Stem -> first Identity block; one real sample plus synthetic zero; not Transition/full-model RTL, AXI/DMA, synthesis/timing or board",
+  "local_csv_rows_rechecked": 196608,
+  "numerical_child_sources_unchanged_from_unit_evidence": true,
+  "evidence": {
+    "date": "2026-11-02",
+    "revision": "b9bf7d5005c5461b688c2a474ab9fea24c00947b",
+    "run_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41402525320",
+    "job_id": 125137245001,
+    "artifact_id": 13122032487,
+    "artifact_sha256": "fe6fdce132739e0d15a6822a2bf5b41f335fd7f9be76ebc390fb22e2b31ab274",
+    "artifact_expires_at": "2027-01-31T06:51:03Z"
+  }
+}

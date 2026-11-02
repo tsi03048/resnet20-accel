@@ -192,7 +192,7 @@ Verilator는 `$dumpoff`를 무시하므로, 짧은 파형 실행 자체를 500�
 
 이번 단위는 L1.0 Identity입니다. Transition/Option A·9Block 연속 실행·전체 CNN RTL·합성/STA·보드는 후속입니다.
 Verilator 시험과 4-state X/Z 전파 시험, 실제 FPGA RAM 추론 결과를 구분합니다.
-다음은 Stem→L1.0 연속 실행, 이어서 Transition의 서로 다른 Shape·shortcut 주소 검증입니다.
+[Stem→L1.0 연속 RTL](stem_residual_e2b_rtl.md)도 실제 전송·자동 시작·bit-exact 비교를 통과했습니다. 다음은 Transition의 서로 다른 Shape·shortcut 주소 검증입니다.
 
 확인 질문: X를 중간에 덮어쓰면 무엇을 잃나요? M<0을 지우면 무엇이 바뀌나요? 마지막 y_valid가1이어도 ready=0이면 완료인가요?
 답의 핵심: Skip 원본이 필요하며, 음수의 기여를 보존하고, 마지막 출력과 완료 응답의 수락까지 기다립니다.

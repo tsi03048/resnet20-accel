@@ -49,3 +49,5 @@
 개념을 짚고 → 손으로 계산하고 → 코드를 실행해 비교합니다. 필수 실습은 S0→S1→S2→S3→S4→S6이며 S5는 선택입니다.
 
 [짧은 기록](learning/worksheet.md) · [현재 진행 상태](project_status.md)
+
+S5를 선택했다면 [Stem](stem_e2b_rtl.md) → [Residual 단위](residual_e2b_rtl.md) → [Stem→Residual 연속 RTL](stem_residual_e2b_rtl.md) 순서로 확인합니다. 연속 실행은 시작 한 번으로 실제 Stem 출력을 전달하며, 실제 입력5회·합성0 입력1회에서 모든 경계가 일치했습니다.
