@@ -13,11 +13,11 @@ verilator --binary --timing -j 2 --top-module tb_rne --Mdir build/residual_post 
   rtl/residual_e2b_v1/rne_clip.sv tb/residual_e2b_v1/tb_rne.sv > results/residual_rtl/build_post.log 2>&1
 build/residual_post/Vtb_rne > results/residual_rtl/rne.log 2>&1
 grep -q 'RNE_PASS vectors=2000' results/residual_rtl/rne.log
-verilator --binary --timing --trace -j 2 --top-module tb_residual --Mdir build/residual_rtl \
+verilator --binary --timing --trace --trace-depth 2 -j 2 --top-module tb_residual --Mdir build/residual_rtl \
   rtl/residual_e2b_v1/rne_clip.sv rtl/residual_e2b_v1/residual_block.sv tb/residual_e2b_v1/tb_residual.sv > results/residual_rtl/build.log 2>&1
 for mode in 0 1 2 5 10; do
   extra=()
-  if [ "$mode" = 0 ]; then extra=(+TRACE=1 +DUMP=results/residual_rtl/normal_boundaries.csv); fi
+  if [ "$mode" = 0 ]; then extra=(+DUMP=results/residual_rtl/normal_boundaries.csv); fi
   build/residual_rtl/Vtb_residual +MODE=$mode "${extra[@]}" > results/residual_rtl/mode$mode.log 2>&1
   if [ "$mode" = 10 ]; then grep -q OVERFLOW_PASS results/residual_rtl/mode$mode.log;
   else grep -q "CASE_PASS mode=$mode" results/residual_rtl/mode$mode.log; fi
@@ -31,4 +31,6 @@ for mode in 6 7 8 9; do
   esac
   grep -q "$marker" results/residual_rtl/mode$mode.log
 done
+build/residual_rtl/Vtb_residual +MODE=11 +TRACE=1 > results/residual_rtl/trace.log 2>&1
+grep -q 'TRACE_WINDOW_ONLY cycles=500 completed_jobs=0' results/residual_rtl/trace.log
 python -m tools.summarize_residual_rtl

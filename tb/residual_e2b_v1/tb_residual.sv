@@ -170,7 +170,6 @@ module tb_residual;
             dump_fd=$fopen(dump_path,"w");if(dump_fd==0) $fatal(1,"DUMP_OPEN_FAILED");
             $fdisplay(dump_fd,"job,stage,address,acc,wide,code,main,skip");
         end
-        if(trace_enable!=0) begin $dumpfile("results/residual_rtl/first500.vcd");$dumpvars(1,tb_residual);$dumpvars(1,dut);$dumpoff;end
         $readmemh({vectors,"/input.hex"},x);$readmemh({vectors,"/weight1.hex"},w1);$readmemh({vectors,"/weight2.hex"},w2);
         $readmemh({vectors,"/bias1.hex"},b1);$readmemh({vectors,"/bias2.hex"},b2);
         $readmemh({vectors,"/multiplier1.hex"},n1);$readmemh({vectors,"/multiplier2.hex"},n2);
@@ -203,6 +202,13 @@ module tb_residual;
             $display("OVERFLOW_PASS rejected=1 outputs=0 response=0");$finish;
         end
         launch();
+        // Verilator ignores $dumpoff: end this SEPARATE short trace run.
+        // The complete regression runs without tracing and uses the scoreboard.
+        if(trace_enable!=0) begin
+            $dumpfile("results/residual_rtl/first500.vcd");$dumpvars;
+            repeat(500) @(negedge clk);
+            $display("TRACE_WINDOW_ONLY cycles=500 completed_jobs=0");$finish;
+        end
         if(mode==1) begin
             force_rsp_hold=1;
             @(negedge clk);cfg_valid=1;cfg_kind=9;cfg_addr=0;cfg_data=0;start=1;
@@ -217,12 +223,7 @@ module tb_residual;
             load_all();force_y_hold=1;launch();wait(y_valid);repeat(3) @(negedge clk);cancel_and_check(2);
             load_all();launch();
         end
-        if(trace_enable!=0) begin
-            fork
-                begin $dumpon;repeat(500) @(negedge clk);$dumpoff;end
-                finish_job();
-            join
-        end else finish_job();
+        finish_job();
         if(mode==0) begin launch();finish_job();end
         if(mode==1 && (mac_stalls==0 || conv_stalls==0 || y_stalls==0 || rsp_stalls==0)) $fatal(1,"STALL_NOT_EXERCISED");
         if(dump_fd!=0) $fclose(dump_fd);

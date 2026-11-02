@@ -14,6 +14,7 @@ def summarize(directory="results/residual_rtl"):
     validation=json.loads((root/"vector_validation.json").read_text())
     if validation["status"]!="PASS": raise ValueError("vector validation absent")
     if "RNE_PASS vectors=2000" not in (root/"rne.log").read_text(): raise ValueError("RNE oracle not passed")
+    if "TRACE_WINDOW_ONLY cycles=500 completed_jobs=0" not in (root/"trace.log").read_text(): raise ValueError("partial trace evidence absent")
     total=0;cases=[]
     for mode,count in ((0,2),(1,1),(2,1),(5,1)):
         log=(root/f"mode{mode}.log").read_text()
