@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-02",
+  "scope": "Beginner track revision",
+  "local_python": {
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "includes": [
+      "signed Conv and address trace",
+      "exact RNE vs rational oracle",
+      "saturation and aligned Add",
+      "ResNet-20 inventory",
+      "disjoint development selection; one test config",
+      "bad folding stops before evaluation"
+    ]
+  },
+  "reference": {
+    "e1_top1": 91.73,
+    "e1_correct": 9173,
+    "test_count": 10000,
+    "e2_selected": "W8A8 signed · minmax",
+    "e2_top1": 91.76,
+    "e2_drop_pp": -0.03,
+    "device": "CPU",
+    "runtime": "results/environment.json",
+    "sources": "results/run_manifest.json",
+    "selection": "results/e2_selection.json"
+  },
+  "rtl": {
+    "commit": "1ce1ad01b55b3b4eecccb32fcac87f218843fc59",
+    "workflow": "https://github.com/tsi03048/resnet20-accel/actions/runs/41391917805",
+    "status": "success",
+    "checks": [
+      "normal 4 outputs/36 MAC",
+      "MAC and output stall",
+      "reset and restart",
+      "deliberate mismatch rejected",
+      "VIO board wrapper result capture and reset, simulated VIO stand-in"
+    ],
+    "python_in_ci": "5 dependency-free tests pass; 2 torch-dependent tests skipped. All 7 passed locally."
+  },
+  "not_run": [
+    "Vivado IP generation/synthesis/place-route/timing",
+    "physical ZedBoard/JTAG/VIO",
+    "actual integer ResNet-20 exporter and full integer accuracy",
+    "actual trained-model RTL bit-exact",
+    "migration of all historical E12-E21 ZIP sources"
+  ]
+}
