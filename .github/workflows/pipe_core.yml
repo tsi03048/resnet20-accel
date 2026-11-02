@@ -1,0 +1,62 @@
+name: Pipelined MAC full integer RTL
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y verilator
+      - run: bash tb/ps_dma_v3/run.sh build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipe-core-build
+          path: |
+            build/ps_dma_pipe_model/Vtb_ps_pipe
+            results/ps_dma_pipe_rtl/
+  cases:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix: {mode: ['0', '1', '2', '3', '4', 'negative']}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with: {name: pipe-core-build, path: '.'}
+      - run: chmod +x build/ps_dma_pipe_model/Vtb_ps_pipe
+      - run: bash tb/ps_dma_v3/run.sh case ${{ matrix.mode }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipe-core-case-${{ matrix.mode }}
+          path: results/ps_dma_pipe_rtl/
+  summary:
+    needs: cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: pipe-core-case-*
+          path: results/ps_dma_pipe_rtl
+          merge-multiple: true
+      - run: bash tb/ps_dma_v3/run.sh summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipe-core-evidence
+          path: |
+            results/ps_dma_pipe_rtl/
+            results/ps_dma_pipe_rtl_actual.json
