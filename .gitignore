@@ -9,6 +9,8 @@ build/
 results/basic_rtl/
 artifacts/
 results/stem_rtl/
+results/residual_rtl/
+reference/e2b_v1/residual_l10_vectors/*.hex
 golden/e2b_sample*/tensors.npz
 
 # Local environments, credentials, and regenerable FP32 tensors

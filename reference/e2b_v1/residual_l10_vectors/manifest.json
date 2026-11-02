@@ -1,0 +1,201 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "block": "L1.0",
+  "source": "actual checkpoint + CIFAR-10 test sample 0; input is its Stem output",
+  "encoding": "ASCII LF, one two's-complement word per line; NCHW/OIHW, no byte swap",
+  "vectors": {
+    "input": {
+      "file": "input.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 16384,
+      "order": "C",
+      "sha256": "0011a6413225115c74b25708ccdc2abcb66c1cea9e738bd8cca54fcb7093b5bd"
+    },
+    "acc1_expected": {
+      "file": "acc1_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 32,
+      "count": 16384,
+      "order": "C",
+      "sha256": "af68d61990e3fe8232592436e11f322749d6aa612b44364aa86ada9ec388d3ec"
+    },
+    "h_expected": {
+      "file": "h_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 16384,
+      "order": "C",
+      "sha256": "cd995a52adafe6cb9880b414e8e300ab7ecc350569ea3b2fa9c75b18dd2e74cd"
+    },
+    "acc2_expected": {
+      "file": "acc2_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 32,
+      "count": 16384,
+      "order": "C",
+      "sha256": "53a6cb6a2f870a22a775589a431ec9ccd5c9d7e4220cb27c004fa8caaf4256cb"
+    },
+    "m_expected": {
+      "file": "m_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 16384,
+      "order": "C",
+      "sha256": "6d6e5c65eeceb8d6d6305492ea16a0c0d6b5331ace46e5e01dc761058c7f99e7"
+    },
+    "add_wide_expected": {
+      "file": "add_wide_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 64,
+      "count": 16384,
+      "order": "C",
+      "sha256": "ac646ad72ca38e7f18de470447c2d747b0d6b5c52f151242fdbaa18b65394cb7"
+    },
+    "output_expected": {
+      "file": "output_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 16384,
+      "order": "C",
+      "sha256": "361337b68c2dca56402835e7b317ae4897eb290848a513d0e1a921aa3e91e060"
+    },
+    "add_config": {
+      "file": "add_config.hex",
+      "shape": [
+        3
+      ],
+      "bits": 32,
+      "count": 3,
+      "order": "C",
+      "sha256": "ad98f98b0b68caee1ce37eb09b9834e4408551a042982b16a6e011991ddc21f1"
+    },
+    "weight1": {
+      "file": "weight1.hex",
+      "shape": [
+        16,
+        16,
+        3,
+        3
+      ],
+      "bits": 8,
+      "count": 2304,
+      "order": "C",
+      "sha256": "aa745e4db615fa420a0e1bbc954b0438de1762126c716a3788b0c0f9e2023bfb"
+    },
+    "bias1": {
+      "file": "bias1.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "c5a932d43f29e6cec96fc5254aeeee91b6a9f01f9dbd67fc493a96ff26fb5d2c"
+    },
+    "multiplier1": {
+      "file": "multiplier1.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "cee971569ec6b1584a59487d4b6f113ad757772f417d7f51564f13c10db8343b"
+    },
+    "shift1": {
+      "file": "shift1.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "08b8fdf797a2852912e342cf41f02b4b5a59decffc04c062e923ec2266c43201"
+    },
+    "weight2": {
+      "file": "weight2.hex",
+      "shape": [
+        16,
+        16,
+        3,
+        3
+      ],
+      "bits": 8,
+      "count": 2304,
+      "order": "C",
+      "sha256": "104b725fa53720cfe1c246d009b5bbf5ec5a4710a05e96c09b08c60d6e7e3a3c"
+    },
+    "bias2": {
+      "file": "bias2.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "b768e2ce39dc7069a5bc0c8e21eea1690e7d91a821a4fba35b94511c258f6e2f"
+    },
+    "multiplier2": {
+      "file": "multiplier2.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "77dfe89cbd6c5c7a16617c6d691eef521c897bc9a40a60b2733b614daefdd2e8"
+    },
+    "shift2": {
+      "file": "shift2.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "08b8fdf797a2852912e342cf41f02b4b5a59decffc04c062e923ec2266c43201"
+    }
+  },
+  "teaching_checks": {
+    "negative_main": 7423,
+    "premature_relu_changes": 3692,
+    "raw_code_add_changes": 9345,
+    "separate_rounding_changes": 2051
+  }
+}

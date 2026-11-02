@@ -1,0 +1,21 @@
+name: Actual integer Residual block
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  residual-real-integer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y verilator
+      - run: bash tb/residual_e2b_v1/run.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: residual-real-integer-evidence
+          path: results/residual_rtl/
