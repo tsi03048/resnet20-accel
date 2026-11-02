@@ -1,0 +1,21 @@
+{
+  "tested_revision": "5a2f8eed504ea4e5f0052247f51c84ef67e73329",
+  "workflow_run_id": 41419755891,
+  "workflow_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41419755891",
+  "artifact_id": 13129721147,
+  "artifact_sha256": "433bd00691fc3a77ef8f1ef1a55fab11b2d7a483b767fb4be86d929590b3bf78",
+  "local_artifact_digest_verified": true,
+  "local_source_hashes_match": true,
+  "local_csv_recomparison": "PASS, all 274506 events",
+  "summary_sha256": "23dcdf0bc4113d0a12364b3647e02765842525c3bfa5d5623f4ef647573ae955",
+  "local_python_tests": 37,
+  "vivado_source_consistency": "Active FPGA core/RAM, graph, argmax and requant hashes all match functional regression",
+  "scope": "Arithmetic correctness only; actual Vivado result RESOURCE_OVERFLOW and 100 MHz timing failed",
+  "active_rtl_sources_verified": [
+    "rtl/full_e2b_fpga_v1/full_model.sv",
+    "rtl/full_e2b_fpga_v1/feature_ram.sv",
+    "rtl/full_e2b_v1/full_graph.svh",
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_v1/requant_full.sv"
+  ]
+}

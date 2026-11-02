@@ -1,0 +1,18 @@
+{
+  "started_at": "2026-11-02T18:05:47.2706776+09:00",
+  "action": "route",
+  "vivado": "C:/Xilinx/2025.1/Vivado/bin/vivado.bat",
+  "stage": "C:\\Users\\tsi03\\AppData\\Local\\Temp\\resnet20_zedboard_run_20261102_180547_7c7369",
+  "destination": "C:\\Users\\tsi03\\OneDrive\\문서\\ChatGPT\\딥러닝 가속기 프로젝트\\resnet20-accel\\build\\zedboard_full_runs\\run_20261102_180547_7c7369",
+  "top": "full_model",
+  "part": "xc7z020clg484-1",
+  "mode": "out_of_context",
+  "source_sha256": {
+    "rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "board/zedboard/build_full.tcl": "aef5f2a9601d63f7fc25d0c2d7a891135bf2411d0f763af4f5a67d4af2e17ae2"
+  }
+}

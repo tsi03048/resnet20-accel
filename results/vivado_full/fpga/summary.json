@@ -1,0 +1,162 @@
+{
+  "scope": "full_model core OOC only; no board pins, PS/DDR/DMA, bitstream or physical board test",
+  "variant": "fpga",
+  "tool": "tool=2025.1\npart=xc7z020clg484-1\ntop=full_model\nmode=out_of_context\nclock_period_ns=10.000\ninterface_max_delay_ns=2.000\naction=route\nvariant=fpga",
+  "part": "xc7z020clg484-1",
+  "top": "full_model",
+  "clock_period_ns": 10.0,
+  "interface_assumptions": {
+    "input_max_ns": 2.0,
+    "input_min_ns": 0.0,
+    "output_max_ns": 2.0,
+    "output_min_ns": 0.0
+  },
+  "run_name": "run_20261102_181815_9a954c",
+  "status": {
+    "status": "FAILED",
+    "phase": "placement",
+    "detail": "ERROR: [Common 17-39] 'place_design' failed due to earlier errors."
+  },
+  "verdict": "RESOURCE_OVERFLOW",
+  "synthesis_reports_present": true,
+  "routed_reports_present": false,
+  "synthesis_status": "COMPLETE",
+  "placement_status": "FAILED",
+  "routing_status": "NOT_RUN",
+  "measurements": {
+    "post_synth": {
+      "resources": {
+        "lut": {
+          "used": 88171.0,
+          "available": 53200.0,
+          "percent": 165.73,
+          "fits": false
+        },
+        "ff": {
+          "used": 741.0,
+          "available": 106400.0,
+          "percent": 0.7,
+          "fits": true
+        },
+        "bram36_equivalent": {
+          "used": 16.0,
+          "available": 140.0,
+          "percent": 11.43,
+          "fits": true
+        },
+        "dsp": {
+          "used": 18.0,
+          "available": 220.0,
+          "percent": 8.18,
+          "fits": true
+        },
+        "lut_as_memory": {
+          "used": 51372.0,
+          "available": 17400.0,
+          "percent": 295.24,
+          "fits": false
+        }
+      },
+      "timing": {
+        "wns_ns": -121.45,
+        "tns_ns": -86226.281,
+        "setup_failing_endpoints": 1038,
+        "setup_endpoints": 397146,
+        "whs_ns": -0.812,
+        "ths_ns": -219269.781,
+        "hold_failing_endpoints": 343177,
+        "hold_endpoints": 397146,
+        "wpws_ns": 3.75,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_endpoints": 52145,
+        "numeric_constraints_met": false
+      },
+      "all_reported_resources_fit": false,
+      "check_timing_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 0,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "constraint_checks_clean": true,
+      "all_check_counts_zero": true
+    }
+  },
+  "errors": [
+    "ERROR: [DRC UTLZ-1] Resource utilization: LUT as Distributed RAM over-utilized in Top Level Design (This design requires more LUT as Distributed RAM cells than are available in the target device. This design requires 51372 of such cell types but only 17400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter \"drc.disableLUTOverUtilError\" to 1 to change this error to warning.)",
+    "ERROR: [DRC UTLZ-1] Resource utilization: LUT as Memory over-utilized in Top Level Design (This design requires more LUT as Memory cells than are available in the target device. This design requires 51372 of such cell types but only 17400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter \"drc.disableLUTOverUtilError\" to 1 to change this error to warning.)",
+    "ERROR: [DRC UTLZ-1] Resource utilization: RAMD64E over-utilized in Top Level Design (This design requires more RAMD64E cells than are available in the target device. This design requires 51372 of such cell types but only 17400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.)",
+    "ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.",
+    "ERROR: [Common 17-39] 'place_design' failed due to earlier errors."
+  ],
+  "critical_warnings": [],
+  "warnings": [
+    "WARNING: [Board 49-91] Board repository path 'C:\u000bivado-boards-master/new/board_files' does not exist, it will not be used to search board files.",
+    "WARNING: [Synth 8-7080] Parallel synthesis criteria is not met",
+    "WARNING: [Netlist 29-101] Netlist 'full_model' is not ideal for floorplanning, since the cellview 'full_model' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.",
+    "WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port \"clk\" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew",
+    "WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.",
+    "WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAMB18*}'.",
+    "WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ RAM32*}'.",
+    "WARNING: [Vivado 12-180] No cells matched 'get_cells -hier -filter {REF_NAME =~ BUFG*}'.",
+    "WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.",
+    "WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context.",
+    "WARNING: [DRC 23-814] Not all possible (connectivity based) DRCs may have been run because this design is seen as Out of Context."
+  ],
+  "source_sha256": {
+    "rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "board/zedboard/build_full.tcl": "2fccf67efc01e33cdf8462e31bfc9facbc57766c5b65840b3faa99eabe8f408a",
+    "rtl/full_e2b_fpga_v1/full_model.sv": "b1239fbcc05dfb97e2b1864e49d72253f8ef46e4598d504bbd2c16c4e785a699",
+    "rtl/full_e2b_fpga_v1/manifest.json": "09a87b633f0525bdc1527dbb2acc73d93e669ba0480056557f134cc4f3c0c2dc",
+    "rtl/full_e2b_fpga_v1/feature_ram.sv": "2841285a65ad14497a9d211466c1c9f0d17b2d42a9d0b12d265774bacc70e6c0"
+  },
+  "current_source_matches": {
+    "rtl/full_e2b_v1/full_model.sv": true,
+    "rtl/full_e2b_v1/full_graph.svh": true,
+    "rtl/full_e2b_v1/requant_full.sv": true,
+    "rtl/full_e2b_v1/argmax10.sv": true,
+    "board/zedboard/full_core.xdc": true,
+    "board/zedboard/build_full.tcl": true,
+    "rtl/full_e2b_fpga_v1/full_model.sv": true,
+    "rtl/full_e2b_fpga_v1/manifest.json": true,
+    "rtl/full_e2b_fpga_v1/feature_ram.sv": true
+  },
+  "report_sha256": {
+    "launch_manifest.json": "86ca2602e7c7eabfef324b5493fbbb8295a4eb1f8269ba46076a45ba2a0d0e05",
+    "reports/environment.txt": "bdee129c700aa70af58e87e22ef70bfbebeccb73e4c5f6e1b9b145f566b52893",
+    "reports/post_synth_cells.tsv": "197847c4854fc820929da3b5f17c04d251bff6d0ce0cf504bc9951edddb2a4a8",
+    "reports/post_synth_check_timing.rpt": "a8504d28bfda4aa247e23463bd724d9cd0a2427260323d5b64974f282a922fa7",
+    "reports/post_synth_drc.rpt": "54b7cb2a461f48fb09e221a834eb3de1d5ce43ce3e8d51349a58c1c745c2b31c",
+    "reports/post_synth_hierarchical.rpt": "22a49b291db5821e8bdef1ee6a4734643a7c5977fb717deeeed8df2f70802d41",
+    "reports/post_synth_timing_summary.rpt": "c36ba930a3694012085da239402d7896523171506d7604bc2114fc36995cf162",
+    "reports/post_synth_utilization.rpt": "8afca44d16e143c9d28e05e7e4399789a97d145b9dd546bc1a705308c2fea253",
+    "reports/post_synth_worst_hold.rpt": "266abee884ce30191c40ec8d69d84401577752973e25ad596c1847250f3371fa",
+    "reports/post_synth_worst_setup.rpt": "5be44fdc86bdbe299361c8ad1f81a8626686c51f12acd68948d61ab325f254fc",
+    "reports/status.txt": "bb3a43e9b119021923b1263f964b0d17fdb173089362ee9cd35013a734a86364",
+    "source_snapshot/board/zedboard/build_full.tcl": "2fccf67efc01e33cdf8462e31bfc9facbc57766c5b65840b3faa99eabe8f408a",
+    "source_snapshot/board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "source_snapshot/rtl/full_e2b_fpga_v1/feature_ram.sv": "2841285a65ad14497a9d211466c1c9f0d17b2d42a9d0b12d265774bacc70e6c0",
+    "source_snapshot/rtl/full_e2b_fpga_v1/full_model.sv": "b1239fbcc05dfb97e2b1864e49d72253f8ef46e4598d504bbd2c16c4e785a699",
+    "source_snapshot/rtl/full_e2b_fpga_v1/manifest.json": "09a87b633f0525bdc1527dbb2acc73d93e669ba0480056557f134cc4f3c0c2dc",
+    "source_snapshot/rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "source_snapshot/rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "source_snapshot/rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "source_snapshot/rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "summary.json": "26ac4e8ec9a0808b650e9033f172d8fa7e64ffa236dc789c9915a8d2721b6362",
+    "vivado.log": "20c7ff9e70b77a38ac87fe65fdbd4dbda33b57fe76d9f36d1dc98ae93fcfbcad"
+  },
+  "limitations": "Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim."
+}

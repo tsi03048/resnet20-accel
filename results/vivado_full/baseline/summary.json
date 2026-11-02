@@ -1,0 +1,60 @@
+{
+  "scope": "full_model core OOC only; no board pins, PS/DDR/DMA, bitstream or physical board test",
+  "variant": "baseline",
+  "tool": "tool=2025.1\npart=xc7z020clg484-1\ntop=full_model\nmode=out_of_context\nclock_period_ns=10.000\ninterface_max_delay_ns=2.000\naction=route",
+  "part": "xc7z020clg484-1",
+  "top": "full_model",
+  "clock_period_ns": 10.0,
+  "interface_assumptions": {
+    "input_max_ns": 2.0,
+    "input_min_ns": 0.0,
+    "output_max_ns": 2.0,
+    "output_min_ns": 0.0
+  },
+  "run_name": "run_20261102_180547_7c7369",
+  "status": {
+    "status": "CANCELLED_BY_AGENT",
+    "phase": "synthesis",
+    "detail": "Original 3D feature memory elaboration exceeded 12 minutes; separate flat-array run identified unsupported RAM pattern (Synth 8-3391)."
+  },
+  "verdict": "NOT_MEASURED",
+  "synthesis_reports_present": false,
+  "routed_reports_present": false,
+  "measurements": {},
+  "errors": [],
+  "critical_warnings": [],
+  "warnings": [
+    "WARNING: [Board 49-91] Board repository path 'C:\u000bivado-boards-master/new/board_files' does not exist, it will not be used to search board files.",
+    "WARNING: [Synth 8-11357] Potential Runtime issue for 3D-RAM or RAM from Record/Structs for RAM  act_mem_reg with 393216 registers"
+  ],
+  "source_sha256": {
+    "rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "board/zedboard/build_full.tcl": "aef5f2a9601d63f7fc25d0c2d7a891135bf2411d0f763af4f5a67d4af2e17ae2"
+  },
+  "current_source_matches": {
+    "rtl/full_e2b_v1/full_model.sv": true,
+    "rtl/full_e2b_v1/full_graph.svh": true,
+    "rtl/full_e2b_v1/requant_full.sv": true,
+    "rtl/full_e2b_v1/argmax10.sv": true,
+    "board/zedboard/full_core.xdc": true,
+    "board/zedboard/build_full.tcl": false
+  },
+  "report_sha256": {
+    "agent_cancellation.json": "04fb9a8adfd6d012415ffbdeba452122a4f748a1ec27c35ecfd31f595ef77121",
+    "launch_manifest.json": "55a0bb8ce7b5d5dcedf873d5d202b60a2c2ef8b9a1cf05f4a7f070a8e9fa4388",
+    "reports/environment.txt": "3e7196b9836a891e82134ce3b2040e1b93df64ebc1fabb9e6fea733f81d27526",
+    "reports/status.txt": "a471613ca59693a61aec30f08d59ba46b345aab82ee10b5b3dbfe16e44a25a3e",
+    "source_snapshot/board/zedboard/build_full.tcl": "aef5f2a9601d63f7fc25d0c2d7a891135bf2411d0f763af4f5a67d4af2e17ae2",
+    "source_snapshot/board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "source_snapshot/rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "source_snapshot/rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "source_snapshot/rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "source_snapshot/rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "vivado.log": "4a4b252b04a4c9d8d5111f6eb9374adbe8ddec077a6440e100497afa6fdef6cf"
+  },
+  "limitations": "Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim."
+}

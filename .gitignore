@@ -13,6 +13,7 @@ results/residual_rtl/
 results/stem_residual_rtl/
 results/transition_rtl/
 results/full_rtl/
+results/full_fpga_rtl/
 reference/e2b_v1/full_vectors/constants/*.hex
 reference/e2b_v1/full_vectors/sample0/*.hex
 reference/e2b_v1/full_vectors/sample1/*.hex

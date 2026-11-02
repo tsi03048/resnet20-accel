@@ -12,6 +12,7 @@
 | [E14-C Stem→Residual](https://app.notion.com/p/40cf0c4baec9811ba056ff1d3c5dd197) | docs/stem_residual_e2b_rtl.md, rtl/stem_residual_e2b_v1/, tb/stem_residual_e2b_v1/, results/stem_residual_rtl_actual.json | 실제 입력5회·합성0 1회, 전송/전체 중간값/최종값 일치; Transition·보드는 후속 |
 | [E16-B 실제 Transition](https://app.notion.com/p/40cf0c4baec9812f806cf1a877aeec9f) | docs/transition_e2b_rtl.md, rtl/transition_e2b_v1/, tb/transition_e2b_v1/, results/transition_rtl_actual.json | L2.0·L3.0 각5회, stride2·Option A·전체 중간값/출력 일치; 전체 모델은 E8-B, 보드는 후속 |
 | B5·E8 | model/resnet20_plan.py | 9 Block·30 작업·Weight/MAC 구조 계산 |
+| [E8-C 전체 코어 ZedBoard 합성](https://app.notion.com/p/40cf0c4baec981b6b594c438426bbf3f) | docs/full_vivado_zedboard.md, board/zedboard/build_full.tcl, rtl/full_e2b_fpga_v1/, results/vivado_full_actual.json | Vivado 2025.1 합성 완료; LUT 자원 초과·100 MHz 시간 조건 위반, 배치 중단; BRAM 포트 버전의 정수 회귀 시험은 통과 |
 | [E8-B 실제 전체 모델 RTL](https://app.notion.com/p/40cf0c4baec981a6becadd2b57a09789) | docs/full_e2b_rtl.md, rtl/full_e2b_v1/, tb/full_e2b_v1/, tools/full_vectors.py, results/full_rtl_actual.json | 실제 0→1→0·61경계·점수10개·예측, Stall·Reset 후 재실행 일치; 완료5회·실제이미지2종; 보드는 후속 |
 | 연결05 기본 v1 | rtl/basic_v1/, tb/basic_v1/ | 새 공개 구현; 정상·stall·reset·mismatch 자동 시험 통과 |
 | 연결06 | board/zedboard/, board/README.md | VIO 준비 파일; 실제 Vivado·보드 실행 미완료 |

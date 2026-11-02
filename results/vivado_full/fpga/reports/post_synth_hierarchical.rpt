@@ -1,0 +1,30 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Nov  2 18:21:03 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -file C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_181815_9a954c/build/zedboard_full/reports/post_synth_hierarchical.rpt
+| Design       : full_model
+| Device       : xc7z020clg484-1
+| Speed File   : -1
+| Design State : Synthesized
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------+-------------+------------+------------+---------+------+-----+--------+--------+------------+
+|    Instance    |    Module   | Total LUTs | Logic LUTs | LUTRAMs | SRLs | FFs | RAMB36 | RAMB18 | DSP Blocks |
++----------------+-------------+------------+------------+---------+------+-----+--------+--------+------------+
+| full_model     |       (top) |      88171 |      36799 |   51372 |    0 | 741 |     16 |      0 |         18 |
+|   (full_model) |       (top) |      85706 |      34334 |   51372 |    0 | 704 |      0 |      0 |         18 |
+|   feature_mem  | feature_ram |       2426 |       2426 |       0 |    0 |   0 |     16 |      0 |          0 |
++----------------+-------------+------------+------------+---------+------+-----+--------+--------+------------+
+
+

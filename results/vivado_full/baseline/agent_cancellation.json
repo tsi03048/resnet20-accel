@@ -1,0 +1,6 @@
+{
+  "cancelled_at": "2026-11-02T18:19:15.3414584+09:00",
+  "reason": "Original 3D feature memory elaboration exceeded 12 minutes; separate flat-array run identified unsupported RAM pattern (Synth 8-3391).",
+  "stage": "C:/Users/tsi03/AppData/Local/Temp/resnet20_zedboard_run_20261102_180547_7c7369",
+  "status": "CANCELLED_BY_AGENT"
+}

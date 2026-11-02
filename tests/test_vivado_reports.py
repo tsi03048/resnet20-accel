@@ -12,6 +12,10 @@ class VivadoReportTests(unittest.TestCase):
     def test_missing_resource_rejected(self):
         with self.assertRaisesRegex(ValueError,'Incomplete utilization'):utilization('| DSPs | 0 | 0 | 220 | 0 |')
 
+    def test_prohibited_column_not_mistaken_for_capacity(self):
+        text='\n'.join(['| Slice LUTs* | 100 | 0 | 0 | 53200 | 0.19 |','| Slice Registers | 100 | 0 | 0 | 106400 | 0.09 |','| Block RAM Tile | 16 | 0 | 0 | 140 | 11.43 |','| DSPs | 18 | 0 | 0 | 220 | 8.18 |'])
+        result=utilization(text);self.assertEqual(result['lut']['available'],53200);self.assertEqual(result['dsp']['used'],18)
+
     def test_negative_slack_fails(self):
         text='WNS(ns) TNS(ns) TNS Failing Endpoints TNS Total Endpoints WHS(ns) THS(ns) THS Failing Endpoints THS Total Endpoints WPWS(ns) TPWS(ns) TPWS Failing Endpoints TPWS Total Endpoints\n---\n-2.345 -12.0 3 100 0.001 0 0 100 4.5 0 0 10'
         result=timing(text);self.assertFalse(result['numeric_constraints_met']);self.assertEqual(result['wns_ns'],-2.345)

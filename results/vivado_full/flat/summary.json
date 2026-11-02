@@ -1,0 +1,68 @@
+{
+  "scope": "full_model core OOC only; no board pins, PS/DDR/DMA, bitstream or physical board test",
+  "variant": "flat",
+  "tool": "tool=2025.1\npart=xc7z020clg484-1\ntop=full_model\nmode=out_of_context\nclock_period_ns=10.000\ninterface_max_delay_ns=2.000\naction=route\nvariant=flat",
+  "part": "xc7z020clg484-1",
+  "top": "full_model",
+  "clock_period_ns": 10.0,
+  "interface_assumptions": {
+    "input_max_ns": 2.0,
+    "input_min_ns": 0.0,
+    "output_max_ns": 2.0,
+    "output_min_ns": 0.0
+  },
+  "run_name": "run_20261102_181347_e61c72",
+  "status": {
+    "status": "FAILED",
+    "phase": "synthesis",
+    "detail": "ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details"
+  },
+  "verdict": "NOT_MEASURED",
+  "synthesis_reports_present": false,
+  "routed_reports_present": false,
+  "measurements": {},
+  "errors": [
+    "ERROR: [Synth 8-3391] Unable to infer a block/distributed RAM for 'act_mem_flat_reg' because the memory pattern used is not supported. Failed to dissolve the memory into bits because the number of bits (393216) is too large. Use 'set_param synth.elaboration.rodinMoreOptions {rt::set_parameter dissolveMemorySizeLimit 393216}' to allow the memory to be dissolved into individual bits"
+  ],
+  "critical_warnings": [],
+  "warnings": [
+    "WARNING: [Board 49-91] Board repository path 'C:\u000bivado-boards-master/new/board_files' does not exist, it will not be used to search board files.",
+    "WARNING: [Synth 8-4767] Trying to implement RAM ' ' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.",
+    "WARNING: [Synth 8-4767] Trying to implement RAM 'act_mem_flat_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons."
+  ],
+  "source_sha256": {
+    "rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "board/zedboard/build_full.tcl": "7eccd114109b325d7471e6820673205ddb23d14391ec9efa15eeee3e19446177",
+    "rtl/full_e2b_flat_v1/full_model.sv": "d49bbeebcc81230f9a704a71f5e0c64a6ae90e63700f015cecd8b325d121fb62",
+    "rtl/full_e2b_flat_v1/manifest.json": "594942b31b0b7f260576a9a8218fc99fb69f86308d1214f128a519c19dca9933"
+  },
+  "current_source_matches": {
+    "rtl/full_e2b_v1/full_model.sv": true,
+    "rtl/full_e2b_v1/full_graph.svh": true,
+    "rtl/full_e2b_v1/requant_full.sv": true,
+    "rtl/full_e2b_v1/argmax10.sv": true,
+    "board/zedboard/full_core.xdc": true,
+    "board/zedboard/build_full.tcl": false,
+    "rtl/full_e2b_flat_v1/full_model.sv": true,
+    "rtl/full_e2b_flat_v1/manifest.json": true
+  },
+  "report_sha256": {
+    "launch_manifest.json": "1d3fbbca0e70d672ff29b75bb698f3c2c31be37946b82ef25a64184bf254413a",
+    "reports/environment.txt": "7bcfe03229119759735802c4d3a01370d9eebe2aff4694a1d2bd8498eee8c8c8",
+    "reports/status.txt": "78f360c7fa45920ea8c5f301df7695df7b18559c73f3267336f459c00c23a4d0",
+    "source_snapshot/board/zedboard/build_full.tcl": "7eccd114109b325d7471e6820673205ddb23d14391ec9efa15eeee3e19446177",
+    "source_snapshot/board/zedboard/full_core.xdc": "2b7dfe624289ed79e603f9b22c4978e326d036e2819e3e2b11a7caaaa75bbb48",
+    "source_snapshot/rtl/full_e2b_flat_v1/full_model.sv": "d49bbeebcc81230f9a704a71f5e0c64a6ae90e63700f015cecd8b325d121fb62",
+    "source_snapshot/rtl/full_e2b_flat_v1/manifest.json": "594942b31b0b7f260576a9a8218fc99fb69f86308d1214f128a519c19dca9933",
+    "source_snapshot/rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "source_snapshot/rtl/full_e2b_v1/full_graph.svh": "17f23a48c3328ad8a348a141561d45772abe5e5680d612e66083bd1966177b75",
+    "source_snapshot/rtl/full_e2b_v1/full_model.sv": "530d6a9d42a0e5263afd4b28223c67a95e5af28607b84756cee64cc4859dccdc",
+    "source_snapshot/rtl/full_e2b_v1/requant_full.sv": "c4335296cb5af863c5a2ac8b922f7da298a92b4040f0297c34e6e040f9790ad2",
+    "vivado.log": "2b7ba70412da0c716e115dff5ed02b95fde09bbc9047d12218dfb49ee9794c99"
+  },
+  "limitations": "Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim."
+}

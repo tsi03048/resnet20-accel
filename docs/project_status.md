@@ -15,9 +15,10 @@
 | 실제 Identity L1.0 RTL | [841f6cf9 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41399400691): 같은 sample 0 완료 5 Block, Conv acc 163,840개·H/M/Y 245,760개·Add wide 81,920개 불일치 0; [실습](residual_e2b_rtl.md) |
 | 실제 Stem→L1.0 연속 RTL | [b9bf7d50 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41402525320): 실제 sample 0 5회·합성0 1회, 연결 98,304개·acc 294,912개·code 393,216개·Add wide 98,304개 일치; [실습](stem_residual_e2b_rtl.md) |
 | 실제 Transition L2.0·L3.0 RTL | [43cd6a45 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41404611983): 각5회, acc 122,880개·H/M/Y 184,320개·Skip/Add wide 각각61,440개 일치; [실습](transition_e2b_rtl.md) |
-| ZedBoard | 합성·배치배선·실제 보드 실행 미완료 |
+| 전체 코어 ZedBoard OOC 합성 | Vivado 2025.1 실제 합성 완료. LUT 88,171/53,200, LUT RAM 51,372/17,400 초과; 100 MHz 합성 WNS −121.450 ns. 자원 DRC로 배치 중단; [보고서·재실행](full_vivado_zedboard.md) |
+| ZedBoard 시스템·실물 | PS/DDR/DMA·보드 top·배치배선·실제 보드 실행 미완료 |
 | 실제 전체 ResNet-20 RTL | [60f37028 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41409298942): 실제 0→1→0, 완료 5회(정상3·Stall1·Reset 회복1), 61경계/회·점수·예측 일치, 경계 원소 2,760,420개 불일치 0; [실습](full_e2b_rtl.md) |
 
 기존 T4 fake-quant 91.79%는 위 CPU 91.76%와 다른 실행입니다. checkpoint 저장값 91.78%도 직접 평가가 아닙니다. 수치 구조는 [R0 대응 문서](numbers.md), 실제 증거는 [Actions](https://github.com/tsi03048/resnet20-accel/actions)와 results/를 확인합니다.
 
-실제 Stem·Residual·Transition 단위와 전체 모델 RTL 시뮬레이션이 통과했습니다. 전체 모델은 실제 Test 0/1 두 종류이며 10,000장 RTL 정확도 평가는 미실행입니다. CPU/AXI·DMA, FPGA 합성·배치배선·보드 실측은 남아 있습니다. 이전 E12~E21 원문·ZIP·소스·기존 로그는 historical/e12-e21/에 이관되어 있습니다. 목표 FPS·정확도 허용치·라이선스는 팀 결정 기록을 따르며 라이선스는 보류(후보 MIT)입니다.
+실제 Stem·Residual·Transition 단위와 전체 모델 RTL 시뮬레이션이 통과했습니다. BRAM 포트 버전도 동일한 0→1→0·Stall·Reset 5회 비교를 통과했습니다. 전체 모델은 실제 Test 0/1 두 종류이며 10,000장 RTL 정확도 평가는 미실행입니다. FPGA 코어 OOC 합성은 완료했지만 자원·100 MHz 시간 조건을 만족하지 못했습니다. Weight/계수 BRAM 전환·주소 계산 경로 개선, CPU/AXI·DMA, 시스템 배치배선·보드 실측은 남아 있습니다. 이전 E12~E21 원문·ZIP·소스·기존 로그는 historical/e12-e21/에 이관되어 있습니다. 목표 FPS·정확도 허용치·라이선스는 팀 결정 기록을 따르며 라이선스는 보류(후보 MIT)입니다.

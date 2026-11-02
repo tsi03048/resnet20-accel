@@ -16,11 +16,19 @@ def utilization(text):
         for line in text.splitlines():
             cols=[s.strip() for s in line.split('|')]
             if len(cols)<6 or cols[1].rstrip('* ').strip() not in names:continue
-            try:used,fixed,available,percent=[float(x.replace(',','')) for x in cols[2:6]]
+            try:
+                numbers=[float(x.replace(',','')) for x in cols[2:] if x]
+                used,fixed,available,percent=numbers[0],numbers[1],numbers[-2],numbers[-1]
             except ValueError:continue
+            if available<=0 or abs(used/available*100-percent)>0.03:raise ValueError('Inconsistent utilization columns: '+line)
             result[role]=dict(used=used,available=available,percent=percent,fits=used<=available)
             break
     if set(result)!=set(aliases):raise ValueError('Incomplete utilization report: '+','.join(sorted(set(aliases)-set(result))))
+    for line in text.splitlines():
+        cols=[s.strip() for s in line.split('|')]
+        if len(cols)>6 and cols[1]=='LUT as Memory':
+            nums=[float(x.replace(',','')) for x in cols[2:] if x]
+            result['lut_as_memory']=dict(used=nums[0],available=nums[-2],percent=nums[-1],fits=nums[0]<=nums[-2]);break
     return result
 
 def timing(text):
@@ -52,11 +60,14 @@ def summarize(run,output='results/vivado_full'):
         if hashlib.sha256(source.read_bytes()).hexdigest()!=digest:raise ValueError('Measured source differs from run manifest: '+name)
         current_matches[name]=Path(name).exists() and hashlib.sha256(Path(name).read_bytes()).hexdigest()==digest
     status=dict(line.split('=',1) for line in read(reports/'status.txt').splitlines() if '=' in line)
+    cancellation=run/'agent_cancellation.json'
+    if cancellation.exists():status=dict(status='CANCELLED_BY_AGENT',phase=status.get('phase'),detail=json.loads(read(cancellation))['reason'])
     log=read(run/'vivado.log')
     if not re.search(r'Got license for feature.*Synthesis',log):raise ValueError('No evidence synthesis was licensed and started')
     output.mkdir(parents=True,exist_ok=True)
     shutil.copytree(reports,output/'reports',dirs_exist_ok=True)
     shutil.copy2(run/'vivado.log',output/'vivado.log');shutil.copy2(run/'launch_manifest.json',output/'launch_manifest.json')
+    if cancellation.exists():shutil.copy2(cancellation,output/'agent_cancellation.json')
     if (run/'source_snapshot').exists():shutil.copytree(run/'source_snapshot',output/'source_snapshot',dirs_exist_ok=True)
     data={}
     for phase in ('post_synth','post_route'):
@@ -90,6 +101,9 @@ def summarize(run,output='results/vivado_full'):
         tool=read(reports/'environment.txt').strip(),part=manifest['part'],top=manifest['top'],clock_period_ns=10.0,
         interface_assumptions=dict(input_max_ns=2.0,input_min_ns=0.0,output_max_ns=2.0,output_min_ns=0.0),
         run_name=run.name,status=status,verdict=verdict,synthesis_reports_present='post_synth' in data,routed_reports_present=routed,
+        synthesis_status='COMPLETE' if 'post_synth' in data else 'NOT_COMPLETED',
+        placement_status='FAILED' if status.get('phase')=='placement' and status.get('status')=='FAILED' else ('COMPLETE' if routed else 'NOT_COMPLETED'),
+        routing_status='COMPLETE' if routed else 'NOT_RUN',
         measurements=data,errors=errors,critical_warnings=critical,warnings=warnings,source_sha256=manifest['source_sha256'],current_source_matches=current_matches,
         report_sha256={p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file()},
         limitations='Post-synthesis timing is an estimate; passing simulation is not resource fit. No Fmax/FPS or board timing claim.')
