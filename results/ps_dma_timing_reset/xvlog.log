@@ -1,0 +1,20 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_v1/argmax10.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module argmax10
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/feature_ram.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module feature_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/full_model.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module full_model
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/mul_serial.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module mul_serial
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/ps_dma_v3/resnet20_axi_packed.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module resnet20_axi_packed
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/rne_serial.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rne_serial
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/sync_bram.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module sync_bram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/rtl/full_e2b_fpga_v3/weight_bram.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module weight_bram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/tb/ps_dma_timing/tb_timing_reset.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_timing_reset
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/build/packed_reset/project/packed_reset.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

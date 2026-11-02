@@ -1,0 +1,17 @@
+{
+  "normal_measured_cycles": [
+    64063653,
+    64063653,
+    64063653
+  ],
+  "previous_measured_cycles": [
+    64063653,
+    64063653,
+    64063653
+  ],
+  "normal_compute_cycles_identical": true,
+  "previous_mm2s_bytes_per_image": 279844,
+  "new_mm2s_bytes_per_image": 279844,
+  "s2mm_bytes_per_image": 64,
+  "scope": "Normal RTL compute cycles and identical R202 packet lengths. No change to native arithmetic; not a board FPS measurement."
+}

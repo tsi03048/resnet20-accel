@@ -1,0 +1,41 @@
+{
+  "run_id": 41477252578,
+  "url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41477252578",
+  "tested_revision": "bb96553b477b132a27e3a9122e9da0e2895cc4ab",
+  "artifact": {
+    "id": 13157824878,
+    "name": "timing-core-evidence",
+    "size_in_bytes": 3011021,
+    "url": "https://api.github.com/repos/tsi03048/resnet20-accel/actions/artifacts/13157824878",
+    "archive_download_url": "https://api.github.com/repos/tsi03048/resnet20-accel/actions/artifacts/13157824878/zip",
+    "expired": false,
+    "created_at": "2026-11-02T16:11:01Z",
+    "expires_at": "2027-01-31T16:00:52Z",
+    "updated_at": "2026-11-02T16:11:01Z",
+    "digest": "sha256:04c03caaf004c44046e22149ab5875659e4ca7e1e10f3ca5c0d9fa7ccc56cf3c",
+    "workflow_run": {
+      "id": 41477252578,
+      "repository_id": 1442486551,
+      "head_repository_id": 1442486551,
+      "head_branch": "main",
+      "head_sha": "bb96553b477b132a27e3a9122e9da0e2895cc4ab"
+    }
+  },
+  "summary_sha256": "76658965ae049e706d8886b8dd10b87e02326ef84801e3bba4bef8d5e7524249",
+  "active_rtl_sources": [
+    "rtl/full_e2b_fpga_v3/control_rom.svh",
+    "rtl/full_e2b_fpga_v3/feature_ram.sv",
+    "rtl/full_e2b_fpga_v3/full_model.sv",
+    "rtl/full_e2b_fpga_v3/mul_serial.sv",
+    "rtl/full_e2b_fpga_v3/rne_serial.sv",
+    "rtl/full_e2b_fpga_v3/sync_bram.sv",
+    "rtl/full_e2b_fpga_v3/weight_bram.sv",
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/ps_dma_v3/resnet20_axi_packed.sv",
+    "rtl/ps_dma_v3/resnet20_axi_packed_bd.v"
+  ],
+  "physical_source_match": true,
+  "independent_csv_recompared_events": 274506,
+  "csv_sha256": "f78522741f57f3586947553dad14a0004b2a3ef45a7ec4e1ecec3fd8852d04d1",
+  "scope": "Actual Test 0/1 RTL plus AXI-Lite/DDR-backed DMA stream BFMs. Not PS CPU execution, DDR PHY training, vendor DMA IP simulation, physical board or full-Test RTL accuracy. Vivado system implementation is separate evidence."
+}

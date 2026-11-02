@@ -44,3 +44,6 @@ golden/e1_sample*/*.npy
 
 # Regenerable full pipeline simulation logs and CSV
 results/ps_dma_pipe_rtl/
+
+# Regenerable complete timing-front-end regression logs and CSV
+results/ps_dma_timing_rtl/

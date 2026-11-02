@@ -20,6 +20,7 @@
 | PS·DDR·AXI DMA 전체 시스템 | [E8-E](ps_ddr_dma.md): 실제 시스템 bitstream/XSA 생성·100 MHz 배선 통과. LUT 4,296·FF 5,625·BRAM 87.5·DSP 0, WNS +0.255 ns·WHS +0.017 ns. 최종 적재·점수 회수 RTL 61경계·Stall·8곳 Reset 및 실제 DMA IP·ARM 소프트웨어 모델 시험 통과. IP 경고는 보존 |
 | INT8 묶음 DMA R202 | [E8-F](packed_dma.md): MM2S 1,094,068→279,844bytes(74.42% 절감). 전체 RTL 완료5회·61경계·점수·예측 일치, Stall·8곳 Reset 및 추가 lane Reset·숫자 오류 drain 통과. LUT 4,432·FF 5,706·BRAM 87.5·DSP 0, 100 MHz WNS +0.571ns·WHS +0.033ns. 정상 계산 클록은 이전과 동일 |
 | MAC 파이프라인 v3 | [E8-G](pipelined_mac.md): 실제 정상3회 각각266,085,373→64,063,653클록(75.92% 감소), 61경계·점수·예측 및 Stall·11곳 Reset 회복 통과. 108항 독립 부분합 시험 통과. 전체 시스템 LUT4,456·FF5,653·BRAM87.5·DSP0, 100 MHz WNS+0.055ns·WHS+0.018ns; 실물 NOT_RUN |
+| 패킷 수신부 Setup 개선 | [E8-H](timing_margin.md): 헤더 수신 시 끝 주소 저장, 100 MHz WNS+0.055→+0.927ns, WHS+0.007ns. LUT4,425·FF5,655·BRAM87.5·DSP0. 0→1→0·61경계·Stall·11곳 Reset 재검증 및 추가 lane Reset 통과. 정상64,063,653클록·R202 전송 길이 동일. Hold 여유는 작음 |
 | ZedBoard 실물 실행 | 사용자가 보드 없이 후속 작업을 요청했고 JTAG 감지0개를 확인함. 실제 PS 실행·DDR 초기화·DMA·점수 회수는 NOT_RUN; 실행 스크립트와 같은 빌드의 bit/ELF는 실습 ZIP에 포함 |
 | 실제 전체 ResNet-20 RTL | [60f37028 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41409298942): 실제 0→1→0, 완료 5회(정상3·Stall1·Reset 회복1), 61경계/회·점수·예측 일치, 경계 원소 2,760,420개 불일치 0; [실습](full_e2b_rtl.md) |
 

@@ -1,0 +1,122 @@
+{
+  "status": "TIMING_MARGIN_IMPROVED",
+  "clock_mhz": 100,
+  "same_board_and_clock_configuration": true,
+  "same_implementation_constraints_and_strategy": true,
+  "unchanged_native_rtl": [
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_fpga_v3/full_model.sv",
+    "rtl/full_e2b_fpga_v3/feature_ram.sv",
+    "rtl/full_e2b_fpga_v3/sync_bram.sv",
+    "rtl/full_e2b_fpga_v3/weight_bram.sv",
+    "rtl/full_e2b_fpga_v3/mul_serial.sv",
+    "rtl/full_e2b_fpga_v3/rne_serial.sv",
+    "rtl/full_e2b_fpga_v3/control_rom.svh"
+  ],
+  "previous_wns_ns": 0.055,
+  "new_wns_ns": 0.927,
+  "wns_improvement_ns": 0.872,
+  "previous_whs_ns": 0.018,
+  "new_whs_ns": 0.007,
+  "previous_resources": {
+    "lut": {
+      "used": 4456.0,
+      "available": 53200.0,
+      "percent": 8.38,
+      "fits": true
+    },
+    "ff": {
+      "used": 5653.0,
+      "available": 106400.0,
+      "percent": 5.31,
+      "fits": true
+    },
+    "bram36_equivalent": {
+      "used": 87.5,
+      "available": 140.0,
+      "percent": 62.5,
+      "fits": true
+    },
+    "dsp": {
+      "used": 0.0,
+      "available": 220.0,
+      "percent": 0.0,
+      "fits": true
+    },
+    "lut_as_memory": {
+      "used": 185.0,
+      "available": 17400.0,
+      "percent": 1.06,
+      "fits": true
+    }
+  },
+  "new_resources": {
+    "lut": {
+      "used": 4425.0,
+      "available": 53200.0,
+      "percent": 8.32,
+      "fits": true
+    },
+    "ff": {
+      "used": 5655.0,
+      "available": 106400.0,
+      "percent": 5.31,
+      "fits": true
+    },
+    "bram36_equivalent": {
+      "used": 87.5,
+      "available": 140.0,
+      "percent": 62.5,
+      "fits": true
+    },
+    "dsp": {
+      "used": 0.0,
+      "available": 220.0,
+      "percent": 0.0,
+      "fits": true
+    },
+    "lut_as_memory": {
+      "used": 185.0,
+      "available": 17400.0,
+      "percent": 1.06,
+      "fits": true
+    }
+  },
+  "worst_setup_paths": {
+    "previous": {
+      "slack_ns": 0.055,
+      "source": "system_i/accel/inst/core_unit/stage_reg[2]/C",
+      "destination": "system_i/accel/inst/core_unit/error_code_reg[0]/CE",
+      "data_delay_ns": 9.566,
+      "logic_levels": 12,
+      "report_sha256": "f60394b2c36772e5253682522f19bc9bddcc4ca2934b4a204000b3e683a06109"
+    },
+    "current": {
+      "slack_ns": 0.927,
+      "source": "system_i/accel/inst/core_unit/core/weights/high_mem/mem_reg_1/CLKBWRCLK",
+      "destination": "system_i/accel/inst/core_unit/core/product_reg[13]/D",
+      "data_delay_ns": 8.671,
+      "logic_levels": 8,
+      "report_sha256": "2d6a82a3a30c70c8cfa09f7dd6db58c3574de6cb8a2636c48009414653750d7b"
+    }
+  },
+  "worst_hold_paths": {
+    "previous": {
+      "slack_ns": 0.018,
+      "source": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/I_WR_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_done_reg/C",
+      "destination": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/I_WR_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_inhibit_rdy_n_reg/D",
+      "data_delay_ns": 0.383,
+      "logic_levels": 1,
+      "report_sha256": "dc48bad599fcc4a766053838a854d566bc33aca54fdcb3e7eff896e401be88dc"
+    },
+    "current": {
+      "slack_ns": 0.007,
+      "source": "system_i/dma/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DMA_MNGR/GEN_S2MM_DMA_CONTROL.I_S2MM_CMDSTS/INDETERMINATE_BTT_MODE.s2mm_brcvd_reg[6]/C",
+      "destination": "system_i/dma/U0/I_AXI_DMA_REG_MODULE/GEN_S2MM_REGISTERS.I_S2MM_DMA_REGISTER/GEN_REG_FOR_SMPL.buffer_length_i_reg[6]/D",
+      "data_delay_ns": 0.365,
+      "logic_levels": 1,
+      "report_sha256": "18a603e7d6ca79140cbf661d3d8d7f0f89593d01a4a9780a0793b1f4c8d5a979"
+    }
+  },
+  "limits": "Two actual Vivado routes at 100 MHz. Placement/routing may change unrelated path delays. No increased frequency, multi-seed stability, physical board FPS, DDR training or electrical measurement claimed."
+}

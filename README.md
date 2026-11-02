@@ -33,6 +33,7 @@
 | PS·DDR·DMA 전체 시스템 | [E8-E: 입력·Weight 적재부터 점수 회수, 실제 시스템 배선·DMA IP·ARM 시험](docs/ps_ddr_dma.md) |
 | INT8 묶음 전송 | [E8-F: MM2S 74.42% 절감·byte별 Reset·61경계 재검증](docs/packed_dma.md) |
 | MAC 파이프라인 | [E8-G: 계산 클록75.92% 감소·61경계·Stall/11곳 Reset·100 MHz](docs/pipelined_mac.md) |
+| 패킷 수신부 Setup 개선 | [E8-H: 끝 주소 사전 저장·100 MHz WNS+0.927ns·전체 정수 재검증](docs/timing_margin.md) |
 | 보드 | [ZedBoard](board/README.md) |
 | 현재 기준·실행 증거 | [진행 현황](docs/project_status.md) |
 | 상세 설계·이전 자료 | [Notion 대응](docs/notion_map.md), [E12~E21 보관](docs/historical/e12-e21/README.md) |

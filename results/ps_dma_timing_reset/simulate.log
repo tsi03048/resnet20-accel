@@ -1,0 +1,18 @@
+Time resolution is 1 ps
+PACKED_RESET_TRY lane=0
+PACKED_RESET_BUFFER lane=0 valid=1 active_lane=0
+PACKED_LANE_RESET_PASS lane=0 accepted_scalars=0
+PACKED_RESET_TRY lane=1
+PACKED_RESET_BUFFER lane=1 valid=1 active_lane=0
+PACKED_LANE_RESET_PASS lane=1 accepted_scalars=1
+PACKED_RESET_TRY lane=2
+PACKED_RESET_BUFFER lane=2 valid=1 active_lane=0
+PACKED_LANE_RESET_PASS lane=2 accepted_scalars=2
+PACKED_RESET_TRY lane=3
+PACKED_RESET_BUFFER lane=3 valid=1 active_lane=0
+PACKED_LANE_RESET_PASS lane=3 accepted_scalars=3
+PACKED_SOFT_RESET_PASS payload_capture_collision=1 native_scalars=0
+PACKED_BAD_WEIGHT_PASS code=16 complete_packet_drain=1 packet_words=67087
+PACKED_RESET_PASS hard_reset_lanes=4 soft_reset_collision=1 recovered_input_bytes=3072 wire_words=771 source_stalls=1534 synthetic_pattern=1
+TIMING_ENDPOINT_PASS payload_cycles=3095
+$finish called at time : 1373920 ns : File "C:/Users/tsi03/AppData/Local/Temp/r20reset_c51cb3/tb/ps_dma_timing/tb_timing_reset.sv" Line 136
