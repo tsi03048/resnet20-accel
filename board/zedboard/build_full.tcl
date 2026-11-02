@@ -75,7 +75,7 @@ if {[catch {
         opt_design
         set phase placement
         place_design
-        if {$variant eq "fpga2"} {phys_opt_design -directive AggressiveExplore}
+        if {$variant eq "fpga2"} {phys_opt_design -directive ExploreWithAggressiveHoldFix}
         set phase routing
         route_design
         set phase post_route_reports
