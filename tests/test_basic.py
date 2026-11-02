@@ -7,6 +7,14 @@ from quant.integer_math import rne_div, multiplier_shift, requantize, aligned_ad
 
 
 class BasicTests(unittest.TestCase):
+    def test_model_inventory(self):
+        from model.resnet20_plan import build_plan
+        p = build_plan()
+        self.assertEqual(len(p["operations"]), 30)
+        self.assertEqual(sum(o["op"] == "conv" for o in p["operations"]), 19)
+        self.assertEqual(p["conv_fc_weights"], 268336)
+        self.assertEqual(p["conv_fc_macs"], 40551040)
+
     def test_given_conv_and_addresses(self):
         y, rows = conv_trace()
         self.assertEqual(y, EXPECTED)

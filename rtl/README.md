@@ -1,5 +1,10 @@
 # RTL
 
+현재 기본 실습은 **`basic_v1/conv_toy.sv`**다. `tb/basic_v1/run.sh`로 정상·Stall·Reset·고의 mismatch를 시험한다.
+새로 작성한 공개 기초 버전이며 아래 기존 ZIP의 복원본이 아니다. 이전 파형 시간표와 섞지 않는다.
+실제 통과 기록: https://github.com/tsi03048/resnet20-accel/actions/runs/41391022968
+보드 준비 파일은 `board/zedboard/`이며 실제 Vivado·보드 검증은 미완료다.
+
 기존 실습 RTL 은 ChatGPT 라이브러리 ZIP 에 있어 팀원이 받을 수 없었다. 아래 순서로 이곳에 옮긴다.
 
 | 폴더 | 출처 | 상태 |

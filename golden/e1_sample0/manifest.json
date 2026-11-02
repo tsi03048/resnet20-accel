@@ -1,0 +1,290 @@
+{
+  "split": "test",
+  "sample_index": 0,
+  "label": 3,
+  "label_name": "cat",
+  "pred": 3,
+  "pred_name": "cat",
+  "preprocess": {
+    "to_tensor": "/255",
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "max_abs_diff_logits_hook_vs_forward": 0.0,
+  "tensors": {
+    "conv1_preBN": {
+      "file": "conv1_preBN.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stem Conv 출력, BN·ReLU 전",
+      "sha256": "ffaa2d8e5b47a382613254839f99489f3c6785d6c71c0bf2738831a3cd8ab3a3",
+      "endianness": "little",
+      "order": "C"
+    },
+    "stem_bn_preReLU": {
+      "file": "stem_bn_preReLU.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stem BN 출력, ReLU 전",
+      "sha256": "4f756130da3a3233ed6f6e8daf8da3ccbf88662caea2a7878261c9fc1908a374",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L1.0.output": {
+      "file": "L1.0.output.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "67e9546b7804340e17b2d083b12f015b8eabc20205b3867f1e84a401fc8dec9b",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L1.1.output": {
+      "file": "L1.1.output.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "1b4342fcb9daefbf29a5407e217fa3c6af9aa8f4e0bb84e8c39e1f431814c776",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L1.2.output": {
+      "file": "L1.2.output.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "8768fa25bd88b2f389e0a7862049451818f5c4072941a7bcb4b11881871b9f62",
+      "endianness": "little",
+      "order": "C"
+    },
+    "stage1": {
+      "file": "stage1.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stage 1 (Block 3개) 출력",
+      "sha256": "8768fa25bd88b2f389e0a7862049451818f5c4072941a7bcb4b11881871b9f62",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L2.0.output": {
+      "file": "L2.0.output.npy",
+      "shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "67da9c0bd584994025ed758af6fc3bdac5c36022d211b35ae15c2f639b0d7ba8",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L2.1.output": {
+      "file": "L2.1.output.npy",
+      "shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "ca0ae5fc0265dbdbf6101f6e90f94f240488266a186c3c5c5c8325ed72b18242",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L2.2.output": {
+      "file": "L2.2.output.npy",
+      "shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "e9074173965eebc803d3d9d9dc04c6577391940d22a6905075382a64d9cbfc06",
+      "endianness": "little",
+      "order": "C"
+    },
+    "stage2": {
+      "file": "stage2.npy",
+      "shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stage 2 (Transition 포함) 출력",
+      "sha256": "e9074173965eebc803d3d9d9dc04c6577391940d22a6905075382a64d9cbfc06",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L3.0.output": {
+      "file": "L3.0.output.npy",
+      "shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "626b99d46d69966c5daabcdfea6e7c543690b7ff78df39f03ffcf0ba12cc0a45",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L3.1.output": {
+      "file": "L3.1.output.npy",
+      "shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "1605d8e249f2953ca82bcfd783190d507eb22cc956e94f464a76f34bbd4d5493",
+      "endianness": "little",
+      "order": "C"
+    },
+    "L3.2.output": {
+      "file": "L3.2.output.npy",
+      "shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Residual Block Add·ReLU 후",
+      "sha256": "598be91dc3dc43e744e0ca8313bf95dc14820f47d5499900b93998ef2fbbec3d",
+      "endianness": "little",
+      "order": "C"
+    },
+    "stage3": {
+      "file": "stage3.npy",
+      "shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stage 3 (Transition 포함) 출력",
+      "sha256": "598be91dc3dc43e744e0ca8313bf95dc14820f47d5499900b93998ef2fbbec3d",
+      "endianness": "little",
+      "order": "C"
+    },
+    "fc_input_gap": {
+      "file": "fc_input_gap.npy",
+      "shape": [
+        1,
+        64
+      ],
+      "dtype": "float32",
+      "layout": "NC",
+      "meaning": "GAP·Flatten 후 FC 입력",
+      "sha256": "de04d13837567cd7535cb23e163e81b641804b42efea04b5e6998164cbc8985c",
+      "endianness": "little",
+      "order": "C"
+    },
+    "logits": {
+      "file": "logits.npy",
+      "shape": [
+        1,
+        10
+      ],
+      "dtype": "float32",
+      "layout": "NC",
+      "meaning": "Softmax 전 10개 점수",
+      "sha256": "5324b6e90389bcce2efb4fe504844418946983cf501669cfedf14df96d32622d",
+      "endianness": "little",
+      "order": "C"
+    },
+    "input": {
+      "file": "input.npy",
+      "shape": [
+        1,
+        3,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Normalize 후 입력",
+      "sha256": "ae5c1de04badceb335fa8daf7839f4a796705eefdbe158f2f2635c63b2411339",
+      "endianness": "little",
+      "order": "C"
+    },
+    "stem": {
+      "file": "stem.npy",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "dtype": "float32",
+      "layout": "NCHW",
+      "meaning": "Stem BN·ReLU 후",
+      "sha256": "f02f8feedc3cb5f3e53c3780cb17f609dddb6f73ff8344ab6a8a5d1212552ae9",
+      "endianness": "little",
+      "order": "C"
+    }
+  }
+}

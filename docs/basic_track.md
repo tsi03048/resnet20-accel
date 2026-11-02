@@ -10,7 +10,7 @@ S5는 실제 모델 Block으로 확장할 때 필요한 확인 항목이며, 현
 | S0 첫 계산 | A0의 학습/추론, A1의 Shape, B1, 연결02 | `python -m exercises.conv_walkthrough` | Y=[10,9,8,6], 36 MAC, CSV 첫 출력 주소 설명 |
 | S1 실제 예측 | A2·A3의 흐름, B3의 Logits, E1 | Colab E1·E2 노트북에서 E1 실행 | 1장 label/prediction, [1,10] logits, 전체 10,000장 정확도·환경·파일 hash |
 | S2 학습과 평가 | A4·A5, B4, 연결01·04 | 작은 Weight 갱신과 Residual 손계산 | 학습/추론·Loss/정확도·두 경로 보존을 자기 말로 설명 |
-| S3 정수 표현 | A6·D1, E2-A | 보정/개발 Index 확인, fake-quant 비교 | 두 집합 겹침 0, 개발용 선택 기록, 선택한 설정의 Test 결과; INT8 최종 채택 아님 |
+| S3 정수 표현 | A6·D1, E2-A | 보정/개발 Index 확인, fake-quant 비교 | 두 집합 겹침 0, 개발용 선택 기록, 선택한 설정의 Test 결과; E2-B 정수 검증 완료 아님 |
 | S4 첫 RTL | 연결03·05, D2·D5 필요한 절 | `bash tb/basic_v1/run.sh` | 정상·stall·reset 통과, 고의 mismatch 거부, 로그·VCD |
 | S5 선택: 모델 Block 연결 | E2-B, E3·E13·E14 | 실제 계수·bias·정수 Golden으로 Stem/Block 비교 | 모든 유효 code bit-exact; 현재 실제 체크포인트 exporter와 전체 검증은 미완료 |
 | S6 보드 | 연결06, board/README.md | X/W 준비→시작→Y 회수→기준 비교 | 보드 로그·출력 일치·part/XDC·timing·자원 보고서; 현재 보드 실행 미완료 |
