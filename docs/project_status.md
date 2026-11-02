@@ -14,6 +14,7 @@
 | 실제 Stem RTL | [5fef496f 실제 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41396748645): 같은 sample 0로 완료 5작업, 누산·code 각각 81,920개 불일치 0; [실습 설명](stem_e2b_rtl.md) |
 | 실제 Identity L1.0 RTL | [841f6cf9 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41399400691): 같은 sample 0 완료 5 Block, Conv acc 163,840개·H/M/Y 245,760개·Add wide 81,920개 불일치 0; [실습](residual_e2b_rtl.md) |
 | 실제 Stem→L1.0 연속 RTL | [b9bf7d50 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41402525320): 실제 sample 0 5회·합성0 1회, 연결 98,304개·acc 294,912개·code 393,216개·Add wide 98,304개 일치; [실습](stem_residual_e2b_rtl.md) |
+| 실제 Transition L2.0·L3.0 RTL | [43cd6a45 통과](https://github.com/tsi03048/resnet20-accel/actions/runs/41404611983): 각5회, acc 122,880개·H/M/Y 184,320개·Skip/Add wide 각각61,440개 일치; [실습](transition_e2b_rtl.md) |
 | ZedBoard | 합성·배치배선·실제 보드 실행 미완료 |
 
 기존 T4 fake-quant 91.79%는 위 CPU 91.76%와 다른 실행입니다. checkpoint 저장값 91.78%도 직접 평가가 아닙니다. 수치 구조는 [R0 대응 문서](numbers.md), 실제 증거는 [Actions](https://github.com/tsi03048/resnet20-accel/actions)와 results/를 확인합니다.

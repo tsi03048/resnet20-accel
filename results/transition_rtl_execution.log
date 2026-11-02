@@ -1,0 +1,287 @@
+Run: https://github.com/tsi03048/resnet20-accel/actions/runs/41404611983
+Revision: 43cd6a45387ab185620875d4fc5a4d6dfb1b6ad2
+
+=== results\transition_rtl\stage2\lint.log ===
+
+=== results\transition_rtl\stage2\mode0.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+JOB_PASS stage=2 mode=0 job=0 outputs=8192 mac1=1179648 mac2=2359296 read1=1131008 read2=2166784 skip_reads=4096 zero_tokens=4096 positive_zero_y=2098 negative_main=3549 mismatches=0
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+JOB_PASS stage=2 mode=0 job=1 outputs=8192 mac1=1179648 mac2=2359296 read1=1131008 read2=2166784 skip_reads=4096 zero_tokens=4096 positive_zero_y=2098 negative_main=3549 mismatches=0
+CASE_PASS stage=2 mode=0 jobs=2 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=65536
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage2\mode1.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+BUSY_COMMAND_PASS cfg_blocked=1 start_rejected=1
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+JOB_PASS stage=2 mode=1 job=0 outputs=8192 mac1=1179648 mac2=2359296 read1=1131008 read2=2166784 skip_reads=4096 zero_tokens=4096 positive_zero_y=2098 negative_main=3549 mismatches=0
+CASE_PASS stage=2 mode=1 jobs=1 cancelled=0 mac_stalls=1744896 conv_stalls=16384 y_stalls=8192 rsp_stalls=4 lifetime_checks=32768
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage2\mode2.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+CANCELLED point=0 h=37 m=0 y=0
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+CANCELLED point=1 h=8192 m=19 y=0
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+CANCELLED point=2 h=8192 m=8192 y=0
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+CANCELLED point=3 h=8192 m=8192 y=2048
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+JOB_PASS stage=2 mode=2 job=0 outputs=8192 mac1=1179648 mac2=2359296 read1=1131008 read2=2166784 skip_reads=4096 zero_tokens=4096 positive_zero_y=2098 negative_main=3549 mismatches=0
+CASE_PASS stage=2 mode=2 jobs=1 cancelled=4 mac_stalls=0 conv_stalls=0 y_stalls=6 rsp_stalls=0 lifetime_checks=32768
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage2\mode5.log ===
+LOADER_NEGATIVE_PASS rejected=14 duplicate_count=1 partial_start_rejected=1
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+JOB_PASS stage=2 mode=5 job=0 outputs=8192 mac1=1179648 mac2=2359296 read1=1131008 read2=2166784 skip_reads=4096 zero_tokens=4096 positive_zero_y=2098 negative_main=3549 mismatches=0
+CASE_PASS stage=2 mode=5 jobs=1 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=32768
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage2\mode6.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+[611075000] %Fatal: tb_transition.sv:116: Assertion failed in TOP.tb_transition: ACC1_MISMATCH addr=0 actual=1322 expected=1323
+%Error: tb/transition_e2b_v1/tb_transition.sv:116: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode7.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+[24452675000] %Fatal: tb_transition.sv:122: Assertion failed in TOP.tb_transition: M_MISMATCH addr=0 actual=4 expected=5
+%Error: tb/transition_e2b_v1/tb_transition.sv:122: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode8.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+[71940035000] %Fatal: tb_transition.sv:131: Assertion failed in TOP.tb_transition: SKIP_PAIR_MISMATCH addr=2048 actual=18 expected=19
+%Error: tb/transition_e2b_v1/tb_transition.sv:131: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode9.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+[71878595000] %Fatal: tb_transition.sv:139: Assertion failed in TOP.tb_transition: Y_MISMATCH addr=0 actual=3 expected=2
+%Error: tb/transition_e2b_v1/tb_transition.sv:139: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode10.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+[71878595000] %Fatal: tb_transition.sv:138: Assertion failed in TOP.tb_transition: ADD_WIDE_MISMATCH addr=0 actual=3224683016 expected=3224683017
+%Error: tb/transition_e2b_v1/tb_transition.sv:138: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode11.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+OVERFLOW_PASS rejected=1 outputs=0 response=0
+- tb/transition_e2b_v1/tb_transition.sv:265: Verilog $finish
+
+=== results\transition_rtl\stage2\mode12.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+[71878595000] %Fatal: tb_transition.sv:131: Assertion failed in TOP.tb_transition: SKIP_PAIR_MISMATCH addr=0 actual=0 expected=1
+%Error: tb/transition_e2b_v1/tb_transition.sv:131: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\mode13.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+[71940015000] %Fatal: tb_transition.sv:106: Assertion failed in TOP.tb_transition: OPTION_A_READ_ADDRESS addr=2048 actual=0 expected=1
+%Error: tb/transition_e2b_v1/tb_transition.sv:106: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage2\trace1.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+TRACE_WINDOW_ONLY kind=1 cycles=500 completed_jobs=0
+- tb/transition_e2b_v1/tb_transition.sv:277: Verilog $finish
+
+=== results\transition_rtl\stage2\trace2.log ===
+LOAD_PASS stage=2 input=16384 weight1=4608 weight2=9216 channels=32
+FIRST_CONV phase=0 acc=1322 code=7
+FIRST_CONV phase=1 acc=3572 code=4
+FIRST_ADD main=4 skip=0 wide=3224683016 code=3
+TRACE_WINDOW_ONLY kind=2 cycles=500 completed_jobs=0
+- tb/transition_e2b_v1/tb_transition.sv:277: Verilog $finish
+
+=== results\transition_rtl\stage3\lint.log ===
+
+=== results\transition_rtl\stage3\mode0.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+JOB_PASS stage=3 mode=0 job=0 outputs=4096 mac1=1179648 mac2=2359296 read1=1083392 read2=1982464 skip_reads=2048 zero_tokens=2048 positive_zero_y=867 negative_main=2429 mismatches=0
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+JOB_PASS stage=3 mode=0 job=1 outputs=4096 mac1=1179648 mac2=2359296 read1=1083392 read2=1982464 skip_reads=2048 zero_tokens=2048 positive_zero_y=867 negative_main=2429 mismatches=0
+CASE_PASS stage=3 mode=0 jobs=2 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=32768
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage3\mode1.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+BUSY_COMMAND_PASS cfg_blocked=1 start_rejected=1
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+JOB_PASS stage=3 mode=1 job=0 outputs=4096 mac1=1179648 mac2=2359296 read1=1083392 read2=1982464 skip_reads=2048 zero_tokens=2048 positive_zero_y=867 negative_main=2429 mismatches=0
+CASE_PASS stage=3 mode=1 jobs=1 cancelled=0 mac_stalls=1757185 conv_stalls=8192 y_stalls=4096 rsp_stalls=4 lifetime_checks=16384
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage3\mode2.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+CANCELLED point=0 h=37 m=0 y=0
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+CANCELLED point=1 h=4096 m=19 y=0
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+CANCELLED point=2 h=4096 m=4096 y=0
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+CANCELLED point=3 h=4096 m=4096 y=1024
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+JOB_PASS stage=3 mode=2 job=0 outputs=4096 mac1=1179648 mac2=2359296 read1=1083392 read2=1982464 skip_reads=2048 zero_tokens=2048 positive_zero_y=867 negative_main=2429 mismatches=0
+CASE_PASS stage=3 mode=2 jobs=1 cancelled=4 mac_stalls=0 conv_stalls=0 y_stalls=6 rsp_stalls=0 lifetime_checks=16384
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage3\mode5.log ===
+LOADER_NEGATIVE_PASS rejected=14 duplicate_count=1 partial_start_rejected=1
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+JOB_PASS stage=3 mode=5 job=0 outputs=4096 mac1=1179648 mac2=2359296 read1=1083392 read2=1982464 skip_reads=2048 zero_tokens=2048 positive_zero_y=867 negative_main=2429 mismatches=0
+CASE_PASS stage=3 mode=5 jobs=1 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=16384
+- tb/transition_e2b_v1/tb_transition.sv:299: Verilog $finish
+
+=== results\transition_rtl\stage3\mode6.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+[1283395000] %Fatal: tb_transition.sv:116: Assertion failed in TOP.tb_transition: ACC1_MISMATCH addr=0 actual=1131 expected=1130
+%Error: tb/transition_e2b_v1/tb_transition.sv:116: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode7.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+[25004995000] %Fatal: tb_transition.sv:122: Assertion failed in TOP.tb_transition: M_MISMATCH addr=0 actual=-10 expected=-9
+%Error: tb/transition_e2b_v1/tb_transition.sv:122: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode8.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+[72332995000] %Fatal: tb_transition.sv:131: Assertion failed in TOP.tb_transition: SKIP_PAIR_MISMATCH addr=1024 actual=5 expected=4
+%Error: tb/transition_e2b_v1/tb_transition.sv:131: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode9.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+[72302275000] %Fatal: tb_transition.sv:139: Assertion failed in TOP.tb_transition: Y_MISMATCH addr=0 actual=0 expected=1
+%Error: tb/transition_e2b_v1/tb_transition.sv:139: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode10.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+[72302275000] %Fatal: tb_transition.sv:138: Assertion failed in TOP.tb_transition: ADD_WIDE_MISMATCH addr=0 actual=-15078193550 expected=-15078193549
+%Error: tb/transition_e2b_v1/tb_transition.sv:138: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode11.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+OVERFLOW_PASS rejected=1 outputs=0 response=0
+- tb/transition_e2b_v1/tb_transition.sv:265: Verilog $finish
+
+=== results\transition_rtl\stage3\mode12.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+[72302275000] %Fatal: tb_transition.sv:131: Assertion failed in TOP.tb_transition: SKIP_PAIR_MISMATCH addr=0 actual=0 expected=1
+%Error: tb/transition_e2b_v1/tb_transition.sv:131: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\mode13.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+[72332975000] %Fatal: tb_transition.sv:106: Assertion failed in TOP.tb_transition: OPTION_A_READ_ADDRESS addr=1024 actual=0 expected=1
+%Error: tb/transition_e2b_v1/tb_transition.sv:106: Verilog $stop
+Aborting...
+
+=== results\transition_rtl\stage3\trace1.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+TRACE_WINDOW_ONLY kind=1 cycles=500 completed_jobs=0
+- tb/transition_e2b_v1/tb_transition.sv:277: Verilog $finish
+
+=== results\transition_rtl\stage3\trace2.log ===
+LOAD_PASS stage=3 input=8192 weight1=18432 weight2=36864 channels=64
+HIGH_WEIGHT_ADDRESS_PASS addr=36863
+FIRST_CONV phase=0 acc=1131 code=1
+FIRST_CONV phase=1 acc=-7070 code=-10
+FIRST_ADD main=-10 skip=0 wide=-15078193550 code=0
+TRACE_WINDOW_ONLY kind=2 cycles=500 completed_jobs=0
+- tb/transition_e2b_v1/tb_transition.sv:277: Verilog $finish

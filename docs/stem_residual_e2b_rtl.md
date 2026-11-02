@@ -165,3 +165,5 @@ Verilator 결과를4-state X/Z 검증이나 FPGA 메모리 추론·실측 결과
 
 확인 질문: Host의 Block-X 적재를 왜 막나요? Block 준비 개수가 전부 차기 전에 시작하면 어떻게 되나요? valid만 보고 전송 개수를 세면 왜 틀리나요?
 답의 핵심: 실제 RTL 경로를 시험하기 위해서이며, 완전한 입력과 적절한 valid/ready 수락이 필요합니다.
+
+다음 단위인 [실제 Transition L2.0·L3.0](transition_e2b_rtl.md)도 stride2·Option A의 주소/수치 비교를 통과했습니다. 여기의 Stem→L1.0 연속 시험과는 별도 단위이며 모든 중간 Block을 이은 전체 모델 실행은 후속입니다.

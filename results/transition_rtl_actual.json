@@ -1,0 +1,201 @@
+{
+  "status": "PASS",
+  "package_semantic_sha256": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "different_real_images": 1,
+  "completed_jobs": 10,
+  "blocks": [
+    {
+      "stage": 2,
+      "block": "L2.0",
+      "completed_jobs": 5,
+      "input_shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "acc_compared": 81920,
+      "h_m_y_codes_compared": 122880,
+      "skip_codes_compared": 40960,
+      "add_wide_compared": 40960,
+      "option_a_reads": 20480,
+      "zero_tokens": 20480,
+      "cases": [
+        {
+          "mode": 0,
+          "jobs": 2,
+          "cancelled": 0,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 0,
+          "response_stalls": 0
+        },
+        {
+          "mode": 1,
+          "jobs": 1,
+          "cancelled": 0,
+          "mac_stalls": 1744896,
+          "conv_stalls": 16384,
+          "output_stalls": 8192,
+          "response_stalls": 4
+        },
+        {
+          "mode": 2,
+          "jobs": 1,
+          "cancelled": 4,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 6,
+          "response_stalls": 0
+        },
+        {
+          "mode": 5,
+          "jobs": 1,
+          "cancelled": 0,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 0,
+          "response_stalls": 0
+        }
+      ],
+      "normal_csv_rows": 49152,
+      "teaching_checks": {
+        "input_shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "output_shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "skip_read_count": 4096,
+        "zero_skip_count": 4096,
+        "negative_main": 3549,
+        "zero_skip_but_positive_y": 2098,
+        "wrong_odd_coordinate_y_changes": 3182
+      }
+    },
+    {
+      "stage": 3,
+      "block": "L3.0",
+      "completed_jobs": 5,
+      "input_shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "output_shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "acc_compared": 40960,
+      "h_m_y_codes_compared": 61440,
+      "skip_codes_compared": 20480,
+      "add_wide_compared": 20480,
+      "option_a_reads": 10240,
+      "zero_tokens": 10240,
+      "cases": [
+        {
+          "mode": 0,
+          "jobs": 2,
+          "cancelled": 0,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 0,
+          "response_stalls": 0
+        },
+        {
+          "mode": 1,
+          "jobs": 1,
+          "cancelled": 0,
+          "mac_stalls": 1757185,
+          "conv_stalls": 8192,
+          "output_stalls": 4096,
+          "response_stalls": 4
+        },
+        {
+          "mode": 2,
+          "jobs": 1,
+          "cancelled": 4,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 6,
+          "response_stalls": 0
+        },
+        {
+          "mode": 5,
+          "jobs": 1,
+          "cancelled": 0,
+          "mac_stalls": 0,
+          "conv_stalls": 0,
+          "output_stalls": 0,
+          "response_stalls": 0
+        }
+      ],
+      "normal_csv_rows": 24576,
+      "teaching_checks": {
+        "input_shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "output_shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "skip_read_count": 2048,
+        "zero_skip_count": 2048,
+        "negative_main": 2429,
+        "zero_skip_but_positive_y": 867,
+        "wrong_odd_coordinate_y_changes": 1062
+      }
+    }
+  ],
+  "conv_acc_compared": 122880,
+  "h_m_y_codes_compared": 184320,
+  "skip_codes_compared": 61440,
+  "add_wide_compared": 61440,
+  "mismatches": 0,
+  "normal_csv_rows_vs_npz": 73728,
+  "macs_per_job": 3538944,
+  "completed_job_macs": 35389440,
+  "reset_cancellations": 8,
+  "loader_invalid_words_rejected": 28,
+  "expected_mismatch_tests": 14,
+  "overflow_tests": 2,
+  "source_sha256": {
+    "rtl/transition_e2b_v1/transition_block.sv": "6bfc159f93d9d20c5ce8a3dc180dc879f6ef34e329b944c5ac100e8549fb0090",
+    "tb/transition_e2b_v1/tb_transition.sv": "eb82927bc4a40c4cab4f2d8d917fb85f96a8391cde65def65c85f7fe3962c7d6",
+    "tb/transition_e2b_v1/run.sh": "2f40e6ef1acb34a72f90549ccb89102f2ea835e4dfbc7b23820860b3337a4dc1",
+    "rtl/residual_e2b_v1/rne_clip.sv": "22b4d0fae29ae4c2b2207d498add7ba2213b68c962f344e7226d0713cd98355a"
+  },
+  "simulator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "trace": "two separate 500-cycle runs per stage: first Conv and Option A boundary; not complete jobs",
+  "scope": "actual L2.0 and L3.0 Transition unit RTL with frozen upstream sample0 inputs; not a full-model chain, synthesis/timing or board",
+  "local_csv_rows_rechecked": 73728,
+  "evidence": {
+    "date": "2026-11-02",
+    "revision": "43cd6a45387ab185620875d4fc5a4d6dfb1b6ad2",
+    "run_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41404611983",
+    "job_id": 125143696926,
+    "artifact_id": 13122967657,
+    "artifact_sha256": "d1fb16871b22d359a23125a93345ff6d4df3a6f4502721569dd93fdec3a98862",
+    "artifact_expires_at": "2027-01-31T07:10:49Z"
+  }
+}

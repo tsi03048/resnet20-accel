@@ -20,6 +20,7 @@ Weight는 ‘입력에 곱하는 숫자’, Loss는 ‘예측을 채점한 벌�
 | 정수 기준 | [E2-B](docs/e2b_integer_reference.md) |
 | 실제 Stem 회로 | [E13-B](docs/stem_e2b_rtl.md) |
 | 실제 Stem→Residual 연속 회로 | [E14-C: 실제 전송·자동 시작·정수 비교](docs/stem_residual_e2b_rtl.md) |
+| 실제 정수 Transition | [E16-B: stride2·Option A·두 Stage 비교](docs/transition_e2b_rtl.md) |
 | 보드 | [ZedBoard](board/README.md) |
 | 현재 기준·실행 증거 | [진행 현황](docs/project_status.md) |
 | 상세 설계·이전 자료 | [Notion 대응](docs/notion_map.md), [E12~E21 보관](docs/historical/e12-e21/README.md) |
