@@ -222,7 +222,8 @@ module full_model(
                             end
                             if(v_ram) pair_x<=inside_ram?ram_a_q:8'sd0;
                             if(v_pair) begin
-                                product<=op.kind==2?{{8{pair_x[7]}},pair_x}:pair_x*weight_q;
+                                if(op.kind==2) product<={{8{pair_x[7]}},pair_x};
+                                else product<=$signed(pair_x)*$signed(weight_q);
                             end
                             if(v_product) begin
                                 if(acc_next>33'sd2147483647 || acc_next< -33'sd2147483648) begin
