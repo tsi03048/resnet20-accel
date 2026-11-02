@@ -1,0 +1,104 @@
+Run: https://github.com/tsi03048/resnet20-accel/actions/runs/41399400691
+Revision: 841f6cf9ae0e7193b4e62f7531c7937fe337707b
+
+=== toolchain.txt ===
+Verilator 5.020 2024-01-01 rev (Debian 5.020-1)
+
+=== lint.log ===
+
+=== rne.log ===
+RNE_PASS vectors=2000 signed_relu_modes=2
+- tb/residual_e2b_v1/tb_rne.sv:22: Verilog $finish
+
+=== mode0.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+FIRST_ADD main=3 skip=20 wide=38375243037 code=18
+JOB_PASS mode=0 job=0 h=16384 m=16384 y=16384 mac1=2359296 mac2=2359296 mismatches=0 negative_main=7423
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+FIRST_ADD main=3 skip=20 wide=38375243037 code=18
+JOB_PASS mode=0 job=1 h=16384 m=16384 y=16384 mac1=2359296 mac2=2359296 mismatches=0 negative_main=7423
+CASE_PASS mode=0 jobs=2 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=98304
+- tb/residual_e2b_v1/tb_residual.sv:231: Verilog $finish
+
+=== mode1.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+BUSY_COMMAND_PASS cfg_blocked=1 start_rejected=1
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+FIRST_ADD main=3 skip=20 wide=38375243037 code=18
+JOB_PASS mode=1 job=0 h=16384 m=16384 y=16384 mac1=2359296 mac2=2359296 mismatches=0 negative_main=7423
+CASE_PASS mode=1 jobs=1 cancelled=0 mac_stalls=2310146 conv_stalls=32768 y_stalls=16384 rsp_stalls=4 lifetime_checks=49152
+- tb/residual_e2b_v1/tb_residual.sv:231: Verilog $finish
+
+=== mode2.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+CANCELLED point=0 h=37 m=0 y=0
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+CANCELLED point=1 h=16384 m=19 y=0
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+CANCELLED point=2 h=16384 m=16384 y=0
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+FIRST_ADD main=3 skip=20 wide=38375243037 code=18
+JOB_PASS mode=2 job=0 h=16384 m=16384 y=16384 mac1=2359296 mac2=2359296 mismatches=0 negative_main=7423
+CASE_PASS mode=2 jobs=1 cancelled=3 mac_stalls=0 conv_stalls=0 y_stalls=3 rsp_stalls=0 lifetime_checks=49152
+- tb/residual_e2b_v1/tb_residual.sv:231: Verilog $finish
+
+=== mode5.log ===
+LOADER_NEGATIVE_PASS rejected=14 duplicate_count=1 partial_start_rejected=1
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+FIRST_ADD main=3 skip=20 wide=38375243037 code=18
+JOB_PASS mode=5 job=0 h=16384 m=16384 y=16384 mac1=2359296 mac2=2359296 mismatches=0 negative_main=7423
+CASE_PASS mode=5 jobs=1 cancelled=0 mac_stalls=0 conv_stalls=0 y_stalls=0 rsp_stalls=0 lifetime_checks=49152
+- tb/residual_e2b_v1/tb_residual.sv:231: Verilog $finish
+
+=== mode6.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+[424835000] %Fatal: tb_residual.sv:72: Assertion failed in TOP.tb_residual: ACC1_MISMATCH addr=0 actual=5429 expected=5428
+%Error: tb/residual_e2b_v1/tb_residual.sv:72: Verilog $stop
+Aborting...
+
+=== mode7.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+[48102275000] %Fatal: tb_residual.sv:78: Assertion failed in TOP.tb_residual: M_MISMATCH addr=0 actual=3 expected=2
+%Error: tb/residual_e2b_v1/tb_residual.sv:78: Verilog $stop
+Aborting...
+
+=== mode8.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+[95776835000] %Fatal: tb_residual.sv:89: Assertion failed in TOP.tb_residual: Y_MISMATCH addr=0 actual=18 expected=19
+%Error: tb/residual_e2b_v1/tb_residual.sv:89: Verilog $stop
+Aborting...
+
+=== mode9.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+FIRST_CONV phase=1 acc=2199 code=3
+[95776835000] %Fatal: tb_residual.sv:88: Assertion failed in TOP.tb_residual: ADD_WIDE_MISMATCH addr=0 actual=38375243037 expected=38375243036
+%Error: tb/residual_e2b_v1/tb_residual.sv:88: Verilog $stop
+Aborting...
+
+=== mode10.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+OVERFLOW_PASS rejected=1 outputs=0 response=0
+- tb/residual_e2b_v1/tb_residual.sv:202: Verilog $finish
+
+=== trace.log ===
+LOAD_PASS input=16384 weights=4608 biases=32 multipliers=32 shifts=32 add=3
+FIRST_CONV phase=0 acc=5429 code=23
+TRACE_WINDOW_ONLY cycles=500 completed_jobs=0
+- tb/residual_e2b_v1/tb_residual.sv:210: Verilog $finish

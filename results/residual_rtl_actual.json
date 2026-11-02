@@ -1,0 +1,93 @@
+{
+  "status": "PASS",
+  "block": "ResNet-20 L1.0 Identity",
+  "package_semantic_sha256": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "different_real_images": 1,
+  "shape": [
+    1,
+    16,
+    32,
+    32
+  ],
+  "completed_jobs": 5,
+  "conv_acc_compared": 163840,
+  "h_m_y_codes_compared": 245760,
+  "add_wide_compared": 81920,
+  "mismatches": 0,
+  "macs_per_job": 4718592,
+  "cases": [
+    {
+      "mode": 0,
+      "jobs": 2,
+      "cancelled": 0,
+      "mac_stalls": 0,
+      "conv_stalls": 0,
+      "output_stalls": 0,
+      "response_stalls": 0
+    },
+    {
+      "mode": 1,
+      "jobs": 1,
+      "cancelled": 0,
+      "mac_stalls": 2310146,
+      "conv_stalls": 32768,
+      "output_stalls": 16384,
+      "response_stalls": 4
+    },
+    {
+      "mode": 2,
+      "jobs": 1,
+      "cancelled": 3,
+      "mac_stalls": 0,
+      "conv_stalls": 0,
+      "output_stalls": 3,
+      "response_stalls": 0
+    },
+    {
+      "mode": 5,
+      "jobs": 1,
+      "cancelled": 0,
+      "mac_stalls": 0,
+      "conv_stalls": 0,
+      "output_stalls": 0,
+      "response_stalls": 0
+    }
+  ],
+  "buffer_lifetime_elements_checked": 245760,
+  "normal_csv_rows_vs_npz": 98304,
+  "postproc_oracle_vectors": 2000,
+  "negative_goldens_rejected": [
+    "ACC1_MISMATCH",
+    "M_MISMATCH",
+    "Y_MISMATCH",
+    "ADD_WIDE_MISMATCH"
+  ],
+  "loader_invalid_words_rejected": 14,
+  "overflow_rejected": true,
+  "teaching_checks": {
+    "negative_main": 7423,
+    "premature_relu_changes": 3692,
+    "raw_code_add_changes": 9345,
+    "separate_rounding_changes": 2051
+  },
+  "source_sha256": {
+    "rtl/residual_e2b_v1/rne_clip.sv": "22b4d0fae29ae4c2b2207d498add7ba2213b68c962f344e7226d0713cd98355a",
+    "rtl/residual_e2b_v1/residual_block.sv": "b1fa5b8c45d79db1b964b3b03001b9ff8e12aa756611362982d5c0288a93a448",
+    "tb/residual_e2b_v1/tb_residual.sv": "066f87949809ce79e8f9fd747e7aed7a383b5c9ac95a7d3a396338cfc7aa150e",
+    "tb/residual_e2b_v1/tb_rne.sv": "edfacbd80d2b4d72414144f54d83c87dcfc5ebd5dd979cad4401d7d888c0b805",
+    "tb/residual_e2b_v1/run.sh": "591eec382d9983b31ef396cad3a0b9911463d5800639f8acb177f90a2504f10f"
+  },
+  "simulator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+  "trace": "first 500 cycles only; full jobs verified by scoreboard/CSV",
+  "scope": "one actual Identity block, frozen sample 0; not chained Stem+Block, Transition/full-model RTL, synthesis/timing or board",
+  "evidence": {
+    "date": "2026-11-02",
+    "revision": "841f6cf9ae0e7193b4e62f7531c7937fe337707b",
+    "run_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41399400691",
+    "job_id": 125127706274,
+    "artifact_id": 13120593574,
+    "artifact_sha256": "04f75dc54765cc51293b84e03013250eaee55a6af7a6ac5c35de557484a599b7",
+    "artifact_expires_at": "2027-01-31T06:21:30Z",
+    "local_csv_recheck": "see local copy of downloaded artifact; raw simulator package is preserved"
+  }
+}

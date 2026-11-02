@@ -152,4 +152,5 @@ Mode 1에서 MAC 대기 196,608에지·출력 대기 16,384에지를 실제로 �
 연습 질문: code가 우연히 같아도 acc가 다르면 통과인가? Padding 항의 X는 어디서 오는가? y_valid만 보고 출력 수를 세면 왜 틀리는가?
 답의 핵심은 누산도 일치해야 하며, Padding은 0이고, 출력은 valid와 ready가 함께 1일 때만 수락한다는 것이다.
 
-다음은 실제 Identity Block의 Main/Skip 보존과 Add 단위 정렬이다. 이번 Stem의 통과 기록을 유지한 채 별도 버전·시험으로 넓힌다.
+다음 실습인 [실제 Identity Block L1.0](residual_e2b_rtl.md)도 Main/Skip 보존·Add 단위 정렬·bit-exact 비교를 통과했다.
+Stem의 통과 기록을 유지한 별도 버전·시험이며, Stem→Block 연속 실행은 후속 통합 검증이다.

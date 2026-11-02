@@ -23,6 +23,8 @@ python -m exercises.step_up conv
 | [S5](learning/S5.md) | 선택: 작은 Conv에서 실제 모델 Stem으로 넓히기 | 단계별 문서 확인 |
 | [S6](learning/S6.md) | ZedBoard에서 네 결과를 확인하기 | 단계별 문서 확인 |
 
+S5의 실제 모델 경로는 [Stem](stem_e2b_rtl.md) → [첫 Residual Block L1.0](residual_e2b_rtl.md) 순서입니다. L1.0의 X 보존·두 Conv·단위 정렬 Add까지 실제 상수와 Golden으로 비교했습니다. 연속 RTL·Transition·전체 CNN·보드는 후속입니다.
+
 ## 길을 잃었을 때
 
 S5를 선택했다면 [실제 정수 Stem RTL 실습](stem_e2b_rtl.md)으로 이어갑니다. 같은 sample 0의 완료 5작업에서 누산·출력 code를 각각 81,920개 비교해 통과했습니다. Residual·전체 CNN RTL·보드는 후속 과제입니다.
