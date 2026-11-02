@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-mkdir -p results/full_rtl
+mkdir -p results/full_rtl build
+trap 'for log in results/full_rtl/*.log; do [ ! -f "$log" ] || tail -n 12 "$log"; done' ERR
 ulimit -c 0
 phase=${1:-all}
 if [[ "$phase" == build || "$phase" == all ]]; then
