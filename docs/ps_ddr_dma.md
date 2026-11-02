@@ -148,6 +148,7 @@ LUT RAM 185개는 DMA·연결 IP의 FIFO 등을 포함하며 CNN Weight·계수�
 
 ```powershell
 python -m tools.check_ps_delivery
+python -m pip install numpy
 python -m tools.ps_dma_vectors --export
 & ./board/zedboard/ps_dma/build_software.ps1
 & ./board/zedboard/ps_dma/run_system.ps1
