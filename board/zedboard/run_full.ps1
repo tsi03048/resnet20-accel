@@ -26,7 +26,7 @@ foreach($relative in $paths){
     if((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLower() -ne $originalHash){throw "Staging hash mismatch: $relative"}
     $hashes[$relative]=$originalHash
 }
-$manifest=[ordered]@{started_at=(Get-Date).ToString('o');action=$Action;variant=$Variant;vivado=$VivadoPath;stage=$stage;destination=$destination;top=$(if($Variant -eq 'fpga2'){'full_model_ooc'}else{'full_model'});part='xc7z020clg484-1';mode='out_of_context';source_sha256=$hashes}
+$manifest=[ordered]@{started_at=(Get-Date).ToString('o');action=$Action;variant=$Variant;vivado=$VivadoPath;stage=$stage;destination=$destination;top=$(if($Variant -eq 'fpga2'){'full_model_timed'}else{'full_model'});part='xc7z020clg484-1';mode='out_of_context';source_sha256=$hashes}
 $manifest | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $destination 'launch_manifest.json') -Encoding utf8
 Write-Output "Running Vivado in ASCII stage: $stage"
 $toolExit=1

@@ -6,7 +6,7 @@ if {$action ni {synth route}} {error "Expected synth or route"}
 set variant [expr {$argc > 1 ? [lindex $argv 1] : "baseline"}]
 if {$variant ni {baseline flat fpga fpga2}} {error "Expected baseline, flat, fpga or fpga2"}
 set core_dir [expr {$variant eq "baseline" ? "full_e2b_v1" : ($variant eq "fpga2" ? "full_e2b_fpga_v2" : "full_e2b_${variant}_v1")}]
-set top [expr {$variant eq "fpga2" ? "full_model_ooc" : "full_model"}]
+set top [expr {$variant eq "fpga2" ? "full_model_timed" : "full_model"}]
 set out [file join $root build/zedboard_full]
 set reports [file join $out reports]
 file mkdir $reports
@@ -59,7 +59,7 @@ if {[catch {
         [file join $root rtl/full_e2b_v1/argmax10.sv] [file join $root rtl/$core_dir/full_model.sv]]
     if {$variant eq "fpga"} {read_verilog -sv [file join $root rtl/full_e2b_fpga_v1/feature_ram.sv]}
     if {$variant eq "fpga2"} {
-        foreach source {sync_bram weight_bram feature_ram mul_serial rne_serial full_model_ooc} {
+        foreach source {sync_bram weight_bram feature_ram mul_serial rne_serial input_hold full_model_timed} {
             read_verilog -sv [file join $root rtl/$core_dir/${source}.sv]
         }
     }
@@ -67,6 +67,7 @@ if {[catch {
     set phase synthesis
     state_file RUNNING synthesis
     synth_design -top $top -part xc7z020clg484-1 -mode out_of_context
+    if {$variant eq "fpga2"} {set_property HD.CLK_SRC BUFGCTRL_X0Y0 [get_ports clk]}
     set phase post_synthesis_reports
     write_checkpoint -force [file join $out post_synth.dcp]
     write_reports post_synth

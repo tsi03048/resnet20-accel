@@ -11,8 +11,8 @@ if [[ "$phase" == build || "$phase" == all ]]; then
   python -m tools.make_full_post_vectors > /dev/null
   python -m tools.v2_mul_vectors
   verilator --version > results/full_fpga_v2_rtl/toolchain.txt
-  files=(rtl/full_e2b_v1/argmax10.sv rtl/full_e2b_fpga_v2/feature_ram.sv rtl/full_e2b_fpga_v2/sync_bram.sv rtl/full_e2b_fpga_v2/weight_bram.sv rtl/full_e2b_fpga_v2/mul_serial.sv rtl/full_e2b_fpga_v2/rne_serial.sv rtl/full_e2b_fpga_v2/full_model.sv)
-  verilator --lint-only -Wall -Irtl/full_e2b_fpga_v2 --top-module full_model "${files[@]}" > results/full_fpga_v2_rtl/lint.log 2>&1
+  files=(tb/full_e2b_fpga_v2/LUT1.sv rtl/full_e2b_fpga_v2/input_hold.sv rtl/full_e2b_fpga_v2/full_model_timed.sv rtl/full_e2b_v1/argmax10.sv rtl/full_e2b_fpga_v2/feature_ram.sv rtl/full_e2b_fpga_v2/sync_bram.sv rtl/full_e2b_fpga_v2/weight_bram.sv rtl/full_e2b_fpga_v2/mul_serial.sv rtl/full_e2b_fpga_v2/rne_serial.sv rtl/full_e2b_fpga_v2/full_model.sv)
+  verilator --lint-only -Wall -Irtl/full_e2b_fpga_v2 --top-module full_model_timed "${files[@]}" > results/full_fpga_v2_rtl/lint.log 2>&1
   verilator --binary --timing -Irtl/full_e2b_fpga_v2 -j 2 --top-module tb_full --Mdir build/full_fpga_v2_model "${files[@]}" tb/full_e2b_fpga_v2/tb_full.sv > results/full_fpga_v2_rtl/build.log 2>&1
   for unit in post mul; do
     verilator --binary --timing -j 2 --top-module tb_$unit --Mdir build/full_v2_$unit rtl/full_e2b_fpga_v2/rne_serial.sv rtl/full_e2b_fpga_v2/mul_serial.sv tb/full_e2b_fpga_v2/tb_$unit.sv > results/full_fpga_v2_rtl/build_$unit.log 2>&1

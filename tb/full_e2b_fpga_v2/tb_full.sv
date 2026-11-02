@@ -15,7 +15,7 @@ module tb_full;
     logic signed [7:0] trace_skip;
     logic signed [63:0] trace_wide;
     logic [3:0] prediction,score_read_addr=0;
-    full_model dut(.*);
+    full_model_timed dut(.*);
     logic [7:0] stimulus[0:3071],weights[0:268335],eskip[0:274505];
     logic [31:0] biases[0:697],ns[0:697],rs[0:697];
     logic signed [31:0] eacc[0:274505],ecode[0:274505],eaddr[0:274505];
@@ -44,7 +44,7 @@ module tb_full;
         logic [169:0] current_trace;
         logic [76:0] current_mac;
         current_trace={trace_op,trace_addr,trace_acc,trace_code,trace_skip,trace_wide,trace_skip_from_x,trace_skip_addr};
-        current_mac={dut.acc,dut.term_idx,dut.pair_x,dut.pair_w,dut.op_id,dut.out_idx};
+        current_mac={dut.core.acc,dut.core.term_idx,dut.core.pair_x,dut.core.pair_w,dut.core.op_id,dut.core.out_idx};
         if(rst) begin hold_trace=0;hold_mac=0;hold_rsp=0;end
         else begin
             if(hold_trace && (!trace_valid || current_trace!==old_trace)) $fatal(1,"TRACE_HOLD_CHANGED");
@@ -68,11 +68,11 @@ module tb_full;
                         for(integer i=0;i<source_len[op];i=i+1) begin
                             base=source_offset[op];
                             wanted_value=base<0?int'($signed(stimulus[i])):ecode[base+i];
-                            actual_value=int'(dut.feature_mem.mem[src[op]*16384+i]);
+                            actual_value=int'(dut.core.feature_mem.mem[src[op]*16384+i]);
                             if(actual_value!=wanted_value) $fatal(1,"SOURCE_BANK op=%0d index=%0d got=%0d expected=%0d",op,i,actual_value,wanted_value);
                         end
                         if(kind[op]==1) for(integer i=0;i<skip_len[op];i=i+1)
-                            if(int'(dut.feature_mem.mem[skip[op]*16384+i])!=ecode[skip_offset[op]+i]) $fatal(1,"SKIP_BANK op=%0d index=%0d",op,i);
+                            if(int'(dut.core.feature_mem.mem[skip[op]*16384+i])!=ecode[skip_offset[op]+i]) $fatal(1,"SKIP_BANK op=%0d index=%0d",op,i);
                     end
                     if(trace_code!==ecode[ix]) $fatal(1,"CODE_MISMATCH op=%0d addr=%0d got=%0d expected=%0d",op,ad,trace_code,ecode[ix]);
                     if(kind[op]!=1 && trace_acc!==eacc[ix]) $fatal(1,"ACC_MISMATCH op=%0d addr=%0d got=%0d expected=%0d",op,ad,trace_acc,eacc[ix]);
@@ -126,7 +126,7 @@ module tb_full;
         for(integer i=0;i<698;i=i+1) word(4,i,rs[i],0);
         @(negedge clk);cfg_valid=0;#1;
         if(!prepared || !start_ready) $fatal(1,"PREPARE_INCOMPLETE");
-        for(integer i=0;i<3072;i=i+1) if(dut.feature_mem.mem[i]!==stimulus[i]) $fatal(1,"INPUT_BOUNDARY index=%0d",i);
+        for(integer i=0;i<3072;i=i+1) if(dut.core.feature_mem.mem[i]!==stimulus[i]) $fatal(1,"INPUT_BOUNDARY index=%0d",i);
     endtask
     task automatic launch;
         force_hold_rsp=1;
@@ -189,10 +189,10 @@ module tb_full;
             checking=0;reset_core();$display("OVERFLOW_PASS code=1 reset_clean=1");$finish;
         end
         if(mode==2) begin
-            prepare();launch();wait(dut.coeff_re);@(posedge clk);#1;cancel_reset(0);
-            load_case(0);prepare();launch();wait(dut.weight_re);@(posedge clk);#1;cancel_reset(1);
-            load_case(0);prepare();launch();wait(dut.multiply.busy);repeat(5) @(negedge clk);cancel_reset(2);
-            load_case(0);prepare();launch();wait(dut.rounding.busy);@(negedge clk);cancel_reset(3);
+            prepare();launch();wait(dut.core.coeff_re);@(posedge clk);#1;cancel_reset(0);
+            load_case(0);prepare();launch();wait(dut.core.weight_re);@(posedge clk);#1;cancel_reset(1);
+            load_case(0);prepare();launch();wait(dut.core.multiply.busy);repeat(5) @(negedge clk);cancel_reset(2);
+            load_case(0);prepare();launch();wait(dut.core.rounding.busy);@(negedge clk);cancel_reset(3);
             load_case(0);prepare();launch();wait(events>=37);cancel_reset(4);
             load_case(0);prepare();launch();wait(trace_op==11 && trace_addr>=19);cancel_reset(5);
             load_case(0);prepare();force_hold_rsp=1;launch();wait(rsp_valid);repeat(5) @(negedge clk);cancel_reset(6);
