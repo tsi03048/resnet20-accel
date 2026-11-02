@@ -1,0 +1,127 @@
+{
+  "step": "E2-B",
+  "profile": "RESNET20_SIGNED_MINMAX_RNE_V1",
+  "package_semantic_sha256": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "test_images": 10000,
+  "full_test": true,
+  "correct": {
+    "fp32": 9173,
+    "fake_quant": 9176,
+    "integer": 9170,
+    "agree_fp32": 9866,
+    "agree_fake_quant": 9923
+  },
+  "top1": {
+    "fp32": 91.73,
+    "fake_quant": 91.76,
+    "integer": 91.7
+  },
+  "integer_drop_vs_fp32_pp": 0.03,
+  "integer_drop_vs_fake_quant_pp": 0.06,
+  "integer_agreement_fp32_pct": 98.66,
+  "integer_agreement_fake_quant_pct": 99.23,
+  "max_abs_score_error_vs_fake_quant": 1.5393733978271484,
+  "per_class": {
+    "0": {
+      "n": 1000,
+      "correct": 922
+    },
+    "1": {
+      "n": 1000,
+      "correct": 970
+    },
+    "2": {
+      "n": 1000,
+      "correct": 876
+    },
+    "3": {
+      "n": 1000,
+      "correct": 823
+    },
+    "4": {
+      "n": 1000,
+      "correct": 922
+    },
+    "5": {
+      "n": 1000,
+      "correct": 856
+    },
+    "6": {
+      "n": 1000,
+      "correct": 948
+    },
+    "7": {
+      "n": 1000,
+      "correct": 940
+    },
+    "8": {
+      "n": 1000,
+      "correct": 955
+    },
+    "9": {
+      "n": 1000,
+      "correct": 958
+    }
+  },
+  "audit": {
+    "backends": [
+      "torch int64 Conv2d",
+      "NumPy int64 einsum"
+    ],
+    "samples": [
+      {
+        "sample_index": 0,
+        "tensor_count": 61,
+        "prediction": 3
+      },
+      {
+        "sample_index": 1,
+        "tensor_count": 61,
+        "prediction": 8
+      },
+      {
+        "sample_index": 2,
+        "tensor_count": 61,
+        "prediction": 8
+      },
+      {
+        "sample_index": 3,
+        "tensor_count": 61,
+        "prediction": 0
+      },
+      {
+        "sample_index": 4,
+        "tensor_count": 61,
+        "prediction": 6
+      },
+      {
+        "sample_index": 5,
+        "tensor_count": 61,
+        "prediction": 6
+      },
+      {
+        "sample_index": 6,
+        "tensor_count": 61,
+        "prediction": 1
+      },
+      {
+        "sample_index": 7,
+        "tensor_count": 61,
+        "prediction": 6
+      }
+    ],
+    "compared_elements": 4416672,
+    "mismatches": 0
+  },
+  "package_roundtrip": true,
+  "accumulator_bound_checked": true,
+  "dataset": {
+    "images_sha256": "f9b1e2130bab680db56eb06d886f7f1ad0f1183907ceff4659d1735c890f5b04",
+    "labels_sha256": "cbb7365de8ed11f05cc4c3a1e7f78144127c5e851efd83762fb18202461230bb"
+  },
+  "frozen_before_test": true,
+  "tuned_on_this_test": false,
+  "rtl_compared": false,
+  "board_tested": false,
+  "note": "Software integer reference validated; integer-model quality and RTL correctness are separate."
+}

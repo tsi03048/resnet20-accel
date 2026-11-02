@@ -7,7 +7,7 @@
 | [개편 계획](https://app.notion.com/p/40cf0c4baec98122a8afd96a145555de) | — | 결정 기록·충돌 목록(C1~C9)·진행 순서 |
 | E1 | model/common.py, model/e1_fp32.py, model/run_reference.py | T4 기존 결과·CPU 91.73% 재검증 |
 | E2-A | quant/e2_ptq.py, results/e2_selection.json, results/e2_ptq.json | 개발용 선택 후 한 설정 Test; CPU 91.76% |
-| E2-B | quant/integer_math.py | 산술 helper만 제공; 실제 모델 정수 exporter·Golden 미완료 |
+| E2-B | quant/e2b_export.py, quant/e2b_reference.py, quant/run_e2b.py, quant/replay_e2b.py | 실제 정수 패키지·61경계 Golden·10,000장 91.70% 검증 완료; RTL 비교 별도 |
 | B5·E8 | model/resnet20_plan.py | 9 Block·30 작업·Weight/MAC 구조 계산 |
 | 연결05 기본 v1 | rtl/basic_v1/, tb/basic_v1/ | 새 공개 구현; 정상·stall·reset·mismatch 자동 시험 통과 |
 | 연결06 | board/zedboard/, board/README.md | VIO 준비 파일; 실제 Vivado·보드 실행 미완료 |

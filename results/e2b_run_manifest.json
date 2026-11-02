@@ -1,0 +1,36 @@
+{
+  "started_at_utc": "2026-11-02T05:22:51.704344+00:00",
+  "arguments": {
+    "limit": 10000,
+    "audit": 8,
+    "batch_size": 32,
+    "package_dir": "artifacts/e2b_v1",
+    "source": "hf",
+    "e2a_report": "reference/e2b_v1/source_e2a_report.json",
+    "e2a_selection": "reference/e2b_v1/source_e2a_selection.json"
+  },
+  "environment": {
+    "python": "3.14.7",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "device": "cpu",
+    "reference_repo": "https://github.com/akamaster/pytorch_resnet_cifar10.git",
+    "reference_commit": "d5489e8995e81e91ce6b1d69dcc98ad579b0b153"
+  },
+  "source_sha256": {
+    "model/__init__.py": "ce84b92500e14553e3b12b226af96bfacc270363cb030341c6370b1fa34860a5",
+    "model/common.py": "05f2bb2a1d3d55149a4f51c1ddfab59018d7d46f8a612b997922945e8a2f681f",
+    "model/e1_fp32.py": "5691fa08bae17260d6685f4692f7d5700f27e2d49e040a860d98f954148f919c",
+    "model/resnet20_plan.py": "88dd7956dc9cdea0ec6f3c99d8a056a3c3e80c2a3df7c4a689876ca671e7d1fc",
+    "model/run_reference.py": "329981d762657ded583f4e93225b10b7ca11f1b09169468e5bd83501ad36fb4e",
+    "quant/__init__.py": "4c939357ce22bb0f2658f7fcfa3a676d6b18210c0a4ddbb165785e2a48e0478d",
+    "quant/e2_ptq.py": "a8f12f222b684b17c814709ca347f2ad376a59da6b99ad1fb83e049d5328513e",
+    "quant/e2b_export.py": "909fe3fdfe966696a8dc6f6ef2329b7ecbacf486ed33ff8d16004a224a449b99",
+    "quant/e2b_reference.py": "0c82a141db48e9d39541e9e32ac21c6d41af1efcf4c6bdb339c4d487e13531e2",
+    "quant/integer_math.py": "2074697865d79587f4f286b78f8a45c85cde0d42566db0356f5a768956b7d6ef",
+    "quant/replay_e2b.py": "c2253a4634d8144ae09de2c39363af32839a334255414170563985db58bdec61",
+    "quant/run_e2b.py": "e5f5ba55a60860577b0fb4af7c82caf9a144ea6aa5b77d39c7e2bb358df816a3"
+  },
+  "e2a_report_sha256": "5541dd439412e7f7f3edf4f4c170adc11ed02e04c3ba5d7a132cf4a7de34f9d3",
+  "e2a_selection_sha256": "0ff6ef8343e50e885448e5104a63d0d21a3e0ad43adca5ffe282b975c7ee148e"
+}

@@ -12,7 +12,7 @@ S5는 실제 모델 Block으로 확장할 때 필요한 확인 항목이며, 현
 | S2 학습과 평가 | A4·A5, B4, 연결01·04 | 작은 Weight 갱신과 Residual 손계산 | 학습/추론·Loss/정확도·두 경로 보존을 자기 말로 설명 |
 | S3 정수 표현 | A6·D1, E2-A | 보정/개발 Index 확인, fake-quant 비교 | 두 집합 겹침 0, 개발용 선택 기록, 선택한 설정의 Test 결과; E2-B 정수 검증 완료 아님 |
 | S4 첫 RTL | 연결03·05, D2·D5 필요한 절 | `bash tb/basic_v1/run.sh` | 정상·stall·reset 통과, 고의 mismatch 거부, 로그·VCD |
-| S5 선택: 모델 Block 연결 | E2-B, E3·E13·E14 | 실제 계수·bias·정수 Golden으로 Stem/Block 비교 | 모든 유효 code bit-exact; 현재 실제 체크포인트 exporter와 전체 검증은 미완료 |
+| S5 선택: 모델 Block 연결 | E2-B, E3·E13·E14 | 실제 계수·bias·정수 Golden으로 Stem/Block 비교 | 정수 패키지·Golden·Test 평가 완료; 모델 RTL과 모든 code 비교는 미완료 |
 | S6 보드 | 연결06, board/README.md | X/W 준비→시작→Y 회수→기준 비교 | 보드 로그·출력 일치·part/XDC·timing·자원 보고서; 현재 보드 실행 미완료 |
 
 최소 기본 경로는 S0~S4 → S6 작은 Conv 보드 실행이다. S5는 실제 모델 Block 연결을 선택할 때 진행한다.
@@ -55,8 +55,9 @@ Train 1,000장으로 보정하고, 겹치지 않는 Train 1,000장으로 설정�
 Test를 본 뒤 재선택하면 탐색 이력을 남긴다. 구현 목표 채택이 E2-B 검증 완료를 뜻하지 않는다.
 
 E2-B는 INT32 Bias·Multiplier/Shift·실제 Add/GAP/FC 규칙까지 고정한 정수 기준이다.
-`quant/integer_math.py`는 산술 학습과 시험용 helper이며 실제 ResNet-20 exporter가 아니다.
-E2-B가 없으면 S5를 통과로 표시하지 않는다.
+`quant/integer_math.py`는 산술 helper이며, 실제 exporter·정수 실행은 `quant/e2b_export.py`·`quant/e2b_reference.py`다.
+[E2-B 따라하기](e2b_integer_reference.md)에서 NumPy만으로 실제 첫 이미지의 61개 정수 경계를 재현한다.
+Test 정수 정확도는 91.70%, FP32 대비 하락은 0.03%p다. Golden 준비는 완료했지만 S5의 모델 RTL 비교는 아직 별도다.
 
 ## 기본 RTL v1
 

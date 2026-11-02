@@ -1,0 +1,88 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "encoding": "one two's-complement hex word per line; NCHW/OIHW order; no byte swapping",
+  "vectors": {
+    "input": {
+      "file": "input.hex",
+      "shape": [
+        1,
+        3,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 3072,
+      "order": "C",
+      "sha256": "cc961f79f55f790ec5235cc66cd2be14bc8130b904dddce3e1cc64ed662486df"
+    },
+    "weight": {
+      "file": "weight.hex",
+      "shape": [
+        16,
+        3,
+        3,
+        3
+      ],
+      "bits": 8,
+      "count": 432,
+      "order": "C",
+      "sha256": "0edb72b7772d71fd5f40beed4cb50cfe30c371c7107b71281d16a50f9ae48021"
+    },
+    "bias": {
+      "file": "bias.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "c3429c7d43239931a6b9b0c85ead049430d33d9f71a1890aef5c5929da5f7190"
+    },
+    "multiplier": {
+      "file": "multiplier.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "0a1bdeb4e1690aed69e49a48c15368daf9b8651c012b919f4e7176ef99bf5a76"
+    },
+    "shift": {
+      "file": "shift.hex",
+      "shape": [
+        16
+      ],
+      "bits": 32,
+      "count": 16,
+      "order": "C",
+      "sha256": "a1d04453a71893443287ee82521e599599a86874bb6e6468a23dd73c55f6738b"
+    },
+    "acc_expected": {
+      "file": "acc_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 32,
+      "count": 16384,
+      "order": "C",
+      "sha256": "60818bf57f285fce1f0d83b912b39ce51514a7e60f1c71752d18ecb61a863401"
+    },
+    "output_expected": {
+      "file": "output_expected.hex",
+      "shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "bits": 8,
+      "count": 16384,
+      "order": "C",
+      "sha256": "3250373b415638249caa5d879fd1828617433d3f2629d6996b1dcdd15a9399fd"
+    }
+  }
+}

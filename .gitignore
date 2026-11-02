@@ -7,4 +7,6 @@ e1_e2_outputs.zip
 build/
 *.vcd
 results/basic_rtl/
+artifacts/
+golden/e2b_sample*/tensors.npz
 
