@@ -27,7 +27,9 @@ module tb_stem;
         cycles=cycles+1;
         if(mode==1 && busy && !rst) begin
             mac_ready=cycles%5!=0;
-            y_ready=cycles%7!=0;
+            // Hold every output for one edge. A periodic pattern can alias
+            // with the engine's output cadence and accidentally test no stall.
+            y_ready=!(y_valid && !held_y);
         end else begin mac_ready=1; y_ready=1; end
     end
     always @(posedge clk) begin
