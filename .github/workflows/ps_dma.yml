@@ -1,0 +1,62 @@
+name: PS DDR DMA full integer transfer RTL
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y verilator
+      - run: bash tb/ps_dma_v1/run.sh build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-build
+          path: |
+            build/ps_dma_model/Vtb_ps
+            results/ps_dma_rtl/
+  cases:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix: {mode: ['0', '1', '2', '3', 'negative']}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with: {name: ps-dma-build, path: '.'}
+      - run: chmod +x build/ps_dma_model/Vtb_ps
+      - run: bash tb/ps_dma_v1/run.sh case ${{ matrix.mode }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-case-${{ matrix.mode }}
+          path: results/ps_dma_rtl/
+  summary:
+    needs: cases
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install numpy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ps-dma-case-*
+          path: results/ps_dma_rtl
+          merge-multiple: true
+      - run: bash tb/ps_dma_v1/run.sh summary
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ps-dma-evidence
+          path: |
+            results/ps_dma_rtl/
+            results/ps_dma_rtl_actual.json
