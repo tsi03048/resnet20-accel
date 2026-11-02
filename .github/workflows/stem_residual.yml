@@ -12,6 +12,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install numpy
+      - run: python -m unittest discover -s tests -p test_chain_vectors.py -v
       - run: sudo apt-get update && sudo apt-get install -y verilator
       - run: bash tb/stem_residual_e2b_v1/run.sh
       - uses: actions/upload-artifact@v4

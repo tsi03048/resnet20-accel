@@ -56,7 +56,7 @@ def export(directory=ROOT):
 def verify(directory=ROOT):
     stem=verify_stem();export_block();block=verify_block()
     m,cases=expected();root=Path(directory);manifest=json.loads((root/"manifest.json").read_text())
-    if manifest["package"]!=m["semantic_sha256"] or set(manifest["cases"])!=set(cases): raise ValueError("chain package/case mismatch")
+    if manifest["package"]!=m["semantic_sha256"] or set(manifest["cases"])!=set(cases) or manifest["path"]!=["stem","L1.0.conv1","L1.0.conv2","L1.0.add_relu"]: raise ValueError("chain package/case/path mismatch")
     for name,values in cases.items():
         if set(manifest["cases"][name])!=set(values): raise ValueError("chain role mismatch")
         for role,(a,bits) in values.items():

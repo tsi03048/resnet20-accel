@@ -65,6 +65,7 @@ module tb_chain;
             if(stem_mac_valid && !stem_mac_ready) smac_stalls=smac_stalls+1;
             if(block_mac_valid && !block_mac_ready) bmac_stalls=bmac_stalls+1;
             if(busy && (cfg_ready || start_ready)) $fatal(1,"BUSY_HOST_READY");
+            if(stage==3 && (bridge_count!=16384 || block_input_count!=16384 || dut.s_busy || !dut.r_prepared)) $fatal(1,"BLOCK_START_WITHOUT_DRAINED_STEM");
             if(stem_mac_fire) smacs=smacs+1;
             if(block_mac_fire) begin
                 if(bridges!=16384 || bridge_count!=16384 || block_input_count!=16384 || smacs!=442368) $fatal(1,"BLOCK_STARTED_EARLY");
