@@ -1,0 +1,38 @@
+[
+  {
+    "full": 0,
+    "jobs": 9,
+    "cancelled": 6,
+    "accepted_terms": 11538,
+    "accepted_outputs": 164,
+    "hold_checks": 110,
+    "negative_main_checks": 12,
+    "local_write_checks": 164,
+    "zero_tokens": 84,
+    "skip_reads": 80
+  },
+  {
+    "full": 1,
+    "jobs": 2,
+    "cancelled": 0,
+    "accepted_terms": 7077888,
+    "accepted_outputs": 16384,
+    "hold_checks": 5418,
+    "negative_main_checks": 2166,
+    "local_write_checks": 16384,
+    "zero_tokens": 8192,
+    "skip_reads": 8192
+  },
+  {
+    "full": 2,
+    "jobs": 2,
+    "cancelled": 0,
+    "accepted_terms": 7077888,
+    "accepted_outputs": 8192,
+    "hold_checks": 2683,
+    "negative_main_checks": 983,
+    "local_write_checks": 8192,
+    "zero_tokens": 4096,
+    "skip_reads": 4096
+  }
+]

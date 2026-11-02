@@ -1,0 +1,29 @@
+{
+  "scope": "e13_stem",
+  "results": [
+    {
+      "log": "results/simulation_0.log",
+      "tiny": 0,
+      "jobs": 5,
+      "cancelled": 5,
+      "accepted_terms": 2654253,
+      "accepted_outputs": 98304,
+      "real_reads": 2544786,
+      "padding_terms": 109469,
+      "hold_checks": 27832
+    },
+    {
+      "log": "results/simulation_1.log",
+      "tiny": 1,
+      "jobs": 2,
+      "cancelled": 0,
+      "accepted_terms": 288,
+      "accepted_outputs": 16,
+      "real_reads": 288,
+      "padding_terms": 0,
+      "hold_checks": 19
+    }
+  ],
+  "trace": "separate partial-window run, not full regression evidence",
+  "negative_reference_guard": "PASS"
+}

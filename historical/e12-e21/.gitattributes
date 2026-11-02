@@ -1,0 +1,2 @@
+# Preserve original per-file SHA-256 across Windows and Linux checkouts.
+* -text

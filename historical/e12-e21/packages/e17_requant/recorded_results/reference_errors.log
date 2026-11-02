@@ -1,0 +1,9 @@
+NEGATIVE PASS missing reference
+[30000] %Fatal: tb_requant.sv:37: Assertion failed in tb_requant: missing reference
+%Error: sim/tb_requant.sv:37: Verilog $stop
+Aborting...
+
+NEGATIVE PASS malformed vector
+[30000] %Fatal: tb_requant.sv:40: Assertion failed in tb_requant: malformed vector
+%Error: sim/tb_requant.sv:40: Verilog $stop
+Aborting...

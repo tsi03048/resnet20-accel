@@ -1,0 +1,98 @@
+[
+  {
+    "status": "PASS",
+    "target": "e18_transition_diag_v1",
+    "source_case": "small/job1",
+    "files": 11,
+    "elements": 252,
+    "manifest_sha256": "c9b8bd2599bc71f7f8c786a5bc442b825057a470818baef9253d9ee145d21749",
+    "generation": 100,
+    "writes": 284,
+    "role_order": [
+      "input",
+      "weight1",
+      "weight2",
+      "bias1",
+      "bias2",
+      "n1",
+      "n2",
+      "nm",
+      "ns",
+      "s1",
+      "s2",
+      "sa"
+    ]
+  },
+  {
+    "status": "PASS",
+    "target": "e18_transition_diag_v1",
+    "source_case": "small/job4",
+    "files": 11,
+    "elements": 252,
+    "manifest_sha256": "86994d1c4dc442716da43709c20abeaaec0dee378c83f38830440976c252a7e6",
+    "generation": 101,
+    "writes": 284,
+    "role_order": [
+      "input",
+      "weight1",
+      "weight2",
+      "bias1",
+      "bias2",
+      "n1",
+      "n2",
+      "nm",
+      "ns",
+      "s1",
+      "s2",
+      "sa"
+    ]
+  },
+  {
+    "status": "PASS",
+    "target": "e18_transition_diag_v1",
+    "source_case": "stage12/job1",
+    "files": 11,
+    "elements": 14112,
+    "manifest_sha256": "80aec7007a2776eb81c9b0ee9d63cafa0e06a8b0677cc2239b22852d595571a5",
+    "generation": 102,
+    "writes": 30496,
+    "role_order": [
+      "input",
+      "weight1",
+      "weight2",
+      "bias1",
+      "bias2",
+      "n1",
+      "n2",
+      "nm",
+      "ns",
+      "s1",
+      "s2",
+      "sa"
+    ]
+  },
+  {
+    "status": "PASS",
+    "target": "e18_transition_diag_v1",
+    "source_case": "stage23/job1",
+    "files": 11,
+    "elements": 55872,
+    "manifest_sha256": "aab6762d7c5ca9901389e1edd355918f3960488aae8433e4af1f8594b0cb32d1",
+    "generation": 103,
+    "writes": 64064,
+    "role_order": [
+      "input",
+      "weight1",
+      "weight2",
+      "bias1",
+      "bias2",
+      "n1",
+      "n2",
+      "nm",
+      "ns",
+      "s1",
+      "s2",
+      "sa"
+    ]
+  }
+]

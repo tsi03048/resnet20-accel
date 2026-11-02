@@ -1,0 +1,12 @@
+[
+  {
+    "case": "changed_manifest",
+    "status": "REJECT_BEFORE_WRITE_STREAM",
+    "returncode": 1
+  },
+  {
+    "case": "changed_input_audit",
+    "status": "REJECT_BEFORE_WRITE_STREAM",
+    "returncode": 1
+  }
+]

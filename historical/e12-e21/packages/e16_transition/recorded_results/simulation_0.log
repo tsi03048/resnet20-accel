@@ -1,0 +1,12 @@
+BLOCK PASS full=0 job=1 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=2 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=3 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=4 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=5 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=6 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=7 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+PASS full=0 jobs=7 cancelled=5 accepted_terms=8946 accepted_outputs=128 hold_checks=91 negative_main_checks=10 local_write_checks=128 zero_tokens=64 skip_reads=64
+- sim/tb_transition.sv:190: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 309us; walltime 0.014 s; speed 21.845 ms/s
+- Verilator: cpu 0.014 s on 1 threads; allocated 7 MB

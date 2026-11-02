@@ -1,0 +1,13 @@
+{
+  "normal_jobs": 70,
+  "reset_cancelled_jobs": 5,
+  "normal_outputs": 560,
+  "accepted_outputs_including_cancelled": 568,
+  "accepted_terms_including_cancelled": 10245,
+  "payload_hold_checks": 603,
+  "post_unit_cases": 11,
+  "mac_unit_cases": 3,
+  "read_unit_cases": 1,
+  "rtl_simulation": "PASS for selected cases",
+  "fpga_implementation": "NOT_RUN"
+}

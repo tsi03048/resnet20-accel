@@ -1,0 +1,29 @@
+{
+  "scope": "e14_residual",
+  "results": [
+    {
+      "log": "results/simulation_0.log",
+      "full": 0,
+      "jobs": 7,
+      "cancelled": 5,
+      "accepted_terms": 12114,
+      "accepted_outputs": 256,
+      "hold_checks": 114,
+      "negative_main_checks": 29,
+      "local_write_checks": 256
+    },
+    {
+      "log": "results/simulation_1.log",
+      "full": 1,
+      "jobs": 2,
+      "cancelled": 0,
+      "accepted_terms": 9437184,
+      "accepted_outputs": 32768,
+      "hold_checks": 10893,
+      "negative_main_checks": 12098,
+      "local_write_checks": 32768
+    }
+  ],
+  "trace": "separate partial-window run, not full regression evidence",
+  "negative_reference_guard": "PASS"
+}

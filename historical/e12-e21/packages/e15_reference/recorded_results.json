@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "small_random_blocks": 100,
+  "small_outputs_compared": 1600,
+  "full_scope": "address/tag/range/padding/shortcut enumeration only; not full numeric RTL",
+  "shapes": [
+    {
+      "cin": 2,
+      "cout": 4,
+      "h": 4,
+      "conv1": {
+        "outputs": 16,
+        "K": 18,
+        "terms": 288,
+        "valid_reads": 200,
+        "padding": 88
+      },
+      "conv2": {
+        "outputs": 16,
+        "K": 36,
+        "terms": 576,
+        "valid_reads": 256,
+        "padding": 320
+      },
+      "shortcut": {
+        "outputs": 16,
+        "reads": 8,
+        "zero_tokens": 8
+      }
+    },
+    {
+      "cin": 16,
+      "cout": 32,
+      "h": 32,
+      "conv1": {
+        "outputs": 8192,
+        "K": 144,
+        "terms": 1179648,
+        "valid_reads": 1131008,
+        "padding": 48640
+      },
+      "conv2": {
+        "outputs": 8192,
+        "K": 288,
+        "terms": 2359296,
+        "valid_reads": 2166784,
+        "padding": 192512
+      },
+      "shortcut": {
+        "outputs": 8192,
+        "reads": 4096,
+        "zero_tokens": 4096
+      }
+    },
+    {
+      "cin": 32,
+      "cout": 64,
+      "h": 16,
+      "conv1": {
+        "outputs": 4096,
+        "K": 288,
+        "terms": 1179648,
+        "valid_reads": 1083392,
+        "padding": 96256
+      },
+      "conv2": {
+        "outputs": 4096,
+        "K": 576,
+        "terms": 2359296,
+        "valid_reads": 1982464,
+        "padding": 376832
+      },
+      "shortcut": {
+        "outputs": 4096,
+        "reads": 2048,
+        "zero_tokens": 2048
+      }
+    }
+  ]
+}
+

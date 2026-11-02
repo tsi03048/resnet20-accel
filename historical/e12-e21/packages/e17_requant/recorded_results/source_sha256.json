@@ -1,0 +1,11 @@
+{
+  "README.md": "b4b32a49db1fc7a0074e0ca7af92e60edc6f96255a2d49158f0bf0a4fc874fd1",
+  "record_results.py": "65d7c5ac64f7f936f3c7728c7e9946f7580d80bf6552a1b4af0f51505ed5bddf",
+  "reference/make_vectors.py": "bcb894d5cca96e660aead55e200733431de7cb27f343e0c30752113aa373ee1a",
+  "reference/summary.json": "4b2304e1c9ccbc55a08b9edee8bde407bee5f8ff05e2f990601c5abf3b66b51b",
+  "reference/vectors.txt": "9b07466083eaf6173fb4a16aaaeb040e4e1572d663a4a55a87f13aae25580e82",
+  "rtl/requant_join.sv": "d967f4ced5da512a86306517a215438eeff1f4ac15e615fd0f12ea971f49f53c",
+  "run.sh": "cdd57ef92a6efe6b77d9f2fe085d768548c40feb1462f609275736d8800df5ac",
+  "sim/tb_requant.sv": "03a4d3c95ee35464344f6118ae26d22fee2f83798a23bb9ee01f5eb4d89ea912",
+  "verify_reference_errors.py": "e2b4748f152679e471cc03e8bfa27c3eb4e8d80c22c0b96b54c6bc1e947d9349"
+}

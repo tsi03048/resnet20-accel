@@ -1,0 +1,19 @@
+REJECT PASS error_code=1
+REJECT PASS error_code=7
+REJECT PASS error_code=2
+REJECT PASS error_code=3
+REJECT PASS error_code=4
+REJECT PASS error_code=5
+REJECT PASS error_code=3
+REJECT PASS error_code=4
+REJECT PASS error_code=4
+REJECT PASS error_code=6
+BLOCK PASS full=0 job=1 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=2 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=3 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+BLOCK PASS full=0 job=4 Conv1_terms=288 Conv2_terms=576 H=16 M=16 Y=16
+PASS full=0 jobs=4 cancelled=2 rejected_transactions=10 reset_during_load=1 accepted_terms=4329 accepted_outputs=80 hold_checks=38 local_write_checks=80
+- sim/tb_loader.sv:245: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 189us; walltime 0.013 s; speed 14.963 ms/s
+- Verilator: cpu 0.013 s on 1 threads; allocated 7 MB

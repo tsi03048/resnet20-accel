@@ -1,0 +1,2 @@
+REFERENCE PASS small: jobs=4 outputs/block=32 terms/conv=576
+REFERENCE PASS full: jobs=2 outputs/block=16384 terms/conv=2359296

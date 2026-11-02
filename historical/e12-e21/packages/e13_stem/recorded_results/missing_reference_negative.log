@@ -1,0 +1,4 @@
+NEGATIVE TEST PASS: missing reference aborts before simulation comparison
+[60000] %Fatal: tb_stem.sv:101: Assertion failed in tb_stem.require_file: missing reference file: reference/tiny/job0/input.hex
+%Error: sim/tb_stem.sv:101: Verilog $stop
+Aborting...

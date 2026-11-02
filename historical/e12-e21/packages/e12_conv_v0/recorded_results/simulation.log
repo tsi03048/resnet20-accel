@@ -1,0 +1,21 @@
+OUTPUT job=0 index=0 code=10 last=0
+OUTPUT job=0 index=1 code=12 last=0
+OUTPUT job=0 index=2 code=19 last=0
+OUTPUT job=0 index=3 code=21 last=0
+OUTPUT job=0 index=4 code=-5 last=0
+OUTPUT job=0 index=5 code=-7 last=0
+OUTPUT job=0 index=6 code=-14 last=0
+OUTPUT job=0 index=7 code=-16 last=1
+OUTPUT job=1 index=0 code=10 last=0
+OUTPUT job=1 index=1 code=12 last=0
+OUTPUT job=1 index=2 code=19 last=0
+OUTPUT job=1 index=3 code=21 last=0
+OUTPUT job=1 index=4 code=0 last=0
+OUTPUT job=1 index=5 code=0 last=0
+OUTPUT job=1 index=6 code=0 last=0
+OUTPUT job=1 index=7 code=0 last=1
+PASS jobs=70 cancelled=5 accepted_terms=10245 accepted_outputs=568 hold_checks=603 post_cases=11 mac_cases=3 read_cases=1
+- sim/tb_conv_fixed.sv:262: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 332us; walltime 0.029 s; speed 11.358 ms/s
+- Verilator: cpu 0.029 s on 1 threads; allocated 7 MB

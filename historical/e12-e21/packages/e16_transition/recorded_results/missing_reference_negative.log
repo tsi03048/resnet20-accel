@@ -1,0 +1,4 @@
+NEGATIVE TEST PASS: missing reference aborts before simulation comparison
+[70000] %Fatal: tb_transition.sv:109: Assertion failed in tb_transition.require_file: missing reference file: reference/stage12/job0/input.hex
+%Error: sim/tb_transition.sv:109: Verilog $stop
+Aborting...

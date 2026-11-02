@@ -1,0 +1,10 @@
+JOB PASS tiny=0 job=0 terms=442368 outputs=16384 valid_reads=424128 padding=18240 corners=64 edges=1920 interior=14400
+JOB PASS tiny=0 job=1 terms=442368 outputs=16384 valid_reads=424128 padding=18240 corners=64 edges=1920 interior=14400
+JOB PASS tiny=0 job=2 terms=442368 outputs=16384 valid_reads=424128 padding=18240 corners=64 edges=1920 interior=14400
+JOB PASS tiny=0 job=3 terms=442368 outputs=16384 valid_reads=424128 padding=18240 corners=64 edges=1920 interior=14400
+JOB PASS tiny=0 job=4 terms=442368 outputs=16384 valid_reads=424128 padding=18240 corners=64 edges=1920 interior=14400
+PASS tiny=0 jobs=5 cancelled=5 accepted_terms=2654253 accepted_outputs=98304 real_reads=2544786 padding_terms=109469 hold_checks=27832
+- sim/tb_stem.sv:172: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 82ms; walltime 3.626 s; speed 22.596 ms/s
+- Verilator: cpu 3.623 s on 1 threads; allocated 7 MB

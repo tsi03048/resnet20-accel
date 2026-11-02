@@ -1,0 +1,7 @@
+{
+  "python": "3.12.14",
+  "verilator_version": "rev vUNKNOWN-built20260516-4e853d8",
+  "cxx": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "used_distribution": "PyPI verilator5.48.0",
+  "simulation_banner": "Verilator5.49"
+}

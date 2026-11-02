@@ -1,0 +1,7 @@
+BLOCK PASS full=2 job=1 Conv1_terms=1179648 Conv2_terms=2359296 H=4096 M=4096 Y=4096
+BLOCK PASS full=2 job=2 Conv1_terms=1179648 Conv2_terms=2359296 H=4096 M=4096 Y=4096
+PASS full=2 jobs=2 cancelled=0 accepted_terms=7077888 accepted_outputs=8192 hold_checks=2683 negative_main_checks=983 local_write_checks=8192 zero_tokens=4096 skip_reads=4096
+- sim/tb_transition.sv:208: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 214ms; walltime 13.301 s; speed 16.107 ms/s
+- Verilator: cpu 13.299 s on 1 threads; allocated 7 MB

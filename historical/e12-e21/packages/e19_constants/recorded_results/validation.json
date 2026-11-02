@@ -1,0 +1,162 @@
+{
+  "positive": [
+    {
+      "status": "PASS",
+      "target": "e18_transition_diag_v1",
+      "source_case": "small/job1",
+      "files": 11,
+      "elements": 252,
+      "manifest_sha256": "c9b8bd2599bc71f7f8c786a5bc442b825057a470818baef9253d9ee145d21749"
+    },
+    {
+      "status": "PASS",
+      "target": "e18_transition_diag_v1",
+      "source_case": "small/job4",
+      "files": 11,
+      "elements": 252,
+      "manifest_sha256": "86994d1c4dc442716da43709c20abeaaec0dee378c83f38830440976c252a7e6"
+    },
+    {
+      "status": "PASS",
+      "target": "e18_transition_diag_v1",
+      "source_case": "stage12/job1",
+      "files": 11,
+      "elements": 14112,
+      "manifest_sha256": "80aec7007a2776eb81c9b0ee9d63cafa0e06a8b0677cc2239b22852d595571a5"
+    },
+    {
+      "status": "PASS",
+      "target": "e18_transition_diag_v1",
+      "source_case": "stage23/job1",
+      "files": 11,
+      "elements": 55872,
+      "manifest_sha256": "aab6762d7c5ca9901389e1edd355918f3960488aae8433e4af1f8594b0cb32d1"
+    }
+  ],
+  "rejections": [
+    {
+      "name": "version",
+      "code": "VERSION"
+    },
+    {
+      "name": "bool_version",
+      "code": "VERSION"
+    },
+    {
+      "name": "target",
+      "code": "TARGET"
+    },
+    {
+      "name": "rounding",
+      "code": "CONTRACT"
+    },
+    {
+      "name": "zero",
+      "code": "CONTRACT"
+    },
+    {
+      "name": "bool_zero",
+      "code": "CONTRACT"
+    },
+    {
+      "name": "boundary",
+      "code": "CONTRACT"
+    },
+    {
+      "name": "shape",
+      "code": "SHAPE"
+    },
+    {
+      "name": "bool_stride",
+      "code": "SHAPE"
+    },
+    {
+      "name": "axis",
+      "code": "AXIS"
+    },
+    {
+      "name": "layout",
+      "code": "AXIS"
+    },
+    {
+      "name": "dtype",
+      "code": "DTYPE"
+    },
+    {
+      "name": "storage",
+      "code": "DTYPE"
+    },
+    {
+      "name": "count",
+      "code": "COUNT"
+    },
+    {
+      "name": "file_shape",
+      "code": "FILE_SHAPE"
+    },
+    {
+      "name": "size",
+      "code": "SIZE"
+    },
+    {
+      "name": "traversal",
+      "code": "PATH"
+    },
+    {
+      "name": "absolute",
+      "code": "PATH"
+    },
+    {
+      "name": "source_kind",
+      "code": "SOURCE"
+    },
+    {
+      "name": "missing_role",
+      "code": "ROLES"
+    },
+    {
+      "name": "missing_file",
+      "code": "FILE_PATH"
+    },
+    {
+      "name": "bit_changed",
+      "code": "HASH"
+    },
+    {
+      "name": "multiplier_range",
+      "code": "RANGE"
+    },
+    {
+      "name": "shift_range",
+      "code": "RANGE"
+    },
+    {
+      "name": "hex_syntax",
+      "code": "HEX"
+    },
+    {
+      "name": "hex_width",
+      "code": "HEX"
+    },
+    {
+      "name": "short_file",
+      "code": "ELEMENT_COUNT"
+    },
+    {
+      "name": "acc_bound",
+      "code": "ACC_BOUND"
+    },
+    {
+      "name": "coherent_edit_with_pin",
+      "code": "MANIFEST_HASH"
+    },
+    {
+      "name": "duplicate_key",
+      "code": "JSON_DUPLICATE"
+    }
+  ],
+  "known_limitations": [
+    "coherent_content_and_manifest_edit_passes_without_external_pin"
+  ],
+  "snapshot_failure_preserves_existing_output": true
+}

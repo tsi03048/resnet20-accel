@@ -1,0 +1,7 @@
+JOB PASS tiny=1 job=0 terms=144 outputs=8 valid_reads=144 padding=0 corners=8 edges=0 interior=0
+JOB PASS tiny=1 job=1 terms=144 outputs=8 valid_reads=144 padding=0 corners=8 edges=0 interior=0
+PASS tiny=1 jobs=2 cancelled=0 accepted_terms=288 accepted_outputs=16 real_reads=288 padding_terms=0 hold_checks=19
+- sim/tb_stem.sv:172: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 9us; walltime 0.000 s; speed 19.101 ms/s
+- Verilator: cpu 0.000 s on 1 threads; allocated 6 MB

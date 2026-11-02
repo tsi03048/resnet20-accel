@@ -1,0 +1,11 @@
+{
+  "distribution": "verilator PyPI 5.48.0",
+  "version_stdout": "rev vUNKNOWN-built20260516-4e853d8",
+  "simulation_banner": "Verilator 5.49",
+  "python": "3.12.14",
+  "cxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "testbench_seed": 2026,
+  "target_device": null,
+  "timing_constraints_verified": false,
+  "run": "VERILATOR=/path/to/verilator bash run.sh"
+}

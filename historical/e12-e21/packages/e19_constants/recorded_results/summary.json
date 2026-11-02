@@ -1,0 +1,12 @@
+{
+  "packages": 4,
+  "constant_files": 44,
+  "elements": 70488,
+  "negative_rejections": 30,
+  "software_preloads": 4,
+  "rtl_simulation_this_chapter": false,
+  "known_limitation": [
+    "coherent_content_and_manifest_edit_passes_without_external_pin"
+  ],
+  "python": "3.12.14"
+}

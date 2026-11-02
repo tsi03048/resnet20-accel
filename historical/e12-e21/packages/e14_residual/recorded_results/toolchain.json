@@ -1,0 +1,7 @@
+{
+  "verilator_distribution": "5.48.0 (used environment PyPI metadata)",
+  "verilator_version": "rev vUNKNOWN-built20260516-4e853d8",
+  "simulation_banner": "Verilator 5.49 (see full simulation logs)",
+  "python": "3.12.14",
+  "cxx": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+}

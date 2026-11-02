@@ -1,0 +1,34 @@
+{
+  "cases": [
+    {
+      "FULL": 0,
+      "jobs": 2,
+      "starts": 2,
+      "transactions": 2735,
+      "bus_rejections": 15,
+      "held_response_cycles": 186,
+      "native_writes": 853
+    },
+    {
+      "FULL": 1,
+      "jobs": 1,
+      "starts": 1,
+      "transactions": 91606,
+      "bus_rejections": 12,
+      "held_response_cycles": 1049,
+      "native_writes": 30497
+    }
+  ],
+  "inherited_e20_rtl_unchanged": {
+    "requant_join.sv": true,
+    "read_hold.sv": true,
+    "mac_scalar.sv": true,
+    "loaded_transition.sv": true,
+    "transition_block.sv": true,
+    "conv3x3_core.sv": true
+  },
+  "semantic_error_cases_per_small": 3,
+  "semantic_error_cases_per_stage12": 2,
+  "reset_pending_response_per_configuration": 1,
+  "note": "Final Y scoreboard; no real CPU/APB/AXI or FPGA"
+}

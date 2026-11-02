@@ -1,0 +1,5 @@
+PASS FULL=1 jobs=1 starts=1 transactions=91606 bus_rejections=12 held_response_cycles=1049 native_writes=30497
+- sim/tb_mmio.sv:85: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 110ms; walltime 9.092 s; speed 12.053 ms/s
+- Verilator: cpu 9.089 s on 1 threads; allocated 7 MB

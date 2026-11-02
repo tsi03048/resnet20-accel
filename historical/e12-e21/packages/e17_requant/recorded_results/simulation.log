@@ -1,0 +1,5 @@
+PASS vectors=7508 accepted=7510 outputs=7509 cancelled=1 hold_checks=15015
+- sim/tb_requant.sv:57: Verilog $finish
+- S i m u l a t i o n   R e p o r t: Verilator 5.49
+- Verilator: $finish at 376us; walltime 0.032 s; speed 11.601 ms/s
+- Verilator: cpu 0.032 s on 1 threads; allocated 6 MB
