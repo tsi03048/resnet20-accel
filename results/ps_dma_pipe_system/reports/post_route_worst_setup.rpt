@@ -1,0 +1,837 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Mon Nov  2 23:39:32 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -max_paths 10 -path_type full_clock_expanded -file C:/Users/tsi03/AppData/Local/Temp/r20p_44aab4/build/zedboard_ps_pipe/reports/post_route_worst_setup.rpt
+| Design       : system_wrapper
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.055ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/error_code_reg[0]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.566ns  (logic 5.052ns (52.812%)  route 4.514ns (47.188%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.674ns = ( 12.674 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 f  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.450    11.465    system_i/accel/inst/core_unit/unpack_data[31]_i_2_n_0
+    SLICE_X35Y42         LUT6 (Prop_lut6_I1_O)        0.124    11.589 f  system_i/accel/inst/core_unit/error_code[31]_i_3/O
+                         net (fo=2, routed)           0.332    11.921    system_i/accel/inst/core_unit/core/error_code_reg[0]_0
+    SLICE_X32Y42         LUT4 (Prop_lut4_I0_O)        0.124    12.045 r  system_i/accel/inst/core_unit/core/error_code[31]_i_1/O
+                         net (fo=5, routed)           0.481    12.526    system_i/accel/inst/core_unit/core_n_66
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[0]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.495    12.674    system_i/accel/inst/core_unit/aclk
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[0]/C
+                         clock pessimism              0.230    12.904    
+                         clock uncertainty           -0.154    12.750    
+    SLICE_X32Y44         FDRE (Setup_fdre_C_CE)      -0.169    12.581    system_i/accel/inst/core_unit/error_code_reg[0]
+  -------------------------------------------------------------------
+                         required time                         12.581    
+                         arrival time                         -12.526    
+  -------------------------------------------------------------------
+                         slack                                  0.055    
+
+Slack (MET) :             0.055ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/error_code_reg[1]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.566ns  (logic 5.052ns (52.812%)  route 4.514ns (47.188%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.674ns = ( 12.674 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 f  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.450    11.465    system_i/accel/inst/core_unit/unpack_data[31]_i_2_n_0
+    SLICE_X35Y42         LUT6 (Prop_lut6_I1_O)        0.124    11.589 f  system_i/accel/inst/core_unit/error_code[31]_i_3/O
+                         net (fo=2, routed)           0.332    11.921    system_i/accel/inst/core_unit/core/error_code_reg[0]_0
+    SLICE_X32Y42         LUT4 (Prop_lut4_I0_O)        0.124    12.045 r  system_i/accel/inst/core_unit/core/error_code[31]_i_1/O
+                         net (fo=5, routed)           0.481    12.526    system_i/accel/inst/core_unit/core_n_66
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[1]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.495    12.674    system_i/accel/inst/core_unit/aclk
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[1]/C
+                         clock pessimism              0.230    12.904    
+                         clock uncertainty           -0.154    12.750    
+    SLICE_X32Y44         FDRE (Setup_fdre_C_CE)      -0.169    12.581    system_i/accel/inst/core_unit/error_code_reg[1]
+  -------------------------------------------------------------------
+                         required time                         12.581    
+                         arrival time                         -12.526    
+  -------------------------------------------------------------------
+                         slack                                  0.055    
+
+Slack (MET) :             0.055ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/error_code_reg[2]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.566ns  (logic 5.052ns (52.812%)  route 4.514ns (47.188%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.674ns = ( 12.674 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 f  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.450    11.465    system_i/accel/inst/core_unit/unpack_data[31]_i_2_n_0
+    SLICE_X35Y42         LUT6 (Prop_lut6_I1_O)        0.124    11.589 f  system_i/accel/inst/core_unit/error_code[31]_i_3/O
+                         net (fo=2, routed)           0.332    11.921    system_i/accel/inst/core_unit/core/error_code_reg[0]_0
+    SLICE_X32Y42         LUT4 (Prop_lut4_I0_O)        0.124    12.045 r  system_i/accel/inst/core_unit/core/error_code[31]_i_1/O
+                         net (fo=5, routed)           0.481    12.526    system_i/accel/inst/core_unit/core_n_66
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[2]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.495    12.674    system_i/accel/inst/core_unit/aclk
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[2]/C
+                         clock pessimism              0.230    12.904    
+                         clock uncertainty           -0.154    12.750    
+    SLICE_X32Y44         FDRE (Setup_fdre_C_CE)      -0.169    12.581    system_i/accel/inst/core_unit/error_code_reg[2]
+  -------------------------------------------------------------------
+                         required time                         12.581    
+                         arrival time                         -12.526    
+  -------------------------------------------------------------------
+                         slack                                  0.055    
+
+Slack (MET) :             0.055ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/error_code_reg[4]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.566ns  (logic 5.052ns (52.812%)  route 4.514ns (47.188%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.674ns = ( 12.674 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 f  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.450    11.465    system_i/accel/inst/core_unit/unpack_data[31]_i_2_n_0
+    SLICE_X35Y42         LUT6 (Prop_lut6_I1_O)        0.124    11.589 f  system_i/accel/inst/core_unit/error_code[31]_i_3/O
+                         net (fo=2, routed)           0.332    11.921    system_i/accel/inst/core_unit/core/error_code_reg[0]_0
+    SLICE_X32Y42         LUT4 (Prop_lut4_I0_O)        0.124    12.045 r  system_i/accel/inst/core_unit/core/error_code[31]_i_1/O
+                         net (fo=5, routed)           0.481    12.526    system_i/accel/inst/core_unit/core_n_66
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[4]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.495    12.674    system_i/accel/inst/core_unit/aclk
+    SLICE_X32Y44         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[4]/C
+                         clock pessimism              0.230    12.904    
+                         clock uncertainty           -0.154    12.750    
+    SLICE_X32Y44         FDRE (Setup_fdre_C_CE)      -0.169    12.581    system_i/accel/inst/core_unit/error_code_reg[4]
+  -------------------------------------------------------------------
+                         required time                         12.581    
+                         arrival time                         -12.526    
+  -------------------------------------------------------------------
+                         slack                                  0.055    
+
+Slack (MET) :             0.159ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/error_code_reg[31]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.426ns  (logic 5.052ns (53.596%)  route 4.374ns (46.404%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.056ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.674ns = ( 12.674 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 f  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.450    11.465    system_i/accel/inst/core_unit/unpack_data[31]_i_2_n_0
+    SLICE_X35Y42         LUT6 (Prop_lut6_I1_O)        0.124    11.589 f  system_i/accel/inst/core_unit/error_code[31]_i_3/O
+                         net (fo=2, routed)           0.332    11.921    system_i/accel/inst/core_unit/core/error_code_reg[0]_0
+    SLICE_X32Y42         LUT4 (Prop_lut4_I0_O)        0.124    12.045 r  system_i/accel/inst/core_unit/core/error_code[31]_i_1/O
+                         net (fo=5, routed)           0.341    12.386    system_i/accel/inst/core_unit/core_n_66
+    SLICE_X33Y43         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[31]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.495    12.674    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y43         FDRE                                         r  system_i/accel/inst/core_unit/error_code_reg[31]/C
+                         clock pessimism              0.230    12.904    
+                         clock uncertainty           -0.154    12.750    
+    SLICE_X33Y43         FDRE (Setup_fdre_C_CE)      -0.205    12.545    system_i/accel/inst/core_unit/error_code_reg[31]
+  -------------------------------------------------------------------
+                         required time                         12.545    
+                         arrival time                         -12.386    
+  -------------------------------------------------------------------
+                         slack                                  0.159    
+
+Slack (MET) :             0.169ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/rx_ingress_reg[11]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.412ns  (logic 5.052ns (53.678%)  route 4.360ns (46.322%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.670ns = ( 12.670 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 r  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.445    11.460    system_i/accel/inst/core_unit/core/unpack_data_reg[0]
+    SLICE_X33Y37         LUT5 (Prop_lut5_I1_O)        0.124    11.584 r  system_i/accel/inst/core_unit/core/unpack_data[31]_i_1/O
+                         net (fo=36, routed)          0.261    11.845    system_i/accel/inst/core_unit/core/rx_state_reg[1]_1[0]
+    SLICE_X33Y37         LUT6 (Prop_lut6_I5_O)        0.124    11.969 r  system_i/accel/inst/core_unit/core/rx_ingress[18]_i_1/O
+                         net (fo=19, routed)          0.403    12.372    system_i/accel/inst/core_unit/rx_ingress
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[11]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.491    12.670    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[11]/C
+                         clock pessimism              0.230    12.900    
+                         clock uncertainty           -0.154    12.746    
+    SLICE_X33Y37         FDRE (Setup_fdre_C_CE)      -0.205    12.541    system_i/accel/inst/core_unit/rx_ingress_reg[11]
+  -------------------------------------------------------------------
+                         required time                         12.541    
+                         arrival time                         -12.372    
+  -------------------------------------------------------------------
+                         slack                                  0.169    
+
+Slack (MET) :             0.169ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/rx_ingress_reg[12]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.412ns  (logic 5.052ns (53.678%)  route 4.360ns (46.322%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.670ns = ( 12.670 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 r  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.445    11.460    system_i/accel/inst/core_unit/core/unpack_data_reg[0]
+    SLICE_X33Y37         LUT5 (Prop_lut5_I1_O)        0.124    11.584 r  system_i/accel/inst/core_unit/core/unpack_data[31]_i_1/O
+                         net (fo=36, routed)          0.261    11.845    system_i/accel/inst/core_unit/core/rx_state_reg[1]_1[0]
+    SLICE_X33Y37         LUT6 (Prop_lut6_I5_O)        0.124    11.969 r  system_i/accel/inst/core_unit/core/rx_ingress[18]_i_1/O
+                         net (fo=19, routed)          0.403    12.372    system_i/accel/inst/core_unit/rx_ingress
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[12]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.491    12.670    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[12]/C
+                         clock pessimism              0.230    12.900    
+                         clock uncertainty           -0.154    12.746    
+    SLICE_X33Y37         FDRE (Setup_fdre_C_CE)      -0.205    12.541    system_i/accel/inst/core_unit/rx_ingress_reg[12]
+  -------------------------------------------------------------------
+                         required time                         12.541    
+                         arrival time                         -12.372    
+  -------------------------------------------------------------------
+                         slack                                  0.169    
+
+Slack (MET) :             0.169ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/rx_ingress_reg[3]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.412ns  (logic 5.052ns (53.678%)  route 4.360ns (46.322%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.670ns = ( 12.670 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 r  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.445    11.460    system_i/accel/inst/core_unit/core/unpack_data_reg[0]
+    SLICE_X33Y37         LUT5 (Prop_lut5_I1_O)        0.124    11.584 r  system_i/accel/inst/core_unit/core/unpack_data[31]_i_1/O
+                         net (fo=36, routed)          0.261    11.845    system_i/accel/inst/core_unit/core/rx_state_reg[1]_1[0]
+    SLICE_X33Y37         LUT6 (Prop_lut6_I5_O)        0.124    11.969 r  system_i/accel/inst/core_unit/core/rx_ingress[18]_i_1/O
+                         net (fo=19, routed)          0.403    12.372    system_i/accel/inst/core_unit/rx_ingress
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[3]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.491    12.670    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[3]/C
+                         clock pessimism              0.230    12.900    
+                         clock uncertainty           -0.154    12.746    
+    SLICE_X33Y37         FDRE (Setup_fdre_C_CE)      -0.205    12.541    system_i/accel/inst/core_unit/rx_ingress_reg[3]
+  -------------------------------------------------------------------
+                         required time                         12.541    
+                         arrival time                         -12.372    
+  -------------------------------------------------------------------
+                         slack                                  0.169    
+
+Slack (MET) :             0.169ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/rx_ingress_reg[4]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.412ns  (logic 5.052ns (53.678%)  route 4.360ns (46.322%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.670ns = ( 12.670 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 r  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.445    11.460    system_i/accel/inst/core_unit/core/unpack_data_reg[0]
+    SLICE_X33Y37         LUT5 (Prop_lut5_I1_O)        0.124    11.584 r  system_i/accel/inst/core_unit/core/unpack_data[31]_i_1/O
+                         net (fo=36, routed)          0.261    11.845    system_i/accel/inst/core_unit/core/rx_state_reg[1]_1[0]
+    SLICE_X33Y37         LUT6 (Prop_lut6_I5_O)        0.124    11.969 r  system_i/accel/inst/core_unit/core/rx_ingress[18]_i_1/O
+                         net (fo=19, routed)          0.403    12.372    system_i/accel/inst/core_unit/rx_ingress
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[4]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.491    12.670    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[4]/C
+                         clock pessimism              0.230    12.900    
+                         clock uncertainty           -0.154    12.746    
+    SLICE_X33Y37         FDRE (Setup_fdre_C_CE)      -0.205    12.541    system_i/accel/inst/core_unit/rx_ingress_reg[4]
+  -------------------------------------------------------------------
+                         required time                         12.541    
+                         arrival time                         -12.372    
+  -------------------------------------------------------------------
+                         slack                                  0.169    
+
+Slack (MET) :             0.169ns  (required time - arrival time)
+  Source:                 system_i/accel/inst/core_unit/stage_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/accel/inst/core_unit/rx_ingress_reg[8]/CE
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        9.412ns  (logic 5.052ns (53.678%)  route 4.360ns (46.322%))
+  Logic Levels:           12  (CARRY4=7 LUT2=2 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.060ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    2.670ns = ( 12.670 - 10.000 ) 
+    Source Clock Delay      (SCD):    2.960ns
+    Clock Pessimism Removal (CPR):    0.230ns
+  Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.300ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.193     1.193    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     1.294 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.666     2.960    system_i/accel/inst/core_unit/aclk
+    SLICE_X35Y38         FDRE                                         r  system_i/accel/inst/core_unit/stage_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X35Y38         FDRE (Prop_fdre_C_Q)         0.456     3.416 f  system_i/accel/inst/core_unit/stage_reg[2]/Q
+                         net (fo=68, routed)          0.488     3.904    system_i/accel/inst/core_unit/stage_reg[2]_0[2]
+    SLICE_X32Y38         LUT2 (Prop_lut2_I0_O)        0.124     4.028 r  system_i/accel/inst/core_unit/rx_limit[11]_i_1/O
+                         net (fo=2, routed)           0.349     4.377    system_i/accel/inst/core_unit/rx_limit[11]_i_1_n_0
+    SLICE_X33Y38         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.580     4.957 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8/CO[3]
+                         net (fo=1, routed)           0.000     4.957    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_8_n_0
+    SLICE_X33Y39         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     5.114 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7/CO[1]
+                         net (fo=2, routed)           0.503     5.617    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_7_n_2
+    SLICE_X34Y38         CARRY4 (Prop_carry4_CYINIT_CO[2])
+                                                      0.813     6.430 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6/CO[2]
+                         net (fo=2, routed)           0.351     6.781    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_6_n_1
+    SLICE_X34Y39         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.781     7.562 r  system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5/CO[3]
+                         net (fo=1, routed)           0.000     7.562    system_i/accel/inst/core_unit/payload_format_ok1_carry_i_5_n_0
+    SLICE_X34Y40         CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.157     7.719 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5/CO[1]
+                         net (fo=3, routed)           0.652     8.370    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_5_n_2
+    SLICE_X35Y44         CARRY4 (Prop_carry4_CYINIT_O[1])
+                                                      0.806     9.176 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_4/O[1]
+                         net (fo=1, routed)           0.571     9.748    system_i/accel/inst/core_unit/payload_format_ok2[18]
+    SLICE_X33Y41         LUT2 (Prop_lut2_I0_O)        0.303    10.051 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1/O
+                         net (fo=1, routed)           0.000    10.051    system_i/accel/inst/core_unit/payload_format_ok1_carry__0_i_1_n_0
+    SLICE_X33Y41         CARRY4 (Prop_carry4_S[2]_CO[2])
+                                                      0.314    10.365 r  system_i/accel/inst/core_unit/payload_format_ok1_carry__0/CO[2]
+                         net (fo=3, routed)           0.338    10.702    system_i/accel/inst/core_unit/payload_format_ok1
+    SLICE_X32Y40         LUT6 (Prop_lut6_I4_O)        0.313    11.015 r  system_i/accel/inst/core_unit/unpack_data[31]_i_2/O
+                         net (fo=2, routed)           0.445    11.460    system_i/accel/inst/core_unit/core/unpack_data_reg[0]
+    SLICE_X33Y37         LUT5 (Prop_lut5_I1_O)        0.124    11.584 r  system_i/accel/inst/core_unit/core/unpack_data[31]_i_1/O
+                         net (fo=36, routed)          0.261    11.845    system_i/accel/inst/core_unit/core/rx_state_reg[1]_1[0]
+    SLICE_X33Y37         LUT6 (Prop_lut6_I5_O)        0.124    11.969 r  system_i/accel/inst/core_unit/core/rx_ingress[18]_i_1/O
+                         net (fo=19, routed)          0.403    12.372    system_i/accel/inst/core_unit/rx_ingress
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[8]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                     10.000    10.000 r  
+    PS7_X0Y0             PS7                          0.000    10.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, routed)           1.088    11.088    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    11.179 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6117, routed)        1.491    12.670    system_i/accel/inst/core_unit/aclk
+    SLICE_X33Y37         FDRE                                         r  system_i/accel/inst/core_unit/rx_ingress_reg[8]/C
+                         clock pessimism              0.230    12.900    
+                         clock uncertainty           -0.154    12.746    
+    SLICE_X33Y37         FDRE (Setup_fdre_C_CE)      -0.205    12.541    system_i/accel/inst/core_unit/rx_ingress_reg[8]
+  -------------------------------------------------------------------
+                         required time                         12.541    
+                         arrival time                         -12.372    
+  -------------------------------------------------------------------
+                         slack                                  0.169    
+
+
+
+

@@ -1,0 +1,187 @@
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+SCORE job=0 sample=0 class=0 value=-381997
+SCORE job=0 sample=0 class=1 value=-36909
+SCORE job=0 sample=0 class=2 value=46541
+SCORE job=0 sample=0 class=3 value=1586887
+SCORE job=0 sample=0 class=4 value=-259757
+SCORE job=0 sample=0 class=5 value=306431
+SCORE job=0 sample=0 class=6 value=35286
+SCORE job=0 sample=0 class=7 value=-351394
+SCORE job=0 sample=0 class=8 value=-276301
+SCORE job=0 sample=0 class=9 value=-666530
+JOB_PASS job=0 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=0 trace_stalls=0 rsp_stalls=31
+S2MM_PASS job=0 words=16 bytes=64 tag=a5000000 elapsed=64063653
+MM2S_PASS job=1 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=1 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=1 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=1 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=1 kind=4 payload_words=698 bus_words=698 bytes=2804
+SCORE job=1 sample=1 class=0 value=375818
+SCORE job=1 sample=1 class=1 value=759555
+SCORE job=1 sample=1 class=2 value=-571137
+SCORE job=1 sample=1 class=3 value=-422553
+SCORE job=1 sample=1 class=4 value=-786112
+SCORE job=1 sample=1 class=5 value=-518376
+SCORE job=1 sample=1 class=6 value=-400169
+SCORE job=1 sample=1 class=7 value=-532279
+SCORE job=1 sample=1 class=8 value=2082934
+SCORE job=1 sample=1 class=9 value=15190
+JOB_PASS job=1 sample=1 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=8 compute_stalls=0 trace_stalls=0 rsp_stalls=31
+S2MM_PASS job=1 words=16 bytes=64 tag=a5000001 elapsed=64063653
+MM2S_PASS job=2 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=2 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=2 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=2 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=2 kind=4 payload_words=698 bus_words=698 bytes=2804
+SCORE job=2 sample=0 class=0 value=-381997
+SCORE job=2 sample=0 class=1 value=-36909
+SCORE job=2 sample=0 class=2 value=46541
+SCORE job=2 sample=0 class=3 value=1586887
+SCORE job=2 sample=0 class=4 value=-259757
+SCORE job=2 sample=0 class=5 value=306431
+SCORE job=2 sample=0 class=6 value=35286
+SCORE job=2 sample=0 class=7 value=-351394
+SCORE job=2 sample=0 class=8 value=-276301
+SCORE job=2 sample=0 class=9 value=-666530
+JOB_PASS job=2 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=0 trace_stalls=0 rsp_stalls=31
+S2MM_PASS job=2 words=16 bytes=64 tag=a5000002 elapsed=64063653
+CASE_PASS mode=0 jobs=3
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+PIPE_FREEZE_PASS location=conv bits=204 held_edges=12
+PIPE_FREEZE_PASS location=conv_tail bits=204 held_edges=12
+PIPE_FREEZE_PASS location=gap bits=204 held_edges=12
+SCORE job=0 sample=0 class=0 value=-381997
+SCORE job=0 sample=0 class=1 value=-36909
+SCORE job=0 sample=0 class=2 value=46541
+SCORE job=0 sample=0 class=3 value=1586887
+SCORE job=0 sample=0 class=4 value=-259757
+SCORE job=0 sample=0 class=5 value=306431
+SCORE job=0 sample=0 class=6 value=35286
+SCORE job=0 sample=0 class=7 value=-351394
+SCORE job=0 sample=0 class=8 value=-276301
+SCORE job=0 sample=0 class=9 value=-666530
+JOB_PASS job=0 sample=0 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=3 compute_stalls=154 trace_stalls=12 rsp_stalls=111
+S2MM_PASS job=0 words=16 bytes=64 tag=a5000000 elapsed=64063819
+BUSY_STALE_GUARD_PASS
+CASE_PASS mode=1 jobs=1
+RESET_CANCEL location=0 op=0 events=0 rx_words=0 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+RESET_CANCEL location=1 op=0 events=0 rx_words=3324 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=2 op=0 events=1 rx_words=273502 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=3 op=0 events=0 rx_words=273502 tx_words=0
+PIPE_RESET_PHASE phase=0 valid=1000 issue=1 retired=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=4 op=0 events=0 rx_words=273502 tx_words=0
+PIPE_RESET_PHASE phase=1 valid=1111 issue=4 retired=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=5 op=0 events=0 rx_words=273502 tx_words=0
+PIPE_RESET_PHASE phase=2 valid=1111 issue=26 retired=23
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=6 op=0 events=0 rx_words=273502 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=7 op=0 events=0 rx_words=273502 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=8 op=0 events=37 rx_words=273502 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=9 op=11 events=172032 rx_words=273502 tx_words=0
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+RESET_CANCEL location=10 op=29 events=274506 rx_words=273502 tx_words=5
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+SCORE job=0 sample=1 class=0 value=375818
+SCORE job=0 sample=1 class=1 value=759555
+SCORE job=0 sample=1 class=2 value=-571137
+SCORE job=0 sample=1 class=3 value=-422553
+SCORE job=0 sample=1 class=4 value=-786112
+SCORE job=0 sample=1 class=5 value=-518376
+SCORE job=0 sample=1 class=6 value=-400169
+SCORE job=0 sample=1 class=7 value=-532279
+SCORE job=0 sample=1 class=8 value=2082934
+SCORE job=0 sample=1 class=9 value=15190
+JOB_PASS job=0 sample=1 boundaries=61 elements=552084 events=274506 macs=40551040 gaps=4096 prediction=8 compute_stalls=0 trace_stalls=0 rsp_stalls=31
+S2MM_PASS job=0 words=16 bytes=64 tag=a5000000 elapsed=64063653
+RESET_PASS cancelled=11 recovered_sample=1
+CASE_PASS mode=2 jobs=1
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+PROTOCOL_PASS malformed=8 axi_checks=43 aw_w_orders=3 byte_strobes=1 response_hold=1 reset_pending=1
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+PACKED_LOADER_PASS input_bytes=3072 weight_bytes=268336 coefficients=2094 bus_words=69961 bytes=279844 bram_boundary=262144
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=0 payload_words=3072 bus_words=768 bytes=3084
+MM2S_PASS job=0 kind=1 payload_words=268336 bus_words=67084 bytes=268348
+MM2S_PASS job=0 kind=2 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=3 payload_words=698 bus_words=698 bytes=2804
+MM2S_PASS job=0 kind=4 payload_words=698 bus_words=698 bytes=2804
+OVERFLOW_PASS code=1 reset_clean=1 error_packet=1

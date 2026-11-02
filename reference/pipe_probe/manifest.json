@@ -1,0 +1,27 @@
+{
+  "scope": "Synthetic initial Stem only; 4 pixels, 108 ordered MACs; not an actual CIFAR classification job",
+  "bias": 7,
+  "N": 3,
+  "shift": 2,
+  "accs": [
+    17,
+    14,
+    11,
+    8
+  ],
+  "codes": [
+    13,
+    10,
+    8,
+    6
+  ],
+  "files": {
+    "input.hex": "4b94de4c6d5911d7693d7af7fb8b27091bd872c1ab7f15cdc50c411efd898aac",
+    "weight.hex": "eeee6923cfeb73bf695626e87e1ddbca50aa6e51512fd7f7daaf433755ec1cb4",
+    "product.hex": "c77549b497642c5a4e59c8ffb61b296918d459c0b8fa0df525c3eb08ddb2133a",
+    "prefix.hex": "f6d3f10b710c4990d6ebc8971426c6ed1daba58f10068728ad8d87eb6d61fbbc",
+    "acc.hex": "a26a6e6d3370c62e9c5bddd09baa4e71743134dd0531f509026e005726b6deab",
+    "code.hex": "c1ea2a43e2ae2c3f1dedcc28c42cf2f0b3003b19f2b28c5e8c95210c11d5dfb2",
+    "wide.hex": "72e9d91d138742554bafb6e73032d175ead31b8eecf425887a82230a99b405cb"
+  }
+}

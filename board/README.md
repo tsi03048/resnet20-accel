@@ -56,3 +56,5 @@ VIO 창을 열고 아래 신호를 추가한다. 표시 이름이 번호이면 �
 후속 [E8-F](../docs/packed_dma.md)는 INT8 네 개를 한 word에 담는 R202 버전입니다. MM2S bytes를 74.42% 줄였고, 전체 정수 회귀·실제 DMA IP·추가 lane Reset·100 MHz 시스템 배선을 재검증했습니다. 해당 버전의 bit·ARM ELF·패킷을 함께 사용합니다. 실물 실행은 아직 NOT_RUN입니다.
 [기존 E12~E21 자료](../docs/historical/e12-e21/README.md)는 원본 ZIP·소스·로그 이관을 완료했다. 전체 모델·실물 보드 실행은 별도 미완료 항목이다.
 
+
+후속 [E8-G MAC 파이프라인](../docs/pipelined_mac.md)은 같은 R202 인터페이스로 계산 클록을75.92% 줄였습니다. 61경계·Stall·11곳 Reset과 전체 시스템100 MHz 배선을 재검증했습니다. 실습 ZIP에서는 `platform_pipe`의 새 bit와 제공된 R202 ELF·패킷을 함께 사용합니다. 실물 실행은 NOT_RUN입니다.

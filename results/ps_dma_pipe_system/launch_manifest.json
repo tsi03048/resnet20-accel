@@ -1,0 +1,30 @@
+{
+  "started_at": "2026-11-02T23:34:37.3899502+09:00",
+  "vivado": "C:/Xilinx/2025.1/Vivado/bin/vivado.bat",
+  "stage": "C:\\Users\\tsi03\\AppData\\Local\\Temp\\r20p_44aab4",
+  "destination": "C:\\Users\\tsi03\\OneDrive\\문서\\ChatGPT\\딥러닝 가속기 프로젝트\\resnet20-accel\\build\\zedboard_ps_pipe_runs\\ps_20261102_233437_61e78c",
+  "top": "system_wrapper",
+  "part": "xc7z020clg484-1",
+  "mode": "complete_system",
+  "source_sha256": {
+    "board/zedboard/ps_dma_pipe/build_system.tcl": "6e5b87c28754ec8062e4627b79af7d3ce52369990e2e0026af4ed5458b3b7376",
+    "board/zedboard/ps_dma_pipe/run_system.ps1": "c1e181206a693f66f7f3f446a9af7d1ebc82a75ec73dad8d82490480fb2c43ad",
+    "rtl/ps_dma_v2/resnet20_axi_packed.sv": "743ecd50499452d0a2cf830fd06e11ce08aa8611a872ab7228bb692177e5740d",
+    "rtl/ps_dma_v2/resnet20_axi_packed_bd.v": "3bbe0faf83fecca907c825a14b792e74cb740a0818d7aa5629be227be6660718",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "rtl/full_e2b_fpga_v3/full_model.sv": "376b4b6743244327c650c017efcd5010bee95b5c5377bdf527f1892b993a7555",
+    "rtl/full_e2b_fpga_v3/feature_ram.sv": "29585b2ab8dac3216d2c8ef7d8902e60724be1fde3bbda703ae8b4aaf71fbf20",
+    "rtl/full_e2b_fpga_v3/sync_bram.sv": "3107468e172db8cf54226fbb424f71fdb019d118c7b46d101e0cc0c9252fe139",
+    "rtl/full_e2b_fpga_v3/weight_bram.sv": "9350e24b75add95e4459264614e03524312cccb8851cbdf4df50a1bbc1c7b893",
+    "rtl/full_e2b_fpga_v3/mul_serial.sv": "f5081684ade0b70cf66c49a71a2ff66923424bad7b28df34760d1dd49e216d2f",
+    "rtl/full_e2b_fpga_v3/rne_serial.sv": "1dad2785b9458349e76d9201f3ae29f110dd6f3ba755a53645177bdeb6971101",
+    "rtl/full_e2b_fpga_v3/control_rom.svh": "925fe75ece2e5bb70b9e21631cc9c0f05a18bfd15052dea22388db0427568f9c",
+    "third_party/avnet_bdf/LICENSE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "third_party/avnet_bdf/README.md": "8cba3f6b0da9ac826324ddbd30cca0a400162c5205975aae27e0926003df2113",
+    "third_party/avnet_bdf/zedboard/1.5/board.xml": "0b55356d7702e0fb68ba900ebf124c68574f04dac8ba1ad9f80633f9a94e99ba",
+    "third_party/avnet_bdf/zedboard/1.5/changelog.txt": "2aed1ad3c9a1100a99c05e9cf16068c583605fbe653fdbb018842cba39b7c903",
+    "third_party/avnet_bdf/zedboard/1.5/part0_pins.xml": "732296bd482fe6a0f8d057589703c7f314c02c399787edd6dec3d2b9c034a271",
+    "third_party/avnet_bdf/zedboard/1.5/preset.xml": "7ec033af6b2bbad62d8d8d01e2983964f3a9af31fd166e95696dc023113603ea",
+    "third_party/avnet_bdf/zedboard/1.5/zed_board.jpg": "b1f5a76196ef3631c255bc72d6431b82cbe69c66d5e3d8e17c9fd2f0681fd65e"
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "normal_measured_cycles": [
+    64063653,
+    64063653,
+    64063653
+  ],
+  "cycle_prediction_matches": true,
+  "old_mm2s_bytes_per_image": 279844,
+  "new_mm2s_bytes_per_image": 279844,
+  "s2mm_bytes_per_image": 64,
+  "clock_mhz": 100,
+  "core_cycle_model": {
+    "baseline_measured_cycles": 266085373,
+    "predicted_pipeline_cycles": 64063653,
+    "saved_cycles": 202021720,
+    "mac_and_gap_terms": 40555136,
+    "pipelined_outputs": 188490,
+    "predicted_cycle_reduction_percent": 75.92364725737856,
+    "predicted_cycle_ratio": 4.153453019608482,
+    "operations": [
+      {
+        "id": 0,
+        "name": "stem",
+        "outputs": 16384,
+        "terms": 27,
+        "old_loop_cycles_per_output": 162,
+        "new_loop_cycles_per_output": 31,
+        "saved_cycles": 2146304
+      },
+      {
+        "id": 1,
+        "name": "L1.0.conv1",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 2,
+        "name": "L1.0.conv2",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 4,
+        "name": "L1.1.conv1",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 5,
+        "name": "L1.1.conv2",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 7,
+        "name": "L1.2.conv1",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 8,
+        "name": "L1.2.conv2",
+        "outputs": 16384,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 11730944
+      },
+      {
+        "id": 10,
+        "name": "L2.0.conv1",
+        "outputs": 8192,
+        "terms": 144,
+        "old_loop_cycles_per_output": 864,
+        "new_loop_cycles_per_output": 148,
+        "saved_cycles": 5865472
+      },
+      {
+        "id": 11,
+        "name": "L2.0.conv2",
+        "outputs": 8192,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 11763712
+      },
+      {
+        "id": 13,
+        "name": "L2.1.conv1",
+        "outputs": 8192,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 11763712
+      },
+      {
+        "id": 14,
+        "name": "L2.1.conv2",
+        "outputs": 8192,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 11763712
+      },
+      {
+        "id": 16,
+        "name": "L2.2.conv1",
+        "outputs": 8192,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 11763712
+      },
+      {
+        "id": 17,
+        "name": "L2.2.conv2",
+        "outputs": 8192,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 11763712
+      },
+      {
+        "id": 19,
+        "name": "L3.0.conv1",
+        "outputs": 4096,
+        "terms": 288,
+        "old_loop_cycles_per_output": 1728,
+        "new_loop_cycles_per_output": 292,
+        "saved_cycles": 5881856
+      },
+      {
+        "id": 20,
+        "name": "L3.0.conv2",
+        "outputs": 4096,
+        "terms": 576,
+        "old_loop_cycles_per_output": 3456,
+        "new_loop_cycles_per_output": 580,
+        "saved_cycles": 11780096
+      },
+      {
+        "id": 22,
+        "name": "L3.1.conv1",
+        "outputs": 4096,
+        "terms": 576,
+        "old_loop_cycles_per_output": 3456,
+        "new_loop_cycles_per_output": 580,
+        "saved_cycles": 11780096
+      },
+      {
+        "id": 23,
+        "name": "L3.1.conv2",
+        "outputs": 4096,
+        "terms": 576,
+        "old_loop_cycles_per_output": 3456,
+        "new_loop_cycles_per_output": 580,
+        "saved_cycles": 11780096
+      },
+      {
+        "id": 25,
+        "name": "L3.2.conv1",
+        "outputs": 4096,
+        "terms": 576,
+        "old_loop_cycles_per_output": 3456,
+        "new_loop_cycles_per_output": 580,
+        "saved_cycles": 11780096
+      },
+      {
+        "id": 26,
+        "name": "L3.2.conv2",
+        "outputs": 4096,
+        "terms": 576,
+        "old_loop_cycles_per_output": 3456,
+        "new_loop_cycles_per_output": 580,
+        "saved_cycles": 11780096
+      },
+      {
+        "id": 28,
+        "name": "gap",
+        "outputs": 64,
+        "terms": 64,
+        "old_loop_cycles_per_output": 384,
+        "new_loop_cycles_per_output": 68,
+        "saved_cycles": 20224
+      },
+      {
+        "id": 29,
+        "name": "fc",
+        "outputs": 10,
+        "terms": 64,
+        "old_loop_cycles_per_output": 384,
+        "new_loop_cycles_per_output": 68,
+        "saved_cycles": 3160
+      }
+    ],
+    "assumptions": "Same graph, ordered INT32 accumulation and unchanged coefficient/RNE/Add/trace control; unstalled normal runs only; no physical board measurement."
+  },
+  "scope": "RTL simulation compute cycles only; no PS/DDR/DMA load/retrieval time, board FPS or physical execution."
+}

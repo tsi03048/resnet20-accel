@@ -148,3 +148,5 @@ python -m tools.ps_dma_packed_arm_emulate
 5. Reset 뒤 BRAM 값이 남아 있어도 새 작업에 섞이지 않게 하는 상태는 무엇인가요?
 
 날짜·실행 명령·source/bit/ELF/패킷 해시, 실제 전송 bytes와 논리 값 개수, 정상·Stall·Reset·오류 결과, Used/Available·Setup/Hold·원본 경고를 기록하세요. 배포 증거 열람·본인 재실행·실물 보드 실행을 구분합니다.
+
+다음 선택 확장: [E8-G MAC 파이프라인](pipelined_mac.md). 같은 R202 전송 규약으로 계산 클록을 줄이고 전체 정수·시스템 배선을 다시 검증합니다. 위 E8-F 수치는 당시 측정 이력으로 보존합니다.

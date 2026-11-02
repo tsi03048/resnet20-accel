@@ -1,0 +1,7 @@
+Time resolution is 1 ps
+PIPE_PROBE_PIXEL_PASS pixel=0 acc=17 code=13
+PIPE_PROBE_PIXEL_PASS pixel=1 acc=14 code=10
+PIPE_PROBE_PIXEL_PASS pixel=2 acc=11 code=8
+PIPE_PROBE_PIXEL_PASS pixel=3 acc=8 code=6
+PIPE_PROBE_PASS pixels=4 macs=108 signed_products=1 ordered_prefix=1 compute_stalls=27 trace_stalls=4 held_edges=30
+$finish called at time : 2738465 ns : File "C:/Users/tsi03/AppData/Local/Temp/r20probe_4f1527/tb/ps_dma_v3/tb_pipe_probe.sv" Line 61

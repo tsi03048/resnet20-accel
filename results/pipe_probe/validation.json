@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "pixels": 4,
+  "ordered_macs": 108,
+  "accs": [
+    17,
+    14,
+    11,
+    8
+  ],
+  "codes": [
+    13,
+    10,
+    8,
+    6
+  ],
+  "independent_csv_checked": true,
+  "scope": "Synthetic initial Stem only; 4 pixels, 108 ordered MACs; not an actual CIFAR classification job"
+}

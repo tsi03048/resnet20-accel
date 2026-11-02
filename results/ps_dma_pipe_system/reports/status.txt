@@ -1,0 +1,3 @@
+status=COMPLETE
+phase=complete
+detail=bitstream_and_xsa
