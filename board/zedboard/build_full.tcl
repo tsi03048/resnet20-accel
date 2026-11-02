@@ -4,8 +4,9 @@ set root [file normalize [file join [file dirname [info script]] ../..]]
 set action [expr {$argc > 0 ? [lindex $argv 0] : "synth"}]
 if {$action ni {synth route}} {error "Expected synth or route"}
 set variant [expr {$argc > 1 ? [lindex $argv 1] : "baseline"}]
-if {$variant ni {baseline flat fpga}} {error "Expected baseline, flat or fpga"}
-set core_dir [expr {$variant eq "baseline" ? "full_e2b_v1" : "full_e2b_${variant}_v1"}]
+if {$variant ni {baseline flat fpga fpga2}} {error "Expected baseline, flat, fpga or fpga2"}
+set core_dir [expr {$variant eq "baseline" ? "full_e2b_v1" : ($variant eq "fpga2" ? "full_e2b_fpga_v2" : "full_e2b_${variant}_v1")}]
+set top [expr {$variant eq "fpga2" ? "full_model_ooc" : "full_model"}]
 set out [file join $root build/zedboard_full]
 set reports [file join $out reports]
 file mkdir $reports
@@ -42,12 +43,12 @@ state_file RUNNING started
 if {[catch {
     create_project -in_memory -part xc7z020clg484-1
     set_property target_language Verilog [current_project]
-    set_property include_dirs [list [file join $root rtl/full_e2b_v1]] [current_fileset]
+    set_property include_dirs [list [file join $root rtl/full_e2b_v1] [file join $root rtl/$core_dir]] [current_fileset]
     set_param general.maxThreads 4
     set f [open [file join $reports environment.txt] w]
     puts $f "tool=[version -short]"
     puts $f "part=xc7z020clg484-1"
-    puts $f "top=full_model"
+    puts $f "top=$top"
     puts $f "mode=out_of_context"
     puts $f "clock_period_ns=10.000"
     puts $f "interface_max_delay_ns=2.000"
@@ -57,10 +58,15 @@ if {[catch {
     read_verilog -sv [list [file join $root rtl/full_e2b_v1/requant_full.sv] \
         [file join $root rtl/full_e2b_v1/argmax10.sv] [file join $root rtl/$core_dir/full_model.sv]]
     if {$variant eq "fpga"} {read_verilog -sv [file join $root rtl/full_e2b_fpga_v1/feature_ram.sv]}
+    if {$variant eq "fpga2"} {
+        foreach source {sync_bram weight_bram feature_ram mul_serial rne_serial full_model_ooc} {
+            read_verilog -sv [file join $root rtl/$core_dir/${source}.sv]
+        }
+    }
     read_xdc [file join $root board/zedboard/full_core.xdc]
     set phase synthesis
     state_file RUNNING synthesis
-    synth_design -top full_model -part xc7z020clg484-1 -mode out_of_context
+    synth_design -top $top -part xc7z020clg484-1 -mode out_of_context
     set phase post_synthesis_reports
     write_checkpoint -force [file join $out post_synth.dcp]
     write_reports post_synth
@@ -69,6 +75,7 @@ if {[catch {
         opt_design
         set phase placement
         place_design
+        if {$variant eq "fpga2"} {phys_opt_design -directive AggressiveExplore}
         set phase routing
         route_design
         set phase post_route_reports

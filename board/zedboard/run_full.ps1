@@ -1,6 +1,6 @@
 param(
     [ValidateSet('synth','route')][string]$Action='synth',
-    [ValidateSet('baseline','flat','fpga')][string]$Variant='fpga',
+    [ValidateSet('baseline','flat','fpga','fpga2')][string]$Variant='fpga2',
     [string]$VivadoPath='C:/Xilinx/2025.1/Vivado/bin/vivado.bat',
     [string]$StageBase=$env:TEMP
 )
@@ -15,6 +15,7 @@ New-Item -ItemType Directory -Path $stage,$destination -Force | Out-Null
 $paths=@('rtl/full_e2b_v1/full_model.sv','rtl/full_e2b_v1/full_graph.svh','rtl/full_e2b_v1/requant_full.sv','rtl/full_e2b_v1/argmax10.sv','board/zedboard/full_core.xdc','board/zedboard/build_full.tcl')
 if($Variant -eq 'flat'){$paths+=@('rtl/full_e2b_flat_v1/full_model.sv','rtl/full_e2b_flat_v1/manifest.json')}
 if($Variant -eq 'fpga'){$paths+=@('rtl/full_e2b_fpga_v1/full_model.sv','rtl/full_e2b_fpga_v1/manifest.json','rtl/full_e2b_fpga_v1/feature_ram.sv')}
+if($Variant -eq 'fpga2'){$paths+=@(Get-ChildItem -LiteralPath (Join-Path $projectRoot 'rtl/full_e2b_fpga_v2') -File | ForEach-Object {'rtl/full_e2b_fpga_v2/'+$_.Name})}
 $hashes=[ordered]@{}
 foreach($relative in $paths){
     $source=Join-Path $projectRoot $relative
@@ -25,7 +26,7 @@ foreach($relative in $paths){
     if((Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLower() -ne $originalHash){throw "Staging hash mismatch: $relative"}
     $hashes[$relative]=$originalHash
 }
-$manifest=[ordered]@{started_at=(Get-Date).ToString('o');action=$Action;variant=$Variant;vivado=$VivadoPath;stage=$stage;destination=$destination;top='full_model';part='xc7z020clg484-1';mode='out_of_context';source_sha256=$hashes}
+$manifest=[ordered]@{started_at=(Get-Date).ToString('o');action=$Action;variant=$Variant;vivado=$VivadoPath;stage=$stage;destination=$destination;top=$(if($Variant -eq 'fpga2'){'full_model_ooc'}else{'full_model'});part='xc7z020clg484-1';mode='out_of_context';source_sha256=$hashes}
 $manifest | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $destination 'launch_manifest.json') -Encoding utf8
 Write-Output "Running Vivado in ASCII stage: $stage"
 $toolExit=1
