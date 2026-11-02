@@ -12,6 +12,12 @@ results/stem_rtl/
 results/residual_rtl/
 results/stem_residual_rtl/
 results/transition_rtl/
+results/full_rtl/
+reference/e2b_v1/full_vectors/constants/*.hex
+reference/e2b_v1/full_vectors/sample0/*.hex
+reference/e2b_v1/full_vectors/sample1/*.hex
+reference/e2b_v1/full_vectors/layout/*.hex
+reference/e2b_v1/full_vectors/post/*.hex
 reference/e2b_v1/transition_vectors/stage*/*.hex
 reference/e2b_v1/chain_vectors/*/*.hex
 reference/e2b_v1/residual_l10_vectors/*.hex

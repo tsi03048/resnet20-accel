@@ -1,0 +1,32 @@
+{
+  "source": "uoft-cs/cifar10 cached Test Arrow",
+  "test_index": 1,
+  "label": 8,
+  "source_arrow_sha256": "b37399b84e3f70eda10813a7ec6f5a4a6be2d0b686fe4549936c0d5cbd33a158",
+  "image_rgb_sha256": "df20a6f4102c83a7464ad1e47b60fb267ab02e970e13a081e95b223770f5a206",
+  "preprocessing": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "layout": "NCHW",
+    "input": "FP32 Normalize then binary64 quantization"
+  },
+  "input_scale": 0.020787402400820273,
+  "input_shape": [
+    1,
+    3,
+    32,
+    32
+  ],
+  "input_sha256": "35a3f35922d02125355ed7f77fa761f50e0dd83b0b7930b431378cad081caef5",
+  "input_array_sha256": "b0c4866baad13f1bfa3487472543d61918680d704b2cc82f531f2c4aba070ca5",
+  "sample0_preprocessing_match": true,
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833"
+}
