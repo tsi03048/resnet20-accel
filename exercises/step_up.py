@@ -60,14 +60,15 @@ def experiment(lesson):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('lesson', choices=['conv','learn','residual','quant','handshake','all'])
-    p.add_argument('--out', default='results/learning/student_steps.json')
+    p.add_argument('--out', help='Optional output path; each lesson gets its own record by default.')
     args = p.parse_args()
     lessons = ['conv','learn','residual','quant','handshake'] if args.lesson == 'all' else [args.lesson]
     print('먼저 예측하세요. 실행 결과와 다른 이유를 한 문장으로 적어보세요.')
     report = {'executed_at_utc': datetime.now(timezone.utc).isoformat(),
               'evidence': 'EDUCATIONAL_PYTHON', 'fpga_measured': False,
               'lessons': {lesson: experiment(lesson) for lesson in lessons}}
-    dest = Path(args.out)
+    name = 'student_steps' if args.lesson == 'all' else args.lesson
+    dest = Path(args.out or f'results/learning/{name}.json')
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     print(json.dumps(report['lessons'], ensure_ascii=False, indent=2))
