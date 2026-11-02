@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">준비됐다는 표시와 실제 전달은 다릅니다</title>
+<desc id="desc">각 열은 클록이 0에서 1로 바뀌는 순간입니다. 같은 값 A를 보내는 세 순간만 봅니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">준비됐다는 표시와 실제 전달은 다릅니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">각 열은 클록이 0에서 1로 바뀌는 순간입니다. 같은 값 A를 보내는 세 순간만 봅니다.</text>
+<rect x="65" y="190" width="450" height="335" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="85" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">첫 순간</text>
+<text x="85" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">보낼 값: A</text>
+<text x="85" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Valid = 1</text>
+<text x="85" y="354" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Ready = 0</text>
+<text x="85" y="397" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">대기</text>
+<rect x="575" y="190" width="450" height="335" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="595" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">둘째 순간</text>
+<text x="595" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">보낼 값: A</text>
+<text x="595" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Valid = 1</text>
+<text x="595" y="354" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Ready = 0</text>
+<text x="595" y="397" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">대기</text>
+<rect x="1085" y="190" width="450" height="335" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1105" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">셋째 순간</text>
+<text x="1105" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">보낼 값: A</text>
+<text x="1105" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Valid = 1</text>
+<text x="1105" y="354" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Ready = 1</text>
+<text x="1105" y="397" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">A를 한 번 전달</text>
+<text x="70" y="585" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#18314b">두 번 기다리는 동안에도 값 A를 그대로 유지합니다.</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">Valid와 Ready가 모두 1인 상승 에지에서만 전달합니다. A가 보이는 횟수 3번과 전달 1번은 다릅니다.</text>
+</svg>

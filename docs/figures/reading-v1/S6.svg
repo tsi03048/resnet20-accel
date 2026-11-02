@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">보드에서는 시작·완료·네 결과를 확인합니다</title>
+<desc id="desc">아래는 실행 순서 안내입니다. 실제 보드 실행 결과나 통과 증거를 나타내는 그림은 아닙니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">보드에서는 시작·완료·네 결과를 확인합니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">아래는 실행 순서 안내입니다. 실제 보드 실행 결과나 통과 증거를 나타내는 그림은 아닙니다.</text>
+<rect x="65" y="220" width="450" height="255" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="85" y="240" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">1. 초기화 후 시작</text>
+<text x="85" y="298" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Reset: 1 → 0</text>
+<text x="85" y="341" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Start: 0 → 1 → 0</text>
+<rect x="575" y="220" width="450" height="255" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="595" y="240" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">2. 완료 기다리기</text>
+<text x="595" y="298" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">동작 중이면 새 시작 금지</text>
+<text x="595" y="341" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">busy=0, completed=1 확인</text>
+<rect x="1085" y="220" width="450" height="255" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1105" y="240" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">3. 저장한 결과 읽기</text>
+<text x="1105" y="298" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">10, 9, 8, 6 비교</text>
+<text x="1105" y="341" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">네 저장 표시: 1111</text>
+<polyline points="520,345 560,345" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="560,345 543.0,336.0 543.0,354.0" fill="#087b78"/>
+<polyline points="1030,345 1070,345" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1070,345 1053.0,336.0 1053.0,354.0" fill="#087b78"/>
+<text x="70" y="550" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="400" fill="#18314b">같은 빌드의 회로 설정(.bit)과 신호 정보(.ltx)를 사용합니다.</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">출력 비교와 신호 시간 검사(Timing)를 함께 확인합니다. 읽기만 했으면 실행 완료로 기록하지 않습니다.</text>
+</svg>

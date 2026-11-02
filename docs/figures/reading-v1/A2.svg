@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">곱해서 더하기 → 기본값 더하기 → ReLU</title>
+<desc id="desc">본문의 밝기 예제: 왼쪽 8, 오른쪽 2. 왼쪽이 얼마나 더 밝은지 계산합니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">곱해서 더하기 → 기본값 더하기 → ReLU</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">본문의 밝기 예제: 왼쪽 8, 오른쪽 2. 왼쪽이 얼마나 더 밝은지 계산합니다.</text>
+<rect x="60" y="200" width="440" height="260" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="220" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">1. Weight로 곱하기</text>
+<text x="80" y="278" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">왼쪽: 8 × (+1) = 8</text>
+<text x="80" y="321" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">오른쪽: 2 × (-1) = -2</text>
+<text x="80" y="364" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">합: 8 + (-2) = 6</text>
+<rect x="580" y="200" width="440" height="260" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="600" y="220" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">2. Bias 더하기</text>
+<text x="600" y="278" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">기본값은 -3</text>
+<text x="600" y="321" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">6 + (-3) = 3</text>
+<rect x="1100" y="200" width="440" height="260" rx="15" fill="white" stroke="#b95818" stroke-width="3"/>
+<text x="1120" y="220" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#b95818">3. ReLU 적용</text>
+<text x="1120" y="278" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">음수는 0으로</text>
+<text x="1120" y="321" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">양수 3은 그대로 3</text>
+<polyline points="505,320 565,320" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="565,320 548.0,311.0 548.0,329.0" fill="#087b78"/>
+<polyline points="1025,320 1085,320" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1085,320 1068.0,311.0 1068.0,329.0" fill="#087b78"/>
+<text x="70" y="535" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#18314b">같은 규칙으로 -2를 ReLU에 넣으면 0이 됩니다.</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">Weight는 곱하는 값, Bias는 합에 더하는 기본값입니다. 양수 Weight가 더 중요하다는 뜻은 아닙니다.</text>
+</svg>

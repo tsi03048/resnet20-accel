@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+<title id="title">채널별 평균을 낸 뒤 후보별 점수를 계산합니다</title>
+<desc id="desc">두 채널과 두 후보만 둔 작은 예제입니다. 실제 CIFAR-10 모델은 후보가 10개입니다.</desc>
+<rect width="1600" height="820" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">채널별 평균을 낸 뒤 후보별 점수를 계산합니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">두 채널과 두 후보만 둔 작은 예제입니다. 실제 CIFAR-10 모델은 후보가 10개입니다.</text>
+<text x="65" y="174" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="700" fill="#245eaa">채널 1</text>
+<rect x="65" y="220" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="79" y="232" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">1</text>
+<rect x="132" y="220" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="146" y="232" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">3</text>
+<rect x="65" y="287" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="79" y="299" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">1</text>
+<rect x="132" y="287" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="146" y="299" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">3</text>
+<text x="65" y="405" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="700" fill="#087b78">채널 2</text>
+<rect x="65" y="450" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="79" y="462" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">2</text>
+<rect x="132" y="450" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="146" y="462" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">4</text>
+<rect x="65" y="517" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="79" y="529" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">2</text>
+<rect x="132" y="517" width="64" height="64" rx="2" fill="white" stroke="#a5b4c5" stroke-width="3"/>
+<text x="146" y="529" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="30" font-weight="700" fill="#18314b">4</text>
+<rect x="390" y="230" width="350" height="330" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="410" y="250" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">전체 평균 · GAP</text>
+<text x="410" y="308" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">채널 1: 8 ÷ 4 = 2</text>
+<text x="410" y="351" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">채널 2: 12 ÷ 4 = 3</text>
+<text x="410" y="394" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">요약값 [2, 3]</text>
+<polyline points="207,287 300,287 375,317" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="375,317 362.5584123421375,302.3300682840129 355.8733801677636,319.0426487199476" fill="#087b78"/>
+<polyline points="207,517 300,517 375,467" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="375,467 355.8628432302296,468.9414506867883 365.84744676228377,483.9183559848695" fill="#087b78"/>
+<rect x="900" y="230" width="620" height="330" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="920" y="250" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">후보별 점수 · FC</text>
+<text x="920" y="308" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">고양이: 2×1 + 3×1 = 5</text>
+<text x="920" y="351" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">강아지: 2×1 + 3×0 = 2</text>
+<text x="920" y="394" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">가장 큰 점수 5 → 고양이 선택</text>
+<polyline points="745,395 885,395" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="885,395 868.0,386.0 868.0,404.0" fill="#087b78"/>
+<text x="55" y="759" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">예제 Weight와 Bias 0은 설명용입니다. 점수 5는 확률 500%라는 뜻이 아닙니다.</text>
+</svg>

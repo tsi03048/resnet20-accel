@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">연습·설정 점검·최종 시험은 나눕니다</title>
+<desc id="desc">같은 문제를 반복해서 잘 푸는 것만으로 새 문제의 실력을 알 수는 없습니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">연습·설정 점검·최종 시험은 나눕니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">같은 문제를 반복해서 잘 푸는 것만으로 새 문제의 실력을 알 수는 없습니다.</text>
+<rect x="60" y="190" width="450" height="245" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">Train · 연습문제</text>
+<text x="80" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">계산에 쓰는 숫자를 학습</text>
+<text x="80" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">배우는 동안 반복 사용</text>
+<rect x="575" y="190" width="450" height="245" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="595" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">Validation · 점검 문제</text>
+<text x="595" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">공부 방법과 설정 선택</text>
+<text x="595" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">후보를 비교할 때 사용</text>
+<rect x="1090" y="190" width="450" height="245" rx="15" fill="white" stroke="#b95818" stroke-width="3"/>
+<text x="1110" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#b95818">Test · 최종 시험</text>
+<text x="1110" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">선택을 마친 뒤 평가</text>
+<text x="1110" y="311" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">결과를 보고 계속 고치지 않기</text>
+<text x="70" y="500" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#18314b">정확도: 10문제 중 9문제를 맞혔다면 90%</text>
+<rect x="70" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="190" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="310" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="430" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="550" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="670" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="790" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="910" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="1030" y="565" width="92" height="64" rx="15" fill="#087b78" stroke="#087b78" stroke-width="3"/>
+<rect x="1150" y="565" width="92" height="64" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1310" y="582" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">9 ÷ 10</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">문제 묶음은 역할에 따라 나눕니다. 그림은 개념 예시이며 실제 프로젝트 평가 결과가 아닙니다.</text>
+</svg>

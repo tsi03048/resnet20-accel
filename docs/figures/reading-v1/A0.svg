@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">학습에서는 고치고, 추론에서는 사용합니다</title>
+<desc id="desc">두 줄을 따로 읽으세요. 아래의 새 사진에는 정답을 넣지 않습니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">학습에서는 고치고, 추론에서는 사용합니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">두 줄을 따로 읽으세요. 아래의 새 사진에는 정답을 넣지 않습니다.</text>
+<text x="55" y="184" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">학습</text>
+<rect x="220" y="175" width="400" height="175" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="240" y="195" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">사진과 정답</text>
+<text x="240" y="253" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">연습할 예제</text>
+<rect x="660" y="175" width="400" height="175" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="680" y="195" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">예측하고 비교</text>
+<text x="680" y="253" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">어디가 틀렸는지 확인</text>
+<rect x="1100" y="175" width="400" height="175" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="1120" y="195" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">계산에 쓰는 숫자 수정</text>
+<text x="1120" y="253" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">반복하며 더 잘 맞히기</text>
+<polyline points="625,263 645,263" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="645,263 628.0,254.0 628.0,272.0" fill="#087b78"/>
+<polyline points="1065,263 1085,263" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1085,263 1068.0,254.0 1068.0,272.0" fill="#087b78"/>
+<polyline points="1300,355 1300,390 420,390 420,355" fill="none" stroke="#245eaa" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="420,355 411.0,372.0 429.0,372.0" fill="#245eaa"/>
+<text x="55" y="450" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">추론</text>
+<rect x="220" y="440" width="400" height="175" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="240" y="460" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">새 사진</text>
+<text x="240" y="518" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">정답 없이 입력</text>
+<rect x="660" y="440" width="400" height="175" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="680" y="460" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">배운 숫자로 계산</text>
+<text x="680" y="518" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">학습한 값을 사용</text>
+<rect x="1100" y="440" width="400" height="175" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1120" y="460" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">예측</text>
+<text x="1120" y="518" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">고양이 또는 자동차</text>
+<polyline points="625,528 645,528" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="645,528 628.0,519.0 628.0,537.0" fill="#087b78"/>
+<polyline points="1065,528 1085,528" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1085,528 1068.0,519.0 1068.0,537.0" fill="#087b78"/>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">학습한 숫자는 같아도, 새 사진을 넣으면 중간 계산과 예측은 달라집니다.</text>
+</svg>

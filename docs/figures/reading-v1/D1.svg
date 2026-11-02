@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+<title id="title">중간 합은 넓게 담고, 반올림 규칙을 맞춥니다</title>
+<desc id="desc">윗줄은 저장 범위, 아랫줄은 반올림 예입니다. 두 예는 별개로 읽습니다.</desc>
+<rect width="1600" height="820" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">중간 합은 넓게 담고, 반올림 규칙을 맞춥니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">윗줄은 저장 범위, 아랫줄은 반올림 예입니다. 두 예는 별개로 읽습니다.</text>
+<rect x="60" y="180" width="450" height="180" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">입력과 Weight</text>
+<text x="80" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">100과 100은 각각</text>
+<text x="80" y="301" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">INT8에 담을 수 있음</text>
+<rect x="575" y="180" width="450" height="180" rx="15" fill="white" stroke="#b95818" stroke-width="3"/>
+<text x="595" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#b95818">곱한 결과</text>
+<text x="595" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">100 × 100 = 10,000</text>
+<text x="595" y="301" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">INT8 범위를 넘음</text>
+<rect x="1090" y="180" width="450" height="180" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1110" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">넓은 중간 합</text>
+<text x="1110" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">INT32로 더한 뒤</text>
+<text x="1110" y="301" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">출력 눈금으로 바꾸기</text>
+<polyline points="515,270 560,270" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="560,270 543.0,261.0 543.0,279.0" fill="#087b78"/>
+<polyline points="1030,270 1075,270" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1075,270 1058.0,261.0 1058.0,279.0" fill="#087b78"/>
+<text x="65" y="428" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#18314b">RNE: 정확히 중간이면 짝수를 선택합니다.</text>
+<rect x="60" y="500" width="325" height="165" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="80" y="520" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">2.5</text>
+<text x="80" y="578" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">반올림 → 2</text>
+<rect x="445" y="500" width="325" height="165" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="465" y="520" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">3.5</text>
+<text x="465" y="578" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">반올림 → 4</text>
+<rect x="830" y="500" width="325" height="165" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="850" y="520" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">-2.5</text>
+<text x="850" y="578" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">반올림 → -2</text>
+<rect x="1215" y="500" width="325" height="165" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1235" y="520" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">-3.5</text>
+<text x="1235" y="578" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">반올림 → -4</text>
+<text x="55" y="759" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">반올림한 값이 허용 범위를 넘으면 끝값에 붙입니다. 소프트웨어와 회로가 같은 약속을 사용합니다.</text>
+</svg>

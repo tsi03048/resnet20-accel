@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="850" viewBox="0 0 1600 850" role="img" aria-labelledby="title desc">
+<title id="title">정수에 눈금을 곱해야 실제 값이 됩니다</title>
+<desc id="desc">이 그림에서는 실제 0을 정수 0으로 저장합니다. 두 줄은 실제 값이 같지만 저장한 정수가 다릅니다.</desc>
+<rect width="1600" height="850" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">정수에 눈금을 곱해야 실제 값이 됩니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">이 그림에서는 실제 0을 정수 0으로 저장합니다. 두 줄은 실제 값이 같지만 저장한 정수가 다릅니다.</text>
+<rect x="60" y="185" width="440" height="145" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="205" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">첫 번째 값</text>
+<text x="80" y="263" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">저장한 정수 8</text>
+<rect x="580" y="185" width="440" height="145" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="600" y="205" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">눈금 적용</text>
+<text x="600" y="263" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">8 × 1/8 = 1</text>
+<rect x="1100" y="185" width="440" height="145" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1120" y="205" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">실제 값</text>
+<text x="1120" y="263" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">1</text>
+<polyline points="505,258 565,258" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="565,258 548.0,249.0 548.0,267.0" fill="#087b78"/>
+<polyline points="1025,258 1085,258" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1085,258 1068.0,249.0 1068.0,267.0" fill="#087b78"/>
+<rect x="60" y="375" width="440" height="145" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="395" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">두 번째 값</text>
+<text x="80" y="453" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">저장한 정수 4</text>
+<rect x="580" y="375" width="440" height="145" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="600" y="395" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">눈금 적용</text>
+<text x="600" y="453" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">4 × 1/4 = 1</text>
+<rect x="1100" y="375" width="440" height="145" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1120" y="395" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">실제 값</text>
+<text x="1120" y="453" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">1</text>
+<polyline points="505,448 565,448" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="565,448 548.0,439.0 548.0,457.0" fill="#087b78"/>
+<polyline points="1025,448 1085,448" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1085,448 1068.0,439.0 1068.0,457.0" fill="#087b78"/>
+<rect x="60" y="580" width="1480" height="145" rx="15" fill="white" stroke="#b95818" stroke-width="3"/>
+<text x="80" y="600" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#b95818">두 값을 더하면 실제 값은 2</text>
+<text x="80" y="658" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">출력 눈금 1/8에 맞춰 저장 → 2 ÷ (1/8) = 정수 16</text>
+<text x="55" y="789" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">8+4=12로 바로 더하면 눈금이 섞입니다. 두 값을 같은 눈금으로 맞춘 뒤 더합니다.</text>
+</svg>

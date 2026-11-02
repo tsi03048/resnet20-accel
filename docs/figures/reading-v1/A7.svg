@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">평균을 빼면 값의 중심이 옮겨집니다</title>
+<desc id="desc">배치 정규화 전체가 아니라 본문의 ‘평균 빼기’ 한 단계만 보여 줍니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">평균을 빼면 값의 중심이 옮겨집니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">배치 정규화 전체가 아니라 본문의 ‘평균 빼기’ 한 단계만 보여 줍니다.</text>
+<rect x="65" y="215" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="85" y="235" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">원래 값</text>
+<text x="85" y="293" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">[2, 4, 6]</text>
+<text x="85" y="336" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">평균: (2+4+6)÷3 = 4</text>
+<rect x="575" y="215" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="595" y="235" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">각 값에서 평균 빼기</text>
+<text x="595" y="293" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">[2-4, 4-4, 6-4]</text>
+<rect x="1085" y="215" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1105" y="235" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">중심을 옮긴 값</text>
+<text x="1105" y="293" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">[-2, 0, 2]</text>
+<text x="1105" y="336" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">평균은 0</text>
+<polyline points="520,335 560,335" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="560,335 543.0,326.0 543.0,344.0" fill="#087b78"/>
+<polyline points="1030,335 1070,335" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1070,335 1053.0,326.0 1053.0,344.0" fill="#087b78"/>
+<text x="70" y="535" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="29" font-weight="400" fill="#18314b">전체 BN에서는 값이 퍼진 정도와 학습한 곱셈값·덧셈값도 사용합니다.</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">추론할 때는 학습 중 저장한 평균 등을 사용합니다. 이 그림은 BN 전체 계산의 출력 예제가 아닙니다.</text>
+</svg>

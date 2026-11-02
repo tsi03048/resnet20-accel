@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">같은 계산기를 두 번 써도 합을 만들 수 있습니다</title>
+<desc id="desc">본문의 예: 2×3을 더하고, 이어 4×1을 더합니다. 이 그림은 실제 클록 수를 나타내지 않습니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">같은 계산기를 두 번 써도 합을 만들 수 있습니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">본문의 예: 2×3을 더하고, 이어 4×1을 더합니다. 이 그림은 실제 클록 수를 나타내지 않습니다.</text>
+<rect x="65" y="210" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="85" y="230" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">시작</text>
+<text x="85" y="288" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">중간 합 = 0</text>
+<rect x="575" y="210" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="595" y="230" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">첫 계산</text>
+<text x="595" y="288" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">0 + 2×3 = 6</text>
+<text x="595" y="331" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">중간 합 = 6</text>
+<rect x="1085" y="210" width="450" height="240" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1105" y="230" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">두 번째 계산</text>
+<text x="1105" y="288" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">6 + 4×1 = 10</text>
+<text x="1105" y="331" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">중간 합 = 10</text>
+<polyline points="520,330 560,330" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="560,330 543.0,321.0 543.0,339.0" fill="#087b78"/>
+<polyline points="1030,330 1070,330" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1070,330 1053.0,321.0 1053.0,339.0" fill="#087b78"/>
+<rect x="65" y="520" width="1470" height="140" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="85" y="540" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">계산 횟수와 계산기 개수는 다릅니다</text>
+<text x="85" y="598" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">곱해서 더하기는 두 번입니다. 한 계산기를 순서대로 재사용할 수 있습니다.</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">입력이 아직 준비되지 않았다면 기다립니다. 전달 시점과 대기 규칙은 D5에서 이어집니다.</text>
+</svg>

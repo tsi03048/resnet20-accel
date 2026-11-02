@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+<title id="title">Loss는 확률 자체가 아니라 채점한 벌점입니다</title>
+<desc id="desc">정답이 고양이인 사진에 준 확률을 비교합니다. 채점 규칙은 본문의 교차 엔트로피입니다.</desc>
+<rect width="1600" height="820" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">Loss는 확률 자체가 아니라 채점한 벌점입니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">정답이 고양이인 사진에 준 확률을 비교합니다. 채점 규칙은 본문의 교차 엔트로피입니다.</text>
+<rect x="60" y="180" width="450" height="280" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="80" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">고양이 확률 90%</text>
+<text x="80" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">벌점 약 0.11</text>
+<rect x="80" y="360" width="17.779587017258184" height="42" rx="3" fill="#b95818" stroke="#b95818" stroke-width="3"/>
+<rect x="575" y="180" width="450" height="280" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="595" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">고양이 확률 50%</text>
+<text x="595" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">벌점 약 0.69</text>
+<rect x="595" y="360" width="116.96858671949079" height="42" rx="3" fill="#b95818" stroke="#b95818" stroke-width="3"/>
+<rect x="1090" y="180" width="450" height="280" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="1110" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">고양이 확률 10%</text>
+<text x="1110" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">벌점 약 2.30</text>
+<rect x="1110" y="360" width="388.56123444274516" height="42" rx="3" fill="#b95818" stroke="#b95818" stroke-width="3"/>
+<text x="65" y="485" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="26" font-weight="400" fill="#586a7d">주황 막대는 벌점입니다. 세 막대는 같은 눈금으로 그렸습니다.</text>
+<rect x="60" y="555" width="1480" height="150" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="80" y="575" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">별도 예제: 계산에 쓰는 값 한 번 고치기</text>
+<text x="80" y="633" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">Weight 0.5, 기울기 -2, 학습률 0.1 → 새 Weight = 0.5 - 0.1 × (-2) = 0.7</text>
+<text x="55" y="759" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">정답에 준 확률이 낮을수록 벌점은 커집니다. 값을 고친 뒤에는 다시 예측하고 채점합니다.</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">입력 채널 세 개의 결과를 합쳐 출력 한 칸을 만듭니다</title>
+<desc id="desc">Bias 0인 예제입니다. R·G·B마다 자기 필터로 계산하고 세 결과를 더합니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">입력 채널 세 개의 결과를 합쳐 출력 한 칸을 만듭니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">Bias 0인 예제입니다. R·G·B마다 자기 필터로 계산하고 세 결과를 더합니다.</text>
+<rect x="65" y="180" width="550" height="135" rx="15" fill="white" stroke="#af3937" stroke-width="3"/>
+<text x="85" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#af3937">R 계산</text>
+<text x="85" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">이 색의 입력 × 이 색에 쓸 필터 → 2</text>
+<polyline points="620,248 800,248 800,418 955,418" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="955,418 938.0,409.0 938.0,427.0" fill="#087b78"/>
+<rect x="65" y="350" width="550" height="135" rx="15" fill="white" stroke="#307b48" stroke-width="3"/>
+<text x="85" y="370" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#307b48">G 계산</text>
+<text x="85" y="428" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">이 색의 입력 × 이 색에 쓸 필터 → 3</text>
+<polyline points="620,418 800,418 800,418 955,418" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="955,418 938.0,409.0 938.0,427.0" fill="#087b78"/>
+<rect x="65" y="520" width="550" height="135" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="85" y="540" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">B 계산</text>
+<text x="85" y="598" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">이 색의 입력 × 이 색에 쓸 필터 → -1</text>
+<polyline points="620,588 800,588 800,418 955,418" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="955,418 938.0,409.0 938.0,427.0" fill="#087b78"/>
+<rect x="970" y="305" width="550" height="230" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="990" y="325" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">한 출력에 더하기</text>
+<text x="990" y="383" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">2 + 3 + (-1) = 4</text>
+<text x="990" y="426" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">출력 한 칸 = 4</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">필터가 3×3이고 입력 채널이 3개이면, 출력 한 칸에 3×3×3 = 27번 곱해서 더합니다.</text>
+</svg>

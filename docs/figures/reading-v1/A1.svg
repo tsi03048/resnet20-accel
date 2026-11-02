@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="780" viewBox="0 0 1600 780" role="img" aria-labelledby="title desc">
+<title id="title">사진 한 점에는 색 값이 세 개 있습니다</title>
+<desc id="desc">아래 색 값은 읽는 방법을 보여 주는 예시입니다. 실제 사진을 분해한 측정값은 아닙니다.</desc>
+<rect width="1600" height="780" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">사진 한 점에는 색 값이 세 개 있습니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">아래 색 값은 읽는 방법을 보여 주는 예시입니다. 실제 사진을 분해한 측정값은 아닙니다.</text>
+<rect x="70" y="180" width="450" height="175" rx="15" fill="white" stroke="#af3937" stroke-width="3"/>
+<text x="90" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#af3937">빨강 R</text>
+<text x="90" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">한 점의 값: 120</text>
+<rect x="575" y="180" width="450" height="175" rx="15" fill="white" stroke="#307b48" stroke-width="3"/>
+<text x="595" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#307b48">초록 G</text>
+<text x="595" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">한 점의 값: 80</text>
+<rect x="1080" y="180" width="450" height="175" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="1100" y="200" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">파랑 B</text>
+<text x="1100" y="258" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">한 점의 값: 40</text>
+<text x="70" y="407" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#18314b">사진 묶음의 크기 [1, 3, 32, 32] 읽기</text>
+<rect x="70" y="468" width="335" height="155" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="90" y="488" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">1</text>
+<text x="90" y="546" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">사진 수</text>
+<rect x="450" y="468" width="335" height="155" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="470" y="488" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">3</text>
+<text x="470" y="546" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">색별 묶음 수</text>
+<rect x="830" y="468" width="335" height="155" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="850" y="488" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">32</text>
+<text x="850" y="546" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">세로 칸 수</text>
+<rect x="1210" y="468" width="335" height="155" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1230" y="488" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">32</text>
+<text x="1230" y="546" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">가로 칸 수</text>
+<text x="55" y="719" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">사진 1장 × 색 3종류 × 세로 32칸 × 가로 32칸 = 숫자 3,072개</text>
+</svg>

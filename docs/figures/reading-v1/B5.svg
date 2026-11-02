@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+<title id="title">사진 크기의 변화를 한 줄씩 따라갑니다</title>
+<desc id="desc">사진 1장 기준 · 숫자 순서는 채널 수 × 세로 × 가로 · 화살표 순서로 읽습니다.</desc>
+<rect width="1600" height="860" fill="#f5f8fc"/>
+<text x="55" y="36" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="43" font-weight="700" fill="#18314b">사진 크기의 변화를 한 줄씩 따라갑니다</text>
+<text x="55" y="102" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="27" font-weight="400" fill="#586a7d">사진 1장 기준 · 숫자 순서는 채널 수 × 세로 × 가로 · 화살표 순서로 읽습니다.</text>
+<rect x="60" y="190" width="450" height="200" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="80" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">1. 입력</text>
+<text x="80" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">3 × 32 × 32</text>
+<rect x="575" y="190" width="450" height="200" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="595" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">2. 첫 Conv · Stem</text>
+<text x="595" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">16 × 32 × 32</text>
+<rect x="1090" y="190" width="450" height="200" rx="15" fill="white" stroke="#245eaa" stroke-width="3"/>
+<text x="1110" y="210" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#245eaa">3. 블록 묶음 1</text>
+<text x="1110" y="268" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">16 × 32 × 32</text>
+<rect x="1090" y="480" width="450" height="200" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="1110" y="500" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">4. 블록 묶음 2</text>
+<text x="1110" y="558" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">32 × 16 × 16</text>
+<rect x="575" y="480" width="450" height="200" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="595" y="500" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">5. 블록 묶음 3</text>
+<text x="595" y="558" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">64 × 8 × 8</text>
+<rect x="60" y="480" width="450" height="200" rx="15" fill="white" stroke="#087b78" stroke-width="3"/>
+<text x="80" y="500" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="32" font-weight="700" fill="#087b78">6. 평균 → 점수</text>
+<text x="80" y="558" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">64개 → 10개</text>
+<polyline points="515,290 560,290" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="560,290 543.0,281.0 543.0,299.0" fill="#087b78"/>
+<polyline points="1030,290 1075,290" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1075,290 1058.0,281.0 1058.0,299.0" fill="#087b78"/>
+<polyline points="1315,395 1315,465" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1315,465 1324.0,448.0 1306.0,448.0" fill="#087b78"/>
+<polyline points="1085,580 1040,580" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1040,580 1057.0,589.0 1057.0,571.0" fill="#087b78"/>
+<polyline points="570,580 525,580" fill="none" stroke="#087b78" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="525,580 542.0,589.0 542.0,571.0" fill="#087b78"/>
+<text x="70" y="735" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="28" font-weight="400" fill="#18314b">각 블록 묶음(Stage)은 블록 3개입니다. 가로·세로가 줄어드는 곳을 찾아보세요.</text>
+<text x="55" y="799" dominant-baseline="hanging" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="25" font-weight="400" fill="#586a7d">같은 크기에서 반복하는 블록과 크기를 바꾸는 블록을 연결합니다. 회로 작업 수는 상세 실행표에서 봅니다.</text>
+</svg>
