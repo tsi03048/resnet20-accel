@@ -105,6 +105,8 @@ def cifar10(root="data", train=False, source="hf"):
     어느 경로든 이미지 배열의 sha256 을 `data_sha256` 으로 남겨 팀원 간 같은 데이터인지 확인한다.
     """
     import numpy as np
+    if source not in ("hf", "toronto"):
+        raise ValueError("source must be hf or toronto")
     split = "train" if train else "test"
     if source == "hf":
         try:
@@ -119,6 +121,11 @@ def cifar10(root="data", train=False, source="hf"):
     if source == "toronto":
         tv = torchvision.datasets.CIFAR10(root, train=train, download=True, transform=None)
         out = ArrayCIFAR10(tv.data, tv.targets, eval_transform(), "torchvision:cs.toronto.edu")
+    expected_n = 50000 if train else 10000
+    if out.data.shape != (expected_n, 32, 32, 3) or len(out.targets) != expected_n:
+        raise ValueError("CIFAR-10 shape/count mismatch")
+    if out.data.dtype != np.uint8 or not all(0 <= int(y) < 10 for y in out.targets):
+        raise ValueError("CIFAR-10 dtype/label mismatch")
     out.data_sha256 = hashlib.sha256(out.data.tobytes()).hexdigest()
     out.label_sha256 = hashlib.sha256(np.asarray(out.targets, dtype=np.int64).tobytes()).hexdigest()
     print(f"CIFAR-10 {split}: {len(out)}장 · {out.source} · images sha256 {out.data_sha256[:16]}…")
@@ -132,9 +139,9 @@ def calibration_subset(train_set, n=1000, seed=0):
 
 
 @torch.no_grad()
-def evaluate(forward, dataset, device, batch_size=500):
+def evaluate(forward, dataset, device, batch_size=128):
     """forward(x)->logits. 동점이면 torch.argmax 규칙(첫 index)을 따른다."""
-    loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=2)
+    loader = DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=0)
     correct = 0
     n = 0
     per_cls_ok = torch.zeros(10, dtype=torch.long)
@@ -153,13 +160,14 @@ def evaluate(forward, dataset, device, batch_size=500):
         "n": n,
         "correct": correct,
         "top1": 100.0 * correct / n,
-        "per_class_top1": {CLASSES[i]: round(100.0 * int(per_cls_ok[i]) / int(per_cls_n[i]), 2)
+        "per_class_top1": {CLASSES[i]: (round(100.0 * int(per_cls_ok[i]) / int(per_cls_n[i]), 2)
+                                      if int(per_cls_n[i]) else None)
                            for i in range(10)},
         "preds": torch.cat(preds),
     }
 
 
-def environment():
+def environment(device=None):
     env = {
         "python": platform.python_version(),
         "torch": torch.__version__,
@@ -168,7 +176,7 @@ def environment():
         "reference_repo": AKA_REPO,
         "reference_commit": AKA_COMMIT,
     }
-    if torch.cuda.is_available():
+    if (device is None or str(device).startswith("cuda")) and torch.cuda.is_available():
         env["device"] = torch.cuda.get_device_name(0)
     return env
 
@@ -177,3 +185,4 @@ def save_json(obj, path):
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
+

@@ -1,0 +1,22 @@
+{
+  "started_at_utc": "2026-11-02T04:51:45.094954+00:00",
+  "device": "cpu",
+  "arguments": {
+    "device": "cpu",
+    "source": "hf",
+    "e1_only": false,
+    "calib_n": 1000,
+    "dev_n": 1000,
+    "accept_drop_pp": null
+  },
+  "code_commit": null,
+  "source_sha256": {
+    "model/__init__.py": "ce84b92500e14553e3b12b226af96bfacc270363cb030341c6370b1fa34860a5",
+    "model/common.py": "05f2bb2a1d3d55149a4f51c1ddfab59018d7d46f8a612b997922945e8a2f681f",
+    "model/e1_fp32.py": "5691fa08bae17260d6685f4692f7d5700f27e2d49e040a860d98f954148f919c",
+    "model/run_reference.py": "329981d762657ded583f4e93225b10b7ca11f1b09169468e5bd83501ad36fb4e",
+    "quant/__init__.py": "4c939357ce22bb0f2658f7fcfa3a676d6b18210c0a4ddbb165785e2a48e0478d",
+    "quant/e2_ptq.py": "a8f12f222b684b17c814709ca347f2ad376a59da6b99ad1fb83e049d5328513e",
+    "quant/integer_math.py": "2074697865d79587f4f286b78f8a45c85cde0d42566db0356f5a768956b7d6ef"
+  }
+}

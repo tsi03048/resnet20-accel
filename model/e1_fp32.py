@@ -11,7 +11,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from model.common import (CLASSES, MEAN, STD, environment, evaluate, save_json)
+from model.common import (CLASSES, MEAN, STD, environment, evaluate, save_json, sha256_file)
 
 
 @torch.no_grad()
@@ -37,6 +37,10 @@ def dump_sample(model, dataset, index, out_dir, device):
         model.linear.register_forward_hook(keep("fc_input_gap", inp=True)),
         model.linear.register_forward_hook(keep("logits")),
     ]
+    for li, layer in enumerate((model.layer1, model.layer2, model.layer3), 1):
+        for bi, block in enumerate(layer):
+            name = f"L{li}.{bi}.output"
+            hs.append(block.register_forward_hook(keep(name)))
     logits = model(x)
     for h in hs:
         h.remove()
@@ -58,9 +62,13 @@ def dump_sample(model, dataset, index, out_dir, device):
     for name, t in cap.items():
         arr = t.numpy().astype("<f4")  # IEEE754 FP32 little-endian, C-order
         np.save(os.path.join(out_dir, f"{name}.npy"), arr)
+        path = os.path.join(out_dir, f"{name}.npy")
+        if not np.array_equal(arr, np.load(path, allow_pickle=False)):
+            raise RuntimeError(f"tensor round-trip mismatch: {name}")
         files[name] = {"file": f"{name}.npy", "shape": list(arr.shape), "dtype": "float32",
                        "layout": "NCHW" if arr.ndim == 4 else "NC",
-                       "meaning": meaning[name]}
+                       "meaning": meaning.get(name, "Residual Block Add·ReLU 후"),
+                       "sha256": sha256_file(path), "endianness": "little", "order": "C"}
     pred = int(logits.argmax(1))
     manifest = {
         "split": "test", "sample_index": index, "label": int(label),
@@ -88,8 +96,9 @@ def run_e1(model, info, test_set, device, out_root="."):
                     "images_sha256": getattr(test_set, "data_sha256", "?"),
                     "labels_sha256": getattr(test_set, "label_sha256", "?")},
         "model_info": info,
-        "environment": environment(),
+        "environment": environment(device),
     }
     save_json(summary, os.path.join(out_root, "results", "e1_fp32.json"))
     manifest = dump_sample(model, test_set, 0, os.path.join(out_root, "golden", "e1_sample0"), device)
     return summary, manifest, res["preds"]
+

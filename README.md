@@ -1,52 +1,46 @@
-# resnet20-accel — ResNet-20 CIFAR-10 CNN 가속기 (ZedBoard)
+# ResNet-20 CNN 가속기 학습 프로젝트
 
-처음 딥러닝을 배우는 팀원이 **FP32 재현 → INT8 기준 → Conv RTL → Residual Block → ZedBoard 실행**까지
-같은 숫자로 따라가는 학습·설계 프로젝트의 실습 저장소다. 설명 문서는 Notion "딥러닝 프로젝트"에 있고,
-이 저장소에는 실행 코드·기준 데이터·RTL·로그를 둔다.
+**처음이라면 [기본 트랙](docs/basic_track.md)부터 시작한다.**
 
-## 기준 (2026-11-02 결정)
-
-| 항목 | 기준 |
-| --- | --- |
-| 모델 | ResNet-20 + CIFAR-10 (Option A shortcut). ResNet-56 은 확장 기준 |
-| Checkpoint | 공개 [`akamaster/pytorch_resnet_cifar10`](https://github.com/akamaster/pytorch_resnet_cifar10) `resnet20-12fca82f.th` @ `d5489e8`, 직접 학습하지 않음 |
-| 실행 환경 | Google Colab |
-| 정밀도 | **INT8 채택 (2026-11-02)** · W8A8 signed·minmax: Weight 출력 채널별 대칭 [-127,127], Activation Tensor별 signed [-128,127]·zero-point 0, RNE |
-| 보드 | ZedBoard (XC7Z020). Arty Z7-20 은 같은 PL 이라 호환 |
-
-## 바로 실행
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tsi03048/resnet20-accel/blob/main/notebooks/E1_E2_resnet20_reference.ipynb)
-
-`notebooks/E1_E2_resnet20_reference.ipynb` — E1(FP32 직접 평가·Golden Tensor) + E2(INT8 하락 측정).
-
-## 폴더
-
-```
-model/      E1 — 고정 모델 로딩·평가·Golden Tensor 저장
-quant/      E2 — BN Folding·PTQ fake-quant (INT8 채택 근거)
-notebooks/  Colab 노트북
-results/    실행 결과 JSON (실행할 때 생성)
-golden/     Layer 경계별 기준 Tensor (실행할 때 생성)
-rtl/        단계별 RTL (연결 05 conv_toy, E12 conv_fixed …)
-tb/         Testbench·run.sh·로그
-board/      ZedBoard XDC·Vivado Tcl·보드 로그
-docs/       Notion 페이지 대응표·결정 기록
+```sh
+python -m exercises.conv_walkthrough
+python -m unittest discover -s tests -v
 ```
 
-## 진행 상태
+Python만으로 Y=[10,9,8,6]과 36 MAC을 먼저 확인한다.
+[Colab 실제 이미지 추론](https://colab.research.google.com/github/tsi03048/resnet20-accel/blob/main/notebooks/E1_E2_resnet20_reference.ipynb)
 
-| 단계 | 상태 |
-| --- | --- |
-| E1 FP32 재현 | **완료** (2026-11-02, Colab T4) · Test Top-1 **91.73%** (9173/10000) |
-| E2 INT8 하락 측정 | **완료** · W8A8 6개 설정 모두 하락 ±0.07%p 이내 → INT8 채택 |
-| E2b 정수 Reference | 다음 단계 · INT32 bias·Multiplier/Shift·RNE 로 bit-exact 기준 고정 |
-| 기존 RTL (연결 05, E12~E21) | 이전 예정 (`rtl/README.md`) |
+| 항목 | 기준·상태 |
+|---|---|
+| 모델 | ResNet-20 + CIFAR-10, Option A, 공개 checkpoint·직접 학습 없음 |
+| 보드 | ZedBoard XC7Z020-1CLG484; Arty Z7-20은 별도 핀·클록·보드 설정 필요 |
+| 기본 과제 | 작은 Conv의 계산·RTL·보드 출력 비교; 실제 모델 Block 연결은 추가 단계 |
+| 확장 과제 | Transition·GAP·FC·연속 실행을 포함한 ResNet-20 전체 분류·성능 개선 |
+| E1 직접 평가 | CPU 9,173/10,000 = 91.73% |
+| E2-A | Train 개발집합에서 먼저 선택한 signed/minmax를 Test 평가: 91.76%, 하락 -0.03%p |
+| E2-B | 실제 정수 Bias·계수·전체 graph exporter와 모델 정확도 검증 미완료 |
+| 기초 산술·PTQ 절차 | Python 6개 시험 통과 |
+| 기본 RTL v1 | 새 공개 소스·Testbench·자동 시험 제공. 실행 증거는 Actions 확인 |
+| 보드 | 합성·배치배선·실행 검증 미완료 |
+| 기존 E12~E21 | 이전 ZIP의 저장소 이관 미완료 |
 
-## 기록 규칙
+기존 Colab T4 평가(2026-11-02, 370b910)와 **INT8 signed/minmax 채택 결정**을 유지한다.
+그 실행의 FP32는 91.73%, signed/minmax는 91.79%였다. 위 CPU 91.76%는 다른 환경의 재검증이다.
+E2-A는 fake-quant이며 Bias를 FP32로 유지한다. 정수 RTL 정확도를 증명하지 않는다.
+개정 코드의 허용 하락 폭은 미정이면 자동 재결정하지 않는다. INT8 구현 목표 채택과 E2-B 검증 완료는 별개다.
 
-- 결과를 올릴 때는 `results/code_commit.txt`(실행한 commit)를 함께 올린다.
-- "실행해서 확인한 것"과 "예제·계획"을 구분한다. 실행하지 않은 결과를 PASS 로 적지 않는다.
-- 모델·전처리·양자화 규칙을 바꾸면 새 버전으로 기록하고 이전 결과와 섞지 않는다.
+로컬: `python -m pip install -r requirements.txt` 후 `python -m model.run_reference --device cpu`.
+Colab은 T4를 선택하고 노트북을 순서대로 실행한다. CPU도 가능하다.
+결과는 `results/`, FP32 텐서는 `golden/e1_sample0/`에 생성된다.
+RTL은 Ubuntu에 Icarus Verilog를 설치한 뒤 `bash tb/basic_v1/run.sh`.
+새 기본 RTL은 이전 개인 ZIP의 복원본이 아니며 기존 파형 시간표를 재사용하지 않는다.
 
-참고 구현의 라이선스는 해당 저장소의 LICENSE 를 따른다. 이 저장소 자체의 라이선스는 아직 정하지 않았다.
+[제출 양식](docs/submission_template.md) · [노션 대응표](docs/notion_map.md)
+
+실행 소스 hash·환경·입력/상수·기대/실제 출력·실패·미실행 범위를 기록한다.
+체크포인트 저장값 91.78%와 이번 직접 평가 91.73%를 구분한다.
+Train 1,000장 보정 + 겹치지 않는 Train 1,000장 설정 선택 후 하나만 Test에 평가한다.
+이 개발집합은 공개 체크포인트 학습 이력과 독립적이지 않다. Test를 보고 재선택하면 탐색 이력을 남긴다.
+
+라이선스는 **보류**다. 팀원 합의로 결정하며 후보는 MIT다. 참고 구현의 라이선스는 원 저장소를 따른다.
+

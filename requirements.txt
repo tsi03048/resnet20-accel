@@ -1,0 +1,5 @@
+# Colab already supplies torch/torchvision. A fresh local environment needs all four.
+torch>=2.2
+torchvision>=0.17
+numpy>=1.26
+datasets>=2.18

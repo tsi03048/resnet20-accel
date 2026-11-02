@@ -1,0 +1,41 @@
+{
+  "step": "E1",
+  "model": "ResNet-20 (CIFAR-10, Option A)",
+  "test_images": 10000,
+  "correct": 9173,
+  "fp32_top1": 91.73,
+  "per_class_top1": {
+    "airplane": 92.0,
+    "automobile": 96.8,
+    "bird": 87.6,
+    "cat": 83.2,
+    "deer": 91.7,
+    "dog": 86.3,
+    "frog": 94.2,
+    "horse": 94.5,
+    "ship": 95.3,
+    "truck": 95.7
+  },
+  "stored_best_prec1_in_checkpoint": 91.78000183105469,
+  "note": "stored_best_prec1 는 checkpoint 에 저장된 값이며, fp32_top1 이 이번 직접 평가 결과다.",
+  "dataset": {
+    "source": "hf:uoft-cs/cifar10",
+    "images_sha256": "f9b1e2130bab680db56eb06d886f7f1ad0f1183907ceff4659d1735c890f5b04",
+    "labels_sha256": "cbb7365de8ed11f05cc4c3a1e7f78144127c5e851efd83762fb18202461230bb"
+  },
+  "model_info": {
+    "checkpoint": "resnet20-12fca82f.th",
+    "checkpoint_sha256": "12fca82f0bebc4135bf1f32f6e3710e61d5108578464b84fd6d7f5c1b04036c8",
+    "stored_best_prec1": 91.78000183105469,
+    "num_state_keys": 97,
+    "num_params": 269722
+  },
+  "environment": {
+    "python": "3.14.7",
+    "torch": "2.15.0+cpu",
+    "torchvision": "0.29.2+cpu",
+    "device": "cpu",
+    "reference_repo": "https://github.com/akamaster/pytorch_resnet_cifar10.git",
+    "reference_commit": "d5489e8995e81e91ce6b1d69dcc98ad579b0b153"
+  }
+}

@@ -7,3 +7,4 @@
 | 첫 엔진 후보 | 64~128 유효 MAC (16×16 은 DSP packing 전제의 비교군) |
 
 `zedboard/` 에 XDC, Vivado Tcl, Utilization·Timing 보고서, 보드 실행 로그를 둔다.
+

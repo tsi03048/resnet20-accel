@@ -10,3 +10,4 @@
 | `postproc/`, `loader/`, `mmio/` | E17~E21 | 이전 예정 · 심화 트랙 |
 
 옮길 때 원본 ZIP 의 `source_sha256.json`·로그를 함께 두고, 실행 도구(Verilator 버전)를 README 에 적는다.
+

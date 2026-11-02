@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "evidence": "PYTHON_ARITHMETIC",
+  "output": [
+    10,
+    9,
+    8,
+    6
+  ],
+  "macs": 36,
+  "learned_weights": false,
+  "fpga_measured": false
+}
