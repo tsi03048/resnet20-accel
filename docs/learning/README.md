@@ -1,30 +1,51 @@
-# 처음부터 따라가는 학습 경로
+# 이론을 이해하고 계산·실습으로 확인하기
 
-목표는 작은 Conv를 손으로 계산하고 같은 결과를 RTL과 ZedBoard에서 확인하는 것입니다.
+**전체 흐름 → 개념 설명 → 작은 계산 → 실습 확인** 순서입니다.
 
-![학습 경로](images/roadmap.png)
+## 0. 전체 흐름부터 읽기
 
-필수 경로는 **S0 → S1 → S2 → S3 → S4 → S6**입니다. S5 실제 모델 연결은 선택입니다. 단계마다 예측 → 실행 → 값 변경 → 이유 설명을 마친 뒤 이동합니다.
+[처음 읽는 전체 흐름](theory_first.md)에서 사진이 예측이 되는 과정과 학습·Loss·Weight·가속기의 역할을 먼저 이해합니다. 여기서는 코드를 실행하지 않습니다.
 
-처음에는 Python만으로 S0을 시작하세요. 로컬 실행은 저장소 최상위에서 합니다. Python이 없거나 설치가 어렵다면 [Colab](https://colab.research.google.com/github/tsi03048/resnet20-accel/blob/main/notebooks/E1_E2_resnet20_reference.ipynb)을 사용하세요.
+## 1부. 개념 이해하기
 
-```bash
-python -m exercises.conv_walkthrough
-python -m exercises.step_up conv
-```
+### 모델 기본
 
-| 단계 | 이번에 할 수 있게 되는 것 | 준비 |
-| --- | --- | --- |
-| [S0](S0.md) | 작은 Conv를 손과 코드로 계산하기 | Python만 |
-| [S1](S1.md) | 실제 이미지 한 장과 분류 점수 보기 | 단계별 문서 확인 |
-| [S2](S2.md) | 학습 한 번과 Residual 두 경로 따라가기 | Python만 |
-| [S3](S3.md) | 정수 code의 눈금과 반올림 확인하기 | 단계별 문서 확인 |
-| [S4](S4.md) | 대기와 수락을 실제 RTL 파형에서 찾기 | 단계별 문서 확인 |
-| [S5](S5.md) | 선택: 작은 Conv에서 실제 모델 Stem으로 넓히기 | 단계별 문서 확인 |
-| [S6](S6.md) | ZedBoard에서 네 결과를 확인하기 | 단계별 문서 확인 |
+입력·Weight·Bias·Layer.
 
-## 길을 잃었을 때
+[A0](../fundamentals/A0.md) → [A1](../fundamentals/A1.md) → [A2](../fundamentals/A2.md) → [A3](../fundamentals/A3.md)
 
-첫 계산은 S0, 클래스 점수는 S1, 학습·Residual은 S2, Scale·RNE는 S3, 대기·파형은 S4로 돌아갑니다. 개념 전체를 미리 읽을 필요는 없습니다.
+### 학습과 평가
 
-실행 결과와 한 문장 설명을 [작은 제출 기록](worksheet.md)에 남깁니다. [현재 기준과 진행 상태](../project_status.md), [개념 자료](../fundamentals/README.md), [심화 자료](../notion_map.md)는 필요할 때만 엽니다.
+예측·Loss·수정·새 데이터 평가.
+
+[A4](../fundamentals/A4.md) → [A5](../fundamentals/A5.md)
+
+### CNN
+
+필터·Channel·점수·Residual·모델 전체.
+
+[B1](../fundamentals/B1.md) → [B2](https://app.notion.com/p/407f0c4baec981eeb9d9d03b5f6df291) → [B3](https://app.notion.com/p/407f0c4baec981259881f8492bfb6a92) → [A7](../fundamentals/A7.md) → [B4](https://app.notion.com/p/407f0c4baec98114b0e8fccad9a3f3a3) → [B5](https://app.notion.com/p/407f0c4baec981699098e71ca989426b)
+
+### 정수와 회로
+
+눈금·곱과 누산·메모리·수락과 대기.
+
+[A6](../fundamentals/A6.md) → [D1](https://app.notion.com/p/407f0c4baec981b8ae88d705e9af515b) → [D2](https://app.notion.com/p/407f0c4baec981348930d325194279c6) → [D3](https://app.notion.com/p/407f0c4baec9815eb990d04fbbcc60fa) → [D5](https://app.notion.com/p/407f0c4baec981e1b9fafb21f2519ec2)
+
+앞쪽은 쉬운 설명과 예시입니다. 수식·세부 규약은 뒤에서 필요할 때 읽습니다. 모르는 용어를 외운 채 실습부터 할 필요는 없습니다.
+
+## 2부. 이제 계산과 실습으로 확인하기
+
+| 실습 | 확인할 개념 |
+| --- | --- |
+| [S0](S0.md) | 작은 필터의 곱·합과 재사용 |
+| [S1](S1.md) | 이미지·클래스 점수·예측 |
+| [S2](S2.md) | Weight 갱신·Residual |
+| [S3](S3.md) | 정수 눈금·반올림 |
+| [S4](S4.md) | MAC·메모리·대기 |
+| [선택 S5](S5.md) | 실제 모델 계수 연결 |
+| [S6](S6.md) | 보드 결과와 기준 비교 |
+
+개념을 짚고 → 손으로 계산하고 → 코드를 실행해 비교합니다. 필수 실습은 S0→S1→S2→S3→S4→S6이며 S5는 선택입니다.
+
+[짧은 기록](worksheet.md) · [현재 진행 상태](../project_status.md)
