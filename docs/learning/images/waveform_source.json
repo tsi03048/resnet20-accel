@@ -1,0 +1,15 @@
+{
+  "source_run": 41391917805,
+  "source_revision": "1ce1ad01b55b3b4eecccb32fcac87f218843fc59",
+  "vcd_sha256": "beb2a7295311f8c93d8de0352a803f8fb63ee91f42a87f0dada84ded4031ac05",
+  "timescale": "1ps",
+  "first_output_accept_ns": 335.0,
+  "waiting_edges_ns": [
+    315.0,
+    325.0,
+    885.0,
+    1155.0,
+    1165.0
+  ],
+  "note": "Actual archived simulation; not a fresh local RTL run or FPGA measurement."
+}

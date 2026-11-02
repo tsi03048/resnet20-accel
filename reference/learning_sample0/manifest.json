@@ -1,0 +1,23 @@
+{
+  "split": "test",
+  "sample_index": 0,
+  "label": 3,
+  "label_name": "cat",
+  "preprocess": {
+    "to_tensor": "/255",
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "input_npz_sha256": "be8e0e5dce67bdcbecb8fcfc83f1cab2f4313fbcc192257db63487f59b9937e0",
+  "source_input_npy_sha256": "ae5c1de04badceb335fa8daf7839f4a796705eefdbe158f2f2635c63b2411339",
+  "note": "Frozen real CIFAR-10 test input after normalization. Single-image teaching, not test accuracy.",
+  "resnet_source_lf_sha256": "1a63f7c761a0bb0323119d33a5e32d7bddb15c217c4a5f22da7c89a5d9fe8036"
+}
