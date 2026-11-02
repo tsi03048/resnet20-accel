@@ -10,3 +10,13 @@ results/basic_rtl/
 artifacts/
 golden/e2b_sample*/tensors.npz
 
+# Local environments, credentials, and regenerable FP32 tensors
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+golden/e1_sample*/*.npy
+

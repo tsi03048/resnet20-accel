@@ -1,5 +1,27 @@
 # ResNet-20 CNN 가속기 학습 프로젝트
 
+딥러닝 기초부터 Python 기준 모델, INT8 정수 추론, 작은 Conv RTL과 ZedBoard 실습까지 모은 저장소다.
+
+## 자료와 코드 찾기
+
+| 목적 | 위치 |
+|---|---|
+| 딥러닝 개념·Tensor·학습·평가·양자화·CNN | [기초 학습자료 A0~A7·B1](docs/fundamentals/README.md) |
+| 처음 시작하는 계산·RTL 실습 | [기본 트랙](docs/basic_track.md), `exercises/` |
+| ResNet-20 FP32 평가·구조 계산 | `model/` |
+| PTQ·정수 계산·상수 내보내기·재검증 | `quant/`, [E2-B 설명](docs/e2b_integer_reference.md) |
+| Colab 실습 | `notebooks/` |
+| RTL·Testbench·보드 준비 | `rtl/`, `tb/`, [보드 안내](board/README.md) |
+| 고정 정수 상수·Golden·Stem 벡터 | `reference/e2b_v1/` |
+| 평가 결과·실행 조건·자동 시험 | `results/`, `tests/`, `.github/workflows/` |
+| 수치·제출·Notion 대응표 | [수치 기준](docs/numbers.md), [제출 양식](docs/submission_template.md), [대응표](docs/notion_map.md) |
+
+기초 학습자료는 2026-10-28 백업이며 과거 ResNet-56 예시를 포함한다. 현재 구현 기준과 검증 상태는 아래 표를 따른다.
+데이터셋·외부 체크포인트는 실행 시 내려받고, 가상환경·캐시·중복 ZIP은 저장소에서 제외한다.
+외부 모델의 고정 commit과 checkpoint SHA-256은 `model/common.py`에 기록되어 있다.
+
+## 시작하기
+
 **처음이라면 [기본 트랙](docs/basic_track.md)부터 시작한다.**
 
 ```sh
