@@ -1,0 +1,1623 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Nov  2 20:23:06 2026
+# Process ID         : 27268
+# Current directory  : C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0
+# Command line       : vivado.exe -mode batch -nojournal -log vivado.log -source board/zedboard/ps_dma/build_system.tcl
+# Log file           : C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/vivado.log
+# Journal file       : 
+# Running On         : JinHyeok
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency      : 3418 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 34114 MB
+# Swap memory        : 18317 MB
+# Total Virtual      : 52432 MB
+# Available Virtual  : 3893 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source board/zedboard/ps_dma/build_system.tcl
+# set root [file normalize [file join [file dirname [info script]] ../../..]]
+# set out [file join $root build/zedboard_ps]
+# file mkdir $out
+# set reports [file join $out reports]
+# file mkdir $reports
+# set phase preflight
+# proc status {state detail} {
+#     global reports phase
+#     set f [open [file join $reports status.txt] w];puts $f "status=$state\nphase=$phase\ndetail=$detail";close $f
+# }
+# proc reports {prefix} {
+#     global reports
+#     report_utilization -file [file join $reports ${prefix}_utilization.rpt]
+#     report_utilization -hierarchical -file [file join $reports ${prefix}_hierarchical.rpt]
+#     report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -file [file join $reports ${prefix}_timing_summary.rpt]
+#     report_timing -delay_type max -max_paths 10 -path_type full_clock_expanded -file [file join $reports ${prefix}_worst_setup.rpt]
+#     report_timing -delay_type min -max_paths 10 -path_type full_clock_expanded -file [file join $reports ${prefix}_worst_hold.rpt]
+#     check_timing -verbose -file [file join $reports ${prefix}_check_timing.rpt]
+#     report_drc -file [file join $reports ${prefix}_drc.rpt]
+# }
+# status RUNNING preflight
+# if {[catch {
+#     set_param general.maxThreads 4
+#     set_param board.repoPaths [list [file join $root third_party/avnet_bdf]]
+#     create_project zedboard_ps [file join $out project] -part xc7z020clg484-1 -force
+#     set boards [get_board_parts -quiet *:zedboard:part0:1.5]
+#     if {[llength $boards]!=1} {error "Expected vendored Avnet ZedBoard board definition 1.5: $boards"}
+#     set_property board_part [lindex $boards 0] [current_project]
+#     set_property target_language Verilog [current_project]
+#     set_property include_dirs [list [file join $root rtl/full_e2b_fpga_v2]] [current_fileset]
+#     foreach file {full_model feature_ram sync_bram weight_bram mul_serial rne_serial} {
+#         add_files -norecurse [file join $root rtl/full_e2b_fpga_v2/${file}.sv]
+#     }
+#     add_files -norecurse [file join $root rtl/full_e2b_v1/argmax10.sv]
+#     add_files -norecurse [file join $root rtl/full_e2b_fpga_v2/control_rom.svh]
+#     add_files -norecurse [file join $root rtl/ps_dma_v1/resnet20_axi.sv]
+#     add_files -norecurse [file join $root rtl/ps_dma_v1/resnet20_axi_bd.v]
+#     create_bd_design system
+#     set ps [create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 ps7]
+#     apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" apply_board_preset "1" Master "Disable" Slave "Disable"} $ps
+#     set_property -dict [list CONFIG.PCW_USE_M_AXI_GP0 {1} CONFIG.PCW_USE_S_AXI_HP0 {1} \
+#         CONFIG.PCW_S_AXI_HP0_DATA_WIDTH {64} CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100.000000} \
+#         CONFIG.PCW_EN_CLK0_PORT {1} CONFIG.PCW_EN_RST0_PORT {1}] $ps
+#     set dma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 dma]
+#     set_property -dict [list CONFIG.c_include_sg {0} CONFIG.c_include_mm2s {1} CONFIG.c_include_s2mm {1} \
+#         CONFIG.c_m_axi_mm2s_data_width {64} CONFIG.c_m_axi_s2mm_data_width {64} \
+#         CONFIG.c_m_axis_mm2s_tdata_width {32} CONFIG.c_s_axis_s2mm_tdata_width {32} \
+#         CONFIG.c_include_mm2s_dre {0} CONFIG.c_include_s2mm_dre {0} CONFIG.c_sg_length_width {23} \
+#         CONFIG.c_mm2s_burst_size {16} CONFIG.c_s2mm_burst_size {16}] $dma
+#     set accel [create_bd_cell -type module -reference resnet20_axi_bd accel]
+#     set ctl [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 control]
+#     set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {2}] $ctl
+#     set mem [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 memory]
+#     set_property -dict [list CONFIG.NUM_SI {2} CONFIG.NUM_MI {1}] $mem
+#     set rst [create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 reset]
+#     set one [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 one]
+#     set_property CONFIG.CONST_VAL {1} $one
+#     set zero [create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 zero]
+#     set_property CONFIG.CONST_VAL {0} $zero
+#     connect_bd_intf_net [get_bd_intf_pins ps7/M_AXI_GP0] [get_bd_intf_pins control/S00_AXI]
+#     connect_bd_intf_net [get_bd_intf_pins control/M00_AXI] [get_bd_intf_pins dma/S_AXI_LITE]
+#     connect_bd_intf_net [get_bd_intf_pins control/M01_AXI] [get_bd_intf_pins accel/S_AXI]
+#     connect_bd_intf_net [get_bd_intf_pins dma/M_AXI_MM2S] [get_bd_intf_pins memory/S00_AXI]
+#     connect_bd_intf_net [get_bd_intf_pins dma/M_AXI_S2MM] [get_bd_intf_pins memory/S01_AXI]
+#     connect_bd_intf_net [get_bd_intf_pins memory/M00_AXI] [get_bd_intf_pins ps7/S_AXI_HP0]
+#     connect_bd_intf_net [get_bd_intf_pins dma/M_AXIS_MM2S] [get_bd_intf_pins accel/S_AXIS]
+#     connect_bd_intf_net [get_bd_intf_pins accel/M_AXIS] [get_bd_intf_pins dma/S_AXIS_S2MM]
+#     connect_bd_net [get_bd_pins ps7/FCLK_CLK0] [get_bd_pins ps7/M_AXI_GP0_ACLK] [get_bd_pins ps7/S_AXI_HP0_ACLK] \
+#         [get_bd_pins control/ACLK] [get_bd_pins control/S00_ACLK] [get_bd_pins control/M00_ACLK] [get_bd_pins control/M01_ACLK] \
+#         [get_bd_pins memory/ACLK] [get_bd_pins memory/S00_ACLK] [get_bd_pins memory/S01_ACLK] [get_bd_pins memory/M00_ACLK] \
+#         [get_bd_pins dma/s_axi_lite_aclk] [get_bd_pins dma/m_axi_mm2s_aclk] [get_bd_pins dma/m_axi_s2mm_aclk] \
+#         [get_bd_pins accel/aclk] [get_bd_pins reset/slowest_sync_clk]
+#     connect_bd_net [get_bd_pins ps7/FCLK_RESET0_N] [get_bd_pins reset/ext_reset_in]
+#     connect_bd_net [get_bd_pins one/dout] [get_bd_pins reset/dcm_locked]
+#     connect_bd_net [get_bd_pins zero/dout] [get_bd_pins reset/aux_reset_in] [get_bd_pins reset/mb_debug_sys_rst]
+#     connect_bd_net [get_bd_pins reset/interconnect_aresetn] [get_bd_pins control/ARESETN] [get_bd_pins control/S00_ARESETN] \
+#         [get_bd_pins control/M00_ARESETN] [get_bd_pins control/M01_ARESETN] [get_bd_pins memory/ARESETN] \
+#         [get_bd_pins memory/S00_ARESETN] [get_bd_pins memory/S01_ARESETN] [get_bd_pins memory/M00_ARESETN]
+#     connect_bd_net [get_bd_pins reset/peripheral_aresetn] [get_bd_pins dma/axi_resetn] [get_bd_pins accel/aresetn]
+#     assign_bd_address
+#     assign_bd_address -offset 0x40400000 -range 64K -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs dma/S_AXI_LITE/Reg] -force
+#     assign_bd_address -offset 0x43c00000 -range 4K -target_address_space [get_bd_addr_spaces ps7/Data] [get_bd_addr_segs accel/S_AXI/reg0] -force
+#     validate_bd_design
+#     if {[get_property CONFIG.C_EXT_RESET_HIGH $rst]!=0} {error "PS FCLK_RESET0_N must be interpreted as active-low"}
+#     save_bd_design
+#     set f [open [file join $reports system_config.txt] w]
+#     puts $f "tool=[version -short]\npart=xc7z020clg484-1\nboard_part=[get_property BOARD_PART [current_project]]\ntop=system_wrapper\nmode=complete_PS7_DDR_AXI_DMA_system\nclock_period_ns=10.000"
+#     foreach key {PCW_UIPARAM_DDR_PARTNO PCW_UIPARAM_DDR_FREQ_MHZ PCW_FPGA0_PERIPHERAL_FREQMHZ PCW_USE_M_AXI_GP0 PCW_USE_S_AXI_HP0} {puts $f "$key=[get_property CONFIG.$key $ps]"}
+#     foreach key {c_include_sg c_sg_length_width c_m_axi_mm2s_data_width c_m_axis_mm2s_tdata_width c_s_axis_s2mm_tdata_width} {puts $f "$key=[get_property CONFIG.$key $dma]"}
+#     foreach seg [get_bd_addr_segs] {puts $f "address_segment=$seg [get_property OFFSET $seg] [get_property RANGE $seg]"}
+#     close $f
+#     write_bd_tcl -force [file join $out system_export.tcl]
+#     generate_target all [get_files system.bd]
+#     set wrapper [make_wrapper -files [get_files system.bd] -top]
+#     add_files -norecurse $wrapper
+#     set_property top system_wrapper [current_fileset]
+#     update_compile_order -fileset sources_1
+#     set phase synthesis;status RUNNING synthesis
+#     launch_runs synth_1 -jobs 4
+#     wait_on_run synth_1
+#     if {[get_property PROGRESS [get_runs synth_1]] ne "100%"} {error "System synthesis failed"}
+#     open_run synth_1
+#     reports post_synth
+#     close_design
+#     set phase implementation;status RUNNING implementation
+#     set_property STEPS.PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
+#     set_property STEPS.PHYS_OPT_DESIGN.ARGS.DIRECTIVE ExploreWithAggressiveHoldFix [get_runs impl_1]
+#     launch_runs impl_1 -to_step write_bitstream -jobs 4
+#     wait_on_run impl_1
+#     if {[get_property PROGRESS [get_runs impl_1]] ne "100%"} {error "System implementation/bitstream failed"}
+#     open_run impl_1
+#     reports post_route
+#     report_route_status -file [file join $reports post_route_status.rpt]
+#     report_clocks -file [file join $reports clocks.rpt]
+#     write_checkpoint -force [file join $out system_post_route.dcp]
+#     write_hw_platform -fixed -include_bit -force -file [file join $out system.xsa]
+#     set bits [get_property DIRECTORY [get_runs impl_1]]
+#     file copy -force [file join $bits system_wrapper.bit] [file join $out system.bit]
+#     set phase complete;status COMPLETE bitstream_and_xsa
+# } msg opts]} {
+#     status FAILED $msg;puts stderr "PS_SYSTEM_FAILED phase=$phase message=$msg";puts stderr [dict get $opts -errorinfo];exit 1
+# }
+create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:06 . Memory (MB): peak = 515.660 ; gain = 221.289
+Wrote  : <C:\Users\tsi03\AppData\Local\Temp\r20p_354ac0\build\zedboard_ps\project\zedboard_ps.srcs\sources_1\bd\system\system.bd> 
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aclk' of definition 'xilinx.com:signal:clock:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'aresetn' of definition 'xilinx.com:signal:reset:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXI' of definition 'xilinx.com:interface:aximm:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'S_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from X_INTERFACE_INFO parameter from HDL file).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'M_AXIS' of definition 'xilinx.com:interface:axis:1.0' (from 'X_INTERFACE_INFO' attribute).
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_BUSIF' with value 'S_AXI'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'ASSOCIATED_RESET' with value 'aresetn'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aclk': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'aresetn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'PROTOCOL' with value 'AXI4LITE'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'DATA_WIDTH' with value '32'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'ADDR_WIDTH' with value '12'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXI': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'TDATA_NUM_BYTES' with value '4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'HAS_TKEEP' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'HAS_TLAST' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'S_AXIS': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'TDATA_NUM_BYTES' with value '4'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'HAS_TKEEP' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'HAS_TLAST' with value '1'.
+INFO: [IP_Flow 19-4728] Bus Interface 'M_AXIS': Added interface parameter 'FREQ_HZ' with value '100000000'.
+INFO: [IP_Flow 19-7067] Note that bus interface 'aclk' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'S_AXI' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'S_AXIS' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [IP_Flow 19-7067] Note that bus interface 'M_AXIS' has a fixed FREQ_HZ of '100000000'. This value will be respected whenever this IP is instantiated in IP Integrator.
+INFO: [Ipptcl 7-1463] No Compatible Board Interface found. Board Tab not created in customize GUI
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilconstant:1.0 for the IP type xilinx.com:ip:xlconstant:1.1 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:xlconstant:1.1 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [BD 5-1043] It is recommended to use inline hdl version xilinx.com:inline_hdl:ilconstant:1.0 for the IP type xilinx.com:ip:xlconstant:1.1 for improved performance and reduced disk space. IPs with VLNV xilinx.com:ip:xlconstant:1.1 will not be supported from release 2025.2. More information on inline hdl IP is available in UG994 
+INFO: [BD 41-3093] Triggering Legacy Auto Assign Algorithm
+Slave segment '/ps7/S_AXI_HP0/HP0_DDR_LOWOCM' is being assigned into address space '/dma/Data_MM2S' at <0x0000_0000 [ 512M ]>.
+Slave segment '/ps7/S_AXI_HP0/HP0_DDR_LOWOCM' is being assigned into address space '/dma/Data_S2MM' at <0x0000_0000 [ 512M ]>.
+Slave segment '/accel/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x4000_0000 [ 4K ]>.
+Slave segment '/dma/S_AXI_LITE/Reg' is being assigned into address space '/ps7/Data' at <0x4040_0000 [ 64K ]>.
+Slave segment '/accel/S_AXI/reg0' is being assigned into address space '/ps7/Data' at <0x43C0_0000 [ 4K ]>.
+WARNING: [BD 41-702] Propagation TCL tries to overwrite USER strength parameter C_M_AXI_S2MM_DATA_WIDTH(64) on '/dma' with propagated value(32). Command ignored
+Wrote  : <C:\Users\tsi03\AppData\Local\Temp\r20p_354ac0\build\zedboard_ps\project\zedboard_ps.srcs\sources_1\bd\system\system.bd> 
+WARNING: [BD 41-2925] The design that will be created by this Tcl script contains the following module references: resnet20_axi_bd.
+Please add the sources of those modules before sourcing this Tcl script or use write_project_tcl.
+INFO: [BD 5-148] Tcl file written out <C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/system_export.tcl>.
+
+INFO: [BD 41-1662] The design 'system.bd' is already validated. Therefore parameter propagation will not be re-run.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/memory/xbar/m_axi_bid'(1) to pin: '/memory/m00_couplers/S_AXI_bid'(6) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/memory/xbar/m_axi_rid'(1) to pin: '/memory/m00_couplers/S_AXI_rid'(6) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_WID'(6) to pin: '/memory/M00_AXI_wid'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_ARID'(6) to pin: '/memory/M00_AXI_arid'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_AWID'(6) to pin: '/memory/M00_AXI_awid'(1) - Only lower order bits will be connected.
+Verilog Output written to : C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/memory/xbar/m_axi_bid'(1) to pin: '/memory/m00_couplers/S_AXI_bid'(6) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/memory/xbar/m_axi_rid'(1) to pin: '/memory/m00_couplers/S_AXI_rid'(6) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_WID'(6) to pin: '/memory/M00_AXI_wid'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_ARID'(6) to pin: '/memory/M00_AXI_arid'(1) - Only lower order bits will be connected.
+WARNING: [BD 41-2384] Width mismatch when connecting pin: '/ps7/S_AXI_HP0_AWID'(6) to pin: '/memory/M00_AXI_awid'(1) - Only lower order bits will be connected.
+Verilog Output written to : C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/sim/system.v
+Verilog Output written to : C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/hdl/system_wrapper.v
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created.
+INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_HP0'. A default connection has been created.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block dma .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block accel .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block control/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block control/s00_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block memory/xbar .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block memory/s00_couplers/auto_pc .
+WARNING: [IP_Flow 19-4994] Overwriting existing constraint file 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1_ooc.xdc'
+INFO: [BD 41-1029] Generation completed for the IP Integrator block memory/s01_couplers/auto_pc .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block reset .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block one .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block zero .
+Exporting to file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/hw_handoff/system.hwh
+Generated Hardware Definition File C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.hwdef
+generate_target: Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 739.969 ; gain = 52.457
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Mon Nov  2 20:23:54 2026] Launched system_dma_0_synth_1, system_control_imp_auto_pc_0_synth_1, system_ps7_0_synth_1, system_memory_imp_xbar_0_synth_1, system_control_imp_xbar_0_synth_1, system_memory_imp_auto_pc_0_synth_1, system_accel_0_synth_1, system_memory_imp_auto_pc_1_synth_1, system_reset_0_synth_1...
+Run output will be captured here:
+system_dma_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_dma_0_synth_1/runme.log
+system_control_imp_auto_pc_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_control_imp_auto_pc_0_synth_1/runme.log
+system_ps7_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_ps7_0_synth_1/runme.log
+system_memory_imp_xbar_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_memory_imp_xbar_0_synth_1/runme.log
+system_control_imp_xbar_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_control_imp_xbar_0_synth_1/runme.log
+system_memory_imp_auto_pc_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_memory_imp_auto_pc_0_synth_1/runme.log
+system_accel_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_accel_0_synth_1/runme.log
+system_memory_imp_auto_pc_1_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_memory_imp_auto_pc_1_synth_1/runme.log
+system_reset_0_synth_1: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/system_reset_0_synth_1/runme.log
+[Mon Nov  2 20:23:54 2026] Launched synth_1...
+Run output will be captured here: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/runme.log
+[Mon Nov  2 20:23:54 2026] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log system_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_wrapper.tcl
+
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 20:26:35 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source system_wrapper.tcl -notrace
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 514.094 ; gain = 215.309
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+INFO: [Project 1-5698] Found the below utility IPs instantiated in block design C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.srcs/sources_1/bd/system/system.bd which have equivalent inline hdl with improved performance and reduced diskspace.
+It is recommended to migrate these utility IPs to inline hdl  using the command upgrade_project -migrate_to_inline_hdl.  The utility IPs may be deprecated in future releases.
+More information on inline hdl is available in UG994.
+Utility IP Component Instances:
+ system_one_0
+system_zero_0
+Command: synth_design -top system_wrapper -part xc7z020clg484-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 21288
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1268.609 ; gain = 490.816
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_wrapper' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/hdl/system_wrapper.v:13]
+INFO: [Synth 8-6157] synthesizing module 'system' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1026]
+INFO: [Synth 8-6157] synthesizing module 'system_accel_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_accel_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_accel_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_accel_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_control_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1618]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_9M4DID' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_9M4DID' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:13]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_132GQ9G' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:363]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_132GQ9G' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:363]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_5VD14K' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:490]
+INFO: [Synth 8-6157] synthesizing module 'system_control_imp_auto_pc_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_control_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_control_imp_auto_pc_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_control_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_5VD14K' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:490]
+INFO: [Synth 8-6157] synthesizing module 'system_control_imp_xbar_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_control_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_control_imp_xbar_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_control_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_control_0' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1618]
+INFO: [Synth 8-6157] synthesizing module 'system_dma_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_dma_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_dma_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_dma_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mm2s_prmry_reset_out_n' of module 'system_dma_0' is unconnected for instance 'dma' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+WARNING: [Synth 8-7071] port 's2mm_prmry_reset_out_n' of module 'system_dma_0' is unconnected for instance 'dma' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+WARNING: [Synth 8-7071] port 'mm2s_introut' of module 'system_dma_0' is unconnected for instance 'dma' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+WARNING: [Synth 8-7071] port 's2mm_introut' of module 'system_dma_0' is unconnected for instance 'dma' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+WARNING: [Synth 8-7071] port 'axi_dma_tstvec' of module 'system_dma_0' is unconnected for instance 'dma' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+WARNING: [Synth 8-7023] instance 'dma' of module 'system_dma_0' has 64 connections declared, but only 59 given [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1363]
+INFO: [Synth 8-6157] synthesizing module 'system_memory_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2100]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_W0H1F6' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:122]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_W0H1F6' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:122]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_J4K0KJ' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:736]
+INFO: [Synth 8-6157] synthesizing module 'system_memory_imp_auto_pc_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_memory_imp_auto_pc_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_J4K0KJ' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:736]
+INFO: [Synth 8-6157] synthesizing module 's01_couplers_imp_1T2LWMQ' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:869]
+INFO: [Synth 8-6157] synthesizing module 'system_memory_imp_auto_pc_1' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_memory_imp_auto_pc_1' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_auto_pc_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's01_couplers_imp_1T2LWMQ' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:869]
+INFO: [Synth 8-6157] synthesizing module 'system_memory_imp_xbar_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_memory_imp_xbar_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_memory_imp_xbar_0_stub.v:6]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_arready' does not match port width (2) of module 'system_memory_imp_xbar_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2599]
+WARNING: [Synth 8-689] width (64) of port connection 's_axi_rdata' does not match port width (128) of module 'system_memory_imp_xbar_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2616]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rlast' does not match port width (2) of module 'system_memory_imp_xbar_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2617]
+WARNING: [Synth 8-689] width (2) of port connection 's_axi_rresp' does not match port width (4) of module 'system_memory_imp_xbar_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2619]
+WARNING: [Synth 8-689] width (1) of port connection 's_axi_rvalid' does not match port width (2) of module 'system_memory_imp_xbar_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2620]
+WARNING: [Synth 8-7071] port 's_axi_bid' of module 'system_memory_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2550]
+WARNING: [Synth 8-7071] port 's_axi_rid' of module 'system_memory_imp_xbar_0' is unconnected for instance 'xbar' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2550]
+WARNING: [Synth 8-7023] instance 'xbar' of module 'system_memory_imp_xbar_0' has 78 connections declared, but only 76 given [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2550]
+INFO: [Synth 8-6155] done synthesizing module 'system_memory_0' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:2100]
+INFO: [Synth 8-6157] synthesizing module 'system_one_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_one_0/synth/system_one_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_10_xlconstant' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_10_xlconstant' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'system_one_0' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_one_0/synth/system_one_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'system_ps7_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_ps7_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_ps7_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_ps7_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE0_OUT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE1_OUT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE2_OUT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'system_ps7_0' is unconnected for instance 'ps7' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+WARNING: [Synth 8-7023] instance 'ps7' of module 'system_ps7_0' has 113 connections declared, but only 104 given [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1501]
+INFO: [Synth 8-6157] synthesizing module 'system_reset_0' [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_reset_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_reset_0' (0#1) [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/.Xil/Vivado-70552-JinHyeok/realtime/system_reset_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'system_reset_0' is unconnected for instance 'reset' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1606]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'system_reset_0' is unconnected for instance 'reset' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1606]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'system_reset_0' is unconnected for instance 'reset' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1606]
+WARNING: [Synth 8-7023] instance 'reset' of module 'system_reset_0' has 10 connections declared, but only 7 given [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1606]
+INFO: [Synth 8-6157] synthesizing module 'system_zero_0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_zero_0/synth/system_zero_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'xlconstant_v1_1_10_xlconstant__parameterized0' [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'xlconstant_v1_1_10_xlconstant__parameterized0' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ipshared/a165/hdl/xlconstant_v1_1_vl_rfs.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'system_zero_0' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_zero_0/synth/system_zero_0.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'system' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/synth/system.v:1026]
+INFO: [Synth 8-6155] done synthesizing module 'system_wrapper' (0#1) [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/hdl/system_wrapper.v:13]
+WARNING: [Synth 8-7129] Port M_ACLK in module s01_couplers_imp_1T2LWMQ is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s01_couplers_imp_1T2LWMQ is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_J4K0KJ is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_J4K0KJ is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_W0H1F6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_W0H1F6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_W0H1F6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_W0H1F6 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module s00_couplers_imp_5VD14K is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module s00_couplers_imp_5VD14K is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m01_couplers_imp_132GQ9G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m01_couplers_imp_132GQ9G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m01_couplers_imp_132GQ9G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m01_couplers_imp_132GQ9G is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ACLK in module m00_couplers_imp_9M4DID is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_ARESETN in module m00_couplers_imp_9M4DID is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ACLK in module m00_couplers_imp_9M4DID is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_ARESETN in module m00_couplers_imp_9M4DID is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module system_control_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1388.168 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0/system_ps7_0_in_context.xdc] for cell 'system_i/ps7'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0/system_ps7_0_in_context.xdc] for cell 'system_i/ps7'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0/system_dma_0_in_context.xdc] for cell 'system_i/dma'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0/system_dma_0_in_context.xdc] for cell 'system_i/dma'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_accel_0/system_accel_0/system_accel_0_in_context.xdc] for cell 'system_i/accel'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_accel_0/system_accel_0/system_accel_0_in_context.xdc] for cell 'system_i/accel'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_xbar_0/system_control_imp_xbar_0/system_control_imp_xbar_0_in_context.xdc] for cell 'system_i/control/xbar'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_xbar_0/system_control_imp_xbar_0/system_control_imp_xbar_0_in_context.xdc] for cell 'system_i/control/xbar'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0_in_context.xdc] for cell 'system_i/control/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0_in_context.xdc] for cell 'system_i/control/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_xbar_0/system_memory_imp_xbar_0/system_memory_imp_xbar_0_in_context.xdc] for cell 'system_i/memory/xbar'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_xbar_0/system_memory_imp_xbar_0/system_memory_imp_xbar_0_in_context.xdc] for cell 'system_i/memory/xbar'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0_in_context.xdc] for cell 'system_i/memory/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0_in_context.xdc] for cell 'system_i/memory/s00_couplers/auto_pc'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1_in_context.xdc] for cell 'system_i/memory/s01_couplers/auto_pc'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1_in_context.xdc] for cell 'system_i/memory/s01_couplers/auto_pc'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0/system_reset_0_in_context.xdc] for cell 'system_i/reset'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0/system_reset_0_in_context.xdc] for cell 'system_i/reset'
+Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1388.168 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1388.168 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1388.168 ; gain = 610.375
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port M00_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[5] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[4] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[3] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[2] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_bid[1] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[5] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[4] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[3] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[2] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_AXI_rid[1] in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ACLK in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S01_ARESETN in module system_memory_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M00_ARESETN in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M01_ARESETN in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ACLK in module system_control_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S00_ARESETN in module system_control_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1396.820 ; gain = 619.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1572.156 ; gain = 794.363
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1573.312 ; gain = 795.520
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1584.066 ; gain = 806.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+-----------------------------+----------+
+|      |BlackBox name                |Instances |
++------+-----------------------------+----------+
+|1     |system_accel_0               |         1|
+|2     |system_control_imp_xbar_0    |         1|
+|3     |system_control_imp_auto_pc_0 |         1|
+|4     |system_dma_0                 |         1|
+|5     |system_memory_imp_xbar_0     |         1|
+|6     |system_memory_imp_auto_pc_0  |         1|
+|7     |system_memory_imp_auto_pc_1  |         1|
+|8     |system_ps7_0                 |         1|
+|9     |system_reset_0               |         1|
++------+-----------------------------+----------+
+
+Report Cell Usage: 
++------+---------------------------+------+
+|      |Cell                       |Count |
++------+---------------------------+------+
+|1     |system_accel               |     1|
+|2     |system_control_imp_auto_pc |     1|
+|3     |system_control_imp_xbar    |     1|
+|4     |system_dma                 |     1|
+|5     |system_memory_imp_auto_pc  |     2|
+|7     |system_memory_imp_xbar     |     1|
+|8     |system_ps7                 |     1|
+|9     |system_reset               |     1|
++------+---------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:31 . Memory (MB): peak = 1817.785 ; gain = 1039.992
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1817.785 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1830.555 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: d5768af0
+INFO: [Common 17-83] Releasing license: Synthesis
+62 Infos, 83 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 1834.531 ; gain = 1288.566
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/synth_1/system_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file system_wrapper_utilization_synth.rpt -pb system_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Nov  2 20:27:26 2026...
+[Mon Nov  2 20:27:30 2026] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:00:01 ; elapsed = 00:03:36 . Memory (MB): peak = 739.969 ; gain = 0.000
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z020clg484-1
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Project 1-5699] Read binary netlist with skipMacroContent - 1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_accel_0/system_accel_0.dcp' for cell 'system_i/accel'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.dcp' for cell 'system_i/dma'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.dcp' for cell 'system_i/ps7'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0.dcp' for cell 'system_i/reset'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_xbar_0/system_control_imp_xbar_0.dcp' for cell 'system_i/control/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0.dcp' for cell 'system_i/control/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_xbar_0/system_memory_imp_xbar_0.dcp' for cell 'system_i/memory/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0.dcp' for cell 'system_i/memory/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1.dcp' for cell 'system_i/memory/s01_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.188 . Memory (MB): peak = 1009.855 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 413 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.xdc] for cell 'system_i/ps7/inst'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.xdc] for cell 'system_i/ps7/inst'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.xdc] for cell 'system_i/dma/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.xdc] for cell 'system_i/dma/U0'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0_board.xdc] for cell 'system_i/reset/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0_board.xdc] for cell 'system_i/reset/U0'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0_clocks.xdc] for cell 'system_i/dma/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0_clocks.xdc] for cell 'system_i/dma/U0'
+INFO: [Project 1-1714] 10 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1727.578 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+
+open_run: Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1727.578 ; gain = 987.609
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/reports/post_synth_drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/reports/post_synth_drc.rpt.
+report_drc completed successfully
+[Mon Nov  2 20:27:55 2026] Launched impl_1...
+Run output will be captured here: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1838.102 ; gain = 0.000
+[Mon Nov  2 20:27:55 2026] Waiting for impl_1 to finish...
+
+*** Running vivado
+    with args -log system_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source system_wrapper.tcl -notrace
+
+
+
+****** Vivado v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 20:28:02 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source system_wrapper.tcl -notrace
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+Command: link_design -top system_wrapper -part xc7z020clg484-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Project 1-5699] Read binary netlist with skipMacroContent - 1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_accel_0/system_accel_0.dcp' for cell 'system_i/accel'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.dcp' for cell 'system_i/dma'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.dcp' for cell 'system_i/ps7'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0.dcp' for cell 'system_i/reset'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_xbar_0/system_control_imp_xbar_0.dcp' for cell 'system_i/control/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_control_imp_auto_pc_0/system_control_imp_auto_pc_0.dcp' for cell 'system_i/control/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_xbar_0/system_memory_imp_xbar_0.dcp' for cell 'system_i/memory/xbar'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_0/system_memory_imp_auto_pc_0.dcp' for cell 'system_i/memory/s00_couplers/auto_pc'
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_memory_imp_auto_pc_1/system_memory_imp_auto_pc_1.dcp' for cell 'system_i/memory/s01_couplers/auto_pc'
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.194 . Memory (MB): peak = 824.160 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 413 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.xdc] for cell 'system_i/ps7/inst'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_ps7_0/system_ps7_0.xdc] for cell 'system_i/ps7/inst'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.xdc] for cell 'system_i/dma/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0.xdc] for cell 'system_i/dma/U0'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0_board.xdc] for cell 'system_i/reset/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_reset_0/system_reset_0_board.xdc] for cell 'system_i/reset/U0'
+Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0_clocks.xdc] for cell 'system_i/dma/U0'
+Finished Parsing XDC File [c:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.gen/sources_1/bd/system/ip/system_dma_0/system_dma_0_clocks.xdc] for cell 'system_i/dma/U0'
+INFO: [Project 1-1714] 10 XPM XDC files have been applied to the design.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1543.051 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+
+21 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1543.051 ; gain = 994.891
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.669 . Memory (MB): peak = 1543.051 ; gain = 0.000
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.290 . Memory (MB): peak = 1543.051 ; gain = 0.000
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Phase 1 Initialization | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Timer Update
+Phase 2.1 Timer Update | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.189 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Phase 2.2 Timing Data Collection
+Phase 2.2 Timing Data Collection | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.206 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Phase 2 Timer Update And Timing Data Collection | Checksum: 1ba8c4157
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.210 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-1566] Pulled 1 inverters resulting in an inversion of 19 pins
+INFO: [Opt 31-138] Pushed 3 inverter(s) to 7 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 171a8ffbd
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.407 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Retarget | Checksum: 171a8ffbd
+INFO: [Opt 31-389] Phase Retarget created 33 cells and removed 121 cells
+INFO: [Opt 31-1021] In phase Retarget, 27 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 140d75816
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.506 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Constant propagation | Checksum: 140d75816
+INFO: [Opt 31-389] Phase Constant propagation created 8 cells and removed 192 cells
+INFO: [Opt 31-1021] In phase Constant propagation, 27 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1940.004 ; gain = 0.000
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Phase 5 Sweep | Checksum: 13b3a1379
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.826 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Sweep | Checksum: 13b3a1379
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 157 cells
+INFO: [Opt 31-1021] In phase Sweep, 97 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 6 BUFG optimization
+Phase 6 BUFG optimization | Checksum: 13b3a1379
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.901 . Memory (MB): peak = 1940.004 ; gain = 0.000
+BUFG optimization | Checksum: 13b3a1379
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 7 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 7 Shift Register Optimization | Checksum: 13b3a1379
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.933 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Shift Register Optimization | Checksum: 13b3a1379
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 8 Post Processing Netlist
+Phase 8 Post Processing Netlist | Checksum: 14dd6a125
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.951 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Post Processing Netlist | Checksum: 14dd6a125
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+INFO: [Opt 31-1021] In phase Post Processing Netlist, 33 netlist objects are constrained preventing optimization. Please run opt_design with -debug_log to get more detail. 
+
+Phase 9 Finalization
+
+Phase 9.1 Finalizing Design Cores and Updating Shapes
+Phase 9.1 Finalizing Design Cores and Updating Shapes | Checksum: eb669316
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Phase 9.2 Verifying Netlist Connectivity
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Phase 9.2 Verifying Netlist Connectivity | Checksum: eb669316
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Phase 9 Finalization | Checksum: eb669316
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1940.004 ; gain = 0.000
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |              33  |             121  |                                             27  |
+|  Constant propagation         |               8  |             192  |                                             27  |
+|  Sweep                        |               0  |             157  |                                             97  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                             33  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: eb669316
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1940.004 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 89 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 34 WE to EN ports
+Number of BRAM Ports augmented: 53 newly gated: 34 Total Ports: 178
+Number of Flops added for Enable Generation: 6
+
+Ending PowerOpt Patch Enables Task | Checksum: 1bebf2774
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.398 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 1bebf2774
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 2186.152 ; gain = 246.148
+
+Starting Final Cleanup Task
+
+Starting Logic Optimization Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Logic Optimization Task | Checksum: 175877882
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.709 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Ending Final Cleanup Task | Checksum: 175877882
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Ending Netlist Obfuscation Task | Checksum: 175877882
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+53 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:20 . Memory (MB): peak = 2186.152 ; gain = 643.102
+INFO: [Vivado 12-24828] Executing command : report_drc -file system_wrapper_drc_opted.rpt -pb system_wrapper_drc_opted.pb -rpx system_wrapper_drc_opted.rpx
+Command: report_drc -file system_wrapper_drc_opted.rpt -pb system_wrapper_drc_opted.pb -rpx system_wrapper_drc_opted.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Wrote PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.034 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_opt.dcp' has been generated.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-83] Releasing license: Implementation
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 12 Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Starting Placer Task
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: 107c962b0
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 49fd9e2e
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.865 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 921e0009
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 921e0009
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 921e0009
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2 Global Placement
+
+Phase 2.1 Floorplanning
+Phase 2.1 Floorplanning | Checksum: 1456c121e
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:03 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2.2 Update Timing before SLR Path Opt
+Phase 2.2 Update Timing before SLR Path Opt | Checksum: 141bf838d
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2.3 Post-Processing in Floorplanning
+Phase 2.3 Post-Processing in Floorplanning | Checksum: 141bf838d
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2.4 Global Place Phase1
+Phase 2.4 Global Place Phase1 | Checksum: 15f02babc
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:09 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2.5 Global Place Phase2
+
+Phase 2.5.1 UpdateTiming Before Physical Synthesis
+Phase 2.5.1 UpdateTiming Before Physical Synthesis | Checksum: 16308ba4b
+
+Time (s): cpu = 00:00:18 ; elapsed = 00:00:09 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2.5.2 Physical Synthesis In Placer
+INFO: [Physopt 32-1035] Found 0 LUTNM shape to break, 317 LUT instances to create LUTNM shape
+INFO: [Physopt 32-1044] Break lutnm for timing: one critical 0, two critical 0, total 0, new lutff created 0
+INFO: [Physopt 32-1138] End 1 Pass. Optimized 111 nets or LUTs. Breaked 0 LUT, combined 111 existing LUTs and moved 0 existing LUT
+INFO: [Physopt 32-65] No nets found for high-fanout optimization.
+INFO: [Physopt 32-232] Optimized 0 net. Created 0 new instance.
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-456] No candidate cells for DSP register optimization found in the design.
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1123] No candidate cells found for Shift Register to Pipeline optimization
+INFO: [Physopt 32-775] End 2 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-1401] No candidate cells found for Shift Register optimization.
+INFO: [Physopt 32-677] No candidate cells for Shift Register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-526] No candidate cells for BRAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-846] No candidate cells for URAM register optimization found in the design
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+INFO: [Physopt 32-949] No candidate nets found for dynamic/static region interface net replication
+INFO: [Physopt 32-775] End 1 Pass. Optimized 0 net or cell. Created 0 new cell, deleted 0 existing cell and moved 0 existing cell
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization                                     |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT Combining                                    |            0  |            111  |                   111  |           0  |           1  |  00:00:00  |
+|  Retime                                           |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Very High Fanout                                 |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  DSP Register                                     |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register to Pipeline                       |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Shift Register                                   |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  BRAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  URAM Register                                    |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Dynamic/Static Region Interface Net Replication  |            0  |              0  |                     0  |           0  |           1  |  00:00:00  |
+|  Total                                            |            0  |            111  |                   111  |           0  |           9  |  00:00:00  |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Phase 2.5.2 Physical Synthesis In Placer | Checksum: dd960b69
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 2.5 Global Place Phase2 | Checksum: 17e292856
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 2 Global Placement | Checksum: 17e292856
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 1d5681b4b
+
+Time (s): cpu = 00:00:22 ; elapsed = 00:00:12 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1993edd8b
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:13 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: e5d70b7c
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:13 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 1556e2c0b
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:13 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.5 Fast Optimization
+Phase 3.5 Fast Optimization | Checksum: dc1325b4
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:14 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.6 Small Shape Detail Placement
+Phase 3.6 Small Shape Detail Placement | Checksum: 225b8ab33
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.7 Re-assign LUT pins
+Phase 3.7 Re-assign LUT pins | Checksum: 17214b6d6
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:17 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 3.8 Pipeline Register Optimization
+Phase 3.8 Pipeline Register Optimization | Checksum: 185d61647
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:17 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 185d61647
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:17 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1e25bc0da
+
+Phase 4.1.1.1 BUFG Insertion
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 4 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.133 | TNS=-0.861 |
+Phase 1 Physical Synthesis Initialization | Checksum: 1c1851681
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.125 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Place 46-56] BUFG insertion identified 0 candidate nets. Inserted BUFG: 0, Replicated BUFG Driver: 0, Skipped due to Placement/Routing Conflicts: 0, Skipped due to Timing Degradation: 0, Skipped due to netlist editing failed: 0.
+Ending Physical Synthesis Task | Checksum: 170d654fc
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.188 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1e25bc0da
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:18 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 4.1.1.2 Post Placement Timing Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.507. For the most accurate timing information please run report_timing.
+Phase 4.1.1.2 Post Placement Timing Optimization | Checksum: 1794a2f35
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:23 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:23 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 1794a2f35
+
+Time (s): cpu = 00:00:38 ; elapsed = 00:00:23 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 1794a2f35
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 4.3 Placer Reporting
+
+Phase 4.3.1 Print Estimated Congestion
+INFO: [Place 30-612] Post-Placement Estimated Congestion 
+ ____________________________________________________
+|           | Global Congestion | Short Congestion  |
+| Direction | Region Size       | Region Size       |
+|___________|___________________|___________________|
+|      North|                1x1|                2x2|
+|___________|___________________|___________________|
+|      South|                1x1|                1x1|
+|___________|___________________|___________________|
+|       East|                1x1|                1x1|
+|___________|___________________|___________________|
+|       West|                1x1|                1x1|
+|___________|___________________|___________________|
+
+Phase 4.3.1 Print Estimated Congestion | Checksum: 1794a2f35
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 4.3 Placer Reporting | Checksum: 1794a2f35
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 4.4 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 15934b2c0
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Ending Placer Task | Checksum: c1ebe359
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:24 . Memory (MB): peak = 2186.152 ; gain = 0.000
+96 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:25 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Vivado 12-24838] Running report commands "report_control_sets, report_io, report_utilization" in parallel.
+Running report generation with 3 threads.
+INFO: [Vivado 12-24828] Executing command : report_control_sets -verbose -file system_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_io -file system_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.066 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Vivado 12-24828] Executing command : report_utilization -file system_wrapper_utilization_placed.rpt -pb system_wrapper_utilization_placed.pb
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.766 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.843 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_placed.dcp' has been generated.
+Command: phys_opt_design -directive ExploreWithAggressiveHoldFix
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Vivado_Tcl 4-137] Directive used for phys_opt_design is: ExploreWithAggressiveHoldFix
+
+Starting Initial Update Timing Task
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Vivado_Tcl 4-2280] Estimated Timing Summary | WNS= 0.507 | TNS= 0.000 | WHS= -0.099 |
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. All physical synthesis setup optimizations will be skipped.
+INFO: [Vivado_Tcl 4-1435] PhysOpt_Tcl_Interface Runtime Before Starting Physical Synthesis Task | CPU: 3.00s |  WALL: 1.07s
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Starting Physical Synthesis Task
+
+Phase 1 Physical Synthesis Initialization
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 4 CPUs
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=0.507 | TNS=0.000 |
+Phase 1 Physical Synthesis Initialization | Checksum: 12b3c4423
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.311 . Memory (MB): peak = 2186.152 ; gain = 0.000
+
+Phase 2 Hold Fix Optimization
+INFO: [Physopt 32-668] Estimated Timing Summary | WNS=0.507 | TNS=0.000 | WHS=-0.099 | THS=-1.120 |
+INFO: [Physopt 32-45] Identified 7 candidate nets for hold slack optimization.
+INFO: [Physopt 32-234] Optimized 7 nets. Inserted 0 new ZHOLD_DELAYs. Calibrated 0 existing ZHOLD_DELAYs. Inserted 7 buffers.
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.024 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Physopt 32-668] Estimated Timing Summary | WNS=0.507 | TNS=0.000 | WHS=-0.047 | THS=-0.601 |
+Phase 2 Hold Fix Optimization | Checksum: 13dc11733
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.600 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Physopt 32-669] Post Physical Optimization Timing Summary | WNS=0.507 | TNS=0.000 | WHS=-0.047 | THS=-0.601 |
+
+Summary of Physical Synthesis Optimizations
+============================================
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization            |  WNS Gain (ns)  |  TNS Gain (ns)  |  Added Cells  |  Removed Cells  |  Optimized Cells/Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Fanout                  |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Single Cell Placement   |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Multi Cell Placement    |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Rewire                  |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Critical Cell           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  SLR Crossing            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  DSP Register            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  BRAM Register           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  URAM Register           |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Shift Register          |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Critical Pin            |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Very High Fanout        |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+|  Total                   |          0.000  |          0.000  |            0  |              0  |                     0  |           0  |           0  |  00:00:00  |
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Summary of Hold Fix Optimizations
+=================================
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  Optimization               |  WHS Gain (ns)  |  THS Gain (ns)  |  Added LUTs  |  Added FFs  |  Optimized Nets  |  Dont Touch  |  Iterations  |  Elapsed   |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+|  LUT1 and ZHOLD Insertion   |          0.052  |          0.519  |           7  |          0  |               7  |           0  |           1  |  00:00:00  |
+|  Total                      |          0.052  |          0.519  |           7  |          0  |               7  |           0  |           1  |  00:00:00  |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Ending Physical Synthesis Task | Checksum: 125706087
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.666 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+115 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.814 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 2186.152 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.884 . Memory (MB): peak = 2186.152 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_physopt.dcp' has been generated.
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+
+Phase 1 Build RT Design
+Checksum: PlaceDB: bd155bfc ConstDB: 0 ShapeSum: 37af96d6 RouteDB: 15f972f0
+Post Restoration Checksum: NetGraph: c0df3f15 | NumContArr: b543599b | Constraints: c2a8fa9d | Timing: c2a8fa9d
+Phase 1 Build RT Design | Checksum: 2fb748dea
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 2212.098 ; gain = 25.945
+
+Phase 2 Router Initialization
+
+Phase 2.1 Fix Topology Constraints
+Phase 2.1 Fix Topology Constraints | Checksum: 2fb748dea
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 2212.098 ; gain = 25.945
+
+Phase 2.2 Pre Route Cleanup
+Phase 2.2 Pre Route Cleanup | Checksum: 2fb748dea
+
+Time (s): cpu = 00:00:33 ; elapsed = 00:00:32 . Memory (MB): peak = 2212.098 ; gain = 25.945
+ Number of Nodes with overlaps = 0
+
+Phase 2.3 Update Timing
+Phase 2.3 Update Timing | Checksum: 23a862af5
+
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:34 . Memory (MB): peak = 2263.586 ; gain = 77.434
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.507  | TNS=0.000  | WHS=-0.309 | THS=-125.865|
+
+
+Phase 2.4 Soft Constraint Pins - Fast Budgeting
+Phase 2.4 Soft Constraint Pins - Fast Budgeting | Checksum: 25cdf03ce
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:35 . Memory (MB): peak = 2287.633 ; gain = 101.480
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 9149
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 9149
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 2 Router Initialization | Checksum: 27a76e787
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:35 . Memory (MB): peak = 2287.633 ; gain = 101.480
+
+Phase 3 Global Routing
+Phase 3 Global Routing | Checksum: 27a76e787
+
+Time (s): cpu = 00:00:39 ; elapsed = 00:00:35 . Memory (MB): peak = 2287.633 ; gain = 101.480
+
+Phase 4 Initial Routing
+
+Phase 4.1 Initial Net Routing Pass
+Phase 4.1 Initial Net Routing Pass | Checksum: 237a78c2e
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2327.414 ; gain = 141.262
+Phase 4 Initial Routing | Checksum: 237a78c2e
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:39 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 5 Rip-up And Reroute
+
+Phase 5.1 Global Iteration 0
+ Number of Nodes with overlaps = 715
+ Number of Nodes with overlaps = 73
+ Number of Nodes with overlaps = 33
+ Number of Nodes with overlaps = 15
+ Number of Nodes with overlaps = 3
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.130  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Global Iteration 0 | Checksum: 3185d0547
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:47 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 5.2 Global Iteration 1
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.130  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.2 Global Iteration 1 | Checksum: 2e3f6b1fe
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 5.3 Global Iteration 2
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.130  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.3 Global Iteration 2 | Checksum: 2b032a1a4
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+Phase 5 Rip-up And Reroute | Checksum: 2b032a1a4
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 6 Delay and Skew Optimization
+
+Phase 6.1 Delay CleanUp
+Phase 6.1 Delay CleanUp | Checksum: 2b032a1a4
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 6.2 Clock Skew Optimization
+Phase 6.2 Clock Skew Optimization | Checksum: 2b032a1a4
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+Phase 6 Delay and Skew Optimization | Checksum: 2b032a1a4
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 7 Post Hold Fix
+
+Phase 7.1 Hold Fix Iter
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.250  | TNS=0.000  | WHS=0.016  | THS=0.000  |
+
+Phase 7.1 Hold Fix Iter | Checksum: 2aa0f40b2
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+Phase 7 Post Hold Fix | Checksum: 2aa0f40b2
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 8 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 3.06301 %
+  Global Horizontal Routing Utilization  = 3.73656 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 8 Route finalize | Checksum: 2aa0f40b2
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 9 Verifying routed nets
+
+ Verification completed successfully
+Phase 9 Verifying routed nets | Checksum: 2aa0f40b2
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:48 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 10 Depositing Routes
+Phase 10 Depositing Routes | Checksum: 26ba1f11d
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 11 Post Process Routing
+Phase 11 Post Process Routing | Checksum: 26ba1f11d
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Phase 12 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.250  | TNS=0.000  | WHS=0.016  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 12 Post Router Timing | Checksum: 26ba1f11d
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+Total Elapsed time in route_design: 48.686 secs
+
+Phase 13 Post-Route Event Processing
+Phase 13 Post-Route Event Processing | Checksum: 17dd687ef
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+INFO: [Route 35-16] Router Completed Successfully
+Ending Routing Task | Checksum: 17dd687ef
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+131 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:07 ; elapsed = 00:00:49 . Memory (MB): peak = 2327.414 ; gain = 141.262
+INFO: [Vivado 12-24828] Executing command : report_drc -file system_wrapper_drc_routed.rpt -pb system_wrapper_drc_routed.pb -rpx system_wrapper_drc_routed.rpx
+Command: report_drc -file system_wrapper_drc_routed.rpt -pb system_wrapper_drc_routed.pb -rpx system_wrapper_drc_routed.rpx
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_drc_routed.rpt.
+report_drc completed successfully
+INFO: [Vivado 12-24828] Executing command : report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [DRC 23-133] Running Methodology with 4 threads
+INFO: [Vivado_Tcl 2-1520] The results of Report Methodology are in file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+INFO: [Vivado 12-24828] Executing command : report_timing_summary -max_paths 10 -routable_nets -report_unconstrained -file system_wrapper_timing_summary_routed.rpt -pb system_wrapper_timing_summary_routed.pb -rpx system_wrapper_timing_summary_routed.rpx -warn_on_violation 
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Vivado 12-24838] Running report commands "report_incremental_reuse, report_route_status" in parallel.
+Running report generation with 2 threads.
+INFO: [Vivado 12-24828] Executing command : report_incremental_reuse -file system_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-1062] Incremental flow is disabled. No incremental reuse Info to report.
+INFO: [Vivado 12-24828] Executing command : report_route_status -file system_wrapper_route_status.rpt -pb system_wrapper_route_status.pb
+INFO: [Vivado 12-24828] Executing command : report_power -file system_wrapper_power_routed.rpt -pb system_wrapper_power_summary_routed.pb -rpx system_wrapper_power_routed.rpx
+Command: report_power -file system_wrapper_power_routed.rpt -pb system_wrapper_power_summary_routed.pb -rpx system_wrapper_power_routed.rpx
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+148 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+INFO: [Vivado 12-24828] Executing command : report_clock_utilization -file system_wrapper_clock_utilization_routed.rpt
+INFO: [Vivado 12-24828] Executing command : report_bus_skew -warn_on_violation -file system_wrapper_bus_skew_routed.rpt -pb system_wrapper_bus_skew_routed.pb -rpx system_wrapper_bus_skew_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+generate_parallel_reports: Time (s): cpu = 00:00:26 ; elapsed = 00:00:10 . Memory (MB): peak = 2352.242 ; gain = 24.828
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 2352.242 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.915 . Memory (MB): peak = 2355.680 ; gain = 3.438
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2355.680 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.192 . Memory (MB): peak = 2355.680 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2355.680 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 2355.680 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2355.680 ; gain = 3.438
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/project/zedboard_ps.runs/impl_1/system_wrapper_routed.dcp' has been generated.
+INFO: [Memdata 28-167] Found XPM memory block system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_XD_FIFO/NON_BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst with a P_MEMORY_PRIMITIVE property set to auto. A value of block is required. You will not be able to use the updatemem program to update the bitstream with new data for the system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_XD_FIFO/NON_BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst block.
+INFO: [Memdata 28-208] The XPM instance: <system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst> is part of IP: <system_i/dma>. This XPM instance will be excluded from the .mmi because updatemem is prohibited from making changes to an XPM that is part of an IP.
+INFO: [Memdata 28-208] The XPM instance: <system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst> is part of IP: <system_i/dma>. This XPM instance will be excluded from the .mmi because updatemem is prohibited from making changes to an XPM that is part of an IP.
+Command: write_bitstream -force system_wrapper.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado 12-3199] DRC finished with 0 Errors
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 4 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./system_wrapper.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Common 17-83] Releasing license: Implementation
+165 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:31 ; elapsed = 00:00:16 . Memory (MB): peak = 2863.035 ; gain = 507.355
+INFO: [Common 17-206] Exiting Vivado at Mon Nov  2 20:30:40 2026...
+[Mon Nov  2 20:30:45 2026] impl_1 finished
+wait_on_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:02:50 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.202 . Memory (MB): peak = 1838.102 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 405 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1838.102 ; gain = 0.000
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.596 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.131 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Read Physdb Files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.779 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.781 . Memory (MB): peak = 1838.102 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1838.102 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+  SRLC32E => SRL16E: 3 instances
+
+open_run: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 1838.102 ; gain = 0.000
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type min -sort_by slack.
+Command: report_drc -file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/reports/post_route_drc.rpt
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/reports/post_route_drc.rpt.
+report_drc completed successfully
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.030 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Wrote PlaceDB: Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.943 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Wrote PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Wrote RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.190 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Wrote Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Wrote Device Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 1978.867 ; gain = 0.000
+Write Physdb Complete: Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1978.867 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/system_post_route.dcp' has been generated.
+INFO: [Project 1-1918] Creating Hardware Platform: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/system.xsa ...
+INFO: [Project 1-1943] The Hardware Platform can be used for Hardware
+INFO: [Project 1-1941] Successfully created Hardware Platform: C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps/system.xsa
+INFO: [Hsi 55-2053] elapsed time for repository (C:/Xilinx/2025.1/Vivado/data/embeddedsw) loading 3 seconds
+write_hw_platform: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 2151.402 ; gain = 172.535
+# puts "PS_SYSTEM_COMPLETE output=$out"
+PS_SYSTEM_COMPLETE output=C:/Users/tsi03/AppData/Local/Temp/r20p_354ac0/build/zedboard_ps
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Mon Nov  2 20:31:15 2026...

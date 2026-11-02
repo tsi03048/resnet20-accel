@@ -1,0 +1,7 @@
+{
+  "status": "NOT_RUN",
+  "reason": "User confirmed that the ZedBoard is not connected",
+  "ps_execution": false,
+  "ddr_training": false,
+  "actual_dma_transfer": false
+}

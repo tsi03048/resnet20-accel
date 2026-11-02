@@ -1,0 +1,27 @@
+{
+  "tested_revision": "26078c0ec59f5854d0f74b3ac9476e69122b4098",
+  "workflow_run_id": 41437155870,
+  "workflow_url": "https://github.com/tsi03048/resnet20-accel/actions/runs/41437155870",
+  "workflow_conclusion": "success",
+  "artifact_id": 13139165130,
+  "artifact_sha256": "735bf28467ffed36dd7db9c1eba5b1dca7c1b9d55de002e134c02068cabf9dc8",
+  "artifact_expires_at": "2027-01-31T11:28:47Z",
+  "local_artifact_digest_verified": true,
+  "local_source_hashes_match": true,
+  "local_csv_recomparison": "PASS, all 274506 events",
+  "summary_sha256": "422088d6e46d4d6575c8846a9d635d5165959c848f07fae844f05f679d1fa54b",
+  "active_system_rtl_matches": true,
+  "active_rtl_sources": [
+    "rtl/ps_dma_v1/resnet20_axi.sv",
+    "rtl/ps_dma_v1/resnet20_axi_bd.v",
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_fpga_v2/full_model.sv",
+    "rtl/full_e2b_fpga_v2/feature_ram.sv",
+    "rtl/full_e2b_fpga_v2/sync_bram.sv",
+    "rtl/full_e2b_fpga_v2/weight_bram.sv",
+    "rtl/full_e2b_fpga_v2/mul_serial.sv",
+    "rtl/full_e2b_fpga_v2/rne_serial.sv",
+    "rtl/full_e2b_fpga_v2/control_rom.svh"
+  ],
+  "scope": "CNN RTL with PS AXI-Lite/DDR-backed DMA stream BFMs; complete Vivado system measured separately; board not connected"
+}

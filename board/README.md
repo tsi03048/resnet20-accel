@@ -50,5 +50,7 @@ VIO 창을 열고 아래 신호를 추가한다. 표시 이름이 번호이면 �
 후속 [E8-D](../docs/full_fpga_v2.md)는 Weight·계수도 BRAM으로 옮기고 주소·곱셈 경로를 단계화한 `fpga2` 버전입니다. 실제 코어 배치·배선 후 LUT 1,957, BRAM 84.5/140, DSP 0이며 100 MHz에서 WNS +0.071 ns·WHS +0.052 ns를 확인했습니다. 이 코어 OOC 결과와 위 작은 Conv+VIO 프로젝트의 미실행 상태, PS/DDR/AXI·보드 통합을 구분합니다.
 
 기본 보드는 ROM fixture를 사용한다. 실제 모델 Block으로 확장할 때는 E2-B 상수·입력 적재·주소 범위·출력 회수 규약을 추가한다.
+
+전체 모델의 PS7·DDR·AXI DMA 시스템은 [E8-E](../docs/ps_ddr_dma.md)에 별도로 구현했습니다. 입력·Weight·계수 적재와 64byte 점수 회수 경로, ARM 실행 프로그램·실제 DMA IP 시험·100 MHz 시스템 배선 결과가 있습니다. 실물 보드가 연결되지 않아 PS·DDR·DMA의 보드 실행은 NOT_RUN입니다. 위 작은 Conv+VIO의 상태와 구분합니다.
 [기존 E12~E21 자료](../docs/historical/e12-e21/README.md)는 원본 ZIP·소스·로그 이관을 완료했다. 전체 모델·실물 보드 실행은 별도 미완료 항목이다.
 

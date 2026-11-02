@@ -1,0 +1,8 @@
+Time resolution is 1 ps
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_dma_ip.dut.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_dma_ip/dut/U0/I_PRMRY_DATAMOVER/gen_s2mm_full/I_S2MM_FULL_WRAPPER/gen_enable_indet_btt_sf/I_INDET_BTT/I_XD_FIFO/non_blk_mem/I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_87  Scope: tb_dma_ip.dut.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+DMA_IP_TRANSFER_PASS bytes=1073356 read_bursts=8386 write_bursts=8386 stream_words=268339
+DMA_IP_TRANSFER_PASS bytes=64 read_bursts=8392 write_bursts=8390 stream_words=268466
+DMA_IP_PASS real_axi_dma=7.1 max_packet_bytes=1073356 reset_during_transfer=1 recovered_bytes=64 memory_bfm=1 stream_stalls=1
+$finish called at time : 3360630 ns : File "C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/tb/ps_dma_v1/tb_dma_ip.sv" Line 219
+INFO: xsimkernel Simulation Memory Usage: 28484 KB (Peak: 28484 KB), Simulation CPU Usage: 26983 ms

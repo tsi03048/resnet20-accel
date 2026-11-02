@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "tool": "Vivado XSim 2025.1",
+  "ip": "axi_dma 7.1",
+  "max_packet_bytes": 1073356,
+  "read_bursts_first_packet": 8386,
+  "write_bursts_first_packet": 8386,
+  "reset_during_transfer": true,
+  "recovered_bytes": 64,
+  "stream_stalls": true,
+  "source_sha256": {
+    "board/zedboard/ps_dma/sim_dma_ip.tcl": "9de7a1e024c792bceeababed79ca2535ac5c2dd0d6e3c820d5112dc98191caf0",
+    "tb/ps_dma_v1/tb_dma_ip.sv": "9edb098bf34ef65f33a517633f02b542dab814c0ff32599f6c8c52a66ff89c14"
+  },
+  "report_sha256": {
+    "elaborate.log": "467e8b13517685c22202d80e7f45ab3f4d407b845bd30218f01256295a29a247",
+    "launch_manifest.json": "3a8d3420c3a2008ca32c4df904c9bc6a5262e56426563cf8b23b687fd83a2b9a",
+    "simulate.log": "0519880627092e4f173667a6235e3efe5af8572f50fbb25ea61d08e64eba2b7f",
+    "vivado.log": "b4e45a14c29e1b611fb8eed612a4ee7f4f368bb6e5d0202daa2d8098f14cac61",
+    "xvlog.log": "90bbf20400b10d3d32ea70ede9429e0b787b5c3f589b0d575989e50d011ed96d"
+  },
+  "scope": "Real AMD AXI DMA RTL loopback; AXI DDR memory and PS register master BFMs. No CNN, DDR PHY or CPU boot in this test."
+}

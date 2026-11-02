@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "python_unittests": 46,
+  "rtl_independent_csv_events": 274506,
+  "scope": "Local verification, not physical board execution",
+  "source_sha256": {
+    "tests/test_ps_dma.py": "318ff233d3873e60216d5287e663edf6ed4fda0818da5356ad66667ad9b2bd27",
+    "tools/check_ps_delivery.py": "7f3f76d447d1c657fa4b3ef219b08e96dafb9905a052e02b53e1886bb8492084",
+    "tools/ps_dma_board_report.py": "2108b82d8037c53924003fc622c678715f6e7c2d9fed83f2de918e0e3d2962b7"
+  }
+}

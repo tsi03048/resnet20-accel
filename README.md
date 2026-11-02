@@ -30,6 +30,7 @@
 | 실제 전체 모델 RTL | [E8-B: 0→1→0·61경계·GAP/FC·Stall/Reset](docs/full_e2b_rtl.md) |
 | 전체 모델 ZedBoard 합성 | [E8-C: Vivado 실제 보고서·BRAM 포트·자원 초과·타이밍 분석](docs/full_vivado_zedboard.md) |
 | 전체 모델 BRAM·100 MHz 개선 | [E8-D: 전체 메모리 BRAM·주소 단계화·배선 후 Setup/Hold·정수 재검증](docs/full_fpga_v2.md) |
+| PS·DDR·DMA 전체 시스템 | [E8-E: 입력·Weight 적재부터 점수 회수, 실제 시스템 배선·DMA IP·ARM 시험](docs/ps_ddr_dma.md) |
 | 보드 | [ZedBoard](board/README.md) |
 | 현재 기준·실행 증거 | [진행 현황](docs/project_status.md) |
 | 상세 설계·이전 자료 | [Notion 대응](docs/notion_map.md), [E12~E21 보관](docs/historical/e12-e21/README.md) |

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Real ARM ELF execution in Unicorn Cortex-A9; behavioral DMA/core MMIO models, not RTL or board execution",
+  "elf_sha256": "8d8a4f015adefe8bc487c2bbdc3fe580d032598a919031242868140541e2ae30",
+  "cases": [
+    {
+      "scenario": "normal",
+      "status": "PASS",
+      "reported_state": 2,
+      "completed_jobs": 4,
+      "mm2s_transfers": 25,
+      "s2mm_transfers": 4,
+      "aborted_jobs": 1
+    },
+    {
+      "scenario": "dma_decode",
+      "status": "PASS",
+      "reported_state": 2147483680,
+      "completed_jobs": 0,
+      "mm2s_transfers": 1,
+      "s2mm_transfers": 0,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "timeout",
+      "status": "PASS",
+      "reported_state": 2147483696,
+      "completed_jobs": 0,
+      "mm2s_transfers": 1,
+      "s2mm_transfers": 0,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "bad_score",
+      "status": "PASS",
+      "reported_state": 2147483729,
+      "completed_jobs": 0,
+      "mm2s_transfers": 5,
+      "s2mm_transfers": 1,
+      "aborted_jobs": 0
+    },
+    {
+      "scenario": "stale_tag",
+      "status": "PASS",
+      "reported_state": 2147483728,
+      "completed_jobs": 0,
+      "mm2s_transfers": 5,
+      "s2mm_transfers": 1,
+      "aborted_jobs": 0
+    }
+  ],
+  "source_sha256": {
+    "board/zedboard/ps_dma/software/start.S": "522e712b76eeb3b45c71824cb561e1a5585288378541fc82449d792e8cf78bc1",
+    "board/zedboard/ps_dma/software/link.ld": "52af393a8e94d20b4deb8da81d9699692963a4c7ed9bd6d58afe360ac9be1f2c",
+    "board/zedboard/ps_dma/software/main.c": "c677d7521d04b9f243d6f86031eedf0d437caca664e745736f74f3b02f384c7f",
+    "board/zedboard/ps_dma/software/vectors.h": "3c5b62403174bf2835fa50e25c7d5ae52d6982c6649ab2a440521a4862d18449",
+    "tools/ps_dma_vectors.py": "b5d6773f10f735c3a30f87ab5c42b6c4b7c638dc0aa960369c628d845f9d2324",
+    "tools/ps_dma_arm_emulate.py": "9d9bd1b3fc5cf3662a644afcc00d3cdc09785642e5c58c30d345714028927fc8"
+  }
+}

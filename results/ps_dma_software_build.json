@@ -1,0 +1,12 @@
+{
+  "status": "ARM_ELF_BUILT",
+  "executed_on_board": false,
+  "compiler": "arm-xilinx-eabi-gcc.exe (GCC) 13.3.0",
+  "elf_sha256": "8d8a4f015adefe8bc487c2bbdc3fe580d032598a919031242868140541e2ae30",
+  "source_sha256": {
+    "board/zedboard/ps_dma/software/start.S": "522e712b76eeb3b45c71824cb561e1a5585288378541fc82449d792e8cf78bc1",
+    "board/zedboard/ps_dma/software/main.c": "c677d7521d04b9f243d6f86031eedf0d437caca664e745736f74f3b02f384c7f",
+    "board/zedboard/ps_dma/software/link.ld": "52af393a8e94d20b4deb8da81d9699692963a4c7ed9bd6d58afe360ac9be1f2c",
+    "board/zedboard/ps_dma/software/vectors.h": "3c5b62403174bf2835fa50e25c7d5ae52d6982c6649ab2a440521a4862d18449"
+  }
+}

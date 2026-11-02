@@ -1,0 +1,230 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Nov  2 20:42:18 2026
+# Process ID         : 42364
+# Current directory  : C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5
+# Command line       : vivado.exe -mode batch -nojournal -log vivado.log -source board/zedboard/ps_dma/sim_dma_ip.tcl
+# Log file           : C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/vivado.log
+# Journal file       : 
+# Running On         : JinHyeok
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency      : 3418 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 34114 MB
+# Swap memory        : 24809 MB
+# Total Virtual      : 58923 MB
+# Available Virtual  : 11258 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source board/zedboard/ps_dma/sim_dma_ip.tcl
+# set root [file normalize [file join [file dirname [info script]] ../../..]]
+# set out [file join $root build/dma_ip_sim]
+# file mkdir $out
+# create_project dma_ip_sim [file join $out project] -part xc7z020clg484-1 -force
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 504.566 ; gain = 209.629
+# set_property target_language Verilog [current_project]
+# set_param general.maxThreads 4
+# create_ip -name axi_dma -vendor xilinx.com -library ip -version 7.1 -module_name dma_under_test
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/2025.1/Vivado/data/ip'.
+# set_property -dict [list CONFIG.c_include_sg {0} CONFIG.c_include_mm2s {1} CONFIG.c_include_s2mm {1} \
+#     CONFIG.c_m_axi_mm2s_data_width {64} CONFIG.c_m_axi_s2mm_data_width {64} \
+#     CONFIG.c_m_axis_mm2s_tdata_width {32} CONFIG.c_s_axis_s2mm_tdata_width {32} \
+#     CONFIG.c_include_mm2s_dre {0} CONFIG.c_include_s2mm_dre {0} CONFIG.c_sg_length_width {23} \
+#     CONFIG.c_mm2s_burst_size {16} CONFIG.c_s2mm_burst_size {16}] [get_ips dma_under_test]
+# generate_target simulation [get_ips dma_under_test]
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'dma_under_test'...
+# add_files -fileset sim_1 -norecurse [file join $root tb/ps_dma_v1/tb_dma_ip.sv]
+# set_property top tb_dma_ip [get_filesets sim_1]
+# set_property xsim.simulate.runtime 0ns [get_filesets sim_1]
+# launch_simulation -simset sim_1 -mode behavioral
+Command: launch_simulation  -simset sim_1 -mode behavioral
+INFO: [Vivado 12-12493] Simulation top is 'tb_dma_ip'
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-13660] Precompiled IP simulation library mode is enabled (default). The design IP libraries will be referenced from the compiled library path. Please note that if the precompiled version of the library is not found from the path or the IP is in locked state, then the library source files for these IPs will be compiled locally as part of the compile order.
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/2025.1/Vivado/tps/boost_1_72_0'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'C:/Xilinx/2025.1/Vivado/data/xsim/xsim.ini' copied to run dir:'C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_dma_ip' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj tb_dma_ip_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/tb/ps_dma_v1/tb_dma_ip.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_dma_ip
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+"xvhdl --incr --relax -prj tb_dma_ip_vhdl.prj"
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.gen/sources_1/ip/dma_under_test/sim/dma_under_test.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'dma_under_test'
+INFO: [USF-XSim-69] 'compile' step finished in '3' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 4 -L xil_defaultlib -L axi_datamover_v5_1_37 -L axi_sg_v4_1_21 -L axi_dma_v7_1_36 -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_dma_ip_behav xil_defaultlib.tb_dma_ip xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 4 -L xil_defaultlib -L axi_datamover_v5_1_37 -L axi_sg_v4_1_21 -L axi_dma_v7_1_36 -L uvm -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_dma_ip_behav xil_defaultlib.tb_dma_ip xil_defaultlib.glbl -log elaborate.log 
+Using 4 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
+Compiling package unisim.vcomponents
+Compiling package axi_dma_v7_1_36.axi_dma_pkg
+Compiling package xpm.vcomponents
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package axi_datamover_v5_1_37.axi_datamover_pkg
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_smple_sm [\axi_dma_smple_sm(c_sg_length_wi...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_mm2s_cmdsts_if [\axi_dma_mm2s_cmdsts_if(c_extra=...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_mm2s_sts_mngr [axi_dma_mm2s_sts_mngr_default]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_mm2s_mngr [\axi_dma_mm2s_mngr(c_prmy_cmdfif...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_sofeof_gen [axi_dma_sofeof_gen_default]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_s2mm_cmdsts_if [\axi_dma_s2mm_cmdsts_if(c_dm_sta...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_s2mm_sts_mngr [axi_dma_s2mm_sts_mngr_default]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_s2mm_mngr [\axi_dma_s2mm_mngr(c_prmy_cmdfif...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_reset [\axi_dma_reset(c_include_sg=0,c_...]
+Compiling module xpm.xpm_cdc_sync_rst(DEST_SYNC_FF=4,...
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_rst_module [\axi_dma_rst_module(c_include_sg...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_lite_if [\axi_dma_lite_if(c_num_ce=23,c_s...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_register [\axi_dma_register(c_num_register...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_register_s2mm [\axi_dma_register_s2mm(c_num_reg...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma_reg_module [\axi_dma_reg_module(c_include_sg...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=8,c_depth=4)\]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=8,c...]
+Compiling module xpm.xpm_fifo_rst_default
+Compiling module xpm.xpm_fifo_reg_bit
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=8...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=7...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=7...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=7...
+Compiling module xpm.xpm_memory_base(MEMORY_TYPE=1,ME...
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=2...
+Compiling module xpm.xpm_fifo_base(FIFO_MEMORY_TYPE=2...
+Compiling module xpm.xpm_fifo_sync(FIFO_MEMORY_TYPE="...
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_sfifo_autord [\axi_datamover_sfifo_autord(c_dw...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rd_sf [\axi_datamover_rd_sf(c_sf_fifo_d...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_skid_buf [axi_datamover_skid_buf_default]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_reset [axi_datamover_reset_default]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=8,c...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=71,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_cmd_status [\axi_datamover_cmd_status(c_stsc...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rd_status_cntl [axi_datamover_rd_status_cntl_def...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_strb_gen2 [axi_datamover_strb_gen2_default]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_strb_gen2 [\axi_datamover_strb_gen2(c_op_mo...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_pcc [\axi_datamover_pcc(c_is_mm2s=1,c...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=59,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=59,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_addr_cntl [\axi_datamover_addr_cntl(c_famil...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=38,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=38,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rdmux [\axi_datamover_rdmux(c_sel_addr_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_rddata_cntl [\axi_datamover_rddata_cntl(c_ali...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_mm2s_full_wrap [\axi_datamover_mm2s_full_wrap(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_ibttcc [\axi_datamover_ibttcc(c_dre_alig...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_ms_strb_set [\axi_datamover_ms_strb_set(c_str...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_mssai_skid_buf [axi_datamover_mssai_skid_buf_def...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_strb_gen2 [\axi_datamover_strb_gen2(c_strb_...]
+Compiling architecture working of entity axi_datamover_v5_1_37.axi_datamover_slice [\axi_datamover_slice(c_data_widt...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=9,c_depth=16)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=9,c...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_s2mm_scatter [\axi_datamover_s2mm_scatter(c_en...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=34,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=34,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_s2mm_realign [\axi_datamover_s2mm_realign(c_en...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_stbs_set [\axi_datamover_stbs_set(c_strobe...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_stbs_set [axi_datamover_stbs_set_default]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_skid_buf [\axi_datamover_skid_buf(c_wdata_...]
+Compiling module xpm.xpm_fifo_rst_default_1
+Compiling module xpm.xpm_counter_updn(COUNTER_WIDTH=5...
+Compiling module xpm.xpm_counter_updn(RESET_VALUE=1)
+Compiling module xpm.xpm_counter_updn(RESET_VALUE=2)
+Compiling module xpm.xpm_counter_updn(RESET_VALUE=3)
+Compiling module xpm.xpm_memory_base(MEMORY_TYPE=1,ME...
+Compiling module xpm.xpm_fifo_base(FIFO_WRITE_DEPTH=1...
+Compiling module xpm.xpm_fifo_sync(FIFO_MEMORY_TYPE="...
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_sfifo_autord [\axi_datamover_sfifo_autord(c_dw...]
+Compiling module xpm.xpm_fifo_rst_default_2
+Compiling module xpm.xpm_memory_base(MEMORY_TYPE=1,ME...
+Compiling module xpm.xpm_fifo_base(FIFO_MEMORY_TYPE=2...
+Compiling module xpm.xpm_fifo_sync(FIFO_MEMORY_TYPE="...
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_sfifo_autord [\axi_datamover_sfifo_autord(c_dw...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_indet_btt [\axi_datamover_indet_btt(c_strt_...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=35,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_cmd_status [\axi_datamover_cmd_status(c_stsc...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=30,c_depth=6)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=30,...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=2,c_depth=6)\]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=2,c...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wr_status_cntl [\axi_datamover_wr_status_cntl(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_addr_cntl [\axi_datamover_addr_cntl(c_addr_...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.srl_fifo [\srl_fifo(c_dwidth=36,c_depth=4)...]
+Compiling architecture imp of entity axi_datamover_v5_1_37.axi_datamover_fifo [\axi_datamover_fifo(c_dwidth=36,...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wrdata_cntl [\axi_datamover_wrdata_cntl(c_rea...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_wr_demux [\axi_datamover_wr_demux(c_sel_ad...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_skid2mm_buf [\axi_datamover_skid2mm_buf(c_mda...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover_s2mm_full_wrap [\axi_datamover_s2mm_full_wrap(c_...]
+Compiling architecture implementation of entity axi_datamover_v5_1_37.axi_datamover [\axi_datamover(c_include_mm2s=1,...]
+Compiling architecture implementation of entity axi_dma_v7_1_36.axi_dma [\axi_dma(c_include_sg=0,c_sg_inc...]
+Compiling architecture dma_under_test_arch of entity xil_defaultlib.dma_under_test [dma_under_test_default]
+Compiling module xil_defaultlib.tb_dma_ip
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_dma_ip_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 532.430 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '9' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/build/dma_ip_sim/project/dma_ip_sim.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_dma_ip_behav -key {Behavioral:sim_1:Functional:tb_dma_ip} -tclbatch {tb_dma_ip.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source tb_dma_ip.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## run 0ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_dma_ip_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 0ns
+launch_simulation: Time (s): cpu = 00:00:00 ; elapsed = 00:00:16 . Memory (MB): peak = 549.434 ; gain = 22.980
+# run all
+Info: [XPM_MEMORY 20-1] MEMORY_PRIMITIVE (0) instructs Vivado Synthesis to choose the memory primitive type. Depending on their values, other XPM_MEMORY parameters may preclude the choice of certain memory primitive types. Review XPM_MEMORY documentation and parameter values to understand any limitations, or set MEMORY_PRIMITIVE to a different value. tb_dma_ip.dut.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc
+Time: 1 ps  Iteration: 0  Process: /tb_dma_ip/dut/U0/I_PRMRY_DATAMOVER/gen_s2mm_full/I_S2MM_FULL_WRAPPER/gen_enable_indet_btt_sf/I_INDET_BTT/I_XD_FIFO/non_blk_mem/I_SYNC_FIFOGEN_FIFO/xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst/Initial310_87  Scope: tb_dma_ip.dut.U0.I_PRMRY_DATAMOVER.gen_s2mm_full.I_S2MM_FULL_WRAPPER.gen_enable_indet_btt_sf.I_INDET_BTT.I_XD_FIFO.non_blk_mem.I_SYNC_FIFOGEN_FIFO.xpm_fifo_base_inst.gen_sdpram.xpm_memory_base_inst.config_drc  File: C:/Xilinx/2025.1/Vivado/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv Line: 522
+DMA_IP_TRANSFER_PASS bytes=1073356 read_bursts=8386 write_bursts=8386 stream_words=268339
+DMA_IP_TRANSFER_PASS bytes=64 read_bursts=8392 write_bursts=8390 stream_words=268466
+DMA_IP_PASS real_axi_dma=7.1 max_packet_bytes=1073356 reset_during_transfer=1 recovered_bytes=64 memory_bfm=1 stream_stalls=1
+$finish called at time : 3360630 ns : File "C:/Users/tsi03/AppData/Local/Temp/r20dma_9350c5/tb/ps_dma_v1/tb_dma_ip.sv" Line 219
+run: Time (s): cpu = 00:00:02 ; elapsed = 00:00:27 . Memory (MB): peak = 549.434 ; gain = 0.000
+# close_sim
+INFO: xsimkernel Simulation Memory Usage: 28484 KB (Peak: 28484 KB), Simulation CPU Usage: 26983 ms
+INFO: [Simtcl 6-16] Simulation closed
+# puts "DMA_IP_SIMULATION_FINISHED (require DMA_IP_PASS in simulator log)"
+DMA_IP_SIMULATION_FINISHED (require DMA_IP_PASS in simulator log)
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Mon Nov  2 20:43:12 2026...

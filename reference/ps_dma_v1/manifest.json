@@ -1,0 +1,117 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "format": "little-endian uint32; [0x52323031,kind,count,payload...]; one DMA TLAST per packet",
+  "packets": [
+    {
+      "name": "input0",
+      "file": "input0.bin",
+      "kind": 0,
+      "payload_words": 3072,
+      "bytes": 12300,
+      "ddr_address": 33554432,
+      "sha256": "e13704e6aaa96856c528cbd531eab95de29c732812ef4cd65c2ed8b658be23a9"
+    },
+    {
+      "name": "input1",
+      "file": "input1.bin",
+      "kind": 0,
+      "payload_words": 3072,
+      "bytes": 12300,
+      "ddr_address": 33570816,
+      "sha256": "62d744734c693a46e1ed002b2d485593009e85b84fd166245c46f6917030fc13"
+    },
+    {
+      "name": "weight",
+      "file": "weight.bin",
+      "kind": 1,
+      "payload_words": 268336,
+      "bytes": 1073356,
+      "ddr_address": 33619968,
+      "sha256": "683874f321901dfb7e309986b5e4fa972af8e62c28fae4a8dfb58d6e59422eff"
+    },
+    {
+      "name": "bias",
+      "file": "bias.bin",
+      "kind": 2,
+      "payload_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34734080,
+      "sha256": "8192d90a22c3050b98c21acb6419a892b6f3ce3b9ee90876310d2cf83ceabd8e"
+    },
+    {
+      "name": "multiplier",
+      "file": "multiplier.bin",
+      "kind": 3,
+      "payload_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34750464,
+      "sha256": "809a7e8d5309a584fb40aa1c3e8c57ae8fe63f69c0dd19dc91e2f1c132467b90"
+    },
+    {
+      "name": "shift",
+      "file": "shift.bin",
+      "kind": 4,
+      "payload_words": 698,
+      "bytes": 2804,
+      "ddr_address": 34766848,
+      "sha256": "708087414231859510b58c84b2a4ebc6056974c13c0a411871a88e65cb7d3478"
+    }
+  ],
+  "accelerator_base": 1136656384,
+  "dma_base": 1077936128,
+  "rx_address": 35651584,
+  "rx_bytes": 64,
+  "report_address": 50331648,
+  "report_words": 72,
+  "samples": {
+    "0": {
+      "test_index": 0,
+      "prediction": 3,
+      "scores": [
+        -381997,
+        -36909,
+        46541,
+        1586887,
+        -259757,
+        306431,
+        35286,
+        -351394,
+        -276301,
+        -666530
+      ],
+      "tensor_count": 61,
+      "boundary_elements": 552084
+    },
+    "1": {
+      "test_index": 1,
+      "prediction": 8,
+      "scores": [
+        375818,
+        759555,
+        -571137,
+        -422553,
+        -786112,
+        -518376,
+        -400169,
+        -532279,
+        2082934,
+        15190
+      ],
+      "tensor_count": 61,
+      "boundary_elements": 552084
+    }
+  },
+  "normal_order": [
+    0,
+    1,
+    0
+  ],
+  "board_recovery_order": [
+    0,
+    1,
+    0,
+    1
+  ],
+  "payload_words_per_job": 273502,
+  "mm2s_bytes_per_job": 1094068
+}
