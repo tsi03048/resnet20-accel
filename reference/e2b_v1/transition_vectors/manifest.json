@@ -1,0 +1,481 @@
+{
+  "package": "f375f8b33e87e750d8e7e6ef90a49368d03684f22a706525e0083d061890b833",
+  "blocks": [
+    "L2.0",
+    "L3.0"
+  ],
+  "source": "actual CIFAR-10 test sample 0; frozen upstream outputs; not a full RTL chain",
+  "vectors": {
+    "2": {
+      "input": {
+        "file": "stage2/input.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          16,
+          32,
+          32
+        ],
+        "count": 16384,
+        "order": "C",
+        "sha256": "f6e346755877808ee48a223b991220279728013e88f25cfa37f01757a9b0cd55"
+      },
+      "acc1_expected": {
+        "file": "stage2/acc1_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "9afb612a091c0eeb051af9caef3a69672b693ca80dfd0b2b99625b91831c7050"
+      },
+      "h_expected": {
+        "file": "stage2/h_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "8a4b9441d73f1f21dbc7bd2918dc69c9010231519b5c3176e502aaf20ae50996"
+      },
+      "acc2_expected": {
+        "file": "stage2/acc2_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "c82f21ba21f54ddd56fd15b00e627cdc9b44b82aae5511d75fc6480c57c1fada"
+      },
+      "m_expected": {
+        "file": "stage2/m_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "135ac5ea3a03d6b7032d71684cc4aa0ae31395b7696a6cb29d1e0091cc5ccd88"
+      },
+      "skip_expected": {
+        "file": "stage2/skip_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "1d12b8377d83dd959ced5bf05706d1585cdd96f360534f44ee388347753befaa"
+      },
+      "skip_addr_expected": {
+        "file": "stage2/skip_addr_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "4eb062c9258b8e4e07701e026a70ec80ab9d8620e090611e91941f13fcb754e2"
+      },
+      "add_wide_expected": {
+        "file": "stage2/add_wide_expected.hex",
+        "bits": 64,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "c8973b3e78198b272967154e792a52b90d7a6766117f1b2773c0d023af9f1b19"
+      },
+      "output_expected": {
+        "file": "stage2/output_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "dd2bf368c8edccb5bf3a2125470627e79c04671e481f2b6c10139b76a4e6b66f"
+      },
+      "add_config": {
+        "file": "stage2/add_config.hex",
+        "bits": 32,
+        "shape": [
+          3
+        ],
+        "count": 3,
+        "order": "C",
+        "sha256": "6af94394122e14c2d871fd1ecfeba221312a3ca876cf40dc56f3fc9ccbfd4fcb"
+      },
+      "weight1": {
+        "file": "stage2/weight1.hex",
+        "bits": 8,
+        "shape": [
+          32,
+          16,
+          3,
+          3
+        ],
+        "count": 4608,
+        "order": "C",
+        "sha256": "cba01c206d5e0c1ef50880c5ea839fd77f65cd8906457dd9faf2dc6987c10d89"
+      },
+      "bias1": {
+        "file": "stage2/bias1.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "864f5827d9b617636e191bab0ca695310215ccbcd2b6dc9226573d37cb788e26"
+      },
+      "multiplier1": {
+        "file": "stage2/multiplier1.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "2aaad36ddfb5d9ba90ab507ec51cf2880fa0196ea38ad349cbdb9b64e9292b65"
+      },
+      "shift1": {
+        "file": "stage2/shift1.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "82f9fc7b09c75cf7beafdb1a613de953b5e9366e7da84c909d7de44b1b669d18"
+      },
+      "weight2": {
+        "file": "stage2/weight2.hex",
+        "bits": 8,
+        "shape": [
+          32,
+          32,
+          3,
+          3
+        ],
+        "count": 9216,
+        "order": "C",
+        "sha256": "6ba868e86004b6d1d7cb029da2e29154fcf6934d96e9837c99ab8566658ef08a"
+      },
+      "bias2": {
+        "file": "stage2/bias2.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "e4bee497ff9be4a6948a90496e1a55cdc74496c28f46f63396266d8eb663c103"
+      },
+      "multiplier2": {
+        "file": "stage2/multiplier2.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "d1c6f38a31ccbd5d3e48372653feb1ad268293f1c58ccb42c3bb3aba5221e850"
+      },
+      "shift2": {
+        "file": "stage2/shift2.hex",
+        "bits": 32,
+        "shape": [
+          32
+        ],
+        "count": 32,
+        "order": "C",
+        "sha256": "82f9fc7b09c75cf7beafdb1a613de953b5e9366e7da84c909d7de44b1b669d18"
+      }
+    },
+    "3": {
+      "input": {
+        "file": "stage3/input.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          32,
+          16,
+          16
+        ],
+        "count": 8192,
+        "order": "C",
+        "sha256": "8b52231381c815253b01739760a042f3c0c12fc7cd52d2f4ed632957610c551a"
+      },
+      "acc1_expected": {
+        "file": "stage3/acc1_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "067d18e648ee855ee63321572d803be289f2f22c02d0fd93bab810c386393011"
+      },
+      "h_expected": {
+        "file": "stage3/h_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "ad66a7f51b7f115d0ce98e7eed7e1bcd2f12a8013a6d6df27412b60696bcbf74"
+      },
+      "acc2_expected": {
+        "file": "stage3/acc2_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "40a360e9e45791544b7681176dad5c14f4f593aa2e785f6716a9c1e861d51630"
+      },
+      "m_expected": {
+        "file": "stage3/m_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "2c684db40ba2060c3313ef21640fada68af35bf046fa0d9f3abd6694c6eaca42"
+      },
+      "skip_expected": {
+        "file": "stage3/skip_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "635018140abd6d7200e8ae220716f4703e9b32d7ae01a51fbe281fb54582627b"
+      },
+      "skip_addr_expected": {
+        "file": "stage3/skip_addr_expected.hex",
+        "bits": 32,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "cca8f3dae6d4a7d1ad39ade200eac83894e4ae64dd7f3e7c1000c10fed592848"
+      },
+      "add_wide_expected": {
+        "file": "stage3/add_wide_expected.hex",
+        "bits": 64,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "3a445114127bc11bce19535f61890af75f93864fadaeabdbd83d9045082b2f1a"
+      },
+      "output_expected": {
+        "file": "stage3/output_expected.hex",
+        "bits": 8,
+        "shape": [
+          1,
+          64,
+          8,
+          8
+        ],
+        "count": 4096,
+        "order": "C",
+        "sha256": "c5481a037f4cdfd2bc4a0b88065d2661889e941a05bd5b41e23ca26fe6b3841b"
+      },
+      "add_config": {
+        "file": "stage3/add_config.hex",
+        "bits": 32,
+        "shape": [
+          3
+        ],
+        "count": 3,
+        "order": "C",
+        "sha256": "ecc4e3b38d5abcb919f497eaf1f55b487de564ca4867dadbb52dbeec8231b429"
+      },
+      "weight1": {
+        "file": "stage3/weight1.hex",
+        "bits": 8,
+        "shape": [
+          64,
+          32,
+          3,
+          3
+        ],
+        "count": 18432,
+        "order": "C",
+        "sha256": "ee5797ae84fb70375763ac5e1ca02c5e53eb8f4c778816cb95325e3eb41cbf0e"
+      },
+      "bias1": {
+        "file": "stage3/bias1.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "01044c7d18dd7e726f98fe32fe14e8cedb4148269c36e21fb0b7f85d038e5ff5"
+      },
+      "multiplier1": {
+        "file": "stage3/multiplier1.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "4bdcc7f84141928a7eb3e2cddaa2e5a7c3ff05dc2b9257157e0b3facc67a7f15"
+      },
+      "shift1": {
+        "file": "stage3/shift1.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "14db61eec53bb0ac6e7f685f7e8087eb03502322e3c64d329765030d1c693a3f"
+      },
+      "weight2": {
+        "file": "stage3/weight2.hex",
+        "bits": 8,
+        "shape": [
+          64,
+          64,
+          3,
+          3
+        ],
+        "count": 36864,
+        "order": "C",
+        "sha256": "47e3d3661115320533603b271d62f455eeddf05ac31f4a65ff917ac55403f858"
+      },
+      "bias2": {
+        "file": "stage3/bias2.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "97c83081815fc33f00fdae37a798b4bfa3dd63855e4ceab1d83afbe229315b65"
+      },
+      "multiplier2": {
+        "file": "stage3/multiplier2.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "01dd19c39491f3e887cdd5c0019d9a0da7c77455c8239d6f95e549aa52972270"
+      },
+      "shift2": {
+        "file": "stage3/shift2.hex",
+        "bits": 32,
+        "shape": [
+          64
+        ],
+        "count": 64,
+        "order": "C",
+        "sha256": "14db61eec53bb0ac6e7f685f7e8087eb03502322e3c64d329765030d1c693a3f"
+      }
+    }
+  },
+  "geometry": {
+    "2": {
+      "input_shape": [
+        1,
+        16,
+        32,
+        32
+      ],
+      "output_shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "skip_read_count": 4096,
+      "zero_skip_count": 4096,
+      "negative_main": 3549,
+      "zero_skip_but_positive_y": 2098,
+      "wrong_odd_coordinate_y_changes": 3182
+    },
+    "3": {
+      "input_shape": [
+        1,
+        32,
+        16,
+        16
+      ],
+      "output_shape": [
+        1,
+        64,
+        8,
+        8
+      ],
+      "skip_read_count": 2048,
+      "zero_skip_count": 2048,
+      "negative_main": 2429,
+      "zero_skip_but_positive_y": 867,
+      "wrong_odd_coordinate_y_changes": 1062
+    }
+  },
+  "encoding": "ASCII LF two's complement, NCHW/OIHW, one word per line; -1 means no skip read"
+}
