@@ -1,0 +1,17 @@
+{
+  "normal_measured_cycles": [
+    64063653,
+    64063653,
+    64063653
+  ],
+  "previous_measured_cycles": [
+    64063653,
+    64063653,
+    64063653
+  ],
+  "normal_compute_cycles_identical": true,
+  "previous_mm2s_bytes_per_image": 279844,
+  "new_mm2s_bytes_per_image": 279844,
+  "s2mm_bytes_per_image": 64,
+  "scope": "Same R202 RTL re-executed. Hold-margin implementation has no arithmetic or cycle change. RTL BFM simulation is not a post-route timing simulation or board execution."
+}

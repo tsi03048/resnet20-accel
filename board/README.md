@@ -60,3 +60,5 @@ VIO 창을 열고 아래 신호를 추가한다. 표시 이름이 번호이면 �
 후속 [E8-G MAC 파이프라인](../docs/pipelined_mac.md)은 같은 R202 인터페이스로 계산 클록을75.92% 줄였습니다. 61경계·Stall·11곳 Reset과 전체 시스템100 MHz 배선을 재검증했습니다. 실습 ZIP에서는 `platform_pipe`의 새 bit와 제공된 R202 ELF·패킷을 함께 사용합니다. 실물 실행은 NOT_RUN입니다.
 
 후속 [E8-H 패킷 끝 주소 사전 저장](../docs/timing_margin.md)은 같은100 MHz에서 Setup 여유를+0.055→+0.927ns로 늘렸습니다. Hold는+0.007ns로 작습니다. 61경계·Stall·11곳 Reset과 byte별 Reset을 재검증했고 계산 클록·R202 ABI는 같습니다. 실습 ZIP은 `platform_timing`의 새 bit와 제공된 R202 ELF·패킷을 사용합니다. 실물 실행은 NOT_RUN입니다.
+
+후속 [E8-I Hold 여유 확보](../docs/hold_margin.md)는 구현에 추가0.100ns Hold 목표와 배선 후 최적화를 적용했습니다. 기존 조건 Hold+0.119ns·추가 목표 조건+0.019ns, Setup+0.972ns이며 같은100 MHz입니다. 실습 ZIP의 `platform_hold`를 사용합니다. 계산 RTL·R202 ARM ELF·패킷은 동일하고 실물 실행은 NOT_RUN입니다.

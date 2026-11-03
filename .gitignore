@@ -47,3 +47,6 @@ results/ps_dma_pipe_rtl/
 
 # Regenerable complete timing-front-end regression logs and CSV
 results/ps_dma_timing_rtl/
+
+# Regenerable unchanged-RTL regression for the hold-margin implementation
+results/ps_dma_hold_rtl/

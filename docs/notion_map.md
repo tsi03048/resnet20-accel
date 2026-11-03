@@ -12,6 +12,7 @@
 | E14-C Stem→Residual | docs/stem_residual_e2b_rtl.md, rtl/stem_residual_e2b_v1/, tb/stem_residual_e2b_v1/, results/stem_residual_rtl_actual.json | 실제 입력5회·합성0 1회, 전송/전체 중간값/최종값 일치; Transition·보드는 후속 |
 | E16-B 실제 Transition | docs/transition_e2b_rtl.md, rtl/transition_e2b_v1/, tb/transition_e2b_v1/, results/transition_rtl_actual.json | L2.0·L3.0 각5회, stride2·Option A·전체 중간값/출력 일치; 전체 모델은 E8-B, 보드는 후속 |
 | B5·E8 | model/resnet20_plan.py | 9 Block·30 작업·Weight/MAC 구조 계산 |
+| E8-I Hold 여유 확보 | docs/hold_margin.md, board/zedboard/ps_dma_hold/, tools/check_hold_delivery.py, results/ps_dma_hold_*.json | 기존 조건 Hold+0.119ns·추가0.100ns 목표+0.019ns, Setup+0.972ns; 동일 RTL61경계·Stall·Reset 재검증, 실물 NOT_RUN |
 | E8-H 패킷 수신부 Setup 개선 | docs/timing_margin.md, rtl/ps_dma_v3/, tb/ps_dma_timing/, board/zedboard/ps_dma_timing/, results/ps_dma_timing_*.json | 100 MHz WNS+0.055→+0.927ns, WHS+0.007ns. 61경계·Stall·11곳 Reset·추가 byte Reset 재검증, 계산 클록·R202 ABI 동일; 실물 NOT_RUN |
 | E8-G MAC 파이프라인 | docs/pipelined_mac.md, rtl/full_e2b_fpga_v3/, tb/ps_dma_v3/, board/zedboard/ps_dma_pipe/, results/ps_dma_pipe_*.json | 실제 계산 클록75.92% 감소, 61경계·Stall·11곳 Reset·108항 부분합 시험, 전체 시스템100 MHz WNS+0.055ns·WHS+0.018ns; 실물 NOT_RUN |
 | E8-F INT8 묶음 DMA | docs/packed_dma.md, rtl/ps_dma_v2/, tb/ps_dma_v2/, board/zedboard/ps_dma_packed/, results/ps_dma_packed_*.json | R202: MM2S 1,094,068→279,844bytes, 74.42% 절감. 61경계·Stall·Reset 및 추가 lane Reset·숫자 오류 drain 통과. 전체 시스템 100 MHz 배선 WNS +0.571ns·WHS +0.033ns; 실물 NOT_RUN |

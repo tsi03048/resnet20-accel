@@ -1,0 +1,376 @@
+{
+  "status": "COMPLETE",
+  "verdict": "ROUTED_SYSTEM_TIMING_PASS_WITH_IP_WARNINGS",
+  "scope": "Complete PS7/DDR interfaces/GP0 control/HP0 AXI DMA system implementation; physical DDR training and board execution NOT_RUN",
+  "run_name": "ps_20261103_130853_e2d837",
+  "part": "xc7z020clg484-1",
+  "top": "system_wrapper",
+  "vivado": "2025.1",
+  "clock_mhz": 100,
+  "board_definition": "Avnet ZedBoard 1.5, hardware revision D",
+  "hold_margin_policy": {
+    "user_hold_uncertainty_ns": 0.1,
+    "nominal_user_hold_uncertainty_ns": 0.0,
+    "setup_user_uncertainty_changed": false,
+    "post_route_phys_opt": "ExploreWithAggressiveHoldFix"
+  },
+  "xsa_bit_matches": true,
+  "measurements": {
+    "post_synth": {
+      "resources": {
+        "lut": {
+          "used": 4781.0,
+          "available": 53200.0,
+          "percent": 8.99,
+          "fits": true
+        },
+        "ff": {
+          "used": 5817.0,
+          "available": 106400.0,
+          "percent": 5.47,
+          "fits": true
+        },
+        "bram36_equivalent": {
+          "used": 87.5,
+          "available": 140.0,
+          "percent": 62.5,
+          "fits": true
+        },
+        "dsp": {
+          "used": 0.0,
+          "available": 220.0,
+          "percent": 0.0,
+          "fits": true
+        },
+        "lut_as_memory": {
+          "used": 268.0,
+          "available": 17400.0,
+          "percent": 1.54,
+          "fits": true
+        }
+      },
+      "timing": {
+        "wns_ns": 2.175,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_endpoints": 19466,
+        "whs_ns": 0.045,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_endpoints": 19466,
+        "wpws_ns": 3.75,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_endpoints": 6280,
+        "numeric_constraints_met": true
+      },
+      "check_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 0,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "all_check_counts_zero": true
+    },
+    "post_route": {
+      "resources": {
+        "lut": {
+          "used": 4543.0,
+          "available": 53200.0,
+          "percent": 8.54,
+          "fits": true
+        },
+        "ff": {
+          "used": 5655.0,
+          "available": 106400.0,
+          "percent": 5.31,
+          "fits": true
+        },
+        "bram36_equivalent": {
+          "used": 87.5,
+          "available": 140.0,
+          "percent": 62.5,
+          "fits": true
+        },
+        "dsp": {
+          "used": 0.0,
+          "available": 220.0,
+          "percent": 0.0,
+          "fits": true
+        },
+        "lut_as_memory": {
+          "used": 185.0,
+          "available": 17400.0,
+          "percent": 1.06,
+          "fits": true
+        }
+      },
+      "timing": {
+        "wns_ns": 0.972,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_endpoints": 19016,
+        "whs_ns": 0.019,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_endpoints": 19016,
+        "wpws_ns": 3.75,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_endpoints": 6118,
+        "numeric_constraints_met": true
+      },
+      "check_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 0,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "all_check_counts_zero": true
+    },
+    "post_route_nominal": {
+      "resources": {
+        "lut": {
+          "used": 4543.0,
+          "available": 53200.0,
+          "percent": 8.54,
+          "fits": true
+        },
+        "ff": {
+          "used": 5655.0,
+          "available": 106400.0,
+          "percent": 5.31,
+          "fits": true
+        },
+        "bram36_equivalent": {
+          "used": 87.5,
+          "available": 140.0,
+          "percent": 62.5,
+          "fits": true
+        },
+        "dsp": {
+          "used": 0.0,
+          "available": 220.0,
+          "percent": 0.0,
+          "fits": true
+        },
+        "lut_as_memory": {
+          "used": 185.0,
+          "available": 17400.0,
+          "percent": 1.06,
+          "fits": true
+        }
+      },
+      "timing": {
+        "wns_ns": 0.972,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_endpoints": 19016,
+        "whs_ns": 0.119,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_endpoints": 19016,
+        "wpws_ns": 3.75,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_endpoints": 6118,
+        "numeric_constraints_met": true
+      },
+      "check_counts": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 0,
+        "no_output_delay": 0,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "all_check_counts_zero": true
+    }
+  },
+  "route": {
+    "routable": 9492,
+    "fully_routed": 9492,
+    "routing_errors": 0,
+    "complete": true
+  },
+  "drc_rules": [
+    {
+      "rule": "PDCN-1569",
+      "severity": "Warning",
+      "count": 3
+    },
+    {
+      "rule": "REQP-1839",
+      "severity": "Warning",
+      "count": 8
+    },
+    {
+      "rule": "REQP-1840",
+      "severity": "Warning",
+      "count": 4
+    },
+    {
+      "rule": "RTSTAT-10",
+      "severity": "Warning",
+      "count": 1
+    },
+    {
+      "rule": "REQP-165",
+      "severity": "Advisory",
+      "count": 2
+    },
+    {
+      "rule": "REQP-181",
+      "severity": "Advisory",
+      "count": 2
+    }
+  ],
+  "drc_errors": [],
+  "binary_artifacts": {
+    "system.bit": {
+      "bytes": 4045690,
+      "sha256": "78166f90e07ca603e129fa36fd9b37c42c20ebcf3b7e53d8acab55781a583125",
+      "location_in_practice_zip": "platform_hold/output/system.bit"
+    },
+    "system.xsa": {
+      "bytes": 626161,
+      "sha256": "114560007c220c49e5af388573e11944628e29978048ecf50b154524a6951108",
+      "location_in_practice_zip": "platform_hold/output/system.xsa"
+    },
+    "system_post_route.dcp": {
+      "bytes": 5225926,
+      "sha256": "c843a9abcebc0389ea7861ae1a007f0dc864c080470b09f2ab7a4a336140c244",
+      "location_in_practice_zip": "platform_hold/output/system_post_route.dcp"
+    },
+    "ps7_init.tcl": {
+      "bytes": 34952,
+      "sha256": "201e974807d65371f57914804803fbeff5f7cf964d129d42e576945e205bdce5",
+      "location_in_practice_zip": "platform_hold/output/ps7_init.tcl"
+    },
+    "system_export.tcl": {
+      "bytes": 27840,
+      "sha256": "61579ee38702215d85cc1ed3df6bf253a88a14c75952164f1ccff21bb696cc4f",
+      "location_in_practice_zip": "platform_hold/output/system_export.tcl"
+    }
+  },
+  "source_sha256": {
+    "board/zedboard/ps_dma_hold/hold_margin.tcl": "20370ed41d50e7cae5c8feaee49988b516450e531ebe4aaf6ba2d6ec663d5bf7",
+    "board/zedboard/ps_dma_hold/build_system.tcl": "754032c9107eadc1b23b8c55a1a7c95103887867d92283383c9a2ec90eda88a6",
+    "board/zedboard/ps_dma_hold/run_system.ps1": "3efbe52593a20450b30ddd320dcf45f4fd88fd5b96932fffed94bf6e2f7c5496",
+    "rtl/ps_dma_v3/resnet20_axi_packed.sv": "0e0b40e27c8ce81faeb17fe5181b8ff69807928c480b26902f6b847c5b93ad33",
+    "rtl/ps_dma_v3/resnet20_axi_packed_bd.v": "3bbe0faf83fecca907c825a14b792e74cb740a0818d7aa5629be227be6660718",
+    "rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "rtl/full_e2b_fpga_v3/full_model.sv": "376b4b6743244327c650c017efcd5010bee95b5c5377bdf527f1892b993a7555",
+    "rtl/full_e2b_fpga_v3/feature_ram.sv": "29585b2ab8dac3216d2c8ef7d8902e60724be1fde3bbda703ae8b4aaf71fbf20",
+    "rtl/full_e2b_fpga_v3/sync_bram.sv": "3107468e172db8cf54226fbb424f71fdb019d118c7b46d101e0cc0c9252fe139",
+    "rtl/full_e2b_fpga_v3/weight_bram.sv": "9350e24b75add95e4459264614e03524312cccb8851cbdf4df50a1bbc1c7b893",
+    "rtl/full_e2b_fpga_v3/mul_serial.sv": "f5081684ade0b70cf66c49a71a2ff66923424bad7b28df34760d1dd49e216d2f",
+    "rtl/full_e2b_fpga_v3/rne_serial.sv": "1dad2785b9458349e76d9201f3ae29f110dd6f3ba755a53645177bdeb6971101",
+    "rtl/full_e2b_fpga_v3/control_rom.svh": "925fe75ece2e5bb70b9e21631cc9c0f05a18bfd15052dea22388db0427568f9c",
+    "third_party/avnet_bdf/LICENSE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "third_party/avnet_bdf/README.md": "8cba3f6b0da9ac826324ddbd30cca0a400162c5205975aae27e0926003df2113",
+    "third_party/avnet_bdf/zedboard/1.5/board.xml": "0b55356d7702e0fb68ba900ebf124c68574f04dac8ba1ad9f80633f9a94e99ba",
+    "third_party/avnet_bdf/zedboard/1.5/changelog.txt": "2aed1ad3c9a1100a99c05e9cf16068c583605fbe653fdbb018842cba39b7c903",
+    "third_party/avnet_bdf/zedboard/1.5/part0_pins.xml": "732296bd482fe6a0f8d057589703c7f314c02c399787edd6dec3d2b9c034a271",
+    "third_party/avnet_bdf/zedboard/1.5/preset.xml": "7ec033af6b2bbad62d8d8d01e2983964f3a9af31fd166e95696dc023113603ea",
+    "third_party/avnet_bdf/zedboard/1.5/zed_board.jpg": "b1f5a76196ef3631c255bc72d6431b82cbe69c66d5e3d8e17c9fd2f0681fd65e"
+  },
+  "current_source_matches": {
+    "board/zedboard/ps_dma_hold/hold_margin.tcl": true,
+    "board/zedboard/ps_dma_hold/build_system.tcl": true,
+    "board/zedboard/ps_dma_hold/run_system.ps1": true,
+    "rtl/ps_dma_v3/resnet20_axi_packed.sv": true,
+    "rtl/ps_dma_v3/resnet20_axi_packed_bd.v": true,
+    "rtl/full_e2b_v1/argmax10.sv": true,
+    "rtl/full_e2b_fpga_v3/full_model.sv": true,
+    "rtl/full_e2b_fpga_v3/feature_ram.sv": true,
+    "rtl/full_e2b_fpga_v3/sync_bram.sv": true,
+    "rtl/full_e2b_fpga_v3/weight_bram.sv": true,
+    "rtl/full_e2b_fpga_v3/mul_serial.sv": true,
+    "rtl/full_e2b_fpga_v3/rne_serial.sv": true,
+    "rtl/full_e2b_fpga_v3/control_rom.svh": true,
+    "third_party/avnet_bdf/LICENSE-2.0.txt": true,
+    "third_party/avnet_bdf/README.md": true,
+    "third_party/avnet_bdf/zedboard/1.5/board.xml": true,
+    "third_party/avnet_bdf/zedboard/1.5/changelog.txt": true,
+    "third_party/avnet_bdf/zedboard/1.5/part0_pins.xml": true,
+    "third_party/avnet_bdf/zedboard/1.5/preset.xml": true,
+    "third_party/avnet_bdf/zedboard/1.5/zed_board.jpg": true
+  },
+  "report_sha256": {
+    "launch_manifest.json": "40f8da2629506da729bd467143f471159f290e908b0aa97decbb8f8316b52d9c",
+    "reports/clocks.rpt": "8b49f295015d8d2088f4fa97bd5e2148f1a77ac171426697b0285f4206bbb50a",
+    "reports/guarded_constraints.xdc": "89feffeb073829d07e895e32e7c7fcc6d6ffdf67a4ea9a2f715dee7ba35732bc",
+    "reports/implementation.log": "bc8f175f731c0b0492acf40b21d0868ab6f52bd5e620b83c4b96c787a53bd344",
+    "reports/nominal_clocks.rpt": "6b841a836214de4129d962f29c30d05707de3eab9c20165f21f9df5a8c106f82",
+    "reports/nominal_constraints.xdc": "c16c58e418b48f424f90bb21c7c774e95e62e56e233b75f80a40dd3669adc252",
+    "reports/post_route_check_timing.rpt": "7eb1ed0e7fb9d2ba4b1ae255bfc1d747e8a362f71e013dc70924a037814eb9c6",
+    "reports/post_route_drc.rpt": "2a7a4fcc9ae6f42fc0c6caecd671a053f6120674a34fd66d1ae97e45b97ca8da",
+    "reports/post_route_hierarchical.rpt": "08d74a3fbb9c996eead0c78ada0b45bc9b8665ba927f945499f65cf717827717",
+    "reports/post_route_nominal_check_timing.rpt": "57f4c15decf7619f762016c434afd515da7722b96056715761069c428ac9b09a",
+    "reports/post_route_nominal_drc.rpt": "15d49c7bc312d66e0cb0a3777340171c27a41d7759c3dcb9b1330325739f6ef7",
+    "reports/post_route_nominal_hierarchical.rpt": "5d3a70eea1172bb1860a74450a90d46189b1a626719426d64b5c7ebffe500deb",
+    "reports/post_route_nominal_timing_summary.rpt": "53588554965b040637c0d4c6a6aca3c6ace1a5dc959664755e81596aeeae4335",
+    "reports/post_route_nominal_utilization.rpt": "93ea37662acbc04a68d8d1c1d44212845bd72dfc65134ff036283662b7e58103",
+    "reports/post_route_nominal_worst_hold.rpt": "04f20f25f1f4f6ba518ecb78cfcd69a3f0153cafde1cbce66fc570f78baea0b3",
+    "reports/post_route_nominal_worst_setup.rpt": "62bdebcea7c187c61fa4fddc74b69045c3e3de485cf5a0d079fd2247da30c958",
+    "reports/post_route_status.rpt": "7e47e3d03c17fea027fe0add8e31f2f9434ce74cd84be336a064e290f8c074d9",
+    "reports/post_route_timing_summary.rpt": "a1f2d71acae41dda0b01205545fafebd8c9a47621ae2e9d8e4968fe27924f7f6",
+    "reports/post_route_utilization.rpt": "cf0a6e9a8e328370c20d7410c0d1d2db1e79faf72f9030b89bb7516c413b57b8",
+    "reports/post_route_worst_hold.rpt": "ecf9dede737d019ae9d403be531b3c669ecd2ed95011b93a3a50963a057aa4f9",
+    "reports/post_route_worst_setup.rpt": "f445f48870bce085a8af875aca6a9fb645dea51b9eac274fc159f459b4f73851",
+    "reports/post_synth_check_timing.rpt": "5c493ded998a6a1536314620abe6a32a9c358444a319085e5a310be804831ab0",
+    "reports/post_synth_drc.rpt": "6f8a39ca411e78f9ac5220cd3fca3084e687137371ad42aa03b227baaedf9ff3",
+    "reports/post_synth_hierarchical.rpt": "ceb2c8fbb5ef80a241bc2e2c63d86ed244204861577a7b1bd8db1943e0b3b1e6",
+    "reports/post_synth_timing_summary.rpt": "06a3dd4dd0d5693164f8547b7bca3535d8592470128cb551b9109aa6ec8d0596",
+    "reports/post_synth_utilization.rpt": "04254ed7cdcfa4016c8788063025efbddd7313b963b670096749d5b563a0c05d",
+    "reports/post_synth_worst_hold.rpt": "704e7481f1564b24a882ee384669c5a50e83045a9145668fdb50ffc4714696e5",
+    "reports/post_synth_worst_setup.rpt": "d6dd5127372ef0d46ed8dc14eacc536623cbde42f7c83cc897ac14830309fdb0",
+    "reports/status.txt": "840e5ef5298bbf5eac65802be0df9439e8fcd027b07b1b1f0d5faccd2fa889b6",
+    "reports/system_config.txt": "d2fc5106e1839c65ea7e561d92ad74498f187eb68f16b0f7db2f78625d616300",
+    "source_snapshot/board/zedboard/ps_dma_hold/build_system.tcl": "754032c9107eadc1b23b8c55a1a7c95103887867d92283383c9a2ec90eda88a6",
+    "source_snapshot/board/zedboard/ps_dma_hold/hold_margin.tcl": "20370ed41d50e7cae5c8feaee49988b516450e531ebe4aaf6ba2d6ec663d5bf7",
+    "source_snapshot/board/zedboard/ps_dma_hold/run_system.ps1": "3efbe52593a20450b30ddd320dcf45f4fd88fd5b96932fffed94bf6e2f7c5496",
+    "source_snapshot/rtl/full_e2b_fpga_v3/control_rom.svh": "925fe75ece2e5bb70b9e21631cc9c0f05a18bfd15052dea22388db0427568f9c",
+    "source_snapshot/rtl/full_e2b_fpga_v3/feature_ram.sv": "29585b2ab8dac3216d2c8ef7d8902e60724be1fde3bbda703ae8b4aaf71fbf20",
+    "source_snapshot/rtl/full_e2b_fpga_v3/full_model.sv": "376b4b6743244327c650c017efcd5010bee95b5c5377bdf527f1892b993a7555",
+    "source_snapshot/rtl/full_e2b_fpga_v3/mul_serial.sv": "f5081684ade0b70cf66c49a71a2ff66923424bad7b28df34760d1dd49e216d2f",
+    "source_snapshot/rtl/full_e2b_fpga_v3/rne_serial.sv": "1dad2785b9458349e76d9201f3ae29f110dd6f3ba755a53645177bdeb6971101",
+    "source_snapshot/rtl/full_e2b_fpga_v3/sync_bram.sv": "3107468e172db8cf54226fbb424f71fdb019d118c7b46d101e0cc0c9252fe139",
+    "source_snapshot/rtl/full_e2b_fpga_v3/weight_bram.sv": "9350e24b75add95e4459264614e03524312cccb8851cbdf4df50a1bbc1c7b893",
+    "source_snapshot/rtl/full_e2b_v1/argmax10.sv": "b913be83229e30b37180a8e79e617429902fd37470b280a3f92af7906dffed1a",
+    "source_snapshot/rtl/ps_dma_v3/resnet20_axi_packed.sv": "0e0b40e27c8ce81faeb17fe5181b8ff69807928c480b26902f6b847c5b93ad33",
+    "source_snapshot/rtl/ps_dma_v3/resnet20_axi_packed_bd.v": "3bbe0faf83fecca907c825a14b792e74cb740a0818d7aa5629be227be6660718",
+    "source_snapshot/third_party/avnet_bdf/LICENSE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "source_snapshot/third_party/avnet_bdf/README.md": "8cba3f6b0da9ac826324ddbd30cca0a400162c5205975aae27e0926003df2113",
+    "source_snapshot/third_party/avnet_bdf/zedboard/1.5/board.xml": "0b55356d7702e0fb68ba900ebf124c68574f04dac8ba1ad9f80633f9a94e99ba",
+    "source_snapshot/third_party/avnet_bdf/zedboard/1.5/changelog.txt": "2aed1ad3c9a1100a99c05e9cf16068c583605fbe653fdbb018842cba39b7c903",
+    "source_snapshot/third_party/avnet_bdf/zedboard/1.5/part0_pins.xml": "732296bd482fe6a0f8d057589703c7f314c02c399787edd6dec3d2b9c034a271",
+    "source_snapshot/third_party/avnet_bdf/zedboard/1.5/preset.xml": "7ec033af6b2bbad62d8d8d01e2983964f3a9af31fd166e95696dc023113603ea",
+    "source_snapshot/third_party/avnet_bdf/zedboard/1.5/zed_board.jpg": "b1f5a76196ef3631c255bc72d6431b82cbe69c66d5e3d8e17c9fd2f0681fd65e",
+    "vivado.log": "a40ec286f5992e87032bb4fe0e978ad9aed477c9a5687763bdd1838ecca33ed9"
+  },
+  "limitations": "Passing static timing/bitstream generation is not a physical PS/DDR/DMA execution. Vendor IP warnings are retained, not waived or downgraded; timing margin remains small."
+}

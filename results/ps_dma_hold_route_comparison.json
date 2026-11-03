@@ -1,0 +1,147 @@
+{
+  "status": "HOLD_MARGIN_IMPROVED",
+  "clock_mhz": 100,
+  "rtl_sources_unchanged": [
+    "rtl/ps_dma_v3/resnet20_axi_packed.sv",
+    "rtl/ps_dma_v3/resnet20_axi_packed_bd.v",
+    "rtl/full_e2b_v1/argmax10.sv",
+    "rtl/full_e2b_fpga_v3/full_model.sv",
+    "rtl/full_e2b_fpga_v3/feature_ram.sv",
+    "rtl/full_e2b_fpga_v3/sync_bram.sv",
+    "rtl/full_e2b_fpga_v3/weight_bram.sv",
+    "rtl/full_e2b_fpga_v3/mul_serial.sv",
+    "rtl/full_e2b_fpga_v3/rne_serial.sv",
+    "rtl/full_e2b_fpga_v3/control_rom.svh"
+  ],
+  "guarded_user_hold_uncertainty_ns": 0.1,
+  "nominal_user_hold_uncertainty_ns": 0.0,
+  "previous_nominal_hold_whs_ns": 0.007,
+  "new_guarded_hold_whs_ns": 0.019,
+  "new_nominal_hold_whs_ns": 0.119,
+  "nominal_hold_gain_ns": 0.112,
+  "previous_setup_wns_ns": 0.927,
+  "new_setup_wns_ns": 0.972,
+  "previous_resources": {
+    "lut": {
+      "used": 4425.0,
+      "available": 53200.0,
+      "percent": 8.32,
+      "fits": true
+    },
+    "ff": {
+      "used": 5655.0,
+      "available": 106400.0,
+      "percent": 5.31,
+      "fits": true
+    },
+    "bram36_equivalent": {
+      "used": 87.5,
+      "available": 140.0,
+      "percent": 62.5,
+      "fits": true
+    },
+    "dsp": {
+      "used": 0.0,
+      "available": 220.0,
+      "percent": 0.0,
+      "fits": true
+    },
+    "lut_as_memory": {
+      "used": 185.0,
+      "available": 17400.0,
+      "percent": 1.06,
+      "fits": true
+    }
+  },
+  "new_resources": {
+    "lut": {
+      "used": 4543.0,
+      "available": 53200.0,
+      "percent": 8.54,
+      "fits": true
+    },
+    "ff": {
+      "used": 5655.0,
+      "available": 106400.0,
+      "percent": 5.31,
+      "fits": true
+    },
+    "bram36_equivalent": {
+      "used": 87.5,
+      "available": 140.0,
+      "percent": 62.5,
+      "fits": true
+    },
+    "dsp": {
+      "used": 0.0,
+      "available": 220.0,
+      "percent": 0.0,
+      "fits": true
+    },
+    "lut_as_memory": {
+      "used": 185.0,
+      "available": 17400.0,
+      "percent": 1.06,
+      "fits": true
+    }
+  },
+  "worst_paths": {
+    "previous": {
+      "setup": {
+        "slack_ns": 0.927,
+        "source": "system_i/accel/inst/core_unit/core/weights/high_mem/mem_reg_1/CLKBWRCLK",
+        "destination": "system_i/accel/inst/core_unit/core/product_reg[13]/D",
+        "data_delay_ns": 8.671,
+        "logic_levels": 8,
+        "report_sha256": "2d6a82a3a30c70c8cfa09f7dd6db58c3574de6cb8a2636c48009414653750d7b"
+      },
+      "hold": {
+        "slack_ns": 0.007,
+        "source": "system_i/dma/U0/INCLUDE_S2MM_SOF_EOF_GENERATOR.I_S2MM_DMA_MNGR/GEN_S2MM_DMA_CONTROL.I_S2MM_CMDSTS/INDETERMINATE_BTT_MODE.s2mm_brcvd_reg[6]/C",
+        "destination": "system_i/dma/U0/I_AXI_DMA_REG_MODULE/GEN_S2MM_REGISTERS.I_S2MM_DMA_REGISTER/GEN_REG_FOR_SMPL.buffer_length_i_reg[6]/D",
+        "data_delay_ns": 0.365,
+        "logic_levels": 1,
+        "report_sha256": "18a603e7d6ca79140cbf661d3d8d7f0f89593d01a4a9780a0793b1f4c8d5a979"
+      }
+    },
+    "guarded": {
+      "setup": {
+        "slack_ns": 0.972,
+        "source": "system_i/accel/inst/core_unit/core/weights/high_mem/mem_reg_1/CLKBWRCLK",
+        "destination": "system_i/accel/inst/core_unit/core/product_reg[13]/D",
+        "data_delay_ns": 8.626,
+        "logic_levels": 8,
+        "report_sha256": "f445f48870bce085a8af875aca6a9fb645dea51b9eac274fc159f459b4f73851"
+      },
+      "hold": {
+        "slack_ns": 0.019,
+        "source": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/SLICE_INSERTION/storage_data_reg[4]/C",
+        "destination": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/I_TSTRB_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/data_reg[15][4]_srl16/D",
+        "data_delay_ns": 0.251,
+        "logic_levels": 0,
+        "report_sha256": "ecf9dede737d019ae9d403be531b3c669ecd2ed95011b93a3a50963a057aa4f9"
+      }
+    },
+    "nominal": {
+      "setup": {
+        "slack_ns": 0.972,
+        "source": "system_i/accel/inst/core_unit/core/weights/high_mem/mem_reg_1/CLKBWRCLK",
+        "destination": "system_i/accel/inst/core_unit/core/product_reg[13]/D",
+        "data_delay_ns": 8.626,
+        "logic_levels": 8,
+        "report_sha256": "62bdebcea7c187c61fa4fddc74b69045c3e3de485cf5a0d079fd2247da30c958"
+      },
+      "hold": {
+        "slack_ns": 0.119,
+        "source": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/SLICE_INSERTION/storage_data_reg[4]/C",
+        "destination": "system_i/dma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_INCLUDE_REALIGNER.I_S2MM_REALIGNER/GEN_INCLUDE_SCATTER.I_S2MM_SCATTER/I_TSTRB_FIFO/USE_SRL_FIFO.I_SYNC_FIFO/data_reg[15][4]_srl16/D",
+        "data_delay_ns": 0.251,
+        "logic_levels": 0,
+        "report_sha256": "04f20f25f1f4f6ba518ecb78cfcd69a3f0153cafde1cbce66fc570f78baea0b3"
+      }
+    }
+  },
+  "same_board_clock_and_function": true,
+  "implementation_changed": "Additional 0.100 ns hold uncertainty before placement; enabled post-route ExploreWithAggressiveHoldFix; no setup relaxation",
+  "limits": "Guard is an implementation margin target, not measured jitter. Original-budget report is a separate comparison view; guard remains in delivered checkpoint. No physical board, multi-seed or higher-frequency guarantee."
+}

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "input_dcp_sha256": "c843a9abcebc0389ea7861ae1a007f0dc864c080470b09f2ab7a4a336140c244",
+  "clock_mhz": 100,
+  "saved_user_hold_uncertainty_ns": 0.1,
+  "timing": {
+    "wns_ns": 0.972,
+    "tns_ns": 0.0,
+    "setup_failing_endpoints": 0,
+    "setup_endpoints": 19016,
+    "whs_ns": 0.019,
+    "ths_ns": 0.0,
+    "hold_failing_endpoints": 0,
+    "hold_endpoints": 19016,
+    "wpws_ns": 3.75,
+    "tpws_ns": 0.0,
+    "pulse_failing_endpoints": 0,
+    "pulse_endpoints": 6118,
+    "numeric_constraints_met": true
+  },
+  "all_check_counts_zero": true,
+  "source_sha256": {
+    "board/zedboard/ps_dma_hold/verify_checkpoint.tcl": "d29d258a7e6f0ca8a99e69f6bb25b94a87176cd87a8d9bf0e01c8bbbd64bb506",
+    "board/zedboard/ps_dma_hold/run_checkpoint_check.ps1": "3f88e478c01bd5e81ab5e42bab86829b9024b2e4596d330204cc946b9b24df5f"
+  },
+  "report_sha256": {
+    "check_timing.rpt": "76de9fb1876523bf21a2592c8acd3fa21834bac884b3412915933949da059445",
+    "clocks.rpt": "bb97d7637122ba774d5a78825363a0bca2e87303e71b14d6161ee5b7241e1297",
+    "launch_manifest.json": "6c55c0a5e8d0810bc36a6eeab52afa1bd5fe7bcb2649addee22c12b1bc74900a",
+    "run_checkpoint_check.ps1": "3f88e478c01bd5e81ab5e42bab86829b9024b2e4596d330204cc946b9b24df5f",
+    "timing.rpt": "0ea0553388a9027686a048732d59f2565e859d12e5fb23880cc87a992f0b4f7f",
+    "verify_checkpoint.tcl": "d29d258a7e6f0ca8a99e69f6bb25b94a87176cd87a8d9bf0e01c8bbbd64bb506",
+    "vivado.log": "1551ebeca9ed61a2d18d286694e7406b3f52eeda84c9ff6274a46bbd387ea4e0"
+  },
+  "scope": "Vivado actually re-opened final routed DCP without changing constraints. No hardware execution or post-route functional/timing simulation."
+}

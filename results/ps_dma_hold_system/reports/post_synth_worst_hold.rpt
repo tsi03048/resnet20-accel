@@ -1,0 +1,467 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2025.1 (win64) Build 6140274 Thu May 22 00:12:29 MDT 2025
+| Date         : Tue Nov  3 13:12:07 2026
+| Host         : JinHyeok running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type min -max_paths 10 -path_type full_clock_expanded -file C:/Users/tsi03/AppData/Local/Temp/r20p_b91427/build/zedboard_ps_hold/reports/post_synth_worst_hold.rpt
+| Design       : system_wrapper
+| Device       : 7z020-clg484
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[0]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff[0]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[1]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff[1]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[2]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff[2]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[3]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST/syncstages_ff_reg[3]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[0]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff[0]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[1]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff[1]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[2]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff[2]
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/dest_clk
+                         FDRE                                         r  system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[3]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/dma/U0/I_RST_MODULE/REG_HRD_RST_OUT/syncstages_ff_reg[3]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+                         FDPE (Prop_fdpe_C_Q)         0.147     0.720 r  <hidden>
+                         net (fo=1, unplaced)         0.081     0.801    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    <hidden>
+                         FDPE                                         r  <hidden>
+                         clock pessimism             -0.021     0.718    
+                         FDPE (Hold_fdpe_C_D)         0.038     0.756    <hidden>
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+                         FDPE (Prop_fdpe_C_Q)         0.147     0.720 r  <hidden>
+                         net (fo=1, unplaced)         0.081     0.801    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    <hidden>
+                         FDPE                                         r  <hidden>
+                         clock pessimism             -0.021     0.718    
+                         FDPE (Hold_fdpe_C_D)         0.038     0.756    <hidden>
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            <hidden>
+                            (rising edge-triggered cell FDPE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+                         FDPE (Prop_fdpe_C_Q)         0.147     0.720 r  <hidden>
+                         net (fo=1, unplaced)         0.081     0.801    <hidden>
+                         FDPE                                         r  <hidden>
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    <hidden>
+                         FDPE                                         r  <hidden>
+                         clock pessimism             -0.021     0.718    
+                         FDPE (Hold_fdpe_C_D)         0.038     0.756    <hidden>
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+Slack (MET) :             0.045ns  (arrival time - required time)
+  Source:                 system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/C
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_fpga_0
+  Path Type:              Hold (Min at Fast Process Corner)
+  Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
+  Data Path Delay:        0.228ns  (logic 0.147ns (64.493%)  route 0.081ns (35.507%))
+  Logic Levels:           0  
+  Clock Path Skew:        0.145ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    0.739ns
+    Source Clock Delay      (SCD):    0.573ns
+    Clock Pessimism Removal (CPR):    0.021ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.337     0.337    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.026     0.363 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.210     0.573    system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/dest_clk
+                         FDRE                                         r  system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/C
+  -------------------------------------------------------------------    -------------------
+                         FDRE (Prop_fdre_C_Q)         0.147     0.720 r  system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[0]/Q
+                         net (fo=1, unplaced)         0.081     0.801    system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff[0]
+                         FDRE                                         r  system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_fpga_0 rise edge)
+                                                      0.000     0.000 r  
+    PS7_X0Y0             PS7                          0.000     0.000 r  system_i/ps7/inst/PS7_i/FCLKCLK[0]
+                         net (fo=1, unplaced)         0.355     0.355    system_i/ps7/inst/FCLK_CLK_unbuffered[0]
+                         BUFG (Prop_bufg_I_O)         0.029     0.384 r  system_i/ps7/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=6281, unplaced)      0.355     0.739    system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/dest_clk
+                         FDRE                                         r  system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]/C
+                         clock pessimism             -0.021     0.718    
+                         FDRE (Hold_fdre_C_D)         0.038     0.756    system_i/reset/U0/EXT_LPF/ACTIVE_LOW_AUX.ACT_LO_AUX/syncstages_ff_reg[1]
+  -------------------------------------------------------------------
+                         required time                         -0.756    
+                         arrival time                           0.801    
+  -------------------------------------------------------------------
+                         slack                                  0.045    
+
+
+
+

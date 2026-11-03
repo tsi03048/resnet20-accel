@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "python_unittests": 60,
+  "python_log_sha256": "7023a131fa27f6c43dd78e01cb1ee02c1636d63df6135179f3bc4a0be45698bd",
+  "source_sha256": {
+    "tools/hold_report_checks.py": "cdb6f59cae76e562d5191310936173a960b99a22cc21936e71e9b3637342ebc5",
+    "tools/summarize_hold_system.py": "95d5f346702a528923878a1540190ed49b6c9d12943c7ca40977de6e82348cfd",
+    "tools/compare_hold_system.py": "0f934d7e9db38e36e87a656377744cd83c267645e48747c13185496831d206ea",
+    "tools/summarize_hold_reset.py": "7e8431cb1d83e670bb0b8ce9892f79c6642b7336a159c15c15ea1fa51eb13603",
+    "tools/summarize_hold_checkpoint.py": "19987c566af7515e1c3f531f3ed99f6a68e957f250a8a1999e70b3c3b939f79a",
+    "tools/check_hold_delivery.py": "6b598ae53e9e23e28948639ea3945db6c75ea0f8f03ee2202954f56c01585979",
+    "tests/test_hold_reports.py": "1e9f04584327472db193f556ea82ad093bf08d39029b98b2d4951a17b61f7033"
+  },
+  "rtl_csv_recompared_events": 274506,
+  "active_rtl_source_hashes_matched": 10,
+  "normal_compute_cycles": 64063653,
+  "board_execution": "NOT_RUN"
+}

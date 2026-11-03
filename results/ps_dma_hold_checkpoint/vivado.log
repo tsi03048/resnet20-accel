@@ -1,0 +1,77 @@
+#-----------------------------------------------------------
+# Vivado v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Tue Nov  3 13:20:48 2026
+# Process ID         : 36668
+# Current directory  : C:/Users/tsi03/AppData/Local/Temp/r20dcp_4da6fb
+# Command line       : vivado.exe -mode batch -nojournal -log vivado.log -source verify_checkpoint.tcl
+# Log file           : C:/Users/tsi03/AppData/Local/Temp/r20dcp_4da6fb/vivado.log
+# Journal file       : 
+# Running On         : JinHyeok
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26300
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700K
+# CPU Frequency      : 3418 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 34114 MB
+# Swap memory        : 17173 MB
+# Total Virtual      : 51287 MB
+# Available Virtual  : 8457 MB
+#-----------------------------------------------------------
+Sourcing tcl script 'C:/Users/tsi03/AppData/Roaming/Xilinx/Vivado/Vivado_init.tcl'
+source verify_checkpoint.tcl
+# set here [file normalize [file dirname [info script]]]
+# open_checkpoint [file join $here system.dcp]
+Command: open_checkpoint C:/Users/tsi03/AppData/Local/Temp/r20dcp_4da6fb/system.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 309.762 ; gain = 4.016
+WARNING: [Board 49-91] Board repository path 'C:ivado-boards-master/new/board_files' does not exist, it will not be used to search board files.
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.117 . Memory (MB): peak = 769.652 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 395 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2025.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Read ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 888.625 ; gain = 2.012
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Constraints 18-5170] The checkpoint was created with non-default parameter values which do not match the current Vivado settings.  Mismatching parameters are:
+  general.maxThreads
+INFO: [Project 1-853] Binary constraint restore complete.
+INFO: [Designutils 20-5722] Start Reading Physical Databases.
+Reading placement.
+Read Netlist Cache: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1502.777 ; gain = 0.000
+Reading placer database...
+Read Device Cache: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1502.777 ; gain = 0.000
+Read PlaceDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.287 . Memory (MB): peak = 1502.777 ; gain = 0.000
+Read PulsedLatchDB: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1502.777 ; gain = 0.000
+Reading routing.
+Read RouteStorage: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.084 . Memory (MB): peak = 1506.844 ; gain = 4.066
+Read Physdb Files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.397 . Memory (MB): peak = 1506.844 ; gain = 4.066
+Restored from archive | CPU: 1.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.424 . Memory (MB): peak = 1506.844 ; gain = 8.047
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1506.844 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 4 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 1 instance 
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2025.1 (64-bit) build 6140274
+open_checkpoint: Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1512.531 ; gain = 1217.508
+# set clock [get_clocks clk_fpga_0]
+# if {[llength $clock]!=1 || abs([get_property PERIOD $clock]-10.0)>0.000001} {error "Expected one 100 MHz FCLK"}
+# report_clocks -file [file join $here clocks.rpt]
+# report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -file [file join $here timing.rpt]
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+# check_timing -verbose -file [file join $here check_timing.rpt]
+# puts "HOLD_CHECKPOINT_REOPEN_COMPLETE (validate saved budget/timing with Python)"
+HOLD_CHECKPOINT_REOPEN_COMPLETE (validate saved budget/timing with Python)
+# exit 0
+INFO: [Common 17-206] Exiting Vivado at Tue Nov  3 13:21:04 2026...
