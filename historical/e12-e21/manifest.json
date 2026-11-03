@@ -9,7 +9,7 @@
       "path": "historical/e12-e21/archives/e12_conv_v0.zip",
       "sha256": "fc7fc886cb469d3b1d56c0d228bdb082f6ae68b12390cf9f8b7dae6ca2ae7a52",
       "bytes": 805699,
-      "source_page": "https://app.notion.com/p/408f0c4baec98145bdf3c4aa78a2969d?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e12_conv_v0/README.md",
@@ -201,7 +201,7 @@
       "path": "historical/e12-e21/archives/e13_stem.zip",
       "sha256": "9bd514eda9f37137fc3c9878cbe6d2830c1f4587e7959af1741628db30c141ed",
       "bytes": 249108,
-      "source_page": "https://app.notion.com/p/408f0c4baec981fe9170c2931cfc69e8?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e13_stem/README.md",
@@ -618,7 +618,7 @@
       "path": "historical/e12-e21/archives/e14_residual.zip",
       "sha256": "4447b330eaa20163676e021b9a812c30b4f02537a1a72f5e527b1e2216b1e58d",
       "bytes": 548777,
-      "source_page": "https://app.notion.com/p/408f0c4baec98179972adbb9e8f4789e?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e14_residual/README.md",
@@ -1195,7 +1195,7 @@
       "path": "historical/e12-e21/archives/e16_transition.zip",
       "sha256": "b9ac76c20390a3552a5f5c6035f1f2a41108eb1a3654c7d7cf4a8960480494b1",
       "bytes": 578571,
-      "source_page": "https://app.notion.com/p/408f0c4baec981f7bc7cc2374457b0c2?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e16_transition/README.md",
@@ -1847,7 +1847,7 @@
       "path": "historical/e12-e21/archives/e17_requant.zip",
       "sha256": "e01a342942b3a34473b51c1809c9cdec793079ca7b05a024e2d46b1ba8b93023",
       "bytes": 134161,
-      "source_page": "https://app.notion.com/p/408f0c4baec9817b96cafc78ab33ad55?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e17_requant/README.md",
@@ -2044,7 +2044,7 @@
       "path": "historical/e12-e21/archives/e18_integrated.zip",
       "sha256": "052625b8efebc3dd0cb18724dfd36d79d306d56aa9614bfef0ba580700bb3d82",
       "bytes": 907170,
-      "source_page": "https://app.notion.com/p/408f0c4baec98156a295f1523ed9fc81?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e18_integrated/README.md",
@@ -3611,7 +3611,7 @@
       "path": "historical/e12-e21/archives/e19_constants.zip",
       "sha256": "e59f7f974a08f79c979c687b5f148a83638eb9808d219944690705a580f46f72",
       "bytes": 260592,
-      "source_page": "https://app.notion.com/p/408f0c4baec981b69c50c063af294790?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e19_constants/README.md",
@@ -4378,7 +4378,7 @@
       "path": "historical/e12-e21/archives/e20_loader.zip",
       "sha256": "a9be5936ffe05909d9fc8883460b5f6d5f387a479aa13a99ebae9480dc23a5e4",
       "bytes": 961777,
-      "source_page": "https://app.notion.com/p/408f0c4baec98170a565ffa82639d4da?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e20_loader/README.md",
@@ -5515,7 +5515,7 @@
       "path": "historical/e12-e21/archives/e21_mmio.zip",
       "sha256": "20f1cde51db68cde084d13b5de5bbedc935a2e7ca6b1431061086a437197e0b0",
       "bytes": 415838,
-      "source_page": "https://app.notion.com/p/408f0c4baec981d1bb44c21ab02b33ff?pvs=204",
+      "source_page": "[Notion link removed]",
       "entries": [
         {
           "path": "e21_mmio/README.md",
@@ -5946,7 +5946,7 @@
     {
       "stage": "E12",
       "title": "🧪 E12. 고정 Conv RTL을 구현하고 실행하기 — RAM·MAC·RNE·제어기·Testbench·실제 시뮬레이션",
-      "source_url": "https://app.notion.com/p/408f0c4baec98145bdf3c4aa78a2969d?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:31.799Z",
       "source_content_sha256": "f63ee083ec6a640c95e381f5146a711a0913ee975246cf8c77a14d79263787e7",
       "path": "docs/historical/e12-e21/E12.md",
@@ -5955,7 +5955,7 @@
     {
       "stage": "E13",
       "title": "🧩 E13. 실제 Stem 크기로 확장하기 — Padding1·주소·Counter·전체 RTL 비교",
-      "source_url": "https://app.notion.com/p/408f0c4baec981fe9170c2931cfc69e8?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:33.007Z",
       "source_content_sha256": "60a4f704e8b12d8ad62443a5af195143368acd4d37f460023fc13b1a830d1ff9",
       "path": "docs/historical/e12-e21/E13.md",
@@ -5964,7 +5964,7 @@
     {
       "stage": "E14",
       "title": "🔗 E14. Identity Residual Block을 실행하기 — X 보존·Buffer 재사용·9-bit Add·전체 RTL 비교",
-      "source_url": "https://app.notion.com/p/408f0c4baec98179972adbb9e8f4789e?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:34.307Z",
       "source_content_sha256": "e9b49e43ac80202914e0bf2984083c204d2439b796dca1617faf3026098078dd",
       "path": "docs/historical/e12-e21/E14.md",
@@ -5973,7 +5973,7 @@
     {
       "stage": "E15",
       "title": "🔀 E15. Transition 규약을 고정하기 — Stride2·Option A·주소 변환·Buffer·기준 검산",
-      "source_url": "https://app.notion.com/p/408f0c4baec98185a3baff740c2449e3?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:35.594Z",
       "source_content_sha256": "9e2c20d2ca5024039be56ee5c6b9a321f223866f69365f83bf7f3079cb8190f6",
       "path": "docs/historical/e12-e21/E15.md",
@@ -5982,7 +5982,7 @@
     {
       "stage": "E16",
       "title": "🧪 E16. Transition RTL을 실행하기 — Stride2·Option A·두 Core·중간값·완료 검증",
-      "source_url": "https://app.notion.com/p/408f0c4baec981f7bc7cc2374457b0c2?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:36.907Z",
       "source_content_sha256": "a297e5e500fc919bcb0decd29b0bf055dcc89254b2a2360dbac1a6d3d1805ca8",
       "path": "docs/historical/e12-e21/E16.md",
@@ -5991,7 +5991,7 @@
     {
       "stage": "E17",
       "title": "🔢 E17. 채널별 정수 후처리를 실행하기 — Multiplier·Shift·RNE·Zero-point·Add 단위 정렬",
-      "source_url": "https://app.notion.com/p/408f0c4baec9817b96cafc78ab33ad55?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:38.243Z",
       "source_content_sha256": "5209479f6c1bd31447814378c69d79016ee882962d049de3652a59d9a14607bc",
       "path": "docs/historical/e12-e21/E17.md",
@@ -6000,7 +6000,7 @@
     {
       "stage": "E18",
       "title": "🔗 E18. 계수 Table을 Transition에 연결하기 — Command Snapshot·채널 정합·/4 호환·통합 RTL 회귀",
-      "source_url": "https://app.notion.com/p/408f0c4baec98156a295f1523ed9fc81?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:39.726Z",
       "source_content_sha256": "4e65dc68c2f30590a6953e6fce6f253c8c649c54d982274a14e4e95fba243db9",
       "path": "docs/historical/e12-e21/E18.md",
@@ -6009,7 +6009,7 @@
     {
       "stage": "E19",
       "title": "📦 E19. 상수 패키지를 실행 전에 검증하기 — Manifest·Channel 축·Hash·누산 범위·Preload Snapshot",
-      "source_url": "https://app.notion.com/p/408f0c4baec981b69c50c063af294790?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:41.000Z",
       "source_content_sha256": "6cbe1f645ca99f970b8f350ab15c38fc702fab213740c6257a90c79cfd2aa911",
       "path": "docs/historical/e12-e21/E19.md",
@@ -6018,7 +6018,7 @@
     {
       "stage": "E20",
       "title": "📥 E20. 검증 상수를 RTL에 적재하기 — Loader·Commit·Prepared·Generation·오류와 Reset",
-      "source_url": "https://app.notion.com/p/408f0c4baec98170a565ffa82639d4da?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:42.325Z",
       "source_content_sha256": "51b9d26ff818b08fdf41465bd434877d3795d16824d7a4a96dd368eb4a425cfd",
       "path": "docs/historical/e12-e21/E20.md",
@@ -6027,7 +6027,7 @@
     {
       "stage": "E21",
       "title": "🎛️ E21. Loader를 레지스터로 제어하기 — MMIO·Write 응답·상태 Readback·단일 실행",
-      "source_url": "https://app.notion.com/p/408f0c4baec981d1bb44c21ab02b33ff?pvs=204",
+      "source_url": "[Notion link removed]",
       "source_last_edited_at": "2026-11-02T05:01:43.724Z",
       "source_content_sha256": "fe23a4fc0659ed44214ad78c1629e605955726b20da9cfcdfb000ac84c04ad4a",
       "path": "docs/historical/e12-e21/E21.md",
