@@ -1,6 +1,6 @@
 # 수치 기준표 (Notion R0와 같은 내용)
 
-Notion: [R0. 수치 기준표](https://app.notion.com/p/40cf0c4baec9816da38eec1d647bef5f) · 2026-11-02
+Notion: R0. 수치 기준표 · 2026-11-02
 다른 문서의 크기·자원·FPS 수치가 이 표와 다르면 이 표를 따른다.
 조건: CIFAR-10 32×32, BasicBlock(post-activation), 채널 16/32/64, Option A, batch=1.
 모델 수치는 `python -m model.resnet20_plan`(→ `results/resnet20_plan.json`)으로 재현한다.
